@@ -23,19 +23,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="且将新火试新茶，诗酒趁年华">
-<meta property="og:type" content="website">
-<meta property="og:title" content="公益404">
-<meta property="og:url" content="http://example.com/commonweal/index.html">
+  <meta name="description" content="volatile关键字volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略 特性： 保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性） 禁止进行指令重排序。（保证一定程度上的原子性） volatile 只能保证对单次读&#x2F;写的原子性。i++ 这种操作不能保证原子性 简">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Volatile关键字">
+<meta property="og:url" content="http://example.com/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="且将新火试新茶，诗酒趁年华">
+<meta property="og:description" content="volatile关键字volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略 特性： 保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性） 禁止进行指令重排序。（保证一定程度上的原子性） volatile 只能保证对单次读&#x2F;写的原子性。i++ 这种操作不能保证原子性 简">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-27T01:34:24.000Z">
-<meta property="article:modified_time" content="2021-05-27T01:37:28.781Z">
+<meta property="article:published_time" content="2021-05-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-27T12:16:26.726Z">
 <meta property="article:author" content="aoqiangzhang143">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/commonweal/">
+<link rel="canonical" href="http://example.com/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/">
 
 
 <script id="page-configurations">
@@ -43,13 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>公益404 | Mithrandir
-</title>
+  <title>Volatile关键字 | Mithrandir</title>
   
 
 
@@ -182,43 +181,121 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Volatile关键字
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">公益404
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2021-05-27 00:00:00 / 修改时间：20:16:26" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-meta-item leancloud_visitors" data-flag-title="Volatile关键字" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
+        <h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
+<p>特性：</p>
+<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
+<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
+<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
+<p>简单介绍下指令重排</p>
+<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
+<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
+<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
+
     </div>
-    
 
     
     
     
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" rel="prev" title="线程状态">
+      <i class="fa fa-chevron-left"></i> 线程状态
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/" rel="next" title="Java各种对比">
+      Java各种对比 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
 
 
           </div>
@@ -270,6 +347,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.</span> <span class="nav-text">volatile关键字</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

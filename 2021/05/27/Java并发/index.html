@@ -23,19 +23,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="JMM概述 不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行： 1、wait&#x2F;notify 2、利用共享内存 3、while轮询 JMM采用的就是共享内存方式实现线程间通讯。  可见性、原子性、有序性可见性：指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性） 原子性：指一个操作或者多个操作要么都执行，要么都不执行。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2021/05/26/hello-world/index.html">
+<meta property="og:title" content="Java并发">
+<meta property="og:url" content="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="JMM概述 不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行： 1、wait&#x2F;notify 2、利用共享内存 3、while轮询 JMM采用的就是共享内存方式实现线程间通讯。  可见性、原子性、有序性可见性：指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性） 原子性：指一个操作或者多个操作要么都执行，要么都不执行。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-26T11:13:32.332Z">
-<meta property="article:modified_time" content="2021-05-26T11:13:32.332Z">
+<meta property="og:image" content="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png">
+<meta property="article:published_time" content="2021-05-27T11:47:41.000Z">
+<meta property="article:modified_time" content="2021-05-27T12:17:59.544Z">
 <meta property="article:author" content="aoqiangzhang143">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png">
 
-<link rel="canonical" href="http://example.com/2021/05/26/hello-world/">
+<link rel="canonical" href="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/">
 
 
 <script id="page-configurations">
@@ -48,7 +50,7 @@
   };
 </script>
 
-  <title>Hello World | Mithrandir</title>
+  <title>Java并发 | Mithrandir</title>
   
 
 
@@ -189,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/26/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -202,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Java并发
         </h1>
 
         <div class="post-meta">
@@ -211,12 +213,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-05-26 19:13:32" itemprop="dateCreated datePublished" datetime="2021-05-26T19:13:32+08:00">2021-05-26</time>
+              <time title="创建时间：2021-05-27 19:47:41 / 修改时间：20:17:59" itemprop="dateCreated datePublished" datetime="2021-05-27T19:47:41+08:00">2021-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+                </span>
             </span>
 
           
-            <span id="/2021/05/26/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
+            <span id="/2021/05/27/Java%E5%B9%B6%E5%8F%91/" class="post-meta-item leancloud_visitors" data-flag-title="Java并发" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -231,8 +243,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/05/26/hello-world/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/26/hello-world/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/05/27/Java%E5%B9%B6%E5%8F%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/27/Java%E5%B9%B6%E5%8F%91/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -247,19 +259,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h2 id="JMM概述"><a href="#JMM概述" class="headerlink" title="JMM概述"></a><a href="%5BJMM%E6%A6%82%E8%BF%B0_%E7%89%A7%E7%AB%B9%E5%AD%90-CSDN%E5%8D%9A%E5%AE%A2_jmm%5D(https://blog.csdn.net/zjcjava/article/details/78406330)">JMM概述</a></h2><p><img src="/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="JVM内存模型"></p>
+<p>不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行：</p>
+<p>1、wait/notify</p>
+<p>2、利用共享内存</p>
+<p>3、while轮询</p>
+<p>JMM采用的就是共享内存方式实现线程间通讯。</p>
+<hr>
+<h2 id="可见性、原子性、有序性"><a href="#可见性、原子性、有序性" class="headerlink" title="可见性、原子性、有序性"></a>可见性、原子性、有序性</h2><h3 id="可见性："><a href="#可见性：" class="headerlink" title="可见性："></a>可见性：</h3><p>指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性）</p>
+<h3 id="原子性："><a href="#原子性：" class="headerlink" title="原子性："></a>原子性：</h3><p>指一个操作或者多个操作要么都执行，要么都不执行。（synchronized可保证原子性）</p>
+<h3 id="有序性："><a href="#有序性：" class="headerlink" title="有序性："></a>有序性：</h3><p>对于一个线程的代码而言，我们总是以为代码的执行是从前往后的，依次执行的。这么说不能说完全不对，在单线程程序里，确实会这样执行；但是在多线程并发时，程序的执行就有可能出现乱序。用一句话可以总结为：在本线程内观察，操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行语义（WithIn Thread As-if-Serial Semantics）”,后半句是指“指令重排”现象和“工作内存和主内存同步延迟”现象。</p>
+<p>一个最经典的例子就是银行汇款问题，一个银行账户存款100，这时一个人从该账户取10元，同时另一个人向该账户汇10元，那么余额应该还是100。那么此时可能发生这种情况，A线程负责取款，B线程负责汇款，A从主内存读到100，B从主内存读到100，A执行减10操作，并将数据刷新到主内存，这时主内存数据100-10=90，而B内存执行加10操作，并将数据刷新到主内存，最后主内存数据100+10=110，显然这是一个严重的问题，我们要保证A线程和B线程有序执行，先取款后汇款或者先汇款后取款，此为有序性。</p>
+<p>Java提供了两个关键字volatile和synchronized来保证多线程之间操作的有序性,volatile关键字本身通过加入内存屏障来禁止指令的重排序，而synchronized关键字通过一个变量在同一时间只允许有一个线程对其进行加锁的规则来实现，</p>
+<p>在单线程程序中，不会发生“指令重排”和“工作内存和主内存同步延迟”现象，只在多线程程序中出现。</p>
+<hr>
+<hr>
+<h2 id="Happen-before原则"><a href="#Happen-before原则" class="headerlink" title="Happen before原则"></a>Happen before原则</h2><h3 id="定义了哪些指令不能重排："><a href="#定义了哪些指令不能重排：" class="headerlink" title="定义了哪些指令不能重排："></a>定义了哪些指令不能重排：</h3><p>单线程的happen before原则</p>
+<p>写在前面的操作happen before后面的操作</p>
+<p>锁的happen-before原则：</p>
+<p>同一个锁的unlock操作happen-before此锁的lock操作。</p>
+<p>volatile的happen-before原则：</p>
+<p>对一个volatile变量的写操作happen-before对此变量的任意操作(当然也包括写操作了)。</p>
+<p>happen-before的传递性原则：</p>
+<p>如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。</p>
+<p>线程启动的happen-before原则：</p>
+<p>同一个线程的start方法happen-before此线程的其它方法。</p>
+<p>线程中断的happen-before原则：</p>
+<p>对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。</p>
+<p>线程终结的happen-before原则：</p>
+<p>线程中的所有操作都happen-before线程的终止检测。</p>
+<p>对象创建的happen-before原则：</p>
+<p>一个对象的初始化完成先于他的finalize方法调用。</p>
+<h3 id="哪些会进行重排："><a href="#哪些会进行重排：" class="headerlink" title="哪些会进行重排："></a>哪些会进行重排：</h3><p>执行程序时为了提高性能，编译器和处理器经常会对指令进行重新排序。</p>
+<p>编译器优化的重排序：</p>
+<p>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
+<p>内存系统的重排序：</p>
+<p>由于处理器使用的是缓存和读写缓冲区，看上去像是乱序执行。</p>
+<hr>
 
     </div>
 
@@ -275,12 +311,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/26/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="prev" title="排序算法总结">
-      <i class="fa fa-chevron-left"></i> 排序算法总结
+    <a href="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/" rel="prev" title="Java各种对比">
+      <i class="fa fa-chevron-left"></i> Java各种对比
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/05/27/Java%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="next" title="Java知识点">
-      Java知识点 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/05/27/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -341,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JMM%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">JMM概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">可见性、原子性、有序性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">可见性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">原子性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%80%A7%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">有序性：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Happen-before%E5%8E%9F%E5%88%99"><span class="nav-number">3.</span> <span class="nav-text">Happen before原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%BA%86%E5%93%AA%E4%BA%9B%E6%8C%87%E4%BB%A4%E4%B8%8D%E8%83%BD%E9%87%8D%E6%8E%92%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">定义了哪些指令不能重排：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%AA%E4%BA%9B%E4%BC%9A%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%8E%92%EF%BC%9A"><span class="nav-number">3.2.</span> <span class="nav-text">哪些会进行重排：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
