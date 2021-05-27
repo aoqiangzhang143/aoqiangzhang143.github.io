@@ -23,21 +23,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="JMM概述 不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行： 1、wait&#x2F;notify 2、利用共享内存 3、while轮询 JMM采用的就是共享内存方式实现线程间通讯。  可见性、原子性、有序性可见性：指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性） 原子性：指一个操作或者多个操作要么都执行，要么都不执行。">
+  <meta name="description" content="先来先服务（first come first serverd）优点： 易于实现，相当公平； 缺点： 有利于长进程，不利于短进程  短作业优先（shortest job first）优点： 平均周转时间最短，进程等待时间最短，可以增大系统吞吐量 缺点： 难以预测进程执行时间，开销较大；不利于长进程  最短剩余时间优先（shortest remaining time next）按预估剩余时间最短顺序进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java并发">
-<meta property="og:url" content="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/index.html">
+<meta property="og:title" content="常见的线程调度算法">
+<meta property="og:url" content="http://example.com/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="JMM概述 不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行： 1、wait&#x2F;notify 2、利用共享内存 3、while轮询 JMM采用的就是共享内存方式实现线程间通讯。  可见性、原子性、有序性可见性：指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性） 原子性：指一个操作或者多个操作要么都执行，要么都不执行。">
+<meta property="og:description" content="先来先服务（first come first serverd）优点： 易于实现，相当公平； 缺点： 有利于长进程，不利于短进程  短作业优先（shortest job first）优点： 平均周转时间最短，进程等待时间最短，可以增大系统吞吐量 缺点： 难以预测进程执行时间，开销较大；不利于长进程  最短剩余时间优先（shortest remaining time next）按预估剩余时间最短顺序进">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png">
-<meta property="article:published_time" content="2021-05-27T11:47:41.000Z">
-<meta property="article:modified_time" content="2021-05-27T12:17:59.544Z">
+<meta property="article:published_time" content="2021-05-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-27T12:31:51.123Z">
 <meta property="article:author" content="aoqiangzhang143">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png">
 
-<link rel="canonical" href="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/">
+<link rel="canonical" href="http://example.com/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -50,7 +48,7 @@
   };
 </script>
 
-  <title>Java并发 | Mithrandir</title>
+  <title>常见的线程调度算法 | Mithrandir</title>
   
 
 
@@ -191,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -204,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Java并发
+          常见的线程调度算法
         </h1>
 
         <div class="post-meta">
@@ -215,7 +213,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-27 19:47:41 / 修改时间：20:17:59" itemprop="dateCreated datePublished" datetime="2021-05-27T19:47:41+08:00">2021-05-27</time>
+              <time title="创建时间：2021-05-27 00:00:00 / 修改时间：20:31:51" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,7 +226,7 @@
             </span>
 
           
-            <span id="/2021/05/27/Java%E5%B9%B6%E5%8F%91/" class="post-meta-item leancloud_visitors" data-flag-title="Java并发" title="阅读次数">
+            <span id="/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="常见的线程调度算法" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -243,8 +241,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/05/27/Java%E5%B9%B6%E5%8F%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/27/Java%E5%B9%B6%E5%8F%91/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,43 +257,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="JMM概述"><a href="#JMM概述" class="headerlink" title="JMM概述"></a><a href="%5BJMM%E6%A6%82%E8%BF%B0_%E7%89%A7%E7%AB%B9%E5%AD%90-CSDN%E5%8D%9A%E5%AE%A2_jmm%5D(https://blog.csdn.net/zjcjava/article/details/78406330)">JMM概述</a></h2><p><img src="/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="JVM内存模型"></p>
-<p>不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行：</p>
-<p>1、wait/notify</p>
-<p>2、利用共享内存</p>
-<p>3、while轮询</p>
-<p>JMM采用的就是共享内存方式实现线程间通讯。</p>
+        <h3 id="先来先服务（first-come-first-serverd）"><a href="#先来先服务（first-come-first-serverd）" class="headerlink" title="先来先服务（first come first serverd）"></a>先来先服务（first come first serverd）</h3><p>优点：</p>
+<p>易于实现，相当公平；</p>
+<p>缺点：</p>
+<p>有利于长进程，不利于短进程</p>
 <hr>
-<h2 id="可见性、原子性、有序性"><a href="#可见性、原子性、有序性" class="headerlink" title="可见性、原子性、有序性"></a>可见性、原子性、有序性</h2><h3 id="可见性："><a href="#可见性：" class="headerlink" title="可见性："></a>可见性：</h3><p>指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性）</p>
-<h3 id="原子性："><a href="#原子性：" class="headerlink" title="原子性："></a>原子性：</h3><p>指一个操作或者多个操作要么都执行，要么都不执行。（synchronized可保证原子性）</p>
-<h3 id="有序性："><a href="#有序性：" class="headerlink" title="有序性："></a>有序性：</h3><p>对于一个线程的代码而言，我们总是以为代码的执行是从前往后的，依次执行的。这么说不能说完全不对，在单线程程序里，确实会这样执行；但是在多线程并发时，程序的执行就有可能出现乱序。用一句话可以总结为：在本线程内观察，操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行语义（WithIn Thread As-if-Serial Semantics）”,后半句是指“指令重排”现象和“工作内存和主内存同步延迟”现象。</p>
-<p>一个最经典的例子就是银行汇款问题，一个银行账户存款100，这时一个人从该账户取10元，同时另一个人向该账户汇10元，那么余额应该还是100。那么此时可能发生这种情况，A线程负责取款，B线程负责汇款，A从主内存读到100，B从主内存读到100，A执行减10操作，并将数据刷新到主内存，这时主内存数据100-10=90，而B内存执行加10操作，并将数据刷新到主内存，最后主内存数据100+10=110，显然这是一个严重的问题，我们要保证A线程和B线程有序执行，先取款后汇款或者先汇款后取款，此为有序性。</p>
-<p>Java提供了两个关键字volatile和synchronized来保证多线程之间操作的有序性,volatile关键字本身通过加入内存屏障来禁止指令的重排序，而synchronized关键字通过一个变量在同一时间只允许有一个线程对其进行加锁的规则来实现，</p>
-<p>在单线程程序中，不会发生“指令重排”和“工作内存和主内存同步延迟”现象，只在多线程程序中出现。</p>
+<h3 id="短作业优先（shortest-job-first）"><a href="#短作业优先（shortest-job-first）" class="headerlink" title="短作业优先（shortest job first）"></a>短作业优先（shortest job first）</h3><p>优点：</p>
+<p>平均周转时间最短，进程等待时间最短，可以增大系统吞吐量</p>
+<p>缺点：</p>
+<p>难以预测进程执行时间，开销较大；不利于长进程</p>
 <hr>
+<h3 id="最短剩余时间优先（shortest-remaining-time-next）"><a href="#最短剩余时间优先（shortest-remaining-time-next）" class="headerlink" title="最短剩余时间优先（shortest remaining time next）"></a>最短剩余时间优先（shortest remaining time next）</h3><p>按预估剩余时间最短顺序进行调度</p>
 <hr>
-<h2 id="Happen-before原则"><a href="#Happen-before原则" class="headerlink" title="Happen before原则"></a>Happen before原则</h2><h3 id="定义了哪些指令不能重排："><a href="#定义了哪些指令不能重排：" class="headerlink" title="定义了哪些指令不能重排："></a>定义了哪些指令不能重排：</h3><p>单线程的happen before原则</p>
-<p>写在前面的操作happen before后面的操作</p>
-<p>锁的happen-before原则：</p>
-<p>同一个锁的unlock操作happen-before此锁的lock操作。</p>
-<p>volatile的happen-before原则：</p>
-<p>对一个volatile变量的写操作happen-before对此变量的任意操作(当然也包括写操作了)。</p>
-<p>happen-before的传递性原则：</p>
-<p>如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。</p>
-<p>线程启动的happen-before原则：</p>
-<p>同一个线程的start方法happen-before此线程的其它方法。</p>
-<p>线程中断的happen-before原则：</p>
-<p>对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。</p>
-<p>线程终结的happen-before原则：</p>
-<p>线程中的所有操作都happen-before线程的终止检测。</p>
-<p>对象创建的happen-before原则：</p>
-<p>一个对象的初始化完成先于他的finalize方法调用。</p>
-<h3 id="哪些会进行重排："><a href="#哪些会进行重排：" class="headerlink" title="哪些会进行重排："></a>哪些会进行重排：</h3><p>执行程序时为了提高性能，编译器和处理器经常会对指令进行重新排序。</p>
-<p>编译器优化的重排序：</p>
-<p>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
-<p>内存系统的重排序：</p>
-<p>由于处理器使用的是缓存和读写缓冲区，看上去像是乱序执行。</p>
+<h3 id="高优先权优先调度算法"><a href="#高优先权优先调度算法" class="headerlink" title="高优先权优先调度算法"></a>高优先权优先调度算法</h3><p>为了照顾紧迫型作业，使之在进入系统后便获得优先处理。</p>
+<p>1、非抢占式优先权算法</p>
+<p>2、抢占式优先权算法</p>
 <hr>
+<h3 id="高响应比优先调度算法"><a href="#高响应比优先调度算法" class="headerlink" title="高响应比优先调度算法"></a>高响应比优先调度算法</h3><p>根据比率：R=(w+s)/s （R为响应比，w为等待处理的时间，s为预计的服务时间）</p>
+<p>如果该进程被立即调用，则R值等于归一化周转时间（周转时间和服务时间的比率）。R最小值为1.0，只有第一个进入系统的进程才能达到该值。调度规则为：当前进程完成或被阻塞时，选择R值最大的就绪进程，它说明了进程的年龄。当偏向短作业时，长进程由于得不到服务，等待时间不断增加，从而增加比值，最终在竞争中赢了短进程。</p>
+<p>和最短进程优先、最短剩余时间优先一样，使用最高响应比策略需要估计预计服务时间。</p>
+<hr>
+<h3 id="时间片轮转法"><a href="#时间片轮转法" class="headerlink" title="时间片轮转法"></a>时间片轮转法</h3><p>轮转法是基于适中的抢占策略的，以一个周期性间隔产生时钟中断，当中断发生后，当前正在运行的进程被置于就绪队列中，然后基于先来先去服务策略选择下一个就绪作业的运行。这种技术也称为时间片，因为每个进程再被抢占之前都给定一片时间。</p>
+<hr>
+<h3 id="多级反馈队列"><a href="#多级反馈队列" class="headerlink" title="多级反馈队列"></a>多级反馈队列</h3><p>多级反馈队列算法，不必事先知道各种进程所需要执行的时间，他是当前被公认的一种较好的进程调度算法。其实施过程如下：</p>
+<p>1)设置多个就绪队列，并为各个队列赋予不同的优先级。在优先权越高的队列中，为每个进程所规定的执行时间片就越小。</p>
+<p>2)当一个新进程进入内存后，首先放入第一队列的末尾，按照先来先去原则排队等候调度。如果他能在一个时间片中完成，便可撤离；如果未完成，就转入第二队列的末尾，同样等待调度…..如此下去，当一个长作业（进程）从第一队列依次将到第n队列（最后队列）后，便按第n队列时间片轮转运行。</p>
+<p>3)仅当第一队列空闲的时候，调度程序才调度第二队列中的进程运行；仅当第1到（i-1）队列空时，才会调度第i队列中的进程运行，并执行相应的时间片轮转。</p>
+<p>4)如果处理机正在处理第i队列中某进程，又有新进程进入优先权较高的队列，则此新队列抢占正在运行的处理机，并把正在运行的进程放在第i队列的队尾。</p>
 
     </div>
 
@@ -311,10 +299,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/" rel="prev" title="Java各种对比">
-      <i class="fa fa-chevron-left"></i> Java各种对比
+    <a href="/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" rel="prev" title="线程状态">
+      <i class="fa fa-chevron-left"></i> 线程状态
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" rel="next" title="Volatile关键字">
+      Volatile关键字 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -374,7 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JMM%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">JMM概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">可见性、原子性、有序性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">可见性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">原子性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%80%A7%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">有序性：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Happen-before%E5%8E%9F%E5%88%99"><span class="nav-number">3.</span> <span class="nav-text">Happen before原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%BA%86%E5%93%AA%E4%BA%9B%E6%8C%87%E4%BB%A4%E4%B8%8D%E8%83%BD%E9%87%8D%E6%8E%92%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">定义了哪些指令不能重排：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%AA%E4%BA%9B%E4%BC%9A%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%8E%92%EF%BC%9A"><span class="nav-number">3.2.</span> <span class="nav-text">哪些会进行重排：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%EF%BC%88first-come-first-serverd%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">先来先服务（first come first serverd）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%EF%BC%88shortest-job-first%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">短作业优先（shortest job first）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E4%BC%98%E5%85%88%EF%BC%88shortest-remaining-time-next%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">最短剩余时间优先（shortest remaining time next）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E4%BC%98%E5%85%88%E6%9D%83%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">高优先权优先调度算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">高响应比优先调度算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">时间片轮转法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97"><span class="nav-number">7.</span> <span class="nav-text">多级反馈队列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
