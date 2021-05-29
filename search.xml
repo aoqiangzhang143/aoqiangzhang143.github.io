@@ -182,23 +182,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Volatile关键字</title>
-    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
-    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
-<p>特性：</p>
-<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
-<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
-<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
-<p>简单介绍下指令重排</p>
-<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
-<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
-<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2021/05/26/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -228,6 +211,23 @@
 <p>这个函数你必须给我实现，因为我要使用。</p>
 <p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
 <p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Volatile关键字</title>
+    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
+<p>特性：</p>
+<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
+<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
+<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
+<p>简单介绍下指令重排</p>
+<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
+<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
+<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -329,26 +329,6 @@
       </tags>
   </entry>
   <entry>
-    <title>线程状态</title>
-    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
-<p>线程创建之后</p>
-<p>可运行（running）</p>
-<p>可能正在运行，也可能正在等待cpu时间片</p>
-<p>阻塞（blocked）</p>
-<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
-<p>无限期等待（waiting）</p>
-<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
-<p>限期等待（time_waiting）</p>
-<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
-<p>终止（terminated）</p>
-<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>线程进程协程</title>
     <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a><strong>进程</strong></h2><p>一个在内存中运行的应用程序。每个进程都有自己独立的一块内存空间，一个进程可以有多个线程，比如在Windows系统中，一个运行的xx.exe就是一个进程。</p>
@@ -412,12 +392,32 @@
       </categories>
   </entry>
   <entry>
+    <title>线程状态</title>
+    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
+<p>线程创建之后</p>
+<p>可运行（running）</p>
+<p>可能正在运行，也可能正在等待cpu时间片</p>
+<p>阻塞（blocked）</p>
+<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
+<p>无限期等待（waiting）</p>
+<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
+<p>限期等待（time_waiting）</p>
+<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
+<p>终止（terminated）</p>
+<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Java反射机制</title>
-    <url>/2021/05/27/Java%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
+    <url>/2021/05/27/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h2 id="Java反射机制"><a href="#Java反射机制" class="headerlink" title="Java反射机制"></a><a href="%5BJava%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3_%E5%BC%A0%E7%BB%B4%E9%B9%8F%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2_java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%5D(https://blog.csdn.net/a745233700/article/details/82893076)">Java反射机制</a></h2><h3 id="一、什么是反射："><a href="#一、什么是反射：" class="headerlink" title="一、什么是反射："></a>一、什么是反射：</h3><p>（1）Java反射机制的核心是在程序运行时动态加载类并获取类的详细信息，从而操作类或对象的属性和方法。本质是JVM得到class对象之后，再通过class对象进行反编译，从而获取对象的各种信息。</p>
 <p>（2）Java属于先编译再运行的语言，程序中对象的类型在编译期就确定下来了，而当程序在运行时可能需要动态加载某些类，这些类因为之前用不到，所以没有被加载到JVM。通过反射，可以在运行时动态地创建对象并调用其属性，不需要提前在编译期知道运行的对象是谁。</p>
 <h3 id="二、反射的原理："><a href="#二、反射的原理：" class="headerlink" title="二、反射的原理："></a>二、反射的原理：</h3><p>下图是类的正常加载过程、反射原理与class对象：</p>
-<p><img src="/2021/05/27/Java%E7%9F%A5%E8%AF%86%E7%82%B9/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8F%8D%E5%B0%84.jpg" alt="类的反射机制"></p>
+<p><img src="/2021/05/27/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8F%8D%E5%B0%84.jpg" alt="类的反射机制"></p>
 <p>Class对象的由来是将.class文件读入内存，并为之创建一个Class对象。</p>
 <p>对于类加载机制与双亲委派模型感兴趣的小伙伴可以阅读<a href="https://blog.csdn.net/a745233700/article/details/90232862">这篇文章</a></p>
 <h3 id="三、反射的优缺点"><a href="#三、反射的优缺点" class="headerlink" title="三、反射的优缺点"></a>三、反射的优缺点</h3><p>优点：在运行时获得类的各种内容，进行反编译，对于Java这种先编译再运行的语言，能够让我们很方便的创建灵活的代码，这些代码可以在运行时装配，无需在组件之间进行源代码的链接，更加容易实现面向对象。</p>
