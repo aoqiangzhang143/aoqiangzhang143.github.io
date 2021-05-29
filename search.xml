@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CAS简述</title>
+    <url>/2021/05/29/CAS%E7%AE%80%E8%BF%B0/</url>
+    <content><![CDATA[<p>在JDK 5之前Java语言是靠synchronized关键字保证同步的，这会导致有锁</p>
+<p>锁机制存在以下问题：</p>
+<p>（1）在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。</p>
+<p>（2）一个线程持有锁会导致其它所有需要此锁的线程挂起。</p>
+<p>（3）如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。</p>
+<p>volatile是不错的机制，但是volatile不能保证原子性。因此对于同步最终还是要回到锁机制上来。</p>
+<p><strong>独占锁是一种悲观锁，synchronized就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。而另一个更加有效的锁就是乐观锁。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。乐观锁用到的机制就是CAS，Compare and Swap。</strong></p>
+<h2 id="一、什么是CAS"><a href="#一、什么是CAS" class="headerlink" title="一、什么是CAS"></a>一、什么是CAS</h2><p>CAS,compare and swap的缩写，中文翻译成比较并交换。</p>
+<p>我们都知道，在java语言之前，并发就已经广泛存在并在服务器领域得到了大量的应用。所以硬件厂商老早就在芯片中加入了大量直至并发操作的原语，从而在硬件层面提升效率。在intel的CPU中，使用cmpxchg指令。</p>
+<p>在Java发展初期，java语言是不能够利用硬件提供的这些便利来提升系统的性能的。而随着java不断的发展,Java本地方法(JNI)的出现，使得java程序越过JVM直接调用本地方法提供了一种便捷的方式，因而java在并发的手段上也多了起来。而在Doug Lea提供的cucurenct包中，CAS理论是它实现整个java包的基石。</p>
+<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。 如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值 。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该 位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前 值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”</p>
+<p>通常将 CAS 用于同步的方式是从地址 V 读取值 A，执行多步计算来获得新 值 B，然后使用 CAS 将 V 的值从 A 改为 B。如果 V 处的值尚未同时更改，则 CAS 操作成功。</p>
+<p>类似于 CAS 的指令允许算法执行读-修改-写操作，而无需害怕其他线程同时 修改变量，因为如果其他线程修改变量，那么 CAS 会检测它（并失败），算法 可以对该操作重新计算。</p>
+<h2 id="二、CAS的目的"><a href="#二、CAS的目的" class="headerlink" title="二、CAS的目的"></a>二、CAS的目的</h2><p>利用CPU的CAS指令，同时借助JNI来完成Java的非阻塞算法。其它原子操作都是利用类似的特性完成的。而整个J.U.C都是建立在CAS之上的，因此对于synchronized阻塞算法，J.U.C在性能上有了很大的提升。</p>
+<h2 id="三、CAS存在的问题"><a href="#三、CAS存在的问题" class="headerlink" title="三、CAS存在的问题"></a>三、CAS存在的问题</h2><p>CAS虽然很高效的解决原子操作，但是CAS仍然存在三大问题。ABA问题，循环时间长开销大和只能保证一个共享变量的原子操作</p>
+<p>\1.  <strong>ABA****问题</strong>。因为CAS需要在操作值的时候检查下值有没有发生变化，如果没有发生变化则更新，但是如果一个值原来是A，变成了B，又变成了A，那么使用CAS进行检查时会发现它的值没有发生变化，但是实际上却变化了。ABA问题的解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加一，那么A－B－A 就会变成1A-2B－3A。</p>
+<p><strong>从****Java1</strong>.5开始JDK的atomic包里提供了一个类AtomicStampedReference来解决ABA问题。这个类的compareAndSet方法作用是首先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
+<p>关于ABA问题参考文档: <a href="http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html">http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html</a></p>
+<p><strong>2.</strong> <strong>循环时间长开销大</strong>。自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销。如果JVM能支持处理器提供的pause指令那么效率会有一定的提升，pause指令有两个作用，第一它可以延迟流水线执行指令（de-pipeline）,使CPU不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。第二它可以避免在退出循环的时候因内存顺序冲突（memory order violation）而引起CPU流水线被清空（CPU pipeline flush），从而提高CPU的执行效率。</p>
+<p><strong>3.</strong> <strong>只能保证一个共享变量的原子操作</strong>。当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量i＝2,j=a，合并一下ij=2a，然后用CAS来操作ij。从Java1.5开始JDK提供了<strong>AtomicReference<strong><strong>类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行</strong></strong>CAS****操作。</strong></p>
+<p>四、 concurrent包的实现</p>
+<p>由于java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下面四种方式：</p>
+<ol>
+<li>A线程写volatile变量，随后B线程读这个volatile变量。</li>
+<li>A线程写volatile变量，随后B线程用CAS更新这个volatile变量。</li>
+<li>A线程用CAS更新一个volatile变量，随后B线程用CAS更新这个volatile变量。</li>
+<li>A线程用CAS更新一个volatile变量，随后B线程读这个volatile变量。</li>
+</ol>
+<p>Java的CAS会使用现代处理器上提供的高效机器级别原子指令，这些原子指令以原子方式对内存执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写指令的计算机器，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时，volatile变量的读/写和CAS可以实现线程之间的通信。把这些特性整合在一起，就形成了整个concurrent包得以实现的基石。如果我们仔细分析concurrent包的源代码实现，会发现一个通用化的实现模式：</p>
+<ol>
+<li>首先，声明共享变量为volatile；</li>
+<li>然后，使用CAS的原子条件更新来实现线程之间的同步；</li>
+<li>同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。</li>
+</ol>
+<p>转自<a href="https://blog.csdn.net/ls5718/article/details/52563959">https://blog.csdn.net/ls5718/article/details/52563959</a></p>
+<p><a href="https://www.jianshu.com/p/ae25eb3cfb5d">这个</a>讲的也挺好</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Java各种对比</title>
     <url>/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<h2 id="四种权限的作用范围对比："><a href="#四种权限的作用范围对比：" class="headerlink" title="四种权限的作用范围对比："></a>四种权限的作用范围对比：</h2><table>
@@ -200,6 +244,23 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Volatile关键字</title>
+    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
+<p>特性：</p>
+<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
+<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
+<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
+<p>简单介绍下指令重排</p>
+<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
+<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
+<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>native关键字</title>
     <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
     <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
@@ -217,17 +278,20 @@
       </categories>
   </entry>
   <entry>
-    <title>Volatile关键字</title>
-    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
-    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
-<p>特性：</p>
-<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
-<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
-<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
-<p>简单介绍下指令重排</p>
-<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
-<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
-<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
+    <title>wait和sleep的异同</title>
+    <url>/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/</url>
+    <content><![CDATA[<h2 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h2><p>一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
+<h2 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h2><p>1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
+<p>2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中</p>
+<p>3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。</p>
+<hr>
+<p>Sleep()方法是属于Thread类中的，而wait()方法是属于Object类中的。</p>
+<p>Sleep()方法导致了程序暂停执行指定的时间，让出cpu给其他线程，但是他的监控状态依然保持着，当指定的时间结束后又会自动恢复运行状态。</p>
+<hr>
+<p>在调用sleep方法时，线程不会释放对象锁。</p>
+<p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
+<p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
+<p>另外，sleep是静态方法，wait是非静态方法。</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -263,6 +327,18 @@
 <p>2)当一个新进程进入内存后，首先放入第一队列的末尾，按照先来先去原则排队等候调度。如果他能在一个时间片中完成，便可撤离；如果未完成，就转入第二队列的末尾，同样等待调度…..如此下去，当一个长作业（进程）从第一队列依次将到第n队列（最后队列）后，便按第n队列时间片轮转运行。</p>
 <p>3)仅当第一队列空闲的时候，调度程序才调度第二队列中的进程运行；仅当第1到（i-1）队列空时，才会调度第i队列中的进程运行，并执行相应的时间片轮转。</p>
 <p>4)如果处理机正在处理第i队列中某进程，又有新进程进入优先权较高的队列，则此新队列抢占正在运行的处理机，并把正在运行的进程放在第i队列的队尾。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>快速失败、安全失败</title>
+    <url>/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/</url>
+    <content><![CDATA[<h2 id="快速失败："><a href="#快速失败：" class="headerlink" title="快速失败："></a><strong>快速失败：</strong></h2><p>在使用迭代器对集合进行迭代的过程中，如果 A 线程正在对集合进行遍历，此时 B 线程对集合进行修改（增加、删除、修改），或者 A 线程在遍历过程中对集合进行修改，都会导致 A 线程抛出 ConcurrentModificationException 异常。</p>
+<hr>
+<h2 id="安全失败："><a href="#安全失败：" class="headerlink" title="安全失败："></a>安全失败：</h2><p>采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。</p>
+<p>由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，故不会抛 ConcurrentModificationException 异常</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -329,6 +405,82 @@
       </tags>
   </entry>
   <entry>
+    <title>线程状态</title>
+    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
+<p>线程创建之后</p>
+<p>可运行（running）</p>
+<p>可能正在运行，也可能正在等待cpu时间片</p>
+<p>阻塞（blocked）</p>
+<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
+<p>无限期等待（waiting）</p>
+<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
+<p>限期等待（time_waiting）</p>
+<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
+<p>终止（terminated）</p>
+<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>解决线程安全的方式</title>
+    <url>/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="一：同步代码块"><a href="#一：同步代码块" class="headerlink" title="一：同步代码块"></a>一：同步代码块</h2><p>synchronized(同步监视器){</p>
+<p>   //需要被同步的代码</p>
+<p>  }</p>
+<p> 说明：</p>
+<p>1.操作共享数据的代码，即为需要被同步的代码。 –&gt;不能包含代码多了，也不能包含代码少了。</p>
+<p>​      2.共享数据：多个线程共同操作的变量。比如：ticket就是共享数据。</p>
+<p>​      3.同步监视器，俗称：锁。任何一个类的对象，都可以充当锁。</p>
+<p>​     要求：多个线程必须要共用同一把锁。</p>
+<p> 补充：在实现Runnable接口创建多线程的方式中，我们可以考虑使用this充当同步监视器。</p>
+<p>​    在继承Thread类创建多线程的方式中，慎用this充当同步监视器，考虑使用当前类充当同步监视</p>
+<hr>
+<h2 id="二：同步方法"><a href="#二：同步方法" class="headerlink" title="二：同步方法"></a>二：同步方法</h2><p>如果操作共享数据的代码完整的声明在一个方法中，我们不妨将此方法声明同步的。</p>
+<p> 关于同步方法的总结：</p>
+<p> \1. 同步方法仍然涉及到同步监视器，只是不需要我们显式的声明。</p>
+<p> \2. 非静态的同步方法，同步监视器是：this</p>
+<p>   静态的同步方法，同步监视器是：当前类本身</p>
+<p>同步代码块和同步方法的对比：</p>
+<p>其实还是同步代码块好一些，因为同步方法的作用范围相对来说会比较广泛，很容易会包括进一些没必要同步的代码，这样会造成效率降低。</p>
+<hr>
+<h2 id="三：同步锁Lock（jdk5-0新增，也就是建议用）"><a href="#三：同步锁Lock（jdk5-0新增，也就是建议用）" class="headerlink" title="三：同步锁Lock（jdk5.0新增，也就是建议用）"></a>三：同步锁Lock（jdk5.0新增，也就是建议用）</h2><p>在需要同步的代码前调用Lock 的lock函数，在需要同步的代码执行完之后，手动调用unlock函数才能释放锁。（创建lock对象时，用的时reentrantlock这个类创建的）</p>
+<h2 id="synchronize和lock的异同："><a href="#synchronize和lock的异同：" class="headerlink" title="synchronize和lock的异同："></a>synchronize和lock的异同：</h2><p>同：都可以解决线程安全问题</p>
+<p>异：synchronize在执行完对应的代码块之后，会自动释放锁；lock必须手动释放锁</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>简单死锁的测试</title>
+    <url>/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mithrandir</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-04-2021/4/12-10:19</span></span><br><span class="line"><span class="comment"> * 测试死锁</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread1()).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread2()).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread2的第一层，已经持有lock2&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThread2的第二层，已经持有lock2和lock1&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread1的第一层,已经持有lock1&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThead1的第二层，已经持有lock1和lock2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myLock</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Object lock1=<span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">static</span> Object lock2=<span class="keyword">new</span> Object();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>进程间通信方式</title>
+    <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="进程之间的通信方式"><a href="#进程之间的通信方式" class="headerlink" title="进程之间的通信方式"></a><a href="https://blog.csdn.net/weixin_44653395/article/details/99686244">进程之间的通信方式</a></h2><p><strong>1.无名管道( pipe )：</strong> 管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
+<p><strong>2.高级管道(popen)：</strong> 将另一个程序当做一个新的进程在当前程序进程中启动，则它算是当前程序的子进程，这种方式我们成为高级管道方式。</p>
+<p><strong>3.有名管道 (named pipe) ：</strong> 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
+<p><strong>4.消息队列( message queue ) ：</strong> 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
+<p><strong>5.信号量( semophore ) ：</strong> 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
+<p><strong>6.信号 ( sinal ) ：</strong> 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
+<p><strong>7.共享内存( shared memory ) ：</strong> 共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</p>
+<p><strong>8.套接字( socket ) ：</strong> 套解字也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>线程进程协程</title>
     <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a><strong>进程</strong></h2><p>一个在内存中运行的应用程序。每个进程都有自己独立的一块内存空间，一个进程可以有多个线程，比如在Windows系统中，一个运行的xx.exe就是一个进程。</p>
@@ -370,42 +522,6 @@
 <p>由于Java的原生语法中并没有实现协程（某些开源框架实现了协程，但是很少被使用）；</p>
 <p>协程的暂停完全由程序控制，线程的阻塞状态是由操作系统内核来进行切换。</p>
 <p>因此，<strong>协程的开销远远小于线程的开销。</strong></p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>进程间通信方式</title>
-    <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="进程之间的通信方式"><a href="#进程之间的通信方式" class="headerlink" title="进程之间的通信方式"></a><a href="https://blog.csdn.net/weixin_44653395/article/details/99686244">进程之间的通信方式</a></h2><p><strong>1.无名管道( pipe )：</strong> 管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
-<p><strong>2.高级管道(popen)：</strong> 将另一个程序当做一个新的进程在当前程序进程中启动，则它算是当前程序的子进程，这种方式我们成为高级管道方式。</p>
-<p><strong>3.有名管道 (named pipe) ：</strong> 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
-<p><strong>4.消息队列( message queue ) ：</strong> 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
-<p><strong>5.信号量( semophore ) ：</strong> 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
-<p><strong>6.信号 ( sinal ) ：</strong> 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
-<p><strong>7.共享内存( shared memory ) ：</strong> 共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</p>
-<p><strong>8.套接字( socket ) ：</strong> 套解字也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>线程状态</title>
-    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
-<p>线程创建之后</p>
-<p>可运行（running）</p>
-<p>可能正在运行，也可能正在等待cpu时间片</p>
-<p>阻塞（blocked）</p>
-<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
-<p>无限期等待（waiting）</p>
-<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
-<p>限期等待（time_waiting）</p>
-<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
-<p>终止（terminated）</p>
-<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
