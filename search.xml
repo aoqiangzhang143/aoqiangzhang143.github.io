@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>/2021/06/01/maven%E7%9A%84jre%E5%92%8Cjdk/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>AQS简述</title>
     <url>/2021/05/29/AQS%E7%AE%80%E8%BF%B0/</url>
     <content><![CDATA[<p>AbstractQuenedSynchronizer抽象的队列式同步器。是除了java自带的synchronized关键字之外的锁机制。</p>
@@ -55,6 +60,51 @@
 </ol>
 <p>转自<a href="https://blog.csdn.net/ls5718/article/details/52563959">https://blog.csdn.net/ls5718/article/details/52563959</a></p>
 <p><a href="https://www.jianshu.com/p/ae25eb3cfb5d">这个</a>讲的也挺好</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java并发</title>
+    <url>/2021/05/27/Java%E5%B9%B6%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="JMM概述"><a href="#JMM概述" class="headerlink" title="JMM概述"></a><a href="%5BJMM%E6%A6%82%E8%BF%B0_%E7%89%A7%E7%AB%B9%E5%AD%90-CSDN%E5%8D%9A%E5%AE%A2_jmm%5D(https://blog.csdn.net/zjcjava/article/details/78406330)">JMM概述</a></h2><p><img src="/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="JVM内存模型"></p>
+<p>不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行：</p>
+<p>1、wait/notify</p>
+<p>2、利用共享内存</p>
+<p>3、while轮询</p>
+<p>JMM采用的就是共享内存方式实现线程间通讯。</p>
+<hr>
+<h2 id="可见性、原子性、有序性"><a href="#可见性、原子性、有序性" class="headerlink" title="可见性、原子性、有序性"></a>可见性、原子性、有序性</h2><h3 id="可见性："><a href="#可见性：" class="headerlink" title="可见性："></a>可见性：</h3><p>指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性）</p>
+<h3 id="原子性："><a href="#原子性：" class="headerlink" title="原子性："></a>原子性：</h3><p>指一个操作或者多个操作要么都执行，要么都不执行。（synchronized可保证原子性）</p>
+<h3 id="有序性："><a href="#有序性：" class="headerlink" title="有序性："></a>有序性：</h3><p>对于一个线程的代码而言，我们总是以为代码的执行是从前往后的，依次执行的。这么说不能说完全不对，在单线程程序里，确实会这样执行；但是在多线程并发时，程序的执行就有可能出现乱序。用一句话可以总结为：在本线程内观察，操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行语义（WithIn Thread As-if-Serial Semantics）”,后半句是指“指令重排”现象和“工作内存和主内存同步延迟”现象。</p>
+<p>一个最经典的例子就是银行汇款问题，一个银行账户存款100，这时一个人从该账户取10元，同时另一个人向该账户汇10元，那么余额应该还是100。那么此时可能发生这种情况，A线程负责取款，B线程负责汇款，A从主内存读到100，B从主内存读到100，A执行减10操作，并将数据刷新到主内存，这时主内存数据100-10=90，而B内存执行加10操作，并将数据刷新到主内存，最后主内存数据100+10=110，显然这是一个严重的问题，我们要保证A线程和B线程有序执行，先取款后汇款或者先汇款后取款，此为有序性。</p>
+<p>Java提供了两个关键字volatile和synchronized来保证多线程之间操作的有序性,volatile关键字本身通过加入内存屏障来禁止指令的重排序，而synchronized关键字通过一个变量在同一时间只允许有一个线程对其进行加锁的规则来实现，</p>
+<p>在单线程程序中，不会发生“指令重排”和“工作内存和主内存同步延迟”现象，只在多线程程序中出现。</p>
+<hr>
+<hr>
+<h2 id="Happen-before原则"><a href="#Happen-before原则" class="headerlink" title="Happen before原则"></a>Happen before原则</h2><h3 id="定义了哪些指令不能重排："><a href="#定义了哪些指令不能重排：" class="headerlink" title="定义了哪些指令不能重排："></a>定义了哪些指令不能重排：</h3><p>单线程的happen before原则</p>
+<p>写在前面的操作happen before后面的操作</p>
+<p>锁的happen-before原则：</p>
+<p>同一个锁的unlock操作happen-before此锁的lock操作。</p>
+<p>volatile的happen-before原则：</p>
+<p>对一个volatile变量的写操作happen-before对此变量的任意操作(当然也包括写操作了)。</p>
+<p>happen-before的传递性原则：</p>
+<p>如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。</p>
+<p>线程启动的happen-before原则：</p>
+<p>同一个线程的start方法happen-before此线程的其它方法。</p>
+<p>线程中断的happen-before原则：</p>
+<p>对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。</p>
+<p>线程终结的happen-before原则：</p>
+<p>线程中的所有操作都happen-before线程的终止检测。</p>
+<p>对象创建的happen-before原则：</p>
+<p>一个对象的初始化完成先于他的finalize方法调用。</p>
+<h3 id="哪些会进行重排："><a href="#哪些会进行重排：" class="headerlink" title="哪些会进行重排："></a>哪些会进行重排：</h3><p>执行程序时为了提高性能，编译器和处理器经常会对指令进行重新排序。</p>
+<p>编译器优化的重排序：</p>
+<p>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
+<p>内存系统的重排序：</p>
+<p>由于处理器使用的是缓存和读写缓冲区，看上去像是乱序执行。</p>
+<hr>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -197,51 +247,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java并发</title>
-    <url>/2021/05/27/Java%E5%B9%B6%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="JMM概述"><a href="#JMM概述" class="headerlink" title="JMM概述"></a><a href="%5BJMM%E6%A6%82%E8%BF%B0_%E7%89%A7%E7%AB%B9%E5%AD%90-CSDN%E5%8D%9A%E5%AE%A2_jmm%5D(https://blog.csdn.net/zjcjava/article/details/78406330)">JMM概述</a></h2><p><img src="/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="JVM内存模型"></p>
-<p>不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行：</p>
-<p>1、wait/notify</p>
-<p>2、利用共享内存</p>
-<p>3、while轮询</p>
-<p>JMM采用的就是共享内存方式实现线程间通讯。</p>
-<hr>
-<h2 id="可见性、原子性、有序性"><a href="#可见性、原子性、有序性" class="headerlink" title="可见性、原子性、有序性"></a>可见性、原子性、有序性</h2><h3 id="可见性："><a href="#可见性：" class="headerlink" title="可见性："></a>可见性：</h3><p>指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性）</p>
-<h3 id="原子性："><a href="#原子性：" class="headerlink" title="原子性："></a>原子性：</h3><p>指一个操作或者多个操作要么都执行，要么都不执行。（synchronized可保证原子性）</p>
-<h3 id="有序性："><a href="#有序性：" class="headerlink" title="有序性："></a>有序性：</h3><p>对于一个线程的代码而言，我们总是以为代码的执行是从前往后的，依次执行的。这么说不能说完全不对，在单线程程序里，确实会这样执行；但是在多线程并发时，程序的执行就有可能出现乱序。用一句话可以总结为：在本线程内观察，操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行语义（WithIn Thread As-if-Serial Semantics）”,后半句是指“指令重排”现象和“工作内存和主内存同步延迟”现象。</p>
-<p>一个最经典的例子就是银行汇款问题，一个银行账户存款100，这时一个人从该账户取10元，同时另一个人向该账户汇10元，那么余额应该还是100。那么此时可能发生这种情况，A线程负责取款，B线程负责汇款，A从主内存读到100，B从主内存读到100，A执行减10操作，并将数据刷新到主内存，这时主内存数据100-10=90，而B内存执行加10操作，并将数据刷新到主内存，最后主内存数据100+10=110，显然这是一个严重的问题，我们要保证A线程和B线程有序执行，先取款后汇款或者先汇款后取款，此为有序性。</p>
-<p>Java提供了两个关键字volatile和synchronized来保证多线程之间操作的有序性,volatile关键字本身通过加入内存屏障来禁止指令的重排序，而synchronized关键字通过一个变量在同一时间只允许有一个线程对其进行加锁的规则来实现，</p>
-<p>在单线程程序中，不会发生“指令重排”和“工作内存和主内存同步延迟”现象，只在多线程程序中出现。</p>
-<hr>
-<hr>
-<h2 id="Happen-before原则"><a href="#Happen-before原则" class="headerlink" title="Happen before原则"></a>Happen before原则</h2><h3 id="定义了哪些指令不能重排："><a href="#定义了哪些指令不能重排：" class="headerlink" title="定义了哪些指令不能重排："></a>定义了哪些指令不能重排：</h3><p>单线程的happen before原则</p>
-<p>写在前面的操作happen before后面的操作</p>
-<p>锁的happen-before原则：</p>
-<p>同一个锁的unlock操作happen-before此锁的lock操作。</p>
-<p>volatile的happen-before原则：</p>
-<p>对一个volatile变量的写操作happen-before对此变量的任意操作(当然也包括写操作了)。</p>
-<p>happen-before的传递性原则：</p>
-<p>如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。</p>
-<p>线程启动的happen-before原则：</p>
-<p>同一个线程的start方法happen-before此线程的其它方法。</p>
-<p>线程中断的happen-before原则：</p>
-<p>对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。</p>
-<p>线程终结的happen-before原则：</p>
-<p>线程中的所有操作都happen-before线程的终止检测。</p>
-<p>对象创建的happen-before原则：</p>
-<p>一个对象的初始化完成先于他的finalize方法调用。</p>
-<h3 id="哪些会进行重排："><a href="#哪些会进行重排：" class="headerlink" title="哪些会进行重排："></a>哪些会进行重排：</h3><p>执行程序时为了提高性能，编译器和处理器经常会对指令进行重新排序。</p>
-<p>编译器优化的重排序：</p>
-<p>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
-<p>内存系统的重排序：</p>
-<p>由于处理器使用的是缓存和读写缓冲区，看上去像是乱序执行。</p>
-<hr>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Volatile关键字</title>
     <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
     <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
@@ -277,6 +282,24 @@
 ]]></content>
   </entry>
   <entry>
+    <title>maven首次运行问题</title>
+    <url>/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>第一次运行maven时，由于maven默认用的是jre，用命令行运行时会报错，如下图所示</p>
+<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191617928.png" alt="image-20210601191617928"></p>
+<p>根据提示错误，可知运行的是jre而不是jkd，查看maven版本</p>
+<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191710470.png" alt="image-20210601191710470"></p>
+<p>发现路径为jre，至此找到问题根源。</p>
+<p>解决方法：</p>
+<p>在maven\bin\setting文件中，在首行加上</p>
+<p>set JAVA_HOME=C:\JDK\jdk1.8.0_291</p>
+<p>将其所用的JAVA_HOME修改为本机所安装的jdk，之后问题解决，文件可正常编译。</p>
+<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191917280.png" alt="image-20210601191917280"></p>
+]]></content>
+      <categories>
+        <category>踩坑记录</category>
+      </categories>
+  </entry>
+  <entry>
     <title>native关键字</title>
     <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
     <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
@@ -288,26 +311,6 @@
 <p>这个函数你必须给我实现，因为我要使用。</p>
 <p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
 <p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>wait和sleep的异同</title>
-    <url>/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/</url>
-    <content><![CDATA[<h2 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h2><p>一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
-<h2 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h2><p>1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
-<p>2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中</p>
-<p>3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。</p>
-<hr>
-<p>Sleep()方法是属于Thread类中的，而wait()方法是属于Object类中的。</p>
-<p>Sleep()方法导致了程序暂停执行指定的时间，让出cpu给其他线程，但是他的监控状态依然保持着，当指定的时间结束后又会自动恢复运行状态。</p>
-<hr>
-<p>在调用sleep方法时，线程不会释放对象锁。</p>
-<p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
-<p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
-<p>另外，sleep是静态方法，wait是非静态方法。</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -343,6 +346,26 @@
 <p>2)当一个新进程进入内存后，首先放入第一队列的末尾，按照先来先去原则排队等候调度。如果他能在一个时间片中完成，便可撤离；如果未完成，就转入第二队列的末尾，同样等待调度…..如此下去，当一个长作业（进程）从第一队列依次将到第n队列（最后队列）后，便按第n队列时间片轮转运行。</p>
 <p>3)仅当第一队列空闲的时候，调度程序才调度第二队列中的进程运行；仅当第1到（i-1）队列空时，才会调度第i队列中的进程运行，并执行相应的时间片轮转。</p>
 <p>4)如果处理机正在处理第i队列中某进程，又有新进程进入优先权较高的队列，则此新队列抢占正在运行的处理机，并把正在运行的进程放在第i队列的队尾。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>wait和sleep的异同</title>
+    <url>/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/</url>
+    <content><![CDATA[<h2 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h2><p>一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
+<h2 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h2><p>1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
+<p>2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中</p>
+<p>3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。</p>
+<hr>
+<p>Sleep()方法是属于Thread类中的，而wait()方法是属于Object类中的。</p>
+<p>Sleep()方法导致了程序暂停执行指定的时间，让出cpu给其他线程，但是他的监控状态依然保持着，当指定的时间结束后又会自动恢复运行状态。</p>
+<hr>
+<p>在调用sleep方法时，线程不会释放对象锁。</p>
+<p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
+<p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
+<p>另外，sleep是静态方法，wait是非静态方法。</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -431,26 +454,6 @@
       </categories>
   </entry>
   <entry>
-    <title>线程状态</title>
-    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
-<p>线程创建之后</p>
-<p>可运行（running）</p>
-<p>可能正在运行，也可能正在等待cpu时间片</p>
-<p>阻塞（blocked）</p>
-<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
-<p>无限期等待（waiting）</p>
-<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
-<p>限期等待（time_waiting）</p>
-<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
-<p>终止（terminated）</p>
-<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>解决线程安全的方式</title>
     <url>/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="一：同步代码块"><a href="#一：同步代码块" class="headerlink" title="一：同步代码块"></a>一：同步代码块</h2><p>synchronized(同步监视器){</p>
@@ -475,6 +478,26 @@
 <h2 id="三：同步锁Lock（jdk5-0新增，也就是建议用）"><a href="#三：同步锁Lock（jdk5-0新增，也就是建议用）" class="headerlink" title="三：同步锁Lock（jdk5.0新增，也就是建议用）"></a>三：同步锁Lock（jdk5.0新增，也就是建议用）</h2><p>在需要同步的代码前调用Lock 的lock函数，在需要同步的代码执行完之后，手动调用unlock函数才能释放锁。（创建lock对象时，用的时reentrantlock这个类创建的）</p>
 <h2 id="synchronize和lock的异同："><a href="#synchronize和lock的异同：" class="headerlink" title="synchronize和lock的异同："></a>synchronize和lock的异同：</h2><p>同：都可以解决线程安全问题</p>
 <p>异：synchronize在执行完对应的代码块之后，会自动释放锁；lock必须手动释放锁</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>线程状态</title>
+    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
+<p>线程创建之后</p>
+<p>可运行（running）</p>
+<p>可能正在运行，也可能正在等待cpu时间片</p>
+<p>阻塞（blocked）</p>
+<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
+<p>无限期等待（waiting）</p>
+<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
+<p>限期等待（time_waiting）</p>
+<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
+<p>终止（terminated）</p>
+<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
