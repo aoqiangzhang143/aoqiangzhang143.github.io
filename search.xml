@@ -967,6 +967,53 @@
       </categories>
   </entry>
   <entry>
+    <title>mybatisplus使用总结</title>
+    <url>/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>使用mybatis对数据库进行操作时，为方便定位错误，可在配置文件中进行配置使得myqsl语句在控制台进行输出</p>
+<p>在application.properties配置</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">#控制面板输出mybatis日志</span><br><span class="line">mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="MybatisPlus的主键策略"><a href="#MybatisPlus的主键策略" class="headerlink" title="MybatisPlus的主键策略"></a>MybatisPlus的主键策略</h2><p>默认采用的是雪花算法：分布式ID生成器</p>
+<p><strong>核心思想：</strong></p>
+<p>长度共64bit（一个long型）。</p>
+<p>首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0。</p>
+<p>41bit时间截(毫秒级)，存储的是时间截的差值（当前时间截 - 开始时间截)，结果约等于69.73年。</p>
+<p>10bit作为机器的ID（5个bit是数据中心，5个bit的机器ID，可以部署在1024个节点）。</p>
+<p>12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID）。</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/clip_image002.jpg" alt="分布式ID生成"></p>
+<p>优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604104216001.png" alt="数据库自动生成ID"></p>
+<hr>
+<h2 id="MyBatisPlus自动填充功能"><a href="#MyBatisPlus自动填充功能" class="headerlink" title="MyBatisPlus自动填充功能"></a>MyBatisPlus自动填充功能</h2><p>好处：自动实现set功能</p>
+<p>使用方法：</p>
+<p>举例：添加记录的创建时间和修改时间</p>
+<p>1、在数据库表中创建对应列：create_time,update_time</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101416523.png" alt="数据库添加列"></p>
+<p>2、在对应的实体类中添加对应属性：createTime,updateTime，并添加注解</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101437416.png" alt="实体类添加属性"></p>
+<p>3、创建一个类，实现MetaObjectHandler接口，并重写其中的两个方法</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604103623362.png" alt="创建handler类"></p>
+]]></content>
+      <categories>
+        <category>mybatisplus</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mysql登录</title>
+    <url>/2021/06/03/mysql%E7%99%BB%E5%BD%95/</url>
+    <content><![CDATA[<p>启动mysql：systemctl start mysqld</p>
+<p>查看mysql启动状态：systemctl status mysqld</p>
+<p>显示active表示已经激活。</p>
+<p>进行登录：mysql -uroot -p</p>
+]]></content>
+      <categories>
+        <category>项目Hospital</category>
+      </categories>
+  </entry>
+  <entry>
     <title>native关键字</title>
     <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
     <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>

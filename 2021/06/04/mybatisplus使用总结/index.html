@@ -23,17 +23,25 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="且将新火试新茶，诗酒趁年华">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mithrandir">
-<meta property="og:url" content="http://example.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+  <meta name="description" content="使用mybatis对数据库进行操作时，为方便定位错误，可在配置文件中进行配置使得myqsl语句在控制台进行输出 在application.properties配置 12#控制面板输出mybatis日志mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl     MybatisPlus的主键策略">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatisplus使用总结">
+<meta property="og:url" content="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="且将新火试新茶，诗酒趁年华">
+<meta property="og:description" content="使用mybatis对数据库进行操作时，为方便定位错误，可在配置文件中进行配置使得myqsl语句在控制台进行输出 在application.properties配置 12#控制面板输出mybatis日志mybatis-plus.configuration.log-impl&#x3D;org.apache.ibatis.logging.stdout.StdOutImpl     MybatisPlus的主键策略">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/clip_image002.jpg">
+<meta property="og:image" content="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604104216001.png">
+<meta property="og:image" content="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101416523.png">
+<meta property="og:image" content="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101437416.png">
+<meta property="og:image" content="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604103623362.png">
+<meta property="article:published_time" content="2021-06-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-04T02:43:47.207Z">
 <meta property="article:author" content="aoqiangzhang143">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/clip_image002.jpg">
 
-<link rel="canonical" href="http://example.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/">
+<link rel="canonical" href="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -41,12 +49,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: 基础知识点 | Mithrandir</title>
+  <title>mybatisplus使用总结 | Mithrandir</title>
   
 
 
@@ -180,57 +188,140 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mybatisplus使用总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-04 00:00:00 / 修改时间：10:43:47" itemprop="dateCreated datePublished" datetime="2021-06-04T00:00:00+08:00">2021-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatisplus/" itemprop="url" rel="index"><span itemprop="name">mybatisplus</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="mybatisplus使用总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">基础知识点
-          <small>标签</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <p>使用mybatis对数据库进行操作时，为方便定位错误，可在配置文件中进行配置使得myqsl语句在控制台进行输出</p>
+<p>在application.properties配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#控制面板输出mybatis日志</span><br><span class="line">mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="MybatisPlus的主键策略"><a href="#MybatisPlus的主键策略" class="headerlink" title="MybatisPlus的主键策略"></a>MybatisPlus的主键策略</h2><p>默认采用的是雪花算法：分布式ID生成器</p>
+<p><strong>核心思想：</strong></p>
+<p>长度共64bit（一个long型）。</p>
+<p>首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0。</p>
+<p>41bit时间截(毫秒级)，存储的是时间截的差值（当前时间截 - 开始时间截)，结果约等于69.73年。</p>
+<p>10bit作为机器的ID（5个bit是数据中心，5个bit的机器ID，可以部署在1024个节点）。</p>
+<p>12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID）。</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/clip_image002.jpg" alt="分布式ID生成"></p>
+<p>优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604104216001.png" alt="数据库自动生成ID"></p>
+<hr>
+<h2 id="MyBatisPlus自动填充功能"><a href="#MyBatisPlus自动填充功能" class="headerlink" title="MyBatisPlus自动填充功能"></a>MyBatisPlus自动填充功能</h2><p>好处：自动实现set功能</p>
+<p>使用方法：</p>
+<p>举例：添加记录的创建时间和修改时间</p>
+<p>1、在数据库表中创建对应列：create_time,update_time</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101416523.png" alt="数据库添加列"></p>
+<p>2、在对应的实体类中添加对应属性：createTime,updateTime，并添加注解</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101437416.png" alt="实体类添加属性"></p>
+<p>3、创建一个类，实现MetaObjectHandler接口，并重写其中的两个方法</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604103623362.png" alt="创建handler类"></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-27T00:00:00+08:00"
-              content="2021-05-27">
-          05-27
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/" itemprop="url">
-            <span itemprop="name">Java各种对比</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" rel="prev" title="mysql登录">
+      <i class="fa fa-chevron-left"></i> mysql登录
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -277,6 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MybatisPlus%E7%9A%84%E4%B8%BB%E9%94%AE%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">MybatisPlus的主键策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatisPlus%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">MyBatisPlus自动填充功能</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
