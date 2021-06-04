@@ -914,20 +914,47 @@
       </categories>
   </entry>
   <entry>
-    <title>Volatile关键字</title>
-    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
-    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
-<p>特性：</p>
-<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
-<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
-<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
-<p>简单介绍下指令重排</p>
-<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
-<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
-<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
-]]></content>
+    <title>Spring实战第四版读书笔记</title>
+    <url>/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h2><p>spring本质上是简化java开发。</p>
+<p>几个简写：</p>
+<table>
+<thead>
+<tr>
+<th>EJB</th>
+<th>Enterprise JavaBean</th>
+<th>企业级javabean</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JDO</td>
+<td>Java Data Object</td>
+<td>java数据对象</td>
+</tr>
+<tr>
+<td>POJO</td>
+<td>Plian Old Java Object</td>
+<td>简单老式java对象</td>
+</tr>
+<tr>
+<td>DI</td>
+<td>Dependency Injection</td>
+<td>依赖注入</td>
+</tr>
+<tr>
+<td>AOP</td>
+<td>Aspect-Oriented Programing</td>
+<td>面向切面编程</td>
+</tr>
+</tbody></table>
+<h3 id="第一章：简介"><a href="#第一章：简介" class="headerlink" title="第一章：简介"></a>第一章：简介</h3><h4 id="怎么简化java开发的："><a href="#怎么简化java开发的：" class="headerlink" title="怎么简化java开发的："></a>怎么简化java开发的：</h4><p>通过DI和AOP实现松耦合；基于切面和惯例进行声明式编程；通过切面和模板减少样板式代码</p>
+<h4 id="AOP的作用："><a href="#AOP的作用：" class="headerlink" title="AOP的作用："></a>AOP的作用：</h4><p>AOP通过将遍布应用各处的功能分离出来，形成可重用的组件，从而确保pojo的简单性</p>
+<h4 id="Spring容器："><a href="#Spring容器：" class="headerlink" title="Spring容器："></a>Spring容器：</h4><p>将一个类转化为一个切面，首先需要将其声明为一个SpringBean，bean对象生存于Spring容器中；</p>
+<p>Spring的容器分为两大类：bean工厂和应用上下文。</p>
+<hr>
+<h3 id="第二章：装配bean"><a href="#第二章：装配bean" class="headerlink" title="第二章：装配bean"></a>第二章：装配bean</h3>]]></content>
       <categories>
-        <category>Java基础</category>
+        <category>读书总结</category>
       </categories>
   </entry>
   <entry>
@@ -947,6 +974,23 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Volatile关键字</title>
+    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
+<p>特性：</p>
+<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
+<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
+<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
+<p>简单介绍下指令重排</p>
+<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
+<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
+<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
   </entry>
   <entry>
     <title>maven首次运行问题</title>
@@ -1014,23 +1058,6 @@
       </categories>
   </entry>
   <entry>
-    <title>native关键字</title>
-    <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
-    <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
-<p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。</p>
-<p>这些函数的实现体在DLL中，JDK的源代码中并不包含，你应该是看不到的。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
-<p>1。native 是用做java 和其他语言（如c++）进行协作时用的也就是native 后的函数的实现不是用java写的</p>
-<p>2。既然都不是java，那就别管它的源代码了，呵呵</p>
-<p>native的意思就是通知操作系统，</p>
-<p>这个函数你必须给我实现，因为我要使用。</p>
-<p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
-<p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>wait和sleep的异同</title>
     <url>/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/</url>
     <content><![CDATA[<h2 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h2><p>一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
@@ -1045,6 +1072,23 @@
 <p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
 <p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
 <p>另外，sleep是静态方法，wait是非静态方法。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>native关键字</title>
+    <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
+<p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。</p>
+<p>这些函数的实现体在DLL中，JDK的源代码中并不包含，你应该是看不到的。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
+<p>1。native 是用做java 和其他语言（如c++）进行协作时用的也就是native 后的函数的实现不是用java写的</p>
+<p>2。既然都不是java，那就别管它的源代码了，呵呵</p>
+<p>native的意思就是通知操作系统，</p>
+<p>这个函数你必须给我实现，因为我要使用。</p>
+<p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
+<p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -1139,6 +1183,16 @@
       </tags>
   </entry>
   <entry>
+    <title>简单死锁的测试</title>
+    <url>/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mithrandir</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-04-2021/4/12-10:19</span></span><br><span class="line"><span class="comment"> * 测试死锁</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread1()).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread2()).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread2的第一层，已经持有lock2&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThread2的第二层，已经持有lock2和lock1&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread1的第一层,已经持有lock1&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThead1的第二层，已经持有lock1和lock2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myLock</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Object lock1=<span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">static</span> Object lock2=<span class="keyword">new</span> Object();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>搜索算法</title>
     <url>/2021/05/26/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low=<span class="number">0</span>,height=arr.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=height)&#123;</span><br><span class="line">        mid=(low+height)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(arr[mid]&lt;target)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&gt;target)&#123;</span><br><span class="line">            height=mid-<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1156,16 +1210,6 @@
       <tags>
         <tag>搜索</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>简单死锁的测试</title>
-    <url>/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mithrandir</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-04-2021/4/12-10:19</span></span><br><span class="line"><span class="comment"> * 测试死锁</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread1()).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread2()).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread2的第一层，已经持有lock2&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThread2的第二层，已经持有lock2和lock1&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread1的第一层,已经持有lock1&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThead1的第二层，已经持有lock1和lock2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myLock</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Object lock1=<span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">static</span> Object lock2=<span class="keyword">new</span> Object();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
   </entry>
   <entry>
     <title>线程状态</title>
