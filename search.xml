@@ -916,7 +916,7 @@
   <entry>
     <title>Spring实战第四版读书笔记</title>
     <url>/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h2><p>spring本质上是简化java开发。</p>
+    <content><![CDATA[<h1 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h1><p>spring本质上是简化java开发。</p>
 <p>几个简写：</p>
 <table>
 <thead>
@@ -947,12 +947,12 @@
 <td>面向切面编程</td>
 </tr>
 </tbody></table>
-<h3 id="第一章：简介"><a href="#第一章：简介" class="headerlink" title="第一章：简介"></a>第一章：简介</h3><h4 id="怎么简化java开发的："><a href="#怎么简化java开发的：" class="headerlink" title="怎么简化java开发的："></a>怎么简化java开发的：</h4><p>通过DI和AOP实现松耦合；基于切面和惯例进行声明式编程；通过切面和模板减少样板式代码</p>
-<h4 id="AOP的作用："><a href="#AOP的作用：" class="headerlink" title="AOP的作用："></a>AOP的作用：</h4><p>AOP通过将遍布应用各处的功能分离出来，形成可重用的组件，从而确保pojo的简单性</p>
-<h4 id="Spring容器："><a href="#Spring容器：" class="headerlink" title="Spring容器："></a>Spring容器：</h4><p>将一个类转化为一个切面，首先需要将其声明为一个SpringBean，bean对象生存于Spring容器中；</p>
+<h2 id="第一章：简介"><a href="#第一章：简介" class="headerlink" title="第一章：简介"></a>第一章：简介</h2><h3 id="怎么简化java开发的："><a href="#怎么简化java开发的：" class="headerlink" title="怎么简化java开发的："></a>怎么简化java开发的：</h3><p>通过DI和AOP实现松耦合；基于切面和惯例进行声明式编程；通过切面和模板减少样板式代码</p>
+<h3 id="AOP的作用："><a href="#AOP的作用：" class="headerlink" title="AOP的作用："></a>AOP的作用：</h3><p>AOP通过将遍布应用各处的功能分离出来，形成可重用的组件，从而确保pojo的简单性</p>
+<h3 id="Spring容器："><a href="#Spring容器：" class="headerlink" title="Spring容器："></a>Spring容器：</h3><p>将一个类转化为一个切面，首先需要将其声明为一个SpringBean，bean对象生存于Spring容器中；</p>
 <p>Spring的容器分为两大类：bean工厂和应用上下文。</p>
 <hr>
-<h3 id="第二章：装配bean"><a href="#第二章：装配bean" class="headerlink" title="第二章：装配bean"></a>第二章：装配bean</h3><p>装配bean有三种方式：</p>
+<h2 id="第二章：装配bean"><a href="#第二章：装配bean" class="headerlink" title="第二章：装配bean"></a>第二章：装配bean</h2><p>装配bean有三种方式：</p>
 <p>1、xml配置</p>
 <p>2、java显示装配</p>
 <p>3、<strong>自动装配</strong>【重要】</p>
@@ -971,18 +971,36 @@
 <p>最后便可对其进行测试</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.exam3test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Exm3Config;</span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Human;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = Exm3Config.class)</span></span><br><span class="line"><span class="comment">//下面这个注解必须要加，不然会报nulllpointerexception</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exm3Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Human human;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        human.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h3><h4 id="配置profile-bean："><a href="#配置profile-bean：" class="headerlink" title="配置profile bean："></a>配置profile bean：</h4><p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
+<h2 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h2><h3 id="配置profile-bean："><a href="#配置profile-bean：" class="headerlink" title="配置profile bean："></a>配置profile bean：</h3><p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
 <hr>
-<h4 id="激活profile："><a href="#激活profile：" class="headerlink" title="激活profile："></a>激活profile：</h4><p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
+<h3 id="激活profile："><a href="#激活profile：" class="headerlink" title="激活profile："></a>激活profile：</h3><p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
 <p>没设置active的话，如果定义了spring.profiles.default，那就根据default进行jihuo</p>
 <p>如果都没设置，那就只创建那些没定义在profile中的bean</p>
 <hr>
-<h4 id="条件化的bean"><a href="#条件化的bean" class="headerlink" title="条件化的bean"></a>条件化的bean</h4><p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
+<h3 id="条件化的bean"><a href="#条件化的bean" class="headerlink" title="条件化的bean"></a>条件化的bean</h3><p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
 <hr>
-<h4 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h4><p>一个接口会存在多个实现类，此时进行自动装配时，spring无法确定装配哪个类。</p>
+<h3 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h3><p>一个接口会存在多个实现类，此时进行自动装配时，spring无法确定装配哪个类。。</p>
 <p>解决方法：</p>
 <p>1、设置首选bean：@Primary</p>
-<p>2、采用限定符来确定装配指定的bean：@Qualifier（“iceCream”）；@Qualifier也可以用于bean上，相当于为该bean设置ID；@Qualifier也可以将每个bean的ID设置为该类的特性，一个bean会存在多个特性，但是同一个类不允许多次使用同一个注解，因此可自行创建注解<img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png" alt="自行创建注解"></p>
+<p>2、采用限定符来确定装配指定的bean：@Qualifier（“iceCream”）；@Qualifier也可以用于bean上，相当于为该bean设置ID；@Qualifier也可以将每个bean的ID设置为该类的特性，一个bean会存在多个特性，但是同一个类不允许多次使用同一个注解，因此可自行创建注解</p>
+<p><img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png" alt="自行创建注解"></p>
+<hr>
+<h3 id="运行时值注入"><a href="#运行时值注入" class="headerlink" title="运行时值注入"></a>运行时值注入</h3><p>目的：使得一些值在运行时再确定</p>
+<p>方法：</p>
+<p>1、属性占位符</p>
+<p>2、Spring表达式语言（SpEL）【重点】</p>
+<p>SpEL的使用方法：</p>
+<p>表示字面值：#{3.1459}，#{‘Hello’}，#{false}</p>
+<p>引用bean、属性、方法</p>
+<p>#{people}，#{people.name}，#{people.speak()}</p>
+<hr>
+<h2 id="第四章：面向切面的Spring"><a href="#第四章：面向切面的Spring" class="headerlink" title="第四章：面向切面的Spring"></a>第四章：面向切面的Spring</h2><p>AOP术语：</p>
+<p>通知（Advice）：切面的工作被称为通知；通知包含了需要用于多个对象的横切行为。</p>
+<p>连接点（Join Point）：在应用执行过程中插入到切面的一个点，切面代码利用这些点插入到应用的正常流程之中，并添加新的行为；连                                      接点是程序执行过程中能够应用通知的所有点。</p>
+<p>切点（Pointcut）：通知定义了切面的“什么”和“何时”，切点定义了“何处”；切点定义了哪些连接点会得到通知。</p>
+<p>切面（Aspect）：通知和切点构成了切面的全部内容。</p>
+<p>引入（Introduction）：向现有的类添加新的方法和属性。</p>
+<p>织入（Weaving）：将切面应用到目标对象并创建新的代理对象的过程。</p>
 ]]></content>
       <categories>
         <category>读书总结</category>
@@ -1089,41 +1107,6 @@
       </categories>
   </entry>
   <entry>
-    <title>常见的线程调度算法</title>
-    <url>/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="先来先服务（first-come-first-serverd）"><a href="#先来先服务（first-come-first-serverd）" class="headerlink" title="先来先服务（first come first serverd）"></a>先来先服务（first come first serverd）</h3><p>优点：</p>
-<p>易于实现，相当公平；</p>
-<p>缺点：</p>
-<p>有利于长进程，不利于短进程</p>
-<hr>
-<h3 id="短作业优先（shortest-job-first）"><a href="#短作业优先（shortest-job-first）" class="headerlink" title="短作业优先（shortest job first）"></a>短作业优先（shortest job first）</h3><p>优点：</p>
-<p>平均周转时间最短，进程等待时间最短，可以增大系统吞吐量</p>
-<p>缺点：</p>
-<p>难以预测进程执行时间，开销较大；不利于长进程</p>
-<hr>
-<h3 id="最短剩余时间优先（shortest-remaining-time-next）"><a href="#最短剩余时间优先（shortest-remaining-time-next）" class="headerlink" title="最短剩余时间优先（shortest remaining time next）"></a>最短剩余时间优先（shortest remaining time next）</h3><p>按预估剩余时间最短顺序进行调度</p>
-<hr>
-<h3 id="高优先权优先调度算法"><a href="#高优先权优先调度算法" class="headerlink" title="高优先权优先调度算法"></a>高优先权优先调度算法</h3><p>为了照顾紧迫型作业，使之在进入系统后便获得优先处理。</p>
-<p>1、非抢占式优先权算法</p>
-<p>2、抢占式优先权算法</p>
-<hr>
-<h3 id="高响应比优先调度算法"><a href="#高响应比优先调度算法" class="headerlink" title="高响应比优先调度算法"></a>高响应比优先调度算法</h3><p>根据比率：R=(w+s)/s （R为响应比，w为等待处理的时间，s为预计的服务时间）</p>
-<p>如果该进程被立即调用，则R值等于归一化周转时间（周转时间和服务时间的比率）。R最小值为1.0，只有第一个进入系统的进程才能达到该值。调度规则为：当前进程完成或被阻塞时，选择R值最大的就绪进程，它说明了进程的年龄。当偏向短作业时，长进程由于得不到服务，等待时间不断增加，从而增加比值，最终在竞争中赢了短进程。</p>
-<p>和最短进程优先、最短剩余时间优先一样，使用最高响应比策略需要估计预计服务时间。</p>
-<hr>
-<h3 id="时间片轮转法"><a href="#时间片轮转法" class="headerlink" title="时间片轮转法"></a>时间片轮转法</h3><p>轮转法是基于适中的抢占策略的，以一个周期性间隔产生时钟中断，当中断发生后，当前正在运行的进程被置于就绪队列中，然后基于先来先去服务策略选择下一个就绪作业的运行。这种技术也称为时间片，因为每个进程再被抢占之前都给定一片时间。</p>
-<hr>
-<h3 id="多级反馈队列"><a href="#多级反馈队列" class="headerlink" title="多级反馈队列"></a>多级反馈队列</h3><p>多级反馈队列算法，不必事先知道各种进程所需要执行的时间，他是当前被公认的一种较好的进程调度算法。其实施过程如下：</p>
-<p>1)设置多个就绪队列，并为各个队列赋予不同的优先级。在优先权越高的队列中，为每个进程所规定的执行时间片就越小。</p>
-<p>2)当一个新进程进入内存后，首先放入第一队列的末尾，按照先来先去原则排队等候调度。如果他能在一个时间片中完成，便可撤离；如果未完成，就转入第二队列的末尾，同样等待调度…..如此下去，当一个长作业（进程）从第一队列依次将到第n队列（最后队列）后，便按第n队列时间片轮转运行。</p>
-<p>3)仅当第一队列空闲的时候，调度程序才调度第二队列中的进程运行；仅当第1到（i-1）队列空时，才会调度第i队列中的进程运行，并执行相应的时间片轮转。</p>
-<p>4)如果处理机正在处理第i队列中某进程，又有新进程进入优先权较高的队列，则此新队列抢占正在运行的处理机，并把正在运行的进程放在第i队列的队尾。</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>native关键字</title>
     <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
     <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
@@ -1155,6 +1138,41 @@
 <p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
 <p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
 <p>另外，sleep是静态方法，wait是非静态方法。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>常见的线程调度算法</title>
+    <url>/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="先来先服务（first-come-first-serverd）"><a href="#先来先服务（first-come-first-serverd）" class="headerlink" title="先来先服务（first come first serverd）"></a>先来先服务（first come first serverd）</h3><p>优点：</p>
+<p>易于实现，相当公平；</p>
+<p>缺点：</p>
+<p>有利于长进程，不利于短进程</p>
+<hr>
+<h3 id="短作业优先（shortest-job-first）"><a href="#短作业优先（shortest-job-first）" class="headerlink" title="短作业优先（shortest job first）"></a>短作业优先（shortest job first）</h3><p>优点：</p>
+<p>平均周转时间最短，进程等待时间最短，可以增大系统吞吐量</p>
+<p>缺点：</p>
+<p>难以预测进程执行时间，开销较大；不利于长进程</p>
+<hr>
+<h3 id="最短剩余时间优先（shortest-remaining-time-next）"><a href="#最短剩余时间优先（shortest-remaining-time-next）" class="headerlink" title="最短剩余时间优先（shortest remaining time next）"></a>最短剩余时间优先（shortest remaining time next）</h3><p>按预估剩余时间最短顺序进行调度</p>
+<hr>
+<h3 id="高优先权优先调度算法"><a href="#高优先权优先调度算法" class="headerlink" title="高优先权优先调度算法"></a>高优先权优先调度算法</h3><p>为了照顾紧迫型作业，使之在进入系统后便获得优先处理。</p>
+<p>1、非抢占式优先权算法</p>
+<p>2、抢占式优先权算法</p>
+<hr>
+<h3 id="高响应比优先调度算法"><a href="#高响应比优先调度算法" class="headerlink" title="高响应比优先调度算法"></a>高响应比优先调度算法</h3><p>根据比率：R=(w+s)/s （R为响应比，w为等待处理的时间，s为预计的服务时间）</p>
+<p>如果该进程被立即调用，则R值等于归一化周转时间（周转时间和服务时间的比率）。R最小值为1.0，只有第一个进入系统的进程才能达到该值。调度规则为：当前进程完成或被阻塞时，选择R值最大的就绪进程，它说明了进程的年龄。当偏向短作业时，长进程由于得不到服务，等待时间不断增加，从而增加比值，最终在竞争中赢了短进程。</p>
+<p>和最短进程优先、最短剩余时间优先一样，使用最高响应比策略需要估计预计服务时间。</p>
+<hr>
+<h3 id="时间片轮转法"><a href="#时间片轮转法" class="headerlink" title="时间片轮转法"></a>时间片轮转法</h3><p>轮转法是基于适中的抢占策略的，以一个周期性间隔产生时钟中断，当中断发生后，当前正在运行的进程被置于就绪队列中，然后基于先来先去服务策略选择下一个就绪作业的运行。这种技术也称为时间片，因为每个进程再被抢占之前都给定一片时间。</p>
+<hr>
+<h3 id="多级反馈队列"><a href="#多级反馈队列" class="headerlink" title="多级反馈队列"></a>多级反馈队列</h3><p>多级反馈队列算法，不必事先知道各种进程所需要执行的时间，他是当前被公认的一种较好的进程调度算法。其实施过程如下：</p>
+<p>1)设置多个就绪队列，并为各个队列赋予不同的优先级。在优先权越高的队列中，为每个进程所规定的执行时间片就越小。</p>
+<p>2)当一个新进程进入内存后，首先放入第一队列的末尾，按照先来先去原则排队等候调度。如果他能在一个时间片中完成，便可撤离；如果未完成，就转入第二队列的末尾，同样等待调度…..如此下去，当一个长作业（进程）从第一队列依次将到第n队列（最后队列）后，便按第n队列时间片轮转运行。</p>
+<p>3)仅当第一队列空闲的时候，调度程序才调度第二队列中的进程运行；仅当第1到（i-1）队列空时，才会调度第i队列中的进程运行，并执行相应的时间片轮转。</p>
+<p>4)如果处理机正在处理第i队列中某进程，又有新进程进入优先权较高的队列，则此新队列抢占正在运行的处理机，并把正在运行的进程放在第i队列的队尾。</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -1202,6 +1220,18 @@
       </tags>
   </entry>
   <entry>
+    <title>快速失败、安全失败</title>
+    <url>/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/</url>
+    <content><![CDATA[<h2 id="快速失败："><a href="#快速失败：" class="headerlink" title="快速失败："></a><strong>快速失败：</strong></h2><p>在使用迭代器对集合进行迭代的过程中，如果 A 线程正在对集合进行遍历，此时 B 线程对集合进行修改（增加、删除、修改），或者 A 线程在遍历过程中对集合进行修改，都会导致 A 线程抛出 ConcurrentModificationException 异常。</p>
+<hr>
+<h2 id="安全失败："><a href="#安全失败：" class="headerlink" title="安全失败："></a>安全失败：</h2><p>采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。</p>
+<p>由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，故不会抛 ConcurrentModificationException 异常</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>搜索算法</title>
     <url>/2021/05/26/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low=<span class="number">0</span>,height=arr.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=height)&#123;</span><br><span class="line">        mid=(low+height)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(arr[mid]&lt;target)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&gt;target)&#123;</span><br><span class="line">            height=mid-<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1219,18 +1249,6 @@
       <tags>
         <tag>搜索</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>快速失败、安全失败</title>
-    <url>/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/</url>
-    <content><![CDATA[<h2 id="快速失败："><a href="#快速失败：" class="headerlink" title="快速失败："></a><strong>快速失败：</strong></h2><p>在使用迭代器对集合进行迭代的过程中，如果 A 线程正在对集合进行遍历，此时 B 线程对集合进行修改（增加、删除、修改），或者 A 线程在遍历过程中对集合进行修改，都会导致 A 线程抛出 ConcurrentModificationException 异常。</p>
-<hr>
-<h2 id="安全失败："><a href="#安全失败：" class="headerlink" title="安全失败："></a>安全失败：</h2><p>采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。</p>
-<p>由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，故不会抛 ConcurrentModificationException 异常</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
   </entry>
   <entry>
     <title>简单死锁的测试</title>
@@ -1263,20 +1281,6 @@
       </categories>
   </entry>
   <entry>
-    <title>运行Halo项目时遇到的问题</title>
-    <url>/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p><img src="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/Failedto.jpg" alt="Failedto"></p>
-<p>这个问题在将jdk版本从8改为11之后就没遇到了;</p>
-<p>但是在后续的运行中又出现了其他错误，经查阅资料，将IDEA从2019.3升级为2020.3之后解决；</p>
-<p>后记：改完之后还需要将gradle的jdk版本以及项目运行依赖的jdk版本改为11（我装了8和11两个版本）；</p>
-<p>最后一次运行报错是显示未找到默认主题，在<a href="https://github.com/halo-dev/halo-theme-anatole">halo-dev/halo-theme-anatole (github.com)</a>进行下载并存放至Halo\halo\src\main\resources\templates\themes\anatole后，成功运行。</p>
-<p>至此成功运行。</p>
-]]></content>
-      <categories>
-        <category>踩坑记录</category>
-      </categories>
-  </entry>
-  <entry>
     <title>解决线程安全的方式</title>
     <url>/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="一：同步代码块"><a href="#一：同步代码块" class="headerlink" title="一：同步代码块"></a>一：同步代码块</h2><p>synchronized(同步监视器){</p>
@@ -1304,6 +1308,20 @@
 ]]></content>
       <categories>
         <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>运行Halo项目时遇到的问题</title>
+    <url>/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p><img src="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/Failedto.jpg" alt="Failedto"></p>
+<p>这个问题在将jdk版本从8改为11之后就没遇到了;</p>
+<p>但是在后续的运行中又出现了其他错误，经查阅资料，将IDEA从2019.3升级为2020.3之后解决；</p>
+<p>后记：改完之后还需要将gradle的jdk版本以及项目运行依赖的jdk版本改为11（我装了8和11两个版本）；</p>
+<p>最后一次运行报错是显示未找到默认主题，在<a href="https://github.com/halo-dev/halo-theme-anatole">halo-dev/halo-theme-anatole (github.com)</a>进行下载并存放至Halo\halo\src\main\resources\templates\themes\anatole后，成功运行。</p>
+<p>至此成功运行。</p>
+]]></content>
+      <categories>
+        <category>踩坑记录</category>
       </categories>
   </entry>
   <entry>

@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png">
 <meta property="article:published_time" content="2021-06-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-07T02:29:23.357Z">
+<meta property="article:modified_time" content="2021-06-07T08:42:29.491Z">
 <meta property="article:author" content="aoqiangzhang143">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-07 10:29:23" itemprop="dateModified" datetime="2021-06-07T10:29:23+08:00">2021-06-07</time>
+                <time title="修改时间：2021-06-07 16:42:29" itemprop="dateModified" datetime="2021-06-07T16:42:29+08:00">2021-06-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,7 +265,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h2><p>spring本质上是简化java开发。</p>
+        <h1 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h1><p>spring本质上是简化java开发。</p>
 <p>几个简写：</p>
 <table>
 <thead>
@@ -296,12 +296,12 @@
 <td>面向切面编程</td>
 </tr>
 </tbody></table>
-<h3 id="第一章：简介"><a href="#第一章：简介" class="headerlink" title="第一章：简介"></a>第一章：简介</h3><h4 id="怎么简化java开发的："><a href="#怎么简化java开发的：" class="headerlink" title="怎么简化java开发的："></a>怎么简化java开发的：</h4><p>通过DI和AOP实现松耦合；基于切面和惯例进行声明式编程；通过切面和模板减少样板式代码</p>
-<h4 id="AOP的作用："><a href="#AOP的作用：" class="headerlink" title="AOP的作用："></a>AOP的作用：</h4><p>AOP通过将遍布应用各处的功能分离出来，形成可重用的组件，从而确保pojo的简单性</p>
-<h4 id="Spring容器："><a href="#Spring容器：" class="headerlink" title="Spring容器："></a>Spring容器：</h4><p>将一个类转化为一个切面，首先需要将其声明为一个SpringBean，bean对象生存于Spring容器中；</p>
+<h2 id="第一章：简介"><a href="#第一章：简介" class="headerlink" title="第一章：简介"></a>第一章：简介</h2><h3 id="怎么简化java开发的："><a href="#怎么简化java开发的：" class="headerlink" title="怎么简化java开发的："></a>怎么简化java开发的：</h3><p>通过DI和AOP实现松耦合；基于切面和惯例进行声明式编程；通过切面和模板减少样板式代码</p>
+<h3 id="AOP的作用："><a href="#AOP的作用：" class="headerlink" title="AOP的作用："></a>AOP的作用：</h3><p>AOP通过将遍布应用各处的功能分离出来，形成可重用的组件，从而确保pojo的简单性</p>
+<h3 id="Spring容器："><a href="#Spring容器：" class="headerlink" title="Spring容器："></a>Spring容器：</h3><p>将一个类转化为一个切面，首先需要将其声明为一个SpringBean，bean对象生存于Spring容器中；</p>
 <p>Spring的容器分为两大类：bean工厂和应用上下文。</p>
 <hr>
-<h3 id="第二章：装配bean"><a href="#第二章：装配bean" class="headerlink" title="第二章：装配bean"></a>第二章：装配bean</h3><p>装配bean有三种方式：</p>
+<h2 id="第二章：装配bean"><a href="#第二章：装配bean" class="headerlink" title="第二章：装配bean"></a>第二章：装配bean</h2><p>装配bean有三种方式：</p>
 <p>1、xml配置</p>
 <p>2、java显示装配</p>
 <p>3、<strong>自动装配</strong>【重要】</p>
@@ -320,18 +320,36 @@
 <p>最后便可对其进行测试</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.exam3test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Exm3Config;</span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Human;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = Exm3Config.class)</span></span><br><span class="line"><span class="comment">//下面这个注解必须要加，不然会报nulllpointerexception</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exm3Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Human human;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        human.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h3><h4 id="配置profile-bean："><a href="#配置profile-bean：" class="headerlink" title="配置profile bean："></a>配置profile bean：</h4><p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
+<h2 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h2><h3 id="配置profile-bean："><a href="#配置profile-bean：" class="headerlink" title="配置profile bean："></a>配置profile bean：</h3><p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
 <hr>
-<h4 id="激活profile："><a href="#激活profile：" class="headerlink" title="激活profile："></a>激活profile：</h4><p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
+<h3 id="激活profile："><a href="#激活profile：" class="headerlink" title="激活profile："></a>激活profile：</h3><p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
 <p>没设置active的话，如果定义了spring.profiles.default，那就根据default进行jihuo</p>
 <p>如果都没设置，那就只创建那些没定义在profile中的bean</p>
 <hr>
-<h4 id="条件化的bean"><a href="#条件化的bean" class="headerlink" title="条件化的bean"></a>条件化的bean</h4><p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
+<h3 id="条件化的bean"><a href="#条件化的bean" class="headerlink" title="条件化的bean"></a>条件化的bean</h3><p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
 <hr>
-<h4 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h4><p>一个接口会存在多个实现类，此时进行自动装配时，spring无法确定装配哪个类。</p>
+<h3 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h3><p>一个接口会存在多个实现类，此时进行自动装配时，spring无法确定装配哪个类。。</p>
 <p>解决方法：</p>
 <p>1、设置首选bean：@Primary</p>
-<p>2、采用限定符来确定装配指定的bean：@Qualifier（“iceCream”）；@Qualifier也可以用于bean上，相当于为该bean设置ID；@Qualifier也可以将每个bean的ID设置为该类的特性，一个bean会存在多个特性，但是同一个类不允许多次使用同一个注解，因此可自行创建注解<img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png" alt="自行创建注解"></p>
+<p>2、采用限定符来确定装配指定的bean：@Qualifier（“iceCream”）；@Qualifier也可以用于bean上，相当于为该bean设置ID；@Qualifier也可以将每个bean的ID设置为该类的特性，一个bean会存在多个特性，但是同一个类不允许多次使用同一个注解，因此可自行创建注解</p>
+<p><img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png" alt="自行创建注解"></p>
+<hr>
+<h3 id="运行时值注入"><a href="#运行时值注入" class="headerlink" title="运行时值注入"></a>运行时值注入</h3><p>目的：使得一些值在运行时再确定</p>
+<p>方法：</p>
+<p>1、属性占位符</p>
+<p>2、Spring表达式语言（SpEL）【重点】</p>
+<p>SpEL的使用方法：</p>
+<p>表示字面值：#{3.1459}，#{‘Hello’}，#{false}</p>
+<p>引用bean、属性、方法</p>
+<p>#{people}，#{people.name}，#{people.speak()}</p>
+<hr>
+<h2 id="第四章：面向切面的Spring"><a href="#第四章：面向切面的Spring" class="headerlink" title="第四章：面向切面的Spring"></a>第四章：面向切面的Spring</h2><p>AOP术语：</p>
+<p>通知（Advice）：切面的工作被称为通知；通知包含了需要用于多个对象的横切行为。</p>
+<p>连接点（Join Point）：在应用执行过程中插入到切面的一个点，切面代码利用这些点插入到应用的正常流程之中，并添加新的行为；连                                      接点是程序执行过程中能够应用通知的所有点。</p>
+<p>切点（Pointcut）：通知定义了切面的“什么”和“何时”，切点定义了“何处”；切点定义了哪些连接点会得到通知。</p>
+<p>切面（Aspect）：通知和切点构成了切面的全部内容。</p>
+<p>引入（Introduction）：向现有的类添加新的方法和属性。</p>
+<p>织入（Weaving）：将切面应用到目标对象并创建新的代理对象的过程。</p>
 
     </div>
 
@@ -410,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88"><span class="nav-number">1.</span> <span class="nav-text">Spring实战第四版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">第一章：简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%AE%80%E5%8C%96java%E5%BC%80%E5%8F%91%E7%9A%84%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">怎么简化java开发的：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOP%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">AOP的作用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E5%AE%B9%E5%99%A8%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">Spring容器：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E8%A3%85%E9%85%8Dbean"><span class="nav-number">1.2.</span> <span class="nav-text">第二章：装配bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E9%AB%98%E7%BA%A7%E8%A3%85%E9%85%8D"><span class="nav-number">1.3.</span> <span class="nav-text">第三章：高级装配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEprofile-bean%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">配置profile bean：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BF%80%E6%B4%BBprofile%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">激活profile：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E5%8C%96%E7%9A%84bean"><span class="nav-number">1.3.3.</span> <span class="nav-text">条件化的bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E7%9A%84%E6%AD%A7%E4%B9%89%E6%80%A7"><span class="nav-number">1.3.4.</span> <span class="nav-text">自动装配的歧义性</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88"><span class="nav-number">1.</span> <span class="nav-text">Spring实战第四版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">第一章：简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%AE%80%E5%8C%96java%E5%BC%80%E5%8F%91%E7%9A%84%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">怎么简化java开发的：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">AOP的作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E5%AE%B9%E5%99%A8%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">Spring容器：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E8%A3%85%E9%85%8Dbean"><span class="nav-number">1.2.</span> <span class="nav-text">第二章：装配bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E9%AB%98%E7%BA%A7%E8%A3%85%E9%85%8D"><span class="nav-number">1.3.</span> <span class="nav-text">第三章：高级装配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEprofile-bean%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">配置profile bean：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E6%B4%BBprofile%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">激活profile：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E5%8C%96%E7%9A%84bean"><span class="nav-number">1.3.3.</span> <span class="nav-text">条件化的bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E7%9A%84%E6%AD%A7%E4%B9%89%E6%80%A7"><span class="nav-number">1.3.4.</span> <span class="nav-text">自动装配的歧义性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%80%BC%E6%B3%A8%E5%85%A5"><span class="nav-number">1.3.5.</span> <span class="nav-text">运行时值注入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%9A%84Spring"><span class="nav-number">1.4.</span> <span class="nav-text">第四章：面向切面的Spring</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
