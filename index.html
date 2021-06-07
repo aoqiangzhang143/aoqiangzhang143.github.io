@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-06 20:32:52" itemprop="dateModified" datetime="2021-06-06T20:32:52+08:00">2021-06-06</time>
+                <time title="修改时间：2021-06-07 10:29:23" itemprop="dateModified" datetime="2021-06-07T10:29:23+08:00">2021-06-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -316,16 +316,18 @@
 <p>最后便可对其进行测试</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.exam3test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Exm3Config;</span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Human;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = Exm3Config.class)</span></span><br><span class="line"><span class="comment">//下面这个注解必须要加，不然会报nulllpointerexception</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exm3Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Human human;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        human.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h3><p>配置profile bean：</p>
-<p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
+<h3 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h3><h4 id="配置profile-bean："><a href="#配置profile-bean：" class="headerlink" title="配置profile bean："></a>配置profile bean：</h4><p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
 <hr>
-<p>激活profile：</p>
-<p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
+<h4 id="激活profile："><a href="#激活profile：" class="headerlink" title="激活profile："></a>激活profile：</h4><p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
 <p>没设置active的话，如果定义了spring.profiles.default，那就根据default进行jihuo</p>
 <p>如果都没设置，那就只创建那些没定义在profile中的bean</p>
 <hr>
-<p>条件化的bean</p>
-<p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
+<h4 id="条件化的bean"><a href="#条件化的bean" class="headerlink" title="条件化的bean"></a>条件化的bean</h4><p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
+<hr>
+<h4 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h4><p>一个接口会存在多个实现类，此时进行自动装配时，spring无法确定装配哪个类。</p>
+<p>解决方法：</p>
+<p>1、设置首选bean：@Primary</p>
+<p>2、采用限定符来确定装配指定的bean：@Qualifier（“iceCream”）；@Qualifier也可以用于bean上，相当于为该bean设置ID；@Qualifier也可以将每个bean的ID设置为该类的特性，一个bean会存在多个特性，但是同一个类不允许多次使用同一个注解，因此可自行创建注解<img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png" alt="自行创建注解"></p>
 
       
     </div>
