@@ -17,50 +17,6 @@
       </categories>
   </entry>
   <entry>
-    <title>CAS简述</title>
-    <url>/2021/05/29/CAS%E7%AE%80%E8%BF%B0/</url>
-    <content><![CDATA[<p>在JDK 5之前Java语言是靠synchronized关键字保证同步的，这会导致有锁</p>
-<p>锁机制存在以下问题：</p>
-<p>（1）在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。</p>
-<p>（2）一个线程持有锁会导致其它所有需要此锁的线程挂起。</p>
-<p>（3）如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。</p>
-<p>volatile是不错的机制，但是volatile不能保证原子性。因此对于同步最终还是要回到锁机制上来。</p>
-<p><strong>独占锁是一种悲观锁，synchronized就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。而另一个更加有效的锁就是乐观锁。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。乐观锁用到的机制就是CAS，Compare and Swap。</strong></p>
-<h2 id="一、什么是CAS"><a href="#一、什么是CAS" class="headerlink" title="一、什么是CAS"></a>一、什么是CAS</h2><p>CAS,compare and swap的缩写，中文翻译成比较并交换。</p>
-<p>我们都知道，在java语言之前，并发就已经广泛存在并在服务器领域得到了大量的应用。所以硬件厂商老早就在芯片中加入了大量直至并发操作的原语，从而在硬件层面提升效率。在intel的CPU中，使用cmpxchg指令。</p>
-<p>在Java发展初期，java语言是不能够利用硬件提供的这些便利来提升系统的性能的。而随着java不断的发展,Java本地方法(JNI)的出现，使得java程序越过JVM直接调用本地方法提供了一种便捷的方式，因而java在并发的手段上也多了起来。而在Doug Lea提供的cucurenct包中，CAS理论是它实现整个java包的基石。</p>
-<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。 如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值 。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该 位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前 值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”</p>
-<p>通常将 CAS 用于同步的方式是从地址 V 读取值 A，执行多步计算来获得新 值 B，然后使用 CAS 将 V 的值从 A 改为 B。如果 V 处的值尚未同时更改，则 CAS 操作成功。</p>
-<p>类似于 CAS 的指令允许算法执行读-修改-写操作，而无需害怕其他线程同时 修改变量，因为如果其他线程修改变量，那么 CAS 会检测它（并失败），算法 可以对该操作重新计算。</p>
-<h2 id="二、CAS的目的"><a href="#二、CAS的目的" class="headerlink" title="二、CAS的目的"></a>二、CAS的目的</h2><p>利用CPU的CAS指令，同时借助JNI来完成Java的非阻塞算法。其它原子操作都是利用类似的特性完成的。而整个J.U.C都是建立在CAS之上的，因此对于synchronized阻塞算法，J.U.C在性能上有了很大的提升。</p>
-<h2 id="三、CAS存在的问题"><a href="#三、CAS存在的问题" class="headerlink" title="三、CAS存在的问题"></a>三、CAS存在的问题</h2><p>CAS虽然很高效的解决原子操作，但是CAS仍然存在三大问题。ABA问题，循环时间长开销大和只能保证一个共享变量的原子操作</p>
-<p>\1.  <strong>ABA****问题</strong>。因为CAS需要在操作值的时候检查下值有没有发生变化，如果没有发生变化则更新，但是如果一个值原来是A，变成了B，又变成了A，那么使用CAS进行检查时会发现它的值没有发生变化，但是实际上却变化了。ABA问题的解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加一，那么A－B－A 就会变成1A-2B－3A。</p>
-<p><strong>从****Java1</strong>.5开始JDK的atomic包里提供了一个类AtomicStampedReference来解决ABA问题。这个类的compareAndSet方法作用是首先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
-<p>关于ABA问题参考文档: <a href="http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html">http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html</a></p>
-<p><strong>2.</strong> <strong>循环时间长开销大</strong>。自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销。如果JVM能支持处理器提供的pause指令那么效率会有一定的提升，pause指令有两个作用，第一它可以延迟流水线执行指令（de-pipeline）,使CPU不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。第二它可以避免在退出循环的时候因内存顺序冲突（memory order violation）而引起CPU流水线被清空（CPU pipeline flush），从而提高CPU的执行效率。</p>
-<p><strong>3.</strong> <strong>只能保证一个共享变量的原子操作</strong>。当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量i＝2,j=a，合并一下ij=2a，然后用CAS来操作ij。从Java1.5开始JDK提供了<strong>AtomicReference<strong><strong>类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行</strong></strong>CAS****操作。</strong></p>
-<p>四、 concurrent包的实现</p>
-<p>由于java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下面四种方式：</p>
-<ol>
-<li>A线程写volatile变量，随后B线程读这个volatile变量。</li>
-<li>A线程写volatile变量，随后B线程用CAS更新这个volatile变量。</li>
-<li>A线程用CAS更新一个volatile变量，随后B线程用CAS更新这个volatile变量。</li>
-<li>A线程用CAS更新一个volatile变量，随后B线程读这个volatile变量。</li>
-</ol>
-<p>Java的CAS会使用现代处理器上提供的高效机器级别原子指令，这些原子指令以原子方式对内存执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写指令的计算机器，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时，volatile变量的读/写和CAS可以实现线程之间的通信。把这些特性整合在一起，就形成了整个concurrent包得以实现的基石。如果我们仔细分析concurrent包的源代码实现，会发现一个通用化的实现模式：</p>
-<ol>
-<li>首先，声明共享变量为volatile；</li>
-<li>然后，使用CAS的原子条件更新来实现线程之间的同步；</li>
-<li>同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。</li>
-</ol>
-<p>转自<a href="https://blog.csdn.net/ls5718/article/details/52563959">https://blog.csdn.net/ls5718/article/details/52563959</a></p>
-<p><a href="https://www.jianshu.com/p/ae25eb3cfb5d">这个</a>讲的也挺好</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>IDEA快捷键总结</title>
     <url>/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<table>
@@ -733,6 +689,50 @@
       </categories>
   </entry>
   <entry>
+    <title>CAS简述</title>
+    <url>/2021/05/29/CAS%E7%AE%80%E8%BF%B0/</url>
+    <content><![CDATA[<p>在JDK 5之前Java语言是靠synchronized关键字保证同步的，这会导致有锁</p>
+<p>锁机制存在以下问题：</p>
+<p>（1）在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。</p>
+<p>（2）一个线程持有锁会导致其它所有需要此锁的线程挂起。</p>
+<p>（3）如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。</p>
+<p>volatile是不错的机制，但是volatile不能保证原子性。因此对于同步最终还是要回到锁机制上来。</p>
+<p><strong>独占锁是一种悲观锁，synchronized就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。而另一个更加有效的锁就是乐观锁。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。乐观锁用到的机制就是CAS，Compare and Swap。</strong></p>
+<h2 id="一、什么是CAS"><a href="#一、什么是CAS" class="headerlink" title="一、什么是CAS"></a>一、什么是CAS</h2><p>CAS,compare and swap的缩写，中文翻译成比较并交换。</p>
+<p>我们都知道，在java语言之前，并发就已经广泛存在并在服务器领域得到了大量的应用。所以硬件厂商老早就在芯片中加入了大量直至并发操作的原语，从而在硬件层面提升效率。在intel的CPU中，使用cmpxchg指令。</p>
+<p>在Java发展初期，java语言是不能够利用硬件提供的这些便利来提升系统的性能的。而随着java不断的发展,Java本地方法(JNI)的出现，使得java程序越过JVM直接调用本地方法提供了一种便捷的方式，因而java在并发的手段上也多了起来。而在Doug Lea提供的cucurenct包中，CAS理论是它实现整个java包的基石。</p>
+<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。 如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值 。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该 位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前 值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”</p>
+<p>通常将 CAS 用于同步的方式是从地址 V 读取值 A，执行多步计算来获得新 值 B，然后使用 CAS 将 V 的值从 A 改为 B。如果 V 处的值尚未同时更改，则 CAS 操作成功。</p>
+<p>类似于 CAS 的指令允许算法执行读-修改-写操作，而无需害怕其他线程同时 修改变量，因为如果其他线程修改变量，那么 CAS 会检测它（并失败），算法 可以对该操作重新计算。</p>
+<h2 id="二、CAS的目的"><a href="#二、CAS的目的" class="headerlink" title="二、CAS的目的"></a>二、CAS的目的</h2><p>利用CPU的CAS指令，同时借助JNI来完成Java的非阻塞算法。其它原子操作都是利用类似的特性完成的。而整个J.U.C都是建立在CAS之上的，因此对于synchronized阻塞算法，J.U.C在性能上有了很大的提升。</p>
+<h2 id="三、CAS存在的问题"><a href="#三、CAS存在的问题" class="headerlink" title="三、CAS存在的问题"></a>三、CAS存在的问题</h2><p>CAS虽然很高效的解决原子操作，但是CAS仍然存在三大问题。ABA问题，循环时间长开销大和只能保证一个共享变量的原子操作</p>
+<p>\1.  <strong>ABA****问题</strong>。因为CAS需要在操作值的时候检查下值有没有发生变化，如果没有发生变化则更新，但是如果一个值原来是A，变成了B，又变成了A，那么使用CAS进行检查时会发现它的值没有发生变化，但是实际上却变化了。ABA问题的解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加一，那么A－B－A 就会变成1A-2B－3A。</p>
+<p><strong>从****Java1</strong>.5开始JDK的atomic包里提供了一个类AtomicStampedReference来解决ABA问题。这个类的compareAndSet方法作用是首先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
+<p>关于ABA问题参考文档: <a href="http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html">http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html</a></p>
+<p><strong>2.</strong> <strong>循环时间长开销大</strong>。自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销。如果JVM能支持处理器提供的pause指令那么效率会有一定的提升，pause指令有两个作用，第一它可以延迟流水线执行指令（de-pipeline）,使CPU不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。第二它可以避免在退出循环的时候因内存顺序冲突（memory order violation）而引起CPU流水线被清空（CPU pipeline flush），从而提高CPU的执行效率。</p>
+<p><strong>3.</strong> <strong>只能保证一个共享变量的原子操作</strong>。当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量i＝2,j=a，合并一下ij=2a，然后用CAS来操作ij。从Java1.5开始JDK提供了<strong>AtomicReference<strong><strong>类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行</strong></strong>CAS****操作。</strong></p>
+<p>四、 concurrent包的实现</p>
+<p>由于java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下面四种方式：</p>
+<ol>
+<li>A线程写volatile变量，随后B线程读这个volatile变量。</li>
+<li>A线程写volatile变量，随后B线程用CAS更新这个volatile变量。</li>
+<li>A线程用CAS更新一个volatile变量，随后B线程用CAS更新这个volatile变量。</li>
+<li>A线程用CAS更新一个volatile变量，随后B线程读这个volatile变量。</li>
+</ol>
+<p>Java的CAS会使用现代处理器上提供的高效机器级别原子指令，这些原子指令以原子方式对内存执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写指令的计算机器，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时，volatile变量的读/写和CAS可以实现线程之间的通信。把这些特性整合在一起，就形成了整个concurrent包得以实现的基石。如果我们仔细分析concurrent包的源代码实现，会发现一个通用化的实现模式：</p>
+<ol>
+<li>首先，声明共享变量为volatile；</li>
+<li>然后，使用CAS的原子条件更新来实现线程之间的同步；</li>
+<li>同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。</li>
+</ol>
+<p>转自<a href="https://blog.csdn.net/ls5718/article/details/52563959">https://blog.csdn.net/ls5718/article/details/52563959</a></p>
+<p><a href="https://www.jianshu.com/p/ae25eb3cfb5d">这个</a>讲的也挺好</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Java各种对比</title>
     <url>/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<h2 id="四种权限的作用范围对比："><a href="#四种权限的作用范围对比：" class="headerlink" title="四种权限的作用范围对比："></a>四种权限的作用范围对比：</h2><table>
@@ -1001,6 +1001,8 @@
 <p>切面（Aspect）：通知和切点构成了切面的全部内容。</p>
 <p>引入（Introduction）：向现有的类添加新的方法和属性。</p>
 <p>织入（Weaving）：将切面应用到目标对象并创建新的代理对象的过程。</p>
+<h2 id="第五章：构建Spring-Web应用程序"><a href="#第五章：构建Spring-Web应用程序" class="headerlink" title="第五章：构建Spring Web应用程序"></a>第五章：构建Spring Web应用程序</h2><h4 id="跟踪Spring-MVC的请求"><a href="#跟踪Spring-MVC的请求" class="headerlink" title="跟踪Spring MVC的请求"></a>跟踪Spring MVC的请求</h4><p><img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210608101154885.png" alt="Spring MVC的请求流程"></p>
+<p>在请求离开浏览器时(1)，会带有用户所请求内容的信息，至少会包含请求的URL。但是还可能带有其他的信息，例如用户提交的表单信息。<br>请求旅程的第一站是Spring的DispatcherServlet。与大多数基于Java的Web框架一样，Spring MVC所有的请求都会通过一个前端控制器（front controller）Serlet。前端控制器是常用的Web应用程序模式，在这里一个单实例的Serlet将请求委托给应用程序的其他组件来执行实际的处理。在Spring MVC中，DispatcherServlet就是前端控制器。<br>DispatcherServlet的任务是将请求发送给Spring MVC控制器（controller)。控制器是一个用于处理请求的Spring组件。在典型的应用程序中可能会有多个控制器，Dispatcherservlet需要知道应该将请求发送给哪个控制器。所以DispatcherServlet以会查询一个或多个处理器映射（handler mapping)(2)来确定请求的下一站在哪里。处理器映射会根据请求所携带的URL信息来进行决策。<br>一旦选择了合适的控制器，Dispatcherservlet会将请求发送给选中的控制器(3)。到了控制器，请求会卸下其负载（用户提交的信息）并耐心等待控制器处理这些信息。（实际上，设计良好的控制器本身只处理很少甚至不处理工作，而是将业务逻辑委托给一个或多个服务对象进行处理。)控制器在完成逻辑处理后，通常会产生一些信息，这些信息需要返回给用户并在浏览器上显示。这些信息被称为模型（model）。不过仅仅给用户返回原始的信息是不够的——这些信息需要以用户友好的方式进行格式化，一般会是HTML。所以，信息需要发送给一个视图（view），通常会是JSP。<br>控制器所做的最后一件事就是将模型数据打包，并且标示出用于渲染输出的视图名。它接下来会将请求连同模型和视图名发送回DispatcherServlet(4)。<br>这样，控制器就不会与特定的视图相耦合，传递给Dispatcherservlet的视图名并不直接表示某个特定的JSP。实际上，它甚至并不能确定视图就是JSP。相反，它仅仅传递了一个逻辑名称，这个名字将会用来查找产生结果的真正视图。Dispatcherservlet将会使用视图解析器（view resolver）(5)来将逻辑视图名匹配为一个特定的视图实现，它可能是也可能不是JSP。<br>既然DispatcherServlet已经知道由哪个视图渲染结果，那请求的任务基本上也就完成了。它的最后一站是视图的实现（可能是JSP）(6)，在这里它交付模型数据。请求的任务就完成了。视图将使用模型数据渲染输出，这个输出会通过响应对象传递给客户端（不会像听上去那样硬编码）(7)。<br>可以看到，请求要经过很多的步骤，最终才能形成返回给客户端的响应。大多数的步骤都是在Spring框架内部完成的，也就是图5.1所示的组件中。尽管本章的主要内容都关注于如何编写控制器，但在此之前我们首先看一下如何搭建Spring MVC的基础组件。</p>
 ]]></content>
       <categories>
         <category>读书总结</category>
@@ -1144,6 +1146,25 @@
       </categories>
   </entry>
   <entry>
+    <title>leetcode-岛屿问题</title>
+    <url>/2021/06/08/%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h1><h2 id="知识点：DFS"><a href="#知识点：DFS" class="headerlink" title="知识点：DFS"></a>知识点：DFS</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这题让求的是岛屿的数量有多少个，就其解法思路上并不困难。循环遍历每一块陆地，每遇到一个陆地就对其上下左右四个方向进行查找，每找到一个就让该陆地置0，这样在最外层遍历时就不会重复遇到，dfs的主要作用就是对遇到的陆地进行四个方向的查找。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>)&#123;<span class="comment">//简单判断是否为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count= <span class="number">0</span>,m =grid.length,n=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//外层遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;<span class="comment">//只要找到一个陆地，起码就是一个岛屿，对其进行dfs</span></span><br><span class="line">                    count++;</span><br><span class="line">                    dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> gc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(r&lt;<span class="number">0</span>||r&gt;=gr||c&lt;<span class="number">0</span>||c&gt;=gc||grid[r][c]==<span class="string">&#x27;0&#x27;</span>)&#123;<span class="comment">//此处要注意边界条件</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;<span class="comment">//遍历之前记得让当前岛屿下沉，不然之后会出现重复查找</span></span><br><span class="line">        dfs(grid,r+<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r-<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r,c+<span class="number">1</span>);</span><br><span class="line">        dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a></h1><h2 id="知识点：dfs"><a href="#知识点：dfs" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这两道题型基本一致，只是在本题中需要记录的数据不是数量，而是记录下每次dfs的最大值，关键点在dfs的编写中，每次dfs返回一个数字：0或者1。对于每个陆地而言，最小面积是1，最终面积取决于有多少和它间接、直接相连的陆地。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
+<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>常见的线程调度算法</title>
     <url>/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h3 id="先来先服务（first-come-first-serverd）"><a href="#先来先服务（first-come-first-serverd）" class="headerlink" title="先来先服务（first come first serverd）"></a>先来先服务（first come first serverd）</h3><p>优点：</p>
@@ -1173,6 +1194,18 @@
 <p>2)当一个新进程进入内存后，首先放入第一队列的末尾，按照先来先去原则排队等候调度。如果他能在一个时间片中完成，便可撤离；如果未完成，就转入第二队列的末尾，同样等待调度…..如此下去，当一个长作业（进程）从第一队列依次将到第n队列（最后队列）后，便按第n队列时间片轮转运行。</p>
 <p>3)仅当第一队列空闲的时候，调度程序才调度第二队列中的进程运行；仅当第1到（i-1）队列空时，才会调度第i队列中的进程运行，并执行相应的时间片轮转。</p>
 <p>4)如果处理机正在处理第i队列中某进程，又有新进程进入优先权较高的队列，则此新队列抢占正在运行的处理机，并把正在运行的进程放在第i队列的队尾。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>快速失败、安全失败</title>
+    <url>/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/</url>
+    <content><![CDATA[<h2 id="快速失败："><a href="#快速失败：" class="headerlink" title="快速失败："></a><strong>快速失败：</strong></h2><p>在使用迭代器对集合进行迭代的过程中，如果 A 线程正在对集合进行遍历，此时 B 线程对集合进行修改（增加、删除、修改），或者 A 线程在遍历过程中对集合进行修改，都会导致 A 线程抛出 ConcurrentModificationException 异常。</p>
+<hr>
+<h2 id="安全失败："><a href="#安全失败：" class="headerlink" title="安全失败："></a>安全失败：</h2><p>采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。</p>
+<p>由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，故不会抛 ConcurrentModificationException 异常</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -1218,18 +1251,6 @@
       <tags>
         <tag>排序</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>快速失败、安全失败</title>
-    <url>/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/</url>
-    <content><![CDATA[<h2 id="快速失败："><a href="#快速失败：" class="headerlink" title="快速失败："></a><strong>快速失败：</strong></h2><p>在使用迭代器对集合进行迭代的过程中，如果 A 线程正在对集合进行遍历，此时 B 线程对集合进行修改（增加、删除、修改），或者 A 线程在遍历过程中对集合进行修改，都会导致 A 线程抛出 ConcurrentModificationException 异常。</p>
-<hr>
-<h2 id="安全失败："><a href="#安全失败：" class="headerlink" title="安全失败："></a>安全失败：</h2><p>采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。</p>
-<p>由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，故不会抛 ConcurrentModificationException 异常</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
   </entry>
   <entry>
     <title>搜索算法</title>
