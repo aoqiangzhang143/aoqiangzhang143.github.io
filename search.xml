@@ -1038,23 +1038,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Volatile关键字</title>
-    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
-    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
-<p>特性：</p>
-<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
-<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
-<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
-<p>简单介绍下指令重排</p>
-<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
-<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
-<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2021/05/26/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -1071,6 +1054,23 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Volatile关键字</title>
+    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
+<p>特性：</p>
+<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
+<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
+<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
+<p>简单介绍下指令重排</p>
+<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
+<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
+<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
   </entry>
   <entry>
     <title>leetcode-回文字符串</title>
@@ -1265,12 +1265,9 @@
       </categories>
   </entry>
   <entry>
-    <title></title>
+    <title>ES6语法</title>
     <url>/2021/06/16/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<hr>
-<p>title:ES6语法<br>date:2021-6-16<br>categories:前端基础知识</p>
-<hr>
-<h2 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//var是全局变量，let是局部变量</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//var可对一变量进行多次定义，let对同一变量尽可定义一次</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//var是全局变量，let是局部变量</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//var可对一变量进行多次定义，let对同一变量尽可定义一次</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><p>常量定义时，声明时必须进行初始化；一旦声明不可更改</p>
@@ -1294,6 +1291,9 @@
 <h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        //传统方式定义函数</span><br><span class="line">        var f1 = function(a) &#123;</span><br><span class="line">            return a+1</span><br><span class="line">        &#125;</span><br><span class="line">        console.log(f1(4))</span><br><span class="line">        </span><br><span class="line">        //箭头函数</span><br><span class="line">        //单个参数时，可省略（）</span><br><span class="line">        var f2 = (a) =&gt; 2*a</span><br><span class="line">        console.log(f2(2))</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>前端基础知识</category>
+      </categories>
   </entry>
   <entry>
     <title>leetcode-岛屿问题</title>
@@ -1496,22 +1496,6 @@
       </categories>
   </entry>
   <entry>
-    <title>进程间通信方式</title>
-    <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="进程之间的通信方式"><a href="#进程之间的通信方式" class="headerlink" title="进程之间的通信方式"></a><a href="https://blog.csdn.net/weixin_44653395/article/details/99686244">进程之间的通信方式</a></h2><p><strong>1.无名管道( pipe )：</strong> 管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
-<p><strong>2.高级管道(popen)：</strong> 将另一个程序当做一个新的进程在当前程序进程中启动，则它算是当前程序的子进程，这种方式我们成为高级管道方式。</p>
-<p><strong>3.有名管道 (named pipe) ：</strong> 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
-<p><strong>4.消息队列( message queue ) ：</strong> 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
-<p><strong>5.信号量( semophore ) ：</strong> 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
-<p><strong>6.信号 ( sinal ) ：</strong> 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
-<p><strong>7.共享内存( shared memory ) ：</strong> 共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</p>
-<p><strong>8.套接字( socket ) ：</strong> 套解字也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>线程进程协程</title>
     <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a><strong>进程</strong></h2><p>一个在内存中运行的应用程序。每个进程都有自己独立的一块内存空间，一个进程可以有多个线程，比如在Windows系统中，一个运行的xx.exe就是一个进程。</p>
@@ -1553,6 +1537,22 @@
 <p>由于Java的原生语法中并没有实现协程（某些开源框架实现了协程，但是很少被使用）；</p>
 <p>协程的暂停完全由程序控制，线程的阻塞状态是由操作系统内核来进行切换。</p>
 <p>因此，<strong>协程的开销远远小于线程的开销。</strong></p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>进程间通信方式</title>
+    <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="进程之间的通信方式"><a href="#进程之间的通信方式" class="headerlink" title="进程之间的通信方式"></a><a href="https://blog.csdn.net/weixin_44653395/article/details/99686244">进程之间的通信方式</a></h2><p><strong>1.无名管道( pipe )：</strong> 管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
+<p><strong>2.高级管道(popen)：</strong> 将另一个程序当做一个新的进程在当前程序进程中启动，则它算是当前程序的子进程，这种方式我们成为高级管道方式。</p>
+<p><strong>3.有名管道 (named pipe) ：</strong> 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
+<p><strong>4.消息队列( message queue ) ：</strong> 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
+<p><strong>5.信号量( semophore ) ：</strong> 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
+<p><strong>6.信号 ( sinal ) ：</strong> 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
+<p><strong>7.共享内存( shared memory ) ：</strong> 共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</p>
+<p><strong>8.套接字( socket ) ：</strong> 套解字也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
