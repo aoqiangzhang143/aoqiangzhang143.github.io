@@ -1181,6 +1181,18 @@
       </categories>
   </entry>
   <entry>
+    <title>mysql登录</title>
+    <url>/2021/06/03/mysql%E7%99%BB%E5%BD%95/</url>
+    <content><![CDATA[<p>启动mysql：systemctl start mysqld</p>
+<p>查看mysql启动状态：systemctl status mysqld</p>
+<p>显示active表示已经激活。</p>
+<p>进行登录：mysql -uroot -p</p>
+]]></content>
+      <categories>
+        <category>项目Hospital</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mybatisplus使用总结</title>
     <url>/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>使用mybatis对数据库进行操作时，为方便定位错误，可在配置文件中进行配置使得myqsl语句在控制台进行输出</p>
@@ -1213,18 +1225,6 @@
 ]]></content>
       <categories>
         <category>mybatisplus</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mysql登录</title>
-    <url>/2021/06/03/mysql%E7%99%BB%E5%BD%95/</url>
-    <content><![CDATA[<p>启动mysql：systemctl start mysqld</p>
-<p>查看mysql启动状态：systemctl status mysqld</p>
-<p>显示active表示已经激活。</p>
-<p>进行登录：mysql -uroot -p</p>
-]]></content>
-      <categories>
-        <category>项目Hospital</category>
       </categories>
   </entry>
   <entry>
@@ -1335,25 +1335,6 @@
       </categories>
   </entry>
   <entry>
-    <title>leetcode-岛屿问题</title>
-    <url>/2021/06/08/%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h1><h2 id="知识点：DFS"><a href="#知识点：DFS" class="headerlink" title="知识点：DFS"></a>知识点：DFS</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这题让求的是岛屿的数量有多少个，就其解法思路上并不困难。循环遍历每一块陆地，每遇到一个陆地就对其上下左右四个方向进行查找，每找到一个就让该陆地置0，这样在最外层遍历时就不会重复遇到，dfs的主要作用就是对遇到的陆地进行四个方向的查找。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>)&#123;<span class="comment">//简单判断是否为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count= <span class="number">0</span>,m =grid.length,n=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//外层遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;<span class="comment">//只要找到一个陆地，起码就是一个岛屿，对其进行dfs</span></span><br><span class="line">                    count++;</span><br><span class="line">                    dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> gc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(r&lt;<span class="number">0</span>||r&gt;=gr||c&lt;<span class="number">0</span>||c&gt;=gc||grid[r][c]==<span class="string">&#x27;0&#x27;</span>)&#123;<span class="comment">//此处要注意边界条件</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;<span class="comment">//遍历之前记得让当前岛屿下沉，不然之后会出现重复查找</span></span><br><span class="line">        dfs(grid,r+<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r-<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r,c+<span class="number">1</span>);</span><br><span class="line">        dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a></h1><h2 id="知识点：dfs"><a href="#知识点：dfs" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这两道题型基本一致，只是在本题中需要记录的数据不是数量，而是记录下每次dfs的最大值，关键点在dfs的编写中，每次dfs返回一个数字：0或者1。对于每个陆地而言，最小面积是1，最终面积取决于有多少和它间接、直接相连的陆地。</p>
-<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
-<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode刷题笔记</category>
-      </categories>
-  </entry>
-  <entry>
     <title>常见的线程调度算法</title>
     <url>/2021/05/27/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h3 id="先来先服务（first-come-first-serverd）"><a href="#先来先服务（first-come-first-serverd）" class="headerlink" title="先来先服务（first come first serverd）"></a>先来先服务（first come first serverd）</h3><p>优点：</p>
@@ -1386,6 +1367,25 @@
 ]]></content>
       <categories>
         <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>leetcode-岛屿问题</title>
+    <url>/2021/06/08/%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h1><h2 id="知识点：DFS"><a href="#知识点：DFS" class="headerlink" title="知识点：DFS"></a>知识点：DFS</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这题让求的是岛屿的数量有多少个，就其解法思路上并不困难。循环遍历每一块陆地，每遇到一个陆地就对其上下左右四个方向进行查找，每找到一个就让该陆地置0，这样在最外层遍历时就不会重复遇到，dfs的主要作用就是对遇到的陆地进行四个方向的查找。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>)&#123;<span class="comment">//简单判断是否为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count= <span class="number">0</span>,m =grid.length,n=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//外层遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;<span class="comment">//只要找到一个陆地，起码就是一个岛屿，对其进行dfs</span></span><br><span class="line">                    count++;</span><br><span class="line">                    dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> gc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(r&lt;<span class="number">0</span>||r&gt;=gr||c&lt;<span class="number">0</span>||c&gt;=gc||grid[r][c]==<span class="string">&#x27;0&#x27;</span>)&#123;<span class="comment">//此处要注意边界条件</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;<span class="comment">//遍历之前记得让当前岛屿下沉，不然之后会出现重复查找</span></span><br><span class="line">        dfs(grid,r+<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r-<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r,c+<span class="number">1</span>);</span><br><span class="line">        dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a></h1><h2 id="知识点：dfs"><a href="#知识点：dfs" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这两道题型基本一致，只是在本题中需要记录的数据不是数量，而是记录下每次dfs的最大值，关键点在dfs的编写中，每次dfs返回一个数字：0或者1。对于每个陆地而言，最小面积是1，最终面积取决于有多少和它间接、直接相连的陆地。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
+<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
       </categories>
   </entry>
   <entry>
@@ -1461,6 +1461,26 @@
       </tags>
   </entry>
   <entry>
+    <title>线程状态</title>
+    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
+<p>线程创建之后</p>
+<p>可运行（running）</p>
+<p>可能正在运行，也可能正在等待cpu时间片</p>
+<p>阻塞（blocked）</p>
+<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
+<p>无限期等待（waiting）</p>
+<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
+<p>限期等待（time_waiting）</p>
+<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
+<p>终止（terminated）</p>
+<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>简单死锁的测试</title>
     <url>/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mithrandir</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-04-2021/4/12-10:19</span></span><br><span class="line"><span class="comment"> * 测试死锁</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread1()).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread2()).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread2的第一层，已经持有lock2&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThread2的第二层，已经持有lock2和lock1&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread1的第一层,已经持有lock1&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThead1的第二层，已经持有lock1和lock2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myLock</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Object lock1=<span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">static</span> Object lock2=<span class="keyword">new</span> Object();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -1501,26 +1521,6 @@
       </categories>
   </entry>
   <entry>
-    <title>线程状态</title>
-    <url>/2021/05/27/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>新建状态（new）</p>
-<p>线程创建之后</p>
-<p>可运行（running）</p>
-<p>可能正在运行，也可能正在等待cpu时间片</p>
-<p>阻塞（blocked）</p>
-<p>等待获取一个排他锁，如果其他线程释放了锁就会结束此状态</p>
-<p>无限期等待（waiting）</p>
-<p>等待其他线程显示唤醒，否则不会分配cpu时间片</p>
-<p>限期等待（time_waiting）</p>
-<p>无需其他线程进行显示唤醒，到达时间之后会被系统自动唤醒</p>
-<p>终止（terminated）</p>
-<p>可能是任务结束之后的终止，也可能是出现异常终止</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>运行Halo项目时遇到的问题</title>
     <url>/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p><img src="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/Failedto.jpg" alt="Failedto"></p>
@@ -1532,6 +1532,22 @@
 ]]></content>
       <categories>
         <category>踩坑记录</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>进程间通信方式</title>
+    <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="进程之间的通信方式"><a href="#进程之间的通信方式" class="headerlink" title="进程之间的通信方式"></a><a href="https://blog.csdn.net/weixin_44653395/article/details/99686244">进程之间的通信方式</a></h2><p><strong>1.无名管道( pipe )：</strong> 管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
+<p><strong>2.高级管道(popen)：</strong> 将另一个程序当做一个新的进程在当前程序进程中启动，则它算是当前程序的子进程，这种方式我们成为高级管道方式。</p>
+<p><strong>3.有名管道 (named pipe) ：</strong> 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
+<p><strong>4.消息队列( message queue ) ：</strong> 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
+<p><strong>5.信号量( semophore ) ：</strong> 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
+<p><strong>6.信号 ( sinal ) ：</strong> 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
+<p><strong>7.共享内存( shared memory ) ：</strong> 共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</p>
+<p><strong>8.套接字( socket ) ：</strong> 套解字也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
       </categories>
   </entry>
   <entry>
@@ -1576,22 +1592,6 @@
 <p>由于Java的原生语法中并没有实现协程（某些开源框架实现了协程，但是很少被使用）；</p>
 <p>协程的暂停完全由程序控制，线程的阻塞状态是由操作系统内核来进行切换。</p>
 <p>因此，<strong>协程的开销远远小于线程的开销。</strong></p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>进程间通信方式</title>
-    <url>/2021/05/27/%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="进程之间的通信方式"><a href="#进程之间的通信方式" class="headerlink" title="进程之间的通信方式"></a><a href="https://blog.csdn.net/weixin_44653395/article/details/99686244">进程之间的通信方式</a></h2><p><strong>1.无名管道( pipe )：</strong> 管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
-<p><strong>2.高级管道(popen)：</strong> 将另一个程序当做一个新的进程在当前程序进程中启动，则它算是当前程序的子进程，这种方式我们成为高级管道方式。</p>
-<p><strong>3.有名管道 (named pipe) ：</strong> 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
-<p><strong>4.消息队列( message queue ) ：</strong> 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
-<p><strong>5.信号量( semophore ) ：</strong> 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
-<p><strong>6.信号 ( sinal ) ：</strong> 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
-<p><strong>7.共享内存( shared memory ) ：</strong> 共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</p>
-<p><strong>8.套接字( socket ) ：</strong> 套解字也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
