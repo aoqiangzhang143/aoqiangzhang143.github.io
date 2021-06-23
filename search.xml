@@ -17,50 +17,6 @@
       </categories>
   </entry>
   <entry>
-    <title>CAS简述</title>
-    <url>/2021/05/29/CAS%E7%AE%80%E8%BF%B0/</url>
-    <content><![CDATA[<p>在JDK 5之前Java语言是靠synchronized关键字保证同步的，这会导致有锁</p>
-<p>锁机制存在以下问题：</p>
-<p>（1）在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。</p>
-<p>（2）一个线程持有锁会导致其它所有需要此锁的线程挂起。</p>
-<p>（3）如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。</p>
-<p>volatile是不错的机制，但是volatile不能保证原子性。因此对于同步最终还是要回到锁机制上来。</p>
-<p><strong>独占锁是一种悲观锁，synchronized就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。而另一个更加有效的锁就是乐观锁。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。乐观锁用到的机制就是CAS，Compare and Swap。</strong></p>
-<h2 id="一、什么是CAS"><a href="#一、什么是CAS" class="headerlink" title="一、什么是CAS"></a>一、什么是CAS</h2><p>CAS,compare and swap的缩写，中文翻译成比较并交换。</p>
-<p>我们都知道，在java语言之前，并发就已经广泛存在并在服务器领域得到了大量的应用。所以硬件厂商老早就在芯片中加入了大量直至并发操作的原语，从而在硬件层面提升效率。在intel的CPU中，使用cmpxchg指令。</p>
-<p>在Java发展初期，java语言是不能够利用硬件提供的这些便利来提升系统的性能的。而随着java不断的发展,Java本地方法(JNI)的出现，使得java程序越过JVM直接调用本地方法提供了一种便捷的方式，因而java在并发的手段上也多了起来。而在Doug Lea提供的cucurenct包中，CAS理论是它实现整个java包的基石。</p>
-<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。 如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值 。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该 位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前 值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”</p>
-<p>通常将 CAS 用于同步的方式是从地址 V 读取值 A，执行多步计算来获得新 值 B，然后使用 CAS 将 V 的值从 A 改为 B。如果 V 处的值尚未同时更改，则 CAS 操作成功。</p>
-<p>类似于 CAS 的指令允许算法执行读-修改-写操作，而无需害怕其他线程同时 修改变量，因为如果其他线程修改变量，那么 CAS 会检测它（并失败），算法 可以对该操作重新计算。</p>
-<h2 id="二、CAS的目的"><a href="#二、CAS的目的" class="headerlink" title="二、CAS的目的"></a>二、CAS的目的</h2><p>利用CPU的CAS指令，同时借助JNI来完成Java的非阻塞算法。其它原子操作都是利用类似的特性完成的。而整个J.U.C都是建立在CAS之上的，因此对于synchronized阻塞算法，J.U.C在性能上有了很大的提升。</p>
-<h2 id="三、CAS存在的问题"><a href="#三、CAS存在的问题" class="headerlink" title="三、CAS存在的问题"></a>三、CAS存在的问题</h2><p>CAS虽然很高效的解决原子操作，但是CAS仍然存在三大问题。ABA问题，循环时间长开销大和只能保证一个共享变量的原子操作</p>
-<p>\1.  <strong>ABA****问题</strong>。因为CAS需要在操作值的时候检查下值有没有发生变化，如果没有发生变化则更新，但是如果一个值原来是A，变成了B，又变成了A，那么使用CAS进行检查时会发现它的值没有发生变化，但是实际上却变化了。ABA问题的解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加一，那么A－B－A 就会变成1A-2B－3A。</p>
-<p><strong>从****Java1</strong>.5开始JDK的atomic包里提供了一个类AtomicStampedReference来解决ABA问题。这个类的compareAndSet方法作用是首先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
-<p>关于ABA问题参考文档: <a href="http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html">http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html</a></p>
-<p><strong>2.</strong> <strong>循环时间长开销大</strong>。自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销。如果JVM能支持处理器提供的pause指令那么效率会有一定的提升，pause指令有两个作用，第一它可以延迟流水线执行指令（de-pipeline）,使CPU不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。第二它可以避免在退出循环的时候因内存顺序冲突（memory order violation）而引起CPU流水线被清空（CPU pipeline flush），从而提高CPU的执行效率。</p>
-<p><strong>3.</strong> <strong>只能保证一个共享变量的原子操作</strong>。当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量i＝2,j=a，合并一下ij=2a，然后用CAS来操作ij。从Java1.5开始JDK提供了<strong>AtomicReference<strong><strong>类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行</strong></strong>CAS****操作。</strong></p>
-<p>四、 concurrent包的实现</p>
-<p>由于java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下面四种方式：</p>
-<ol>
-<li>A线程写volatile变量，随后B线程读这个volatile变量。</li>
-<li>A线程写volatile变量，随后B线程用CAS更新这个volatile变量。</li>
-<li>A线程用CAS更新一个volatile变量，随后B线程用CAS更新这个volatile变量。</li>
-<li>A线程用CAS更新一个volatile变量，随后B线程读这个volatile变量。</li>
-</ol>
-<p>Java的CAS会使用现代处理器上提供的高效机器级别原子指令，这些原子指令以原子方式对内存执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写指令的计算机器，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时，volatile变量的读/写和CAS可以实现线程之间的通信。把这些特性整合在一起，就形成了整个concurrent包得以实现的基石。如果我们仔细分析concurrent包的源代码实现，会发现一个通用化的实现模式：</p>
-<ol>
-<li>首先，声明共享变量为volatile；</li>
-<li>然后，使用CAS的原子条件更新来实现线程之间的同步；</li>
-<li>同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。</li>
-</ol>
-<p>转自<a href="https://blog.csdn.net/ls5718/article/details/52563959">https://blog.csdn.net/ls5718/article/details/52563959</a></p>
-<p><a href="https://www.jianshu.com/p/ae25eb3cfb5d">这个</a>讲的也挺好</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>IDEA快捷键总结</title>
     <url>/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<table>
@@ -733,6 +689,50 @@
       </categories>
   </entry>
   <entry>
+    <title>CAS简述</title>
+    <url>/2021/05/29/CAS%E7%AE%80%E8%BF%B0/</url>
+    <content><![CDATA[<p>在JDK 5之前Java语言是靠synchronized关键字保证同步的，这会导致有锁</p>
+<p>锁机制存在以下问题：</p>
+<p>（1）在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。</p>
+<p>（2）一个线程持有锁会导致其它所有需要此锁的线程挂起。</p>
+<p>（3）如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。</p>
+<p>volatile是不错的机制，但是volatile不能保证原子性。因此对于同步最终还是要回到锁机制上来。</p>
+<p><strong>独占锁是一种悲观锁，synchronized就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。而另一个更加有效的锁就是乐观锁。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。乐观锁用到的机制就是CAS，Compare and Swap。</strong></p>
+<h2 id="一、什么是CAS"><a href="#一、什么是CAS" class="headerlink" title="一、什么是CAS"></a>一、什么是CAS</h2><p>CAS,compare and swap的缩写，中文翻译成比较并交换。</p>
+<p>我们都知道，在java语言之前，并发就已经广泛存在并在服务器领域得到了大量的应用。所以硬件厂商老早就在芯片中加入了大量直至并发操作的原语，从而在硬件层面提升效率。在intel的CPU中，使用cmpxchg指令。</p>
+<p>在Java发展初期，java语言是不能够利用硬件提供的这些便利来提升系统的性能的。而随着java不断的发展,Java本地方法(JNI)的出现，使得java程序越过JVM直接调用本地方法提供了一种便捷的方式，因而java在并发的手段上也多了起来。而在Doug Lea提供的cucurenct包中，CAS理论是它实现整个java包的基石。</p>
+<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。 如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值 。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该 位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前 值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”</p>
+<p>通常将 CAS 用于同步的方式是从地址 V 读取值 A，执行多步计算来获得新 值 B，然后使用 CAS 将 V 的值从 A 改为 B。如果 V 处的值尚未同时更改，则 CAS 操作成功。</p>
+<p>类似于 CAS 的指令允许算法执行读-修改-写操作，而无需害怕其他线程同时 修改变量，因为如果其他线程修改变量，那么 CAS 会检测它（并失败），算法 可以对该操作重新计算。</p>
+<h2 id="二、CAS的目的"><a href="#二、CAS的目的" class="headerlink" title="二、CAS的目的"></a>二、CAS的目的</h2><p>利用CPU的CAS指令，同时借助JNI来完成Java的非阻塞算法。其它原子操作都是利用类似的特性完成的。而整个J.U.C都是建立在CAS之上的，因此对于synchronized阻塞算法，J.U.C在性能上有了很大的提升。</p>
+<h2 id="三、CAS存在的问题"><a href="#三、CAS存在的问题" class="headerlink" title="三、CAS存在的问题"></a>三、CAS存在的问题</h2><p>CAS虽然很高效的解决原子操作，但是CAS仍然存在三大问题。ABA问题，循环时间长开销大和只能保证一个共享变量的原子操作</p>
+<p>\1.  <strong>ABA****问题</strong>。因为CAS需要在操作值的时候检查下值有没有发生变化，如果没有发生变化则更新，但是如果一个值原来是A，变成了B，又变成了A，那么使用CAS进行检查时会发现它的值没有发生变化，但是实际上却变化了。ABA问题的解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加一，那么A－B－A 就会变成1A-2B－3A。</p>
+<p><strong>从****Java1</strong>.5开始JDK的atomic包里提供了一个类AtomicStampedReference来解决ABA问题。这个类的compareAndSet方法作用是首先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
+<p>关于ABA问题参考文档: <a href="http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html">http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html</a></p>
+<p><strong>2.</strong> <strong>循环时间长开销大</strong>。自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销。如果JVM能支持处理器提供的pause指令那么效率会有一定的提升，pause指令有两个作用，第一它可以延迟流水线执行指令（de-pipeline）,使CPU不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。第二它可以避免在退出循环的时候因内存顺序冲突（memory order violation）而引起CPU流水线被清空（CPU pipeline flush），从而提高CPU的执行效率。</p>
+<p><strong>3.</strong> <strong>只能保证一个共享变量的原子操作</strong>。当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量i＝2,j=a，合并一下ij=2a，然后用CAS来操作ij。从Java1.5开始JDK提供了<strong>AtomicReference<strong><strong>类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行</strong></strong>CAS****操作。</strong></p>
+<p>四、 concurrent包的实现</p>
+<p>由于java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下面四种方式：</p>
+<ol>
+<li>A线程写volatile变量，随后B线程读这个volatile变量。</li>
+<li>A线程写volatile变量，随后B线程用CAS更新这个volatile变量。</li>
+<li>A线程用CAS更新一个volatile变量，随后B线程用CAS更新这个volatile变量。</li>
+<li>A线程用CAS更新一个volatile变量，随后B线程读这个volatile变量。</li>
+</ol>
+<p>Java的CAS会使用现代处理器上提供的高效机器级别原子指令，这些原子指令以原子方式对内存执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写指令的计算机器，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时，volatile变量的读/写和CAS可以实现线程之间的通信。把这些特性整合在一起，就形成了整个concurrent包得以实现的基石。如果我们仔细分析concurrent包的源代码实现，会发现一个通用化的实现模式：</p>
+<ol>
+<li>首先，声明共享变量为volatile；</li>
+<li>然后，使用CAS的原子条件更新来实现线程之间的同步；</li>
+<li>同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。</li>
+</ol>
+<p>转自<a href="https://blog.csdn.net/ls5718/article/details/52563959">https://blog.csdn.net/ls5718/article/details/52563959</a></p>
+<p><a href="https://www.jianshu.com/p/ae25eb3cfb5d">这个</a>讲的也挺好</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Java各种对比</title>
     <url>/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<h2 id="四种权限的作用范围对比："><a href="#四种权限的作用范围对比：" class="headerlink" title="四种权限的作用范围对比："></a>四种权限的作用范围对比：</h2><table>
@@ -869,31 +869,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MyHospital项目笔记</title>
-    <url>/2021/06/10/MyHospital/</url>
-    <content><![CDATA[<h2 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210610141856959.png" alt="Spring版本问题"></p>
-<p>之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用报未找到。</p>
-<hr>
-<h2 id="2、工具swagger2"><a href="#2、工具swagger2" class="headerlink" title="2、工具swagger2"></a>2、工具swagger2</h2><p>在前期进行测试的时候，类似测试获取数据这种操作，可以直接通过访问固定网页（如：<a href="http://localhost:8201/admin/hosp/hospitalSet/findall%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9B%E4%BD%86%E6%98%AF%E5%9C%A8%E6%B5%8B%E8%AF%95%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E6%A0%B9%E6%8D%AEid%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%89%E6%97%B6%EF%BC%8C%E4%BE%BF%E6%B2%A1%E6%B3%95%E9%80%9A%E8%BF%87%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E9%A1%B5%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%9B%E6%95%85%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E9%87%87%E7%94%A8swagger2%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%8C%E9%80%9A%E8%BF%87%E5%AF%B9swagger2%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%B9%B6%E9%87%87%E7%94%A8%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AF%B9%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%BF%E5%BE%97%E5%8F%AF%E9%98%B6%E6%AE%B5%E6%80%A7%E5%AF%B9%E5%8A%9F%E8%83%BD%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%E3%80%82">http://localhost:8201/admin/hosp/hospitalSet/findall）进行测试；但是在测试删除功能（根据id进行删除）时，便没法通过直接访问网页进行删除；故，在这里采用swagger2进行测试，通过对swagger2进行配置，并采用注解的方式对网页显示进行优化，使得可阶段性对功能进行测试。</a></p>
-<p><img src="/2021/06/10/MyHospital/image-20210612151047092.png" alt="swagger2成果图"></p>
-<hr>
-<h2 id="3、工具Result"><a href="#3、工具Result" class="headerlink" title="3、工具Result"></a>3、工具Result</h2><p>为了统一返回结果（有人用1表示成功，有人用true表示成功…），故创建一个结果类Result，用于统一对返回结果的管理。</p>
-<p>之后函数返回类型便可设置为Result，将原本的返回结果进行包装即可返回。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1、查询医院设置表所有信息</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;获取所有医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;findAll&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">findAllHospitalSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用service方法</span></span><br><span class="line">        List&lt;HospitalSet&gt; list = hospitalSetService.list();</span><br><span class="line">        <span class="comment">//此处便对原本返回的list进行包装，源码在此处不再贴出，后续会上传至我的gitee</span></span><br><span class="line">        <span class="keyword">return</span> Result.ok(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、逻辑删除医院设置</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;逻辑删除医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@DeleteMapping(&quot;&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">removeHospSet</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = hospitalSetService.removeById(id);</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.ok();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.fail();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="4、问题"><a href="#4、问题" class="headerlink" title="4、问题"></a>4、问题</h2><p>在安装使用babel时，安装之后无法显示版本号，问题如下</p>
-<p><img src="/2021/06/10/MyHospital/image-20210621121447448.png" alt="babel安装问题"></p>
-<p>在安装时为全局配置，此处找不到babel应该是未进行环境路径配置，故在系统变量中添加路径</p>
-<p>babel的路径可通过如下命令获得<img src="/2021/06/10/MyHospital/image-20210621121618787.png" alt="获得babel安装路径"></p>
-<p>然后添加进系统环境变量中，重启vscode</p>
-<p><img src="/2021/06/10/MyHospital/image-20210621121735212.png" alt="可获得babel版本号"></p>
-]]></content>
-      <categories>
-        <category>项目Hospital</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Java并发</title>
     <url>/2021/05/27/Java%E5%B9%B6%E5%8F%91/</url>
     <content><![CDATA[<h2 id="JMM概述"><a href="#JMM概述" class="headerlink" title="JMM概述"></a><a href="%5BJMM%E6%A6%82%E8%BF%B0_%E7%89%A7%E7%AB%B9%E5%AD%90-CSDN%E5%8D%9A%E5%AE%A2_jmm%5D(https://blog.csdn.net/zjcjava/article/details/78406330)">JMM概述</a></h2><p><img src="/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="JVM内存模型"></p>
@@ -939,20 +914,69 @@
       </categories>
   </entry>
   <entry>
-    <title>Volatile关键字</title>
-    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
-    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
-<p>特性：</p>
-<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
-<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
-<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
-<p>简单介绍下指令重排</p>
-<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
-<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
-<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
+    <title>MyHospital项目笔记</title>
+    <url>/2021/06/10/MyHospital/</url>
+    <content><![CDATA[<h2 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210610141856959.png" alt="Spring版本问题"></p>
+<p>ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用报未找到。</p>
+<hr>
+<h2 id="2、工具swagger2"><a href="#2、工具swagger2" class="headerlink" title="2、工具swagger2"></a>2、工具swagger2</h2><p>在前期进行测试的时候，类似测试获取数据这种操作，可以直接通过访问固定网页（如：<a href="http://localhost:8201/admin/hosp/hospitalSet/findall%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9B%E4%BD%86%E6%98%AF%E5%9C%A8%E6%B5%8B%E8%AF%95%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E6%A0%B9%E6%8D%AEid%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%89%E6%97%B6%EF%BC%8C%E4%BE%BF%E6%B2%A1%E6%B3%95%E9%80%9A%E8%BF%87%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E9%A1%B5%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%9B%E6%95%85%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E9%87%87%E7%94%A8swagger2%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%8C%E9%80%9A%E8%BF%87%E5%AF%B9swagger2%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%B9%B6%E9%87%87%E7%94%A8%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AF%B9%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%BF%E5%BE%97%E5%8F%AF%E9%98%B6%E6%AE%B5%E6%80%A7%E5%AF%B9%E5%8A%9F%E8%83%BD%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%E3%80%82">http://localhost:8201/admin/hosp/hospitalSet/findall）进行测试；但是在测试删除功能（根据id进行删除）时，便没法通过直接访问网页进行删除；故，在这里采用swagger2进行测试，通过对swagger2进行配置，并采用注解的方式对网页显示进行优化，使得可阶段性对功能进行测试。</a></p>
+<p><img src="/2021/06/10/MyHospital/image-20210612151047092.png" alt="swagger2成果图"></p>
+<hr>
+<h2 id="3、工具Result"><a href="#3、工具Result" class="headerlink" title="3、工具Result"></a>3、工具Result</h2><p>为了统一返回结果（有人用1表示成功，有人用true表示成功…），故创建一个结果类Result，用于统一对返回结果的管理。</p>
+<p>之后函数返回类型便可设置为Result，将原本的返回结果进行包装即可返回。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1、查询医院设置表所有信息</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;获取所有医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;findAll&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">findAllHospitalSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用service方法</span></span><br><span class="line">        List&lt;HospitalSet&gt; list = hospitalSetService.list();</span><br><span class="line">        <span class="comment">//此处便对原本返回的list进行包装，源码在此处不再贴出，后续会上传至我的gitee</span></span><br><span class="line">        <span class="keyword">return</span> Result.ok(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、逻辑删除医院设置</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;逻辑删除医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@DeleteMapping(&quot;&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">removeHospSet</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = hospitalSetService.removeById(id);</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.ok();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.fail();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4、问题"><a href="#4、问题" class="headerlink" title="4、问题"></a>4、问题</h2><p>在安装使用babel时，安装之后无法显示版本号，问题如下</p>
+<p><img src="/2021/06/10/MyHospital/image-20210621121447448.png" alt="babel安装问题"></p>
+<p>ans：在安装时为全局配置，此处找不到babel应该是未进行环境路径配置，故在系统变量中添加路径</p>
+<p>babel的路径可通过如下命令获得<img src="/2021/06/10/MyHospital/image-20210621121618787.png" alt="获得babel安装路径"></p>
+<p>然后添加进系统环境变量中，重启vscode</p>
+<p><img src="/2021/06/10/MyHospital/image-20210621121735212.png" alt="可获得babel版本号"></p>
+<hr>
+<h2 id="5、笔记：前端设置步骤"><a href="#5、笔记：前端设置步骤" class="headerlink" title="5、笔记：前端设置步骤"></a>5、笔记：前端设置步骤</h2><h3 id="1、添加路由"><a href="#1、添加路由" class="headerlink" title="1、添加路由"></a>1、添加路由</h3><p>在src/router/index.js中添加代码</p>
+<p><img src="/2021/06/10/MyHospital/image-20210622105230312.png" alt="路由前端显示"><img src="/2021/06/10/MyHospital/image-20210622105257490.png" alt="路由代码" style="zoom:80%;"></p>
+<h3 id="2、设置跳转页面路径"><a href="#2、设置跳转页面路径" class="headerlink" title="2、设置跳转页面路径"></a>2、设置跳转页面路径</h3><p>在路由代码中进行设置</p>
+<p><img src="/2021/06/10/MyHospital/image-20210622105446334.png" alt="跳转路径设置"></p>
+<h3 id="3、在api文件夹创建js文件，定义接口路径"><a href="#3、在api文件夹创建js文件，定义接口路径" class="headerlink" title="3、在api文件夹创建js文件，定义接口路径"></a>3、在api文件夹创建js文件，定义接口路径</h3><p>红线处为后端代码中设置的路径</p>
+<p><img src="/2021/06/10/MyHospital/image-20210622105807763.png" alt="定义接口路径"></p>
+<h3 id="4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示"><a href="#4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示" class="headerlink" title="4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示"></a>4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!--template是页面中显示的数据 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;app-container&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">        医院设置列表</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="comment">//引入接口定义的js文件</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">import</span> hospset <span class="keyword">from</span> <span class="string">&#x27;@/api/hospset&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">current</span>:<span class="number">1</span>,<span class="comment">//当前页</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">limit</span>:<span class="number">3</span>,<span class="comment">//每页显示记录数</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">searchObj</span>:&#123;&#125;,<span class="comment">//条件封装对象</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">list</span>:[] <span class="comment">//每页数据集合</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="function"><span class="title">created</span>(<span class="params"></span>)</span>&#123;<span class="comment">//在页面渲染之前执行</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="comment">//一般调用methods定义的方法，得到数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="built_in">this</span>.getList()</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="attr">methods</span>: &#123;<span class="comment">//定义方法，进行请求接口调用</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="comment">//医院设置列表</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="function"><span class="title">getList</span>(<span class="params"></span>)</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            hospset.getHospSetList(<span class="built_in">this</span>.current,<span class="built_in">this</span>.limit,<span class="built_in">this</span>.searchObj)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;<span class="comment">//请求成功，response是接口返回数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="built_in">console</span>.log(response)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            &#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;<span class="comment">//请求失败，error是错误提示</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="built_in">console</span>.log(error)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            &#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6、跨域问题"><a href="#6、跨域问题" class="headerlink" title="6、跨域问题"></a>6、跨域问题</h2><h3 id="三个地方，任何一个不相同便会产生跨域"><a href="#三个地方，任何一个不相同便会产生跨域" class="headerlink" title="三个地方，任何一个不相同便会产生跨域"></a>三个地方，任何一个不相同便会产生跨域</h3><p>1、访问协议：http  https</p>
+<p>2、访问地址：192.128.1.1    172.11.1.1</p>
+<p>3、端口号：9528    8201</p>
+<h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><p>第一种：添加CrossOrigin注解</p>
+<p><img src="/2021/06/10/MyHospital/image-20210622145643778.png" alt="添加CrossOrigin注解"></p>
+<hr>
+<h2 id="7、问题"><a href="#7、问题" class="headerlink" title="7、问题"></a>7、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210622153826279.png" alt="9528报404"></p>
+<p>我没添加@CrossOrigin注解，不同端口号是没法访问的，应该是No Access-Control-Allow-Origin，就是下面这个</p>
+<p><img src="/2021/06/10/MyHospital/image-20210622165657782.png" alt="9259报跨域问题"></p>
+<p>ans：应该是在返回数据中未添加条件封装对象导致的</p>
+<p><img src="/2021/06/10/MyHospital/image-20210622175439572.png" alt="条件封装对象"></p>
+<hr>
+<h2 id="8、问题"><a href="#8、问题" class="headerlink" title="8、问题"></a>8、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210623091741109.png" alt="问题8内容不显示"></p>
+<p>当前前端已经可以获得数据，前端代码也已经编写完毕，应该是可以按照表格形式进行显示，但是没数据显示，为什么</p>
+<p><img src="/2021/06/10/MyHospital/image-20210623091842271.png" alt="问题8已经可以获得数据"></p>
+<p>ans：在调用函数中未返回结果，并未将获取到的response的data返回给当前list</p>
+<p><img src="/2021/06/10/MyHospital/image-20210623092522385.png" alt="问题8ans"></p>
+<p>改完结果如下：</p>
+<p><img src="/2021/06/10/MyHospital/image-20210623092645873.png" alt="问题8成功"></p>
+<hr>
+<h2 id="9、问题"><a href="#9、问题" class="headerlink" title="9、问题"></a>9、问题</h2><p>在添加锁定和取消锁定功能时，写好代码之后，锁定和取消锁定按钮提示失败，为什么</p>
+<p><img src="/2021/06/10/MyHospital/image-20210623145904414.png" alt="问题9"></p>
+<p>ans：在api文件中取值路径写错了，id和status没res写$，修正后如下</p>
+<p><img src="/2021/06/10/MyHospital/image-20210623150234601.png" alt="问题9res"></p>
+<hr>
+<h2 id="10、问题"><a href="#10、问题" class="headerlink" title="10、问题"></a>10、问题</h2><p>再记录个问题，这个没来得及截图，（我可能误操作点着了什么，导致vscode关闭了，然后又打开）发现通过npm run dev无法进行运行，错误提示在D:\Coding\myproject\hospital\yygh路径下（我的vue-admin-template-master文件夹也是在这个路径下）没有package.json文件，可是package.json不是在vue-admin-template-master目录下吗</p>
+<p>ans：怀疑是误删了什么资源文件，于是采用npm install 进行重新下载依赖，即可打开</p>
+<h2 id="11、问题"><a href="#11、问题" class="headerlink" title="11、问题"></a>11、问题</h2><p>为什么没法保存</p>
+<p><img src="/2021/06/10/MyHospital/image-20210623154018908.png" alt="问题11"></p>
+<p>ans：经查看错误提示发现，在添加医院设置时，主键id并未进行设置，故报错</p>
+<p>可是我主键id设置了自增，不必手动进行设置即可；在mysql中添加数据发现确实必须要设置id，于是对id的自增属性进行重新设置，问题解决。</p>
 ]]></content>
       <categories>
-        <category>Java基础</category>
+        <category>项目Hospital</category>
       </categories>
   </entry>
   <entry>
@@ -1062,6 +1086,41 @@
       </categories>
   </entry>
   <entry>
+    <title>Volatile关键字</title>
+    <url>/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
+<p>特性：</p>
+<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
+<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
+<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
+<p>简单介绍下指令重排</p>
+<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
+<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
+<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/05/26/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>leetcode-回文字符串</title>
     <url>/2021/06/10/leetcode-%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
     <content><![CDATA[<h1 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5. 最长回文子串"></a><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5. 最长回文子串</a></h1><h2 id="知识点：manacher算法"><a href="#知识点：manacher算法" class="headerlink" title="知识点：manacher算法"></a>知识点：manacher算法</h2><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
@@ -1085,24 +1144,6 @@
       <categories>
         <category>leetcode刷题笔记</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/05/26/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>leetcode-跳跃次数</title>
@@ -1223,23 +1264,6 @@
       </categories>
   </entry>
   <entry>
-    <title>native关键字</title>
-    <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
-    <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
-<p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。</p>
-<p>这些函数的实现体在DLL中，JDK的源代码中并不包含，你应该是看不到的。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
-<p>1。native 是用做java 和其他语言（如c++）进行协作时用的也就是native 后的函数的实现不是用java写的</p>
-<p>2。既然都不是java，那就别管它的源代码了，呵呵</p>
-<p>native的意思就是通知操作系统，</p>
-<p>这个函数你必须给我实现，因为我要使用。</p>
-<p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
-<p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>mysql登录</title>
     <url>/2021/06/03/mysql%E7%99%BB%E5%BD%95/</url>
     <content><![CDATA[<p>启动mysql：systemctl start mysqld</p>
@@ -1252,20 +1276,17 @@
       </categories>
   </entry>
   <entry>
-    <title>wait和sleep的异同</title>
-    <url>/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/</url>
-    <content><![CDATA[<h2 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h2><p>一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
-<h2 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h2><p>1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
-<p>2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中</p>
-<p>3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。</p>
-<hr>
-<p>Sleep()方法是属于Thread类中的，而wait()方法是属于Object类中的。</p>
-<p>Sleep()方法导致了程序暂停执行指定的时间，让出cpu给其他线程，但是他的监控状态依然保持着，当指定的时间结束后又会自动恢复运行状态。</p>
-<hr>
-<p>在调用sleep方法时，线程不会释放对象锁。</p>
-<p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
-<p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
-<p>另外，sleep是静态方法，wait是非静态方法。</p>
+    <title>native关键字</title>
+    <url>/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
+<p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。</p>
+<p>这些函数的实现体在DLL中，JDK的源代码中并不包含，你应该是看不到的。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
+<p>1。native 是用做java 和其他语言（如c++）进行协作时用的也就是native 后的函数的实现不是用java写的</p>
+<p>2。既然都不是java，那就别管它的源代码了，呵呵</p>
+<p>native的意思就是通知操作系统，</p>
+<p>这个函数你必须给我实现，因为我要使用。</p>
+<p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
+<p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
 ]]></content>
       <categories>
         <category>Java基础</category>
@@ -1311,22 +1332,23 @@
       </categories>
   </entry>
   <entry>
-    <title>leetcode-岛屿问题</title>
-    <url>/2021/06/08/%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h1><h2 id="知识点：DFS"><a href="#知识点：DFS" class="headerlink" title="知识点：DFS"></a>知识点：DFS</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这题让求的是岛屿的数量有多少个，就其解法思路上并不困难。循环遍历每一块陆地，每遇到一个陆地就对其上下左右四个方向进行查找，每找到一个就让该陆地置0，这样在最外层遍历时就不会重复遇到，dfs的主要作用就是对遇到的陆地进行四个方向的查找。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>)&#123;<span class="comment">//简单判断是否为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count= <span class="number">0</span>,m =grid.length,n=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//外层遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;<span class="comment">//只要找到一个陆地，起码就是一个岛屿，对其进行dfs</span></span><br><span class="line">                    count++;</span><br><span class="line">                    dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> gc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(r&lt;<span class="number">0</span>||r&gt;=gr||c&lt;<span class="number">0</span>||c&gt;=gc||grid[r][c]==<span class="string">&#x27;0&#x27;</span>)&#123;<span class="comment">//此处要注意边界条件</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;<span class="comment">//遍历之前记得让当前岛屿下沉，不然之后会出现重复查找</span></span><br><span class="line">        dfs(grid,r+<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r-<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r,c+<span class="number">1</span>);</span><br><span class="line">        dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a></h1><h2 id="知识点：dfs"><a href="#知识点：dfs" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这两道题型基本一致，只是在本题中需要记录的数据不是数量，而是记录下每次dfs的最大值，关键点在dfs的编写中，每次dfs返回一个数字：0或者1。对于每个陆地而言，最小面积是1，最终面积取决于有多少和它间接、直接相连的陆地。</p>
-<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
-<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+    <title>wait和sleep的异同</title>
+    <url>/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/</url>
+    <content><![CDATA[<h2 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h2><p>一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
+<h2 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h2><p>1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
+<p>2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中</p>
+<p>3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。</p>
+<hr>
+<p>Sleep()方法是属于Thread类中的，而wait()方法是属于Object类中的。</p>
+<p>Sleep()方法导致了程序暂停执行指定的时间，让出cpu给其他线程，但是他的监控状态依然保持着，当指定的时间结束后又会自动恢复运行状态。</p>
+<hr>
+<p>在调用sleep方法时，线程不会释放对象锁。</p>
+<p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
+<p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
+<p>另外，sleep是静态方法，wait是非静态方法。</p>
 ]]></content>
       <categories>
-        <category>leetcode刷题笔记</category>
+        <category>Java基础</category>
       </categories>
   </entry>
   <entry>
@@ -1358,6 +1380,25 @@
 ]]></content>
       <categories>
         <category>前端基础知识</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>leetcode-岛屿问题</title>
+    <url>/2021/06/08/%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h1><h2 id="知识点：DFS"><a href="#知识点：DFS" class="headerlink" title="知识点：DFS"></a>知识点：DFS</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这题让求的是岛屿的数量有多少个，就其解法思路上并不困难。循环遍历每一块陆地，每遇到一个陆地就对其上下左右四个方向进行查找，每找到一个就让该陆地置0，这样在最外层遍历时就不会重复遇到，dfs的主要作用就是对遇到的陆地进行四个方向的查找。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>)&#123;<span class="comment">//简单判断是否为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count= <span class="number">0</span>,m =grid.length,n=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//外层遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;<span class="comment">//只要找到一个陆地，起码就是一个岛屿，对其进行dfs</span></span><br><span class="line">                    count++;</span><br><span class="line">                    dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> gc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(r&lt;<span class="number">0</span>||r&gt;=gr||c&lt;<span class="number">0</span>||c&gt;=gc||grid[r][c]==<span class="string">&#x27;0&#x27;</span>)&#123;<span class="comment">//此处要注意边界条件</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;<span class="comment">//遍历之前记得让当前岛屿下沉，不然之后会出现重复查找</span></span><br><span class="line">        dfs(grid,r+<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r-<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r,c+<span class="number">1</span>);</span><br><span class="line">        dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a></h1><h2 id="知识点：dfs"><a href="#知识点：dfs" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这两道题型基本一致，只是在本题中需要记录的数据不是数量，而是记录下每次dfs的最大值，关键点在dfs的编写中，每次dfs返回一个数字：0或者1。对于每个陆地而言，最小面积是1，最终面积取决于有多少和它间接、直接相连的陆地。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
+<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
       </categories>
   </entry>
   <entry>
@@ -1408,25 +1449,6 @@
       </categories>
   </entry>
   <entry>
-    <title>搜索算法</title>
-    <url>/2021/05/26/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low=<span class="number">0</span>,height=arr.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=height)&#123;</span><br><span class="line">        mid=(low+height)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(arr[mid]&lt;target)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&gt;target)&#123;</span><br><span class="line">            height=mid-<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h2><p>适用于数值分布均匀的查找表。</p>
-<h3 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low=<span class="number">0</span>,height=arr.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=height)&#123;</span><br><span class="line">        mid=low+(hight-low)(arr[mid]-arr[low])/(arr[height]-arr[low]);</span><br><span class="line">        <span class="keyword">if</span>(arr[mid]&lt;target)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&gt;target)&#123;</span><br><span class="line">            height=mid-<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h2><p>利用了斐波那契数列</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fibSearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>,heigh=arr.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span>[] f=fib();</span><br><span class="line">        <span class="comment">//k为合适的斐波那契数</span></span><br><span class="line">        <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(heigh&gt;f[k]-<span class="number">1</span>)&#123;</span><br><span class="line">            ++k;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//定义斐波那契数长度的数组</span></span><br><span class="line">        <span class="keyword">int</span>[] nums = Arrays.copyOf(arr, f[k]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=heigh;i&lt;f[k];i++)&#123;</span><br><span class="line">            nums[i]=nums[heigh];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (low&lt;=heigh)&#123;</span><br><span class="line">            mid=low+f[k-<span class="number">1</span>]-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(target&gt;arr[mid])&#123;</span><br><span class="line">                k-=<span class="number">2</span>;</span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target&lt;arr[mid])&#123;</span><br><span class="line">                --k;</span><br><span class="line">                heigh=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(mid&lt;heigh)&#123;</span><br><span class="line">                    <span class="keyword">return</span> mid;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> heigh;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//创建一个斐波那契数列</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] fib()&#123;</span><br><span class="line">        <span class="keyword">int</span>[] f=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>];</span><br><span class="line">        f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">20</span>;i++)&#123;</span><br><span class="line">            f[i]=f[i-<span class="number">1</span>]+f[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>HelloWorld系列</category>
-      </categories>
-      <tags>
-        <tag>搜索</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>排序算法总结</title>
     <url>/2021/05/26/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>简析：比较相邻的两个元素，如果当前数字比后面的数字大，就交换位置</p>
@@ -1465,6 +1487,25 @@
       </categories>
       <tags>
         <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搜索算法</title>
+    <url>/2021/05/26/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low=<span class="number">0</span>,height=arr.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=height)&#123;</span><br><span class="line">        mid=(low+height)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(arr[mid]&lt;target)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&gt;target)&#123;</span><br><span class="line">            height=mid-<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h2><p>适用于数值分布均匀的查找表。</p>
+<h3 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low=<span class="number">0</span>,height=arr.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=height)&#123;</span><br><span class="line">        mid=low+(hight-low)(arr[mid]-arr[low])/(arr[height]-arr[low]);</span><br><span class="line">        <span class="keyword">if</span>(arr[mid]&lt;target)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&gt;target)&#123;</span><br><span class="line">            height=mid-<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h2><p>利用了斐波那契数列</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fibSearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>,heigh=arr.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span>[] f=fib();</span><br><span class="line">        <span class="comment">//k为合适的斐波那契数</span></span><br><span class="line">        <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(heigh&gt;f[k]-<span class="number">1</span>)&#123;</span><br><span class="line">            ++k;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//定义斐波那契数长度的数组</span></span><br><span class="line">        <span class="keyword">int</span>[] nums = Arrays.copyOf(arr, f[k]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=heigh;i&lt;f[k];i++)&#123;</span><br><span class="line">            nums[i]=nums[heigh];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (low&lt;=heigh)&#123;</span><br><span class="line">            mid=low+f[k-<span class="number">1</span>]-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(target&gt;arr[mid])&#123;</span><br><span class="line">                k-=<span class="number">2</span>;</span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target&lt;arr[mid])&#123;</span><br><span class="line">                --k;</span><br><span class="line">                heigh=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(mid&lt;heigh)&#123;</span><br><span class="line">                    <span class="keyword">return</span> mid;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> heigh;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//创建一个斐波那契数列</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] fib()&#123;</span><br><span class="line">        <span class="keyword">int</span>[] f=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>];</span><br><span class="line">        f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">20</span>;i++)&#123;</span><br><span class="line">            f[i]=f[i-<span class="number">1</span>]+f[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>HelloWorld系列</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
