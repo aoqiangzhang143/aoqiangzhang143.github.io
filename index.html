@@ -453,7 +453,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-23 15:58:53" itemprop="dateModified" datetime="2021-06-23T15:58:53+08:00">2021-06-23</time>
+                <time title="修改时间：2021-06-30 16:03:04" itemprop="dateModified" datetime="2021-06-30T16:03:04+08:00">2021-06-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -497,7 +497,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210610141856959.png" alt="Spring版本问题"></p>
+          <h2 id="ip和端口号总结："><a href="#ip和端口号总结：" class="headerlink" title="ip和端口号总结："></a>ip和端口号总结：</h2><p>sql的IP地址：192.168.75.200，端口号：3306</p>
+<p>nginx的端口号：30001</p>
+<p>mongo的ip：192.168.75.200，端口号27017</p>
+<hr>
+<h2 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210610141856959.png" alt="Spring版本问题"></p>
 <p>ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用报未找到。</p>
 <hr>
 <h2 id="2、工具swagger2"><a href="#2、工具swagger2" class="headerlink" title="2、工具swagger2"></a>2、工具swagger2</h2><p>在前期进行测试的时候，类似测试获取数据这种操作，可以直接通过访问固定网页（如：<a target="_blank" rel="noopener" href="http://localhost:8201/admin/hosp/hospitalSet/findall%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9B%E4%BD%86%E6%98%AF%E5%9C%A8%E6%B5%8B%E8%AF%95%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E6%A0%B9%E6%8D%AEid%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%89%E6%97%B6%EF%BC%8C%E4%BE%BF%E6%B2%A1%E6%B3%95%E9%80%9A%E8%BF%87%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E9%A1%B5%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%9B%E6%95%85%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E9%87%87%E7%94%A8swagger2%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%8C%E9%80%9A%E8%BF%87%E5%AF%B9swagger2%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%B9%B6%E9%87%87%E7%94%A8%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AF%B9%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%BF%E5%BE%97%E5%8F%AF%E9%98%B6%E6%AE%B5%E6%80%A7%E5%AF%B9%E5%8A%9F%E8%83%BD%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%E3%80%82">http://localhost:8201/admin/hosp/hospitalSet/findall）进行测试；但是在测试删除功能（根据id进行删除）时，便没法通过直接访问网页进行删除；故，在这里采用swagger2进行测试，通过对swagger2进行配置，并采用注解的方式对网页显示进行优化，使得可阶段性对功能进行测试。</a></p>
@@ -555,6 +559,68 @@
 <p><img src="/2021/06/10/MyHospital/image-20210623154018908.png" alt="问题11"></p>
 <p>ans：经查看错误提示发现，在添加医院设置时，主键id并未进行设置，故报错</p>
 <p>可是我主键id设置了自增，不必手动进行设置即可；在mysql中添加数据发现确实必须要设置id，于是对id的自增属性进行重新设置，问题解决。</p>
+<hr>
+<h2 id="12、问题（redis）"><a href="#12、问题（redis）" class="headerlink" title="12、问题（redis）"></a>12、问题（redis）</h2><p>在设置redis进行缓存的时候出现问题，报错如下</p>
+<p>org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.75.200:6379</p>
+<p><img src="/2021/06/10/MyHospital/image-20210625165357501.png" alt="问题12"></p>
+<p>之前报错说没法连接，没password，我在配置文件添加了password，ok</p>
+<p>现在有说还是没法连接到redis，可是IP地址和端口号都没问题，我也关了防火墙：systemctl stop firewalld，为什么还是报错</p>
+<p>而且还提示说我主机中的软件种植了一个已建立的连接</p>
+<p><img src="/2021/06/10/MyHospital/image-20210625165620855.png" alt="问题12-2"></p>
+<p>经查阅资料，将redis的config文件中的protected-mode 改为no，看看有没有效果</p>
+<p><img src="/2021/06/10/MyHospital/image-20210625173835048.png" alt="问题12-3"></p>
+<p>–没效果</p>
+<p>再把这个改为0.0.0.0</p>
+<p><img src="/2021/06/10/MyHospital/image-20210625174712006.png" alt="image-20210625174712006"></p>
+<p>ans：我搞定了将protected-mode 改为no，再再把bind改为0.0.0.0</p>
+<p>修改完redis配置记得重启redis服务</p>
+<hr>
+<h2 id="13、笔记：nginx解决多端口访问问题"><a href="#13、笔记：nginx解决多端口访问问题" class="headerlink" title="13、笔记：nginx解决多端口访问问题"></a>13、笔记：nginx解决多端口访问问题</h2><p>下载nginx，在nginx配置文件添加如下内容：</p>
+<p><img src="/2021/06/10/MyHospital/image-20210626140829928.png" alt="笔记13"></p>
+<p>（视频用的是9001）之后将前端的配置端口号改为30001，至此，所有端口号请求发送至30001，再由nginx对不同的关键字进行正则匹配，分发至各自端口号</p>
+<p><img src="/2021/06/10/MyHospital/image-20210626140859725.png" alt="笔记13-2"></p>
+<hr>
+<h2 id="14、MongoDB的安装和使用"><a href="#14、MongoDB的安装和使用" class="headerlink" title="14、MongoDB的安装和使用"></a>14、MongoDB的安装和使用</h2><h3 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h3><p>使用docker拉取mongoDB镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mongo:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h3><p>创建和启动容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --restart=always -p 27017:27017 --name mymongo -v /data/db:/data/db -d mongo</span><br></pre></td></tr></table></figure>
+
+<p>进入创建的容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mymongo /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>注意：使用容器mongodb之前记得先启动docker，之后进入创建的容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="15、问题（说lombok不支持我的编译器）"><a href="#15、问题（说lombok不支持我的编译器）" class="headerlink" title="15、问题（说lombok不支持我的编译器）"></a>15、问题（说lombok不支持我的编译器）</h2><p>诡异，我前几个模块都用了lombok，现在跟我说不支持…</p>
+<p><img src="/2021/06/10/MyHospital/image-20210627155954703.png" alt="问题15"></p>
+<p>ans：改了lombok版本号，就没出现这个错了</p>
+<img src="/2021/06/10/MyHospital/image-20210627160354636.png" alt="问题15-ans" style="zoom:50%;">
+
+<hr>
+<h2 id="16、登录mysql"><a href="#16、登录mysql" class="headerlink" title="16、登录mysql"></a>16、登录mysql</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="17、笔记（MongoDB数据访问）"><a href="#17、笔记（MongoDB数据访问）" class="headerlink" title="17、笔记（MongoDB数据访问）"></a>17、笔记（MongoDB数据访问）</h2><p>这个厉害，Spring Data提供了对mongodb数据访问的支持，只需要继承MongoRepository类，按照Spring Data规范进行命名函数即可自动生成</p>
+<p>1、不是随便声明的，而需要符合一定的规范<br> 2、 查询方法以find | read | get开头<br> 3、 涉及条件查询时，条件的属性用条件关键字连接<br> 4、 要注意的是：条件属性首字母需要大写</p>
+<p><img src="/2021/06/10/MyHospital/image-20210628153532261.png" alt="笔记17-1"></p>
+<p><img src="/2021/06/10/MyHospital/image-20210628153543607.png" alt="笔记17-2"></p>
+<hr>
+<h2 id="18、疑问："><a href="#18、疑问：" class="headerlink" title="18、疑问："></a>18、疑问：</h2><p>D:\Coding\myproject\hospital\yygh_parent\service\service_hosp\src\main\java\com\myproject\yygh\hosp\controller\api\ApiController.java这个里面的这些功能是怎么通过HttpServletRequest request来得到数据的</p>
+<hr>
+<h2 id="19、问题"><a href="#19、问题" class="headerlink" title="19、问题"></a>19、问题</h2><p>在将cmn模块添加进nacos服务中时，启动该模块报错（可是我另外一个服务已经启动了，为什么cmn会报错，说是mongo打不开socket）</p>
+<p><img src="/2021/06/10/MyHospital/image-20210630103712904.png" alt="问题19"></p>
+<p>上网查资料说原因是springboot自动配置了支持mongodb。在启动springboot时会自动实例化一个mongo实例，需要禁用自动配置 ，增加 <em>@SpringBootApplication(exclude = MongoAutoConfiguration.class)</em></p>
+<p><img src="/2021/06/10/MyHospital/image-20210630104206830.png" alt="image-20210630104206830"></p>
+<p>ans：搞定，成功启动</p>
+<hr>
+<h2 id="20、问题"><a href="#20、问题" class="headerlink" title="20、问题"></a>20、问题</h2><p>DictFeignClient这个接口定义了，也注解Repository了，在调用的时候也进行自动装配了，为什么会说找不到这个bean</p>
+<p><img src="/2021/06/10/MyHospital/image-20210630154754091.png" alt="问题20"></p>
+<p>网上有人说是没有指定包，我试下</p>
+<p>ans：确实如此，也不尽然；在该服务下未引入需要用到的feign依赖，服务启动时也未注明引用包的路径，添加依赖和写好包的路径即可</p>
 
       
     </div>
