@@ -23,14 +23,14 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ip和端口号总结：sql的IP地址：192.168.75.200，端口号：3306 nginx的端口号：30001 mongo的ip：192.168.75.200，端口号27017  1、问题 ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用报未找到。  2、工具swagger2在前期进行测试的时候，类似测">
+  <meta name="description" content="ip和端口号总结：sql的IP地址：192.168.75.200，端口号：3306 nginx的端口号：30001  ——用于分发端口号 mongo的ip：192.168.75.200，端口号27017   ——-用于存储数据 nacos—–服务注册中心，端口号8848 redis的ip地址：192.168.75.200，端口号6379 rabbitmq：ip192.168.75.200,端口号1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyHospital项目笔记">
 <meta property="og:url" content="http://example.com/2021/06/10/MyHospital/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="ip和端口号总结：sql的IP地址：192.168.75.200，端口号：3306 nginx的端口号：30001 mongo的ip：192.168.75.200，端口号27017  1、问题 ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用报未找到。  2、工具swagger2在前期进行测试的时候，类似测">
+<meta property="og:description" content="ip和端口号总结：sql的IP地址：192.168.75.200，端口号：3306 nginx的端口号：30001  ——用于分发端口号 mongo的ip：192.168.75.200，端口号27017   ——-用于存储数据 nacos—–服务注册中心，端口号8848 redis的ip地址：192.168.75.200，端口号6379 rabbitmq：ip192.168.75.200,端口号1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210610141856959.png">
+<meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210719145620042.png">
 <meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210612151047092.png">
 <meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210621121447448.png">
 <meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210621121618787.png">
@@ -63,11 +63,14 @@
 <meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210630103712904.png">
 <meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210630104206830.png">
 <meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210630154754091.png">
+<meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210705100014265.png">
+<meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210705110829584.png">
+<meta property="og:image" content="http://example.com/2021/06/10/MyHospital/image-20210714203109334.png">
 <meta property="article:published_time" content="2021-06-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-30T08:03:04.575Z">
+<meta property="article:modified_time" content="2021-07-19T06:56:28.623Z">
 <meta property="article:author" content="aoqiangzhang143">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/06/10/MyHospital/image-20210610141856959.png">
+<meta name="twitter:image" content="http://example.com/2021/06/10/MyHospital/image-20210719145620042.png">
 
 <link rel="canonical" href="http://example.com/2021/06/10/MyHospital/">
 
@@ -158,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">31</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">33</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -253,7 +256,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-30 16:03:04" itemprop="dateModified" datetime="2021-06-30T16:03:04+08:00">2021-06-30</time>
+                <time title="修改时间：2021-07-19 14:56:28" itemprop="dateModified" datetime="2021-07-19T14:56:28+08:00">2021-07-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,11 +301,14 @@
 
       
         <h2 id="ip和端口号总结："><a href="#ip和端口号总结：" class="headerlink" title="ip和端口号总结："></a>ip和端口号总结：</h2><p>sql的IP地址：192.168.75.200，端口号：3306</p>
-<p>nginx的端口号：30001</p>
-<p>mongo的ip：192.168.75.200，端口号27017</p>
+<p>nginx的端口号：30001  ——用于分发端口号</p>
+<p>mongo的ip：192.168.75.200，端口号27017   ——-用于存储数据</p>
+<p>nacos—–服务注册中心，端口号8848</p>
+<p>redis的ip地址：192.168.75.200，端口号6379</p>
+<p>rabbitmq：ip192.168.75.200,端口号15672  管理端口号5672</p>
 <hr>
-<h2 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210610141856959.png" alt="Spring版本问题"></p>
-<p>ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用报未找到。</p>
+<h2 id="1、版本问题"><a href="#1、版本问题" class="headerlink" title="1、版本问题"></a>1、版本问题</h2><p><img src="/2021/06/10/MyHospital/image-20210719145620042.png" alt="spring的版本问题"></p>
+<p>ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用也未发现报红。</p>
 <hr>
 <h2 id="2、工具swagger2"><a href="#2、工具swagger2" class="headerlink" title="2、工具swagger2"></a>2、工具swagger2</h2><p>在前期进行测试的时候，类似测试获取数据这种操作，可以直接通过访问固定网页（如：<a target="_blank" rel="noopener" href="http://localhost:8201/admin/hosp/hospitalSet/findall%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9B%E4%BD%86%E6%98%AF%E5%9C%A8%E6%B5%8B%E8%AF%95%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E6%A0%B9%E6%8D%AEid%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%89%E6%97%B6%EF%BC%8C%E4%BE%BF%E6%B2%A1%E6%B3%95%E9%80%9A%E8%BF%87%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E9%A1%B5%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%9B%E6%95%85%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E9%87%87%E7%94%A8swagger2%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%8C%E9%80%9A%E8%BF%87%E5%AF%B9swagger2%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%B9%B6%E9%87%87%E7%94%A8%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AF%B9%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%BF%E5%BE%97%E5%8F%AF%E9%98%B6%E6%AE%B5%E6%80%A7%E5%AF%B9%E5%8A%9F%E8%83%BD%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%E3%80%82">http://localhost:8201/admin/hosp/hospitalSet/findall）进行测试；但是在测试删除功能（根据id进行删除）时，便没法通过直接访问网页进行删除；故，在这里采用swagger2进行测试，通过对swagger2进行配置，并采用注解的方式对网页显示进行优化，使得可阶段性对功能进行测试。</a></p>
 <p><img src="/2021/06/10/MyHospital/image-20210612151047092.png" alt="swagger2成果图"></p>
@@ -312,7 +318,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、查询医院设置表所有信息</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;获取所有医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;findAll&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">findAllHospitalSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用service方法</span></span><br><span class="line">        List&lt;HospitalSet&gt; list = hospitalSetService.list();</span><br><span class="line">        <span class="comment">//此处便对原本返回的list进行包装，源码在此处不再贴出，后续会上传至我的gitee</span></span><br><span class="line">        <span class="keyword">return</span> Result.ok(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、逻辑删除医院设置</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;逻辑删除医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@DeleteMapping(&quot;&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">removeHospSet</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = hospitalSetService.removeById(id);</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.ok();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.fail();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="4、问题"><a href="#4、问题" class="headerlink" title="4、问题"></a>4、问题</h2><p>在安装使用babel时，安装之后无法显示版本号，问题如下</p>
+<h2 id="4、babel问题"><a href="#4、babel问题" class="headerlink" title="4、babel问题"></a>4、babel问题</h2><p>在安装使用babel时，安装之后无法显示版本号，问题如下</p>
 <p><img src="/2021/06/10/MyHospital/image-20210621121447448.png" alt="babel安装问题"></p>
 <p>ans：在安装时为全局配置，此处找不到babel应该是未进行环境路径配置，故在系统变量中添加路径</p>
 <p>babel的路径可通过如下命令获得<img src="/2021/06/10/MyHospital/image-20210621121618787.png" alt="获得babel安装路径"></p>
@@ -334,7 +340,7 @@
 <h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><p>第一种：添加CrossOrigin注解</p>
 <p><img src="/2021/06/10/MyHospital/image-20210622145643778.png" alt="添加CrossOrigin注解"></p>
 <hr>
-<h2 id="7、问题"><a href="#7、问题" class="headerlink" title="7、问题"></a>7、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210622153826279.png" alt="9528报404"></p>
+<h2 id="7、粗心问题"><a href="#7、粗心问题" class="headerlink" title="7、粗心问题"></a>7、粗心问题</h2><p><img src="/2021/06/10/MyHospital/image-20210622153826279.png" alt="9528报404"></p>
 <p>我没添加@CrossOrigin注解，不同端口号是没法访问的，应该是No Access-Control-Allow-Origin，就是下面这个</p>
 <p><img src="/2021/06/10/MyHospital/image-20210622165657782.png" alt="9259报跨域问题"></p>
 <p>ans：应该是在返回数据中未添加条件封装对象导致的</p>
@@ -365,7 +371,7 @@
 <p><img src="/2021/06/10/MyHospital/image-20210625165357501.png" alt="问题12"></p>
 <p>之前报错说没法连接，没password，我在配置文件添加了password，ok</p>
 <p>现在有说还是没法连接到redis，可是IP地址和端口号都没问题，我也关了防火墙：systemctl stop firewalld，为什么还是报错</p>
-<p>而且还提示说我主机中的软件种植了一个已建立的连接</p>
+<p>而且还提示说我主机中的软件终止了一个已建立的连接</p>
 <p><img src="/2021/06/10/MyHospital/image-20210625165620855.png" alt="问题12-2"></p>
 <p>经查阅资料，将redis的config文件中的protected-mode 改为no，看看有没有效果</p>
 <p><img src="/2021/06/10/MyHospital/image-20210625173835048.png" alt="问题12-3"></p>
@@ -390,7 +396,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mymongo /bin/bash</span><br></pre></td></tr></table></figure>
 
 <p>注意：使用容器mongodb之前记得先启动docker，之后进入创建的容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br><span class="line">//也可也如下启动docker</span><br><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="15、问题（说lombok不支持我的编译器）"><a href="#15、问题（说lombok不支持我的编译器）" class="headerlink" title="15、问题（说lombok不支持我的编译器）"></a>15、问题（说lombok不支持我的编译器）</h2><p>诡异，我前几个模块都用了lombok，现在跟我说不支持…</p>
@@ -421,6 +427,41 @@
 <p><img src="/2021/06/10/MyHospital/image-20210630154754091.png" alt="问题20"></p>
 <p>网上有人说是没有指定包，我试下</p>
 <p>ans：确实如此，也不尽然；在该服务下未引入需要用到的feign依赖，服务启动时也未注明引用包的路径，添加依赖和写好包的路径即可</p>
+<hr>
+<h2 id="21、问题"><a href="#21、问题" class="headerlink" title="21、问题"></a>21、问题</h2><p>之前采用的nginx，后来采用配置网关进行接口转发，但是服务启动后提示跨域问题</p>
+<p><img src="/2021/06/10/MyHospital/image-20210705100014265.png" alt="问题21"></p>
+<p>ans:要么接着使用@CrossOrigin注解，要么写个配置类</p>
+<img src="/2021/06/10/MyHospital/image-20210705110829584.png" alt="问题21的ans" style="zoom:50%;">
+
+<hr>
+<h2 id="22、笔记：nuxt路由跳转"><a href="#22、笔记：nuxt路由跳转" class="headerlink" title="22、笔记：nuxt路由跳转"></a>22、笔记：nuxt路由跳转</h2><p>nuxt中路由跳转分为两种：固定路由、动态路由</p>
+<p>固定路由：跳转路径固定，只能是某个指定页面；默认vue文件名称：index.vue</p>
+<p>动态路由：每次可根据参数跳转至不同页面</p>
+<p>​                    创建页面规则：在文件夹下创建vue文件；vue文件命名规范：_参数名称.vue；以下划线开头</p>
+<hr>
+<h2 id="23、疑问（未解决）"><a href="#23、疑问（未解决）" class="headerlink" title="23、疑问（未解决）"></a>23、疑问（未解决）</h2><p>HttpServletRequest是干嘛用的</p>
+<hr>
+<h2 id="24、待定"><a href="#24、待定" class="headerlink" title="24、待定"></a>24、待定</h2><p>在p143这里，我的就诊人信息刷新不出，不清楚是不是因为patient的信息写的不够完整；之后还要做添加就诊人员的信息，暂且放置。</p>
+<p><img src="/2021/06/10/MyHospital/image-20210714203109334.png" alt="问题24"></p>
+<hr>
+<h2 id="25、温故"><a href="#25、温故" class="headerlink" title="25、温故"></a>25、温故</h2><p>QuerryWrapper的条件查询和模糊查询，记得看一下源码人家是怎么实现的。</p>
+<hr>
+<h2 id="26、温故"><a href="#26、温故" class="headerlink" title="26、温故"></a>26、温故</h2><p>Feign这个注解是干啥的</p>
+<hr>
+<h2 id="27、温故"><a href="#27、温故" class="headerlink" title="27、温故"></a>27、温故</h2><p>rabbitMQ</p>
+<hr>
+<h2 id="28、rabbitmq启动"><a href="#28、rabbitmq启动" class="headerlink" title="28、rabbitmq启动"></a>28、rabbitmq启动</h2><p>这个是创建并启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management</span><br></pre></td></tr></table></figure>
+
+<p>启动rabbitmq容器的话，先用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it rabbitmq /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>查找所有容器id，是一串数字，然后再启动该容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 925153afeb449859b139ba8b9977312ec0dd1bfedf86772ddc735b72f466803b</span><br></pre></td></tr></table></figure>
+
+<p>,接下来即可启动rabbitmq。</p>
+<hr>
+<p>29、问题（空指针异常p160）</p>
 
     </div>
 
@@ -502,7 +543,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ip%E5%92%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">ip和端口号总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">1、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%B7%A5%E5%85%B7swagger2"><span class="nav-number">3.</span> <span class="nav-text">2、工具swagger2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%B7%A5%E5%85%B7Result"><span class="nav-number">4.</span> <span class="nav-text">3、工具Result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">4、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%89%8D%E7%AB%AF%E8%AE%BE%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">6.</span> <span class="nav-text">5、笔记：前端设置步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1"><span class="nav-number">6.1.</span> <span class="nav-text">1、添加路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E8%AE%BE%E7%BD%AE%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2%E8%B7%AF%E5%BE%84"><span class="nav-number">6.2.</span> <span class="nav-text">2、设置跳转页面路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%9C%A8api%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%9B%E5%BB%BAjs%E6%96%87%E4%BB%B6%EF%BC%8C%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%B7%AF%E5%BE%84"><span class="nav-number">6.3.</span> <span class="nav-text">3、在api文件夹创建js文件，定义接口路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%9C%A8%E9%A1%B5%E9%9D%A2%E5%BC%95%E5%85%A5js%E6%96%87%E4%BB%B6%EF%BC%8C%E4%BD%BF%E7%94%A8axios%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%EF%BC%8C%E6%8A%8A%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E5%9C%A8%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA"><span class="nav-number">6.4.</span> <span class="nav-text">4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">6、跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E5%9C%B0%E6%96%B9%EF%BC%8C%E4%BB%BB%E4%BD%95%E4%B8%80%E4%B8%AA%E4%B8%8D%E7%9B%B8%E5%90%8C%E4%BE%BF%E4%BC%9A%E4%BA%A7%E7%94%9F%E8%B7%A8%E5%9F%9F"><span class="nav-number">7.1.</span> <span class="nav-text">三个地方，任何一个不相同便会产生跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">7.2.</span> <span class="nav-text">解决方式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">7、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">8、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">9、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">11.</span> <span class="nav-text">10、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">12.</span> <span class="nav-text">11、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88redis%EF%BC%89"><span class="nav-number">13.</span> <span class="nav-text">12、问题（redis）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13%E3%80%81%E7%AC%94%E8%AE%B0%EF%BC%9Anginx%E8%A7%A3%E5%86%B3%E5%A4%9A%E7%AB%AF%E5%8F%A3%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98"><span class="nav-number">14.</span> <span class="nav-text">13、笔记：nginx解决多端口访问问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14%E3%80%81MongoDB%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">15.</span> <span class="nav-text">14、MongoDB的安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A"><span class="nav-number">15.1.</span> <span class="nav-text">第一步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A"><span class="nav-number">15.2.</span> <span class="nav-text">第二步：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E8%AF%B4lombok%E4%B8%8D%E6%94%AF%E6%8C%81%E6%88%91%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%89"><span class="nav-number">16.</span> <span class="nav-text">15、问题（说lombok不支持我的编译器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16%E3%80%81%E7%99%BB%E5%BD%95mysql"><span class="nav-number">17.</span> <span class="nav-text">16、登录mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17%E3%80%81%E7%AC%94%E8%AE%B0%EF%BC%88MongoDB%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%EF%BC%89"><span class="nav-number">18.</span> <span class="nav-text">17、笔记（MongoDB数据访问）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18%E3%80%81%E7%96%91%E9%97%AE%EF%BC%9A"><span class="nav-number">19.</span> <span class="nav-text">18、疑问：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">20.</span> <span class="nav-text">19、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">21.</span> <span class="nav-text">20、问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ip%E5%92%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">ip和端口号总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">1、版本问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%B7%A5%E5%85%B7swagger2"><span class="nav-number">3.</span> <span class="nav-text">2、工具swagger2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%B7%A5%E5%85%B7Result"><span class="nav-number">4.</span> <span class="nav-text">3、工具Result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81babel%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">4、babel问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%89%8D%E7%AB%AF%E8%AE%BE%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">6.</span> <span class="nav-text">5、笔记：前端设置步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1"><span class="nav-number">6.1.</span> <span class="nav-text">1、添加路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E8%AE%BE%E7%BD%AE%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2%E8%B7%AF%E5%BE%84"><span class="nav-number">6.2.</span> <span class="nav-text">2、设置跳转页面路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%9C%A8api%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%9B%E5%BB%BAjs%E6%96%87%E4%BB%B6%EF%BC%8C%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%B7%AF%E5%BE%84"><span class="nav-number">6.3.</span> <span class="nav-text">3、在api文件夹创建js文件，定义接口路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%9C%A8%E9%A1%B5%E9%9D%A2%E5%BC%95%E5%85%A5js%E6%96%87%E4%BB%B6%EF%BC%8C%E4%BD%BF%E7%94%A8axios%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%EF%BC%8C%E6%8A%8A%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E5%9C%A8%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA"><span class="nav-number">6.4.</span> <span class="nav-text">4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">6、跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E5%9C%B0%E6%96%B9%EF%BC%8C%E4%BB%BB%E4%BD%95%E4%B8%80%E4%B8%AA%E4%B8%8D%E7%9B%B8%E5%90%8C%E4%BE%BF%E4%BC%9A%E4%BA%A7%E7%94%9F%E8%B7%A8%E5%9F%9F"><span class="nav-number">7.1.</span> <span class="nav-text">三个地方，任何一个不相同便会产生跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">7.2.</span> <span class="nav-text">解决方式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E7%B2%97%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">7、粗心问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">8、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">9、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">11.</span> <span class="nav-text">10、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">12.</span> <span class="nav-text">11、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88redis%EF%BC%89"><span class="nav-number">13.</span> <span class="nav-text">12、问题（redis）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13%E3%80%81%E7%AC%94%E8%AE%B0%EF%BC%9Anginx%E8%A7%A3%E5%86%B3%E5%A4%9A%E7%AB%AF%E5%8F%A3%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98"><span class="nav-number">14.</span> <span class="nav-text">13、笔记：nginx解决多端口访问问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14%E3%80%81MongoDB%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">15.</span> <span class="nav-text">14、MongoDB的安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A"><span class="nav-number">15.1.</span> <span class="nav-text">第一步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A"><span class="nav-number">15.2.</span> <span class="nav-text">第二步：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15%E3%80%81%E9%97%AE%E9%A2%98%EF%BC%88%E8%AF%B4lombok%E4%B8%8D%E6%94%AF%E6%8C%81%E6%88%91%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%89"><span class="nav-number">16.</span> <span class="nav-text">15、问题（说lombok不支持我的编译器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16%E3%80%81%E7%99%BB%E5%BD%95mysql"><span class="nav-number">17.</span> <span class="nav-text">16、登录mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17%E3%80%81%E7%AC%94%E8%AE%B0%EF%BC%88MongoDB%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%EF%BC%89"><span class="nav-number">18.</span> <span class="nav-text">17、笔记（MongoDB数据访问）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18%E3%80%81%E7%96%91%E9%97%AE%EF%BC%9A"><span class="nav-number">19.</span> <span class="nav-text">18、疑问：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">20.</span> <span class="nav-text">19、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">21.</span> <span class="nav-text">20、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21%E3%80%81%E9%97%AE%E9%A2%98"><span class="nav-number">22.</span> <span class="nav-text">21、问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22%E3%80%81%E7%AC%94%E8%AE%B0%EF%BC%9Anuxt%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC"><span class="nav-number">23.</span> <span class="nav-text">22、笔记：nuxt路由跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23%E3%80%81%E7%96%91%E9%97%AE%EF%BC%88%E6%9C%AA%E8%A7%A3%E5%86%B3%EF%BC%89"><span class="nav-number">24.</span> <span class="nav-text">23、疑问（未解决）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24%E3%80%81%E5%BE%85%E5%AE%9A"><span class="nav-number">25.</span> <span class="nav-text">24、待定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25%E3%80%81%E6%B8%A9%E6%95%85"><span class="nav-number">26.</span> <span class="nav-text">25、温故</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26%E3%80%81%E6%B8%A9%E6%95%85"><span class="nav-number">27.</span> <span class="nav-text">26、温故</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27%E3%80%81%E6%B8%A9%E6%95%85"><span class="nav-number">28.</span> <span class="nav-text">27、温故</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28%E3%80%81rabbitmq%E5%90%AF%E5%8A%A8"><span class="nav-number">29.</span> <span class="nav-text">28、rabbitmq启动</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,7 +559,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

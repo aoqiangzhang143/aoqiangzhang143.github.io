@@ -917,11 +917,14 @@
     <title>MyHospital项目笔记</title>
     <url>/2021/06/10/MyHospital/</url>
     <content><![CDATA[<h2 id="ip和端口号总结："><a href="#ip和端口号总结：" class="headerlink" title="ip和端口号总结："></a>ip和端口号总结：</h2><p>sql的IP地址：192.168.75.200，端口号：3306</p>
-<p>nginx的端口号：30001</p>
-<p>mongo的ip：192.168.75.200，端口号27017</p>
+<p>nginx的端口号：30001  ——用于分发端口号</p>
+<p>mongo的ip：192.168.75.200，端口号27017   ——-用于存储数据</p>
+<p>nacos—–服务注册中心，端口号8848</p>
+<p>redis的ip地址：192.168.75.200，端口号6379</p>
+<p>rabbitmq：ip192.168.75.200,端口号15672  管理端口号5672</p>
 <hr>
-<h2 id="1、问题"><a href="#1、问题" class="headerlink" title="1、问题"></a>1、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210610141856959.png" alt="Spring版本问题"></p>
-<p>ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用报未找到。</p>
+<h2 id="1、版本问题"><a href="#1、版本问题" class="headerlink" title="1、版本问题"></a>1、版本问题</h2><p><img src="/2021/06/10/MyHospital/image-20210719145620042.png" alt="spring的版本问题"></p>
+<p>ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用也未发现报红。</p>
 <hr>
 <h2 id="2、工具swagger2"><a href="#2、工具swagger2" class="headerlink" title="2、工具swagger2"></a>2、工具swagger2</h2><p>在前期进行测试的时候，类似测试获取数据这种操作，可以直接通过访问固定网页（如：<a href="http://localhost:8201/admin/hosp/hospitalSet/findall%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9B%E4%BD%86%E6%98%AF%E5%9C%A8%E6%B5%8B%E8%AF%95%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E6%A0%B9%E6%8D%AEid%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%89%E6%97%B6%EF%BC%8C%E4%BE%BF%E6%B2%A1%E6%B3%95%E9%80%9A%E8%BF%87%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E9%A1%B5%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%9B%E6%95%85%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E9%87%87%E7%94%A8swagger2%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%8C%E9%80%9A%E8%BF%87%E5%AF%B9swagger2%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%B9%B6%E9%87%87%E7%94%A8%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AF%B9%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%BF%E5%BE%97%E5%8F%AF%E9%98%B6%E6%AE%B5%E6%80%A7%E5%AF%B9%E5%8A%9F%E8%83%BD%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%E3%80%82">http://localhost:8201/admin/hosp/hospitalSet/findall）进行测试；但是在测试删除功能（根据id进行删除）时，便没法通过直接访问网页进行删除；故，在这里采用swagger2进行测试，通过对swagger2进行配置，并采用注解的方式对网页显示进行优化，使得可阶段性对功能进行测试。</a></p>
 <p><img src="/2021/06/10/MyHospital/image-20210612151047092.png" alt="swagger2成果图"></p>
@@ -931,7 +934,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1、查询医院设置表所有信息</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;获取所有医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;findAll&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">findAllHospitalSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用service方法</span></span><br><span class="line">        List&lt;HospitalSet&gt; list = hospitalSetService.list();</span><br><span class="line">        <span class="comment">//此处便对原本返回的list进行包装，源码在此处不再贴出，后续会上传至我的gitee</span></span><br><span class="line">        <span class="keyword">return</span> Result.ok(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、逻辑删除医院设置</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;逻辑删除医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@DeleteMapping(&quot;&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">removeHospSet</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = hospitalSetService.removeById(id);</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.ok();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.fail();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="4、问题"><a href="#4、问题" class="headerlink" title="4、问题"></a>4、问题</h2><p>在安装使用babel时，安装之后无法显示版本号，问题如下</p>
+<h2 id="4、babel问题"><a href="#4、babel问题" class="headerlink" title="4、babel问题"></a>4、babel问题</h2><p>在安装使用babel时，安装之后无法显示版本号，问题如下</p>
 <p><img src="/2021/06/10/MyHospital/image-20210621121447448.png" alt="babel安装问题"></p>
 <p>ans：在安装时为全局配置，此处找不到babel应该是未进行环境路径配置，故在系统变量中添加路径</p>
 <p>babel的路径可通过如下命令获得<img src="/2021/06/10/MyHospital/image-20210621121618787.png" alt="获得babel安装路径"></p>
@@ -953,7 +956,7 @@
 <h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><p>第一种：添加CrossOrigin注解</p>
 <p><img src="/2021/06/10/MyHospital/image-20210622145643778.png" alt="添加CrossOrigin注解"></p>
 <hr>
-<h2 id="7、问题"><a href="#7、问题" class="headerlink" title="7、问题"></a>7、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210622153826279.png" alt="9528报404"></p>
+<h2 id="7、粗心问题"><a href="#7、粗心问题" class="headerlink" title="7、粗心问题"></a>7、粗心问题</h2><p><img src="/2021/06/10/MyHospital/image-20210622153826279.png" alt="9528报404"></p>
 <p>我没添加@CrossOrigin注解，不同端口号是没法访问的，应该是No Access-Control-Allow-Origin，就是下面这个</p>
 <p><img src="/2021/06/10/MyHospital/image-20210622165657782.png" alt="9259报跨域问题"></p>
 <p>ans：应该是在返回数据中未添加条件封装对象导致的</p>
@@ -984,7 +987,7 @@
 <p><img src="/2021/06/10/MyHospital/image-20210625165357501.png" alt="问题12"></p>
 <p>之前报错说没法连接，没password，我在配置文件添加了password，ok</p>
 <p>现在有说还是没法连接到redis，可是IP地址和端口号都没问题，我也关了防火墙：systemctl stop firewalld，为什么还是报错</p>
-<p>而且还提示说我主机中的软件种植了一个已建立的连接</p>
+<p>而且还提示说我主机中的软件终止了一个已建立的连接</p>
 <p><img src="/2021/06/10/MyHospital/image-20210625165620855.png" alt="问题12-2"></p>
 <p>经查阅资料，将redis的config文件中的protected-mode 改为no，看看有没有效果</p>
 <p><img src="/2021/06/10/MyHospital/image-20210625173835048.png" alt="问题12-3"></p>
@@ -1009,7 +1012,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it mymongo /bin/bash</span><br></pre></td></tr></table></figure>
 
 <p>注意：使用容器mongodb之前记得先启动docker，之后进入创建的容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service docker start</span><br><span class="line">//也可也如下启动docker</span><br><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="15、问题（说lombok不支持我的编译器）"><a href="#15、问题（说lombok不支持我的编译器）" class="headerlink" title="15、问题（说lombok不支持我的编译器）"></a>15、问题（说lombok不支持我的编译器）</h2><p>诡异，我前几个模块都用了lombok，现在跟我说不支持…</p>
@@ -1040,6 +1043,41 @@
 <p><img src="/2021/06/10/MyHospital/image-20210630154754091.png" alt="问题20"></p>
 <p>网上有人说是没有指定包，我试下</p>
 <p>ans：确实如此，也不尽然；在该服务下未引入需要用到的feign依赖，服务启动时也未注明引用包的路径，添加依赖和写好包的路径即可</p>
+<hr>
+<h2 id="21、问题"><a href="#21、问题" class="headerlink" title="21、问题"></a>21、问题</h2><p>之前采用的nginx，后来采用配置网关进行接口转发，但是服务启动后提示跨域问题</p>
+<p><img src="/2021/06/10/MyHospital/image-20210705100014265.png" alt="问题21"></p>
+<p>ans:要么接着使用@CrossOrigin注解，要么写个配置类</p>
+<img src="/2021/06/10/MyHospital/image-20210705110829584.png" alt="问题21的ans" style="zoom:50%;">
+
+<hr>
+<h2 id="22、笔记：nuxt路由跳转"><a href="#22、笔记：nuxt路由跳转" class="headerlink" title="22、笔记：nuxt路由跳转"></a>22、笔记：nuxt路由跳转</h2><p>nuxt中路由跳转分为两种：固定路由、动态路由</p>
+<p>固定路由：跳转路径固定，只能是某个指定页面；默认vue文件名称：index.vue</p>
+<p>动态路由：每次可根据参数跳转至不同页面</p>
+<p>​                    创建页面规则：在文件夹下创建vue文件；vue文件命名规范：_参数名称.vue；以下划线开头</p>
+<hr>
+<h2 id="23、疑问（未解决）"><a href="#23、疑问（未解决）" class="headerlink" title="23、疑问（未解决）"></a>23、疑问（未解决）</h2><p>HttpServletRequest是干嘛用的</p>
+<hr>
+<h2 id="24、待定"><a href="#24、待定" class="headerlink" title="24、待定"></a>24、待定</h2><p>在p143这里，我的就诊人信息刷新不出，不清楚是不是因为patient的信息写的不够完整；之后还要做添加就诊人员的信息，暂且放置。</p>
+<p><img src="/2021/06/10/MyHospital/image-20210714203109334.png" alt="问题24"></p>
+<hr>
+<h2 id="25、温故"><a href="#25、温故" class="headerlink" title="25、温故"></a>25、温故</h2><p>QuerryWrapper的条件查询和模糊查询，记得看一下源码人家是怎么实现的。</p>
+<hr>
+<h2 id="26、温故"><a href="#26、温故" class="headerlink" title="26、温故"></a>26、温故</h2><p>Feign这个注解是干啥的</p>
+<hr>
+<h2 id="27、温故"><a href="#27、温故" class="headerlink" title="27、温故"></a>27、温故</h2><p>rabbitMQ</p>
+<hr>
+<h2 id="28、rabbitmq启动"><a href="#28、rabbitmq启动" class="headerlink" title="28、rabbitmq启动"></a>28、rabbitmq启动</h2><p>这个是创建并启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management</span><br></pre></td></tr></table></figure>
+
+<p>启动rabbitmq容器的话，先用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it rabbitmq /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>查找所有容器id，是一串数字，然后再启动该容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start 925153afeb449859b139ba8b9977312ec0dd1bfedf86772ddc735b72f466803b</span><br></pre></td></tr></table></figure>
+
+<p>,接下来即可启动rabbitmq。</p>
+<hr>
+<p>29、问题（空指针异常p160）</p>
 ]]></content>
       <categories>
         <category>项目Hospital</category>
@@ -1882,6 +1920,64 @@
 ]]></content>
       <categories>
         <category>Java基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>回文字符串</title>
+    <url>/2021/07/18/%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h2 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5. 最长回文子串"></a><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5. 最长回文子串</a></h2><h3 id="知识点：manacher算法"><a href="#知识点：manacher算法" class="headerlink" title="知识点：manacher算法"></a>知识点：manacher算法</h3><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>manacher算法的<strong>快捷</strong>在于将每个节点的最大臂长都记录在内，这样下次再查找的时候就不必再做重复工作；另外，对字符串进行处理（加特殊符号），使得字符串的长度全部都为奇数。</p>
+<h3 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a><strong>复杂度分析</strong>：</h3><p>时间复杂度：O(n)，其中 n 是字符串的长度。由于对于每个位置，扩展要么从当前的最右侧臂长 right 开始，要么只会进行一步，而 right 最多向前走 O(n) 步，因此算法的复杂度为 O(n)。</p>
+<p>空间复杂度：O(n)，我们需要 O(n) 的空间记录每个位置的臂长。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//先对字符串进行处理：+特殊字符</span></span><br><span class="line">        StringBuffer t = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;$&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            t.append(s.charAt(i));</span><br><span class="line">            t.append(<span class="string">&#x27;$&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        s = t.toString();</span><br><span class="line">        <span class="comment">//定义start为最长字符串的起始位置，end为最长字符串的结束位置</span></span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>,end = -<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//定义right为当前回文串的最右侧，center为最长回文串的对称中心</span></span><br><span class="line">        <span class="keyword">int</span> right = -<span class="number">1</span>,center = -<span class="number">1</span>;</span><br><span class="line">        List&lt;Integer&gt; armLength = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> curArmLength = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;=right)&#123;<span class="comment">//若当前位置在最长回文串范围内部</span></span><br><span class="line">                <span class="keyword">int</span> iSym = center*<span class="number">2</span>-i;</span><br><span class="line">                <span class="comment">//minArm是当前可确定的最短臂长</span></span><br><span class="line">                <span class="keyword">int</span> minArm = Math.min(right-i,armLength.get(iSym));</span><br><span class="line">                <span class="comment">//之后对当前臂长开始向两侧伸展</span></span><br><span class="line">                curArmLength = getArmLength(s,i-minArm,i+minArm);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;<span class="comment">//没有就重头开始找咯</span></span><br><span class="line">                curArmLength = getArmLength(s,i,i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//每一轮都要对数据进行更新</span></span><br><span class="line">            armLength.add(curArmLength);</span><br><span class="line">            <span class="keyword">if</span>(right&lt;i+curArmLength)&#123;<span class="comment">//如果之前的right不行了，就进行更新</span></span><br><span class="line">                center=i;</span><br><span class="line">                right = i+curArmLength;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(end-start&lt;curArmLength*<span class="number">2</span>+<span class="number">1</span>)&#123;</span><br><span class="line">                start = i-curArmLength;</span><br><span class="line">                end = i+curArmLength;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//再次处理字符串，消除特殊字符</span></span><br><span class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=end;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)!=<span class="string">&#x27;$&#x27;</span>)&#123;</span><br><span class="line">                res.append(s.charAt(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//找到字符串的臂长</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getArmLength</span><span class="params">(String s,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&gt;=<span class="number">0</span> &amp;&amp; right&lt;s.length()&amp;&amp;s.charAt(left)==s.charAt(right))&#123;</span><br><span class="line">            --left;</span><br><span class="line">            ++right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (right-left-<span class="number">2</span>)/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="214-最短回文串"><a href="#214-最短回文串" class="headerlink" title="214. 最短回文串"></a><a href="https://leetcode-cn.com/problems/shortest-palindrome/">214. 最短回文串</a></h2><p>给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串。</p>
+<p>示例 1：</p>
+<p>输入：s = “aacecaaa” 输出：”aaacecaaa” 示例 2：</p>
+<p>输入：s = “abcd” 输出：”dcbabcd”</p>
+<h3 id="知识点：字符串、manacher、KMP"><a href="#知识点：字符串、manacher、KMP" class="headerlink" title="知识点：字符串、manacher、KMP"></a>知识点：字符串、manacher、KMP</h3><h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>这个题目前没解决，走了个递归的路子，我尝试用manacher进行计算，超时了，但是有人的manacher没超时，说明我的manacher还有待改进；这个题用KMP是最好的，还有个解法是用的字符串哈希，那个是“投机取巧”了(我也不会用)。</p>
+<p>已经掌握KMP模式匹配算法。</p>
+<h3 id="KMP代码如下："><a href="#KMP代码如下：" class="headerlink" title="KMP代码如下："></a>KMP代码如下：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shortestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="comment">//next[i]为到下标为i的位置时前缀后缀匹配个数</span></span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="comment">//从1开始是因为next[0]肯定是0</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,size = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="comment">//如果不相等，就把size改为上一个相等位置的长度</span></span><br><span class="line">            <span class="keyword">while</span>(size&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(size))&#123;</span><br><span class="line">                size = next[size-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==s.charAt(size))&#123;</span><br><span class="line">                ++size;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i] = size;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="comment">//将s和其倒序字符串进行最大前缀后缀匹配个数</span></span><br><span class="line">            <span class="keyword">while</span>(index&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(index))&#123;</span><br><span class="line">                index = next[index-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(index)==s.charAt(i))&#123;</span><br><span class="line">                ++index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果s本身是回文字符串，那么index就是s的length</span></span><br><span class="line">        String add = (index==len?<span class="string">&quot;&quot;</span>:s.substring(index));</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(add);</span><br><span class="line">        <span class="keyword">return</span> sb.reverse().append(s).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>医院挂号系统知识点总结</title>
+    <url>/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>在此对尚医通在线预约挂号系统进行一个总结，以致自省。</p>
+<h2 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h2><h2 id="一、后台管理系统"><a href="#一、后台管理系统" class="headerlink" title="一、后台管理系统"></a>一、后台管理系统</h2><h3 id="1、医院设置管理"><a href="#1、医院设置管理" class="headerlink" title="1、医院设置管理"></a>1、医院设置管理</h3><p>包括</p>
+<p>​    医院设置列表显示（包括该医院的网址、医院编号、联系人、联系方式）</p>
+<p>​    医院设置添加（添加新的医院设置）</p>
+<p>​    进行医院锁定（锁定之后不可再进行预约）</p>
+<p>​    医院设置的删除</p>
+<p>​    医院列表（显示医院的名称、等级、地址）</p>
+<p>​    医院详情（该医院的具体详细信息）</p>
+<p>​    医院的排班情况（分科室）</p>
+<p>​    医院上线、下线</p>
+<h3 id="2、数据管理"><a href="#2、数据管理" class="headerlink" title="2、数据管理"></a>2、数据管理</h3><p>​    数据字典的树形显示、</p>
+<p>​    数据的导入、导出功能（通过excel表格形式）</p>
+<h3 id="3、用户管理"><a href="#3、用户管理" class="headerlink" title="3、用户管理"></a>3、用户管理</h3><p>​    用户列表（查看所有用户）</p>
+<p>​    用户详情（查看用户名称、证件信息等）</p>
+<p>​    用户锁定（违规操作锁定账号）</p>
+<p>​    认证审批列表（用户注册时，需后台进行审批的列表，可查看用户信息、进行判定通过或者不通过）</p>
+<h2 id="二、前台用户系统"><a href="#二、前台用户系统" class="headerlink" title="二、前台用户系统"></a>二、前台用户系统</h2><h3 id="1、首页数据显示"><a href="#1、首页数据显示" class="headerlink" title="1、首页数据显示"></a>1、首页数据显示</h3><p>​    显示下属医院、</p>
+<p>​    显示所有等级和地区信息（并可根据不同等级和地区进行医院查询）</p>
+<p>​    并可根据医院名称进行搜索</p>
+<h3 id="2、通过显示医院进入医院的详情页面"><a href="#2、通过显示医院进入医院的详情页面" class="headerlink" title="2、通过显示医院进入医院的详情页面"></a>2、通过显示医院进入医院的详情页面</h3><p>​    查看医院详情</p>
+<p>​    查看各个科室及下属部门</p>
+<p>​    点击不同的科室进行挂号</p>
+<h3 id="3、用户注册-登录"><a href="#3、用户注册-登录" class="headerlink" title="3、用户注册/登录"></a>3、用户注册/登录</h3><p>​    通过手机号进行注册/登录（本来是要通过整合阿里云的短信功能，但是一直申请不下来）</p>
+<h3 id="4、用户的实名认证功能"><a href="#4、用户的实名认证功能" class="headerlink" title="4、用户的实名认证功能"></a>4、用户的实名认证功能</h3><p>​    挂号之前需要用户进行填写姓名和身份证，提交之后会显示认证状态，后台通过之后才可以进行挂号</p>
+<h3 id="5、就诊人信息"><a href="#5、就诊人信息" class="headerlink" title="5、就诊人信息"></a>5、就诊人信息</h3><p>​    用户完成注册之后，挂号之前需要填写就诊人信息（姓名、证件类型、证件号码、性别、出生日期、手机号码），包括就诊人列表、添    加、详情、删除</p>
+<h3 id="6、预约挂号功能"><a href="#6、预约挂号功能" class="headerlink" title="6、预约挂号功能"></a>6、预约挂号功能</h3><p>​    用户完成注册之后，通过进入医院界面，选择科室之后，会显示可预约的日期以及当前选择日期的可预约情况（上午、下午、主治医师信息、剩余可预约数量），选择日期和科室之后，跳转至挂号详情页面，确认挂号信息，生成挂号订单，之后可进行订单支付或者订单取消</p>
+<hr>
+<h2 id="前后端知识点"><a href="#前后端知识点" class="headerlink" title="前后端知识点"></a>前后端知识点</h2><h3 id="后端技术"><a href="#后端技术" class="headerlink" title="后端技术"></a>后端技术</h3>]]></content>
+      <categories>
+        <category>项目Hospital</category>
       </categories>
   </entry>
 </search>
