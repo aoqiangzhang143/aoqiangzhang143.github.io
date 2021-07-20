@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">33</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -209,10 +209,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-19 00:00:00 / 修改时间：16:11:44" itemprop="dateCreated datePublished" datetime="2021-07-19T00:00:00+08:00">2021-07-19</time>
+              <time title="创建时间：2021-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-19T00:00:00+08:00">2021-07-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-20 10:24:57" itemprop="dateModified" datetime="2021-07-20T10:24:57+08:00">2021-07-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -256,7 +262,7 @@
 
       
           <p>在此对尚医通在线预约挂号系统进行一个总结，以致自省。</p>
-<h2 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h2><h2 id="一、后台管理系统"><a href="#一、后台管理系统" class="headerlink" title="一、后台管理系统"></a>一、后台管理系统</h2><h3 id="1、医院设置管理"><a href="#1、医院设置管理" class="headerlink" title="1、医院设置管理"></a>1、医院设置管理</h3><p>包括</p>
+<h1 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h1><h2 id="一、后台管理系统"><a href="#一、后台管理系统" class="headerlink" title="一、后台管理系统"></a>一、后台管理系统</h2><h3 id="1、医院设置管理"><a href="#1、医院设置管理" class="headerlink" title="1、医院设置管理"></a>1、医院设置管理</h3><p>包括</p>
 <p>​    医院设置列表显示（包括该医院的网址、医院编号、联系人、联系方式）</p>
 <p>​    医院设置添加（添加新的医院设置）</p>
 <p>​    进行医院锁定（锁定之后不可再进行预约）</p>
@@ -282,7 +288,56 @@
 <h3 id="5、就诊人信息"><a href="#5、就诊人信息" class="headerlink" title="5、就诊人信息"></a>5、就诊人信息</h3><p>​    用户完成注册之后，挂号之前需要填写就诊人信息（姓名、证件类型、证件号码、性别、出生日期、手机号码），包括就诊人列表、添    加、详情、删除</p>
 <h3 id="6、预约挂号功能"><a href="#6、预约挂号功能" class="headerlink" title="6、预约挂号功能"></a>6、预约挂号功能</h3><p>​    用户完成注册之后，通过进入医院界面，选择科室之后，会显示可预约的日期以及当前选择日期的可预约情况（上午、下午、主治医师信息、剩余可预约数量），选择日期和科室之后，跳转至挂号详情页面，确认挂号信息，生成挂号订单，之后可进行订单支付或者订单取消</p>
 <hr>
-<h2 id="前后端知识点"><a href="#前后端知识点" class="headerlink" title="前后端知识点"></a>前后端知识点</h2><h3 id="后端技术"><a href="#后端技术" class="headerlink" title="后端技术"></a>后端技术</h3>
+<h1 id="前后端知识点"><a href="#前后端知识点" class="headerlink" title="前后端知识点"></a>前后端知识点</h1><h2 id="后端技术"><a href="#后端技术" class="headerlink" title="后端技术"></a>后端技术</h2><hr>
+<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p>一个Spring的脚手架，快速构建Spring工程</p>
+<hr>
+<h3 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h3><p>Nacos：注册服务中心，实现不同服务之间的调用，需要在注册服务中心进行注册</p>
+<p>Feign：用于发现服务，从而进行调用</p>
+<p>gateway：通过网关根据不同的路径进行转发至不同的接口，从而调用不同的服务</p>
+<hr>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>一个内存数据库，基于key-value进行存储，优点是查询效率高</p>
+<p>（1）作为缓存使用，将不经常变动的数据存放入redis中，如：医院信息</p>
+<img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210720094940760.png" alt="redis使用1" style="zoom:50%;">
+
+<p>（2）验证码有效时间</p>
+<hr>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>NoSql型数据库</p>
+<p>（1）将医院的基本信息、科室信息、排班信息等存储在MongoDB中，通过SpringBoot整合MongoTemplate和MongoRepository对数据库进行操作</p>
+<hr>
+<h3 id="EasyExcel"><a href="#EasyExcel" class="headerlink" title="EasyExcel"></a>EasyExcel</h3><p>阿里开发的一个操作Excel的工具，可对excel表格进行快速读取</p>
+<hr>
+<h3 id="MyBatisPlus"><a href="#MyBatisPlus" class="headerlink" title="MyBatisPlus"></a>MyBatisPlus</h3><p>本身就是对MyBatis的增强，通过该工具实现对数据库的快速操作</p>
+<p>（1）接口继承IService</p>
+<img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210720100130577.png" alt="MyBatisPlus使用1" style="zoom: 67%;">
+
+<p>（2）在mapper中继承BaseMapper；BaseMapper封装了增删改查的基本操作</p>
+<p><img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210720100322528.png" alt="MyBatisPlus使用2"></p>
+<hr>
+<h3 id="RabbitMQ（补）"><a href="#RabbitMQ（补）" class="headerlink" title="RabbitMQ（补）"></a>RabbitMQ（补）</h3><p>订单的相关操作，订单修改发送mq消息，mq消息的好处：使得项目的并发功能更加强大</p>
+<hr>
+<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><p>下载镜像、创建容器</p>
+<p>（1）MongoDB容器的创建</p>
+<p>（2）RabbitMQ容器的创建</p>
+<hr>
+<h3 id="swagger-ui"><a href="#swagger-ui" class="headerlink" title="swagger-ui"></a>swagger-ui</h3><p>这也是个工具，用于后端接口进行阶段性调试时使用；写好一个接口可进行功能测试。</p>
+<hr>
+<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><hr>
+<h3 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h3><p>一个快速构建页面的框架；指令：v-if、v-for、插值表达式</p>
+<hr>
+<h3 id="Element-ui"><a href="#Element-ui" class="headerlink" title="Element-ui"></a>Element-ui</h3><p>一个前端组件库，可以快速实现组件效果</p>
+<hr>
+<h3 id="Nuxt"><a href="#Nuxt" class="headerlink" title="Nuxt"></a>Nuxt</h3><p>一个服务端渲染技术</p>
+<hr>
+<h3 id="Npm"><a href="#Npm" class="headerlink" title="Npm"></a>Npm</h3><p>项目里用的最多的就是下载依赖</p>
+<hr>
+<hr>
+<hr>
+<p>我学到了什么：</p>
+<p>swagger-ui这个小工具，用于调试接口很好用，可提高排错效率</p>
+<hr>
+<p>result：一个结果集，这个很实用，相当于对函数的返回类型进行统一，使得代码通用性更高</p>
+<hr>
+
       
     </div>
 
@@ -390,6 +445,105 @@
 <h3 id="知识点：字符串、manacher、KMP"><a href="#知识点：字符串、manacher、KMP" class="headerlink" title="知识点：字符串、manacher、KMP"></a>知识点：字符串、manacher、KMP</h3><h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>这个题目前没解决，走了个递归的路子，我尝试用manacher进行计算，超时了，但是有人的manacher没超时，说明我的manacher还有待改进；这个题用KMP是最好的，还有个解法是用的字符串哈希，那个是“投机取巧”了(我也不会用)。</p>
 <p>已经掌握KMP模式匹配算法。</p>
 <h3 id="KMP代码如下："><a href="#KMP代码如下：" class="headerlink" title="KMP代码如下："></a>KMP代码如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shortestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="comment">//next[i]为到下标为i的位置时前缀后缀匹配个数</span></span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="comment">//从1开始是因为next[0]肯定是0</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,size = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="comment">//如果不相等，就把size改为上一个相等位置的长度</span></span><br><span class="line">            <span class="keyword">while</span>(size&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(size))&#123;</span><br><span class="line">                size = next[size-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==s.charAt(size))&#123;</span><br><span class="line">                ++size;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i] = size;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="comment">//将s和其倒序字符串进行最大前缀后缀匹配个数</span></span><br><span class="line">            <span class="keyword">while</span>(index&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(index))&#123;</span><br><span class="line">                index = next[index-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(index)==s.charAt(i))&#123;</span><br><span class="line">                ++index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果s本身是回文字符串，那么index就是s的length</span></span><br><span class="line">        String add = (index==len?<span class="string">&quot;&quot;</span>:s.substring(index));</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(add);</span><br><span class="line">        <span class="keyword">return</span> sb.reverse().append(s).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">无重复最长字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-18T00:00:00+08:00">2021-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-20 18:32:13" itemprop="dateModified" datetime="2021-07-20T18:32:13+08:00">2021-07-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-meta-item leancloud_visitors" data-flag-title="无重复最长字符串" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3. 无重复字符的最长子串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h2><p>给定一个字符串，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>双指针、滑动窗口</p>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>这个问题的解决模型是滑动窗口。同时定义两个指针，一个临时固定p1，一个不断扫描p2；当p2扫描至已包含的字符时，让p1后移，直至不包含重复字符。在此需要用到一个collection：HashSet，用于记录已扫描的字符和判断是否包含下一个字符；每次p1后移之前，记录下无重复的最大长度。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        HashSet&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> right = -<span class="number">1</span>,res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i!=<span class="number">0</span>)&#123;</span><br><span class="line">                set.remove(s.charAt(i-<span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(right&lt;len-<span class="number">1</span>&amp;&amp;!set.contains(s.charAt(right+<span class="number">1</span>)))&#123;</span><br><span class="line">                set.add(s.charAt(right+<span class="number">1</span>));</span><br><span class="line">                ++right;</span><br><span class="line">            &#125;</span><br><span class="line">            res = Math.max(res,right-i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -677,7 +831,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-19 14:56:28" itemprop="dateModified" datetime="2021-07-19T14:56:28+08:00">2021-07-19</time>
+                <time title="修改时间：2021-07-20 15:11:44" itemprop="dateModified" datetime="2021-07-20T15:11:44+08:00">2021-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -759,7 +913,9 @@
 <p>2、访问地址：192.128.1.1    172.11.1.1</p>
 <p>3、端口号：9528    8201</p>
 <h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><p>第一种：添加CrossOrigin注解</p>
+<p>这个得配合nginx使用</p>
 <p><img src="/2021/06/10/MyHospital/image-20210622145643778.png" alt="添加CrossOrigin注解"></p>
+<p>第二种：采用gateway进行配置</p>
 <hr>
 <h2 id="7、粗心问题"><a href="#7、粗心问题" class="headerlink" title="7、粗心问题"></a>7、粗心问题</h2><p><img src="/2021/06/10/MyHospital/image-20210622153826279.png" alt="9528报404"></p>
 <p>我没添加@CrossOrigin注解，不同端口号是没法访问的，应该是No Access-Control-Allow-Origin，就是下面这个</p>
@@ -831,7 +987,7 @@
 
 
 <hr>
-<h2 id="17、笔记（MongoDB数据访问）"><a href="#17、笔记（MongoDB数据访问）" class="headerlink" title="17、笔记（MongoDB数据访问）"></a>17、笔记（MongoDB数据访问）</h2><p>这个厉害，Spring Data提供了对mongodb数据访问的支持，只需要继承MongoRepository类，按照Spring Data规范进行命名函数即可自动生成</p>
+<h2 id="17、笔记（MongoDB数据访问）"><a href="#17、笔记（MongoDB数据访问）" class="headerlink" title="17、笔记（MongoDB数据访问）"></a>17、笔记（MongoDB数据访问）</h2><p>这个<strong>厉害</strong>，Spring Data提供了对mongodb数据访问的支持，只需要继承MongoRepository类，按照Spring Data规范进行命名函数即可自动生成</p>
 <p>1、不是随便声明的，而需要符合一定的规范<br> 2、 查询方法以find | read | get开头<br> 3、 涉及条件查询时，条件的属性用条件关键字连接<br> 4、 要注意的是：条件属性首字母需要大写</p>
 <p><img src="/2021/06/10/MyHospital/image-20210628153532261.png" alt="笔记17-1"></p>
 <p><img src="/2021/06/10/MyHospital/image-20210628153543607.png" alt="笔记17-2"></p>
@@ -1327,198 +1483,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Spring实战第四版读书笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-04T00:00:00+08:00">2021-06-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-10 09:50:49" itemprop="dateModified" datetime="2021-06-10T09:50:49+08:00">2021-06-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">读书总结</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-meta-item leancloud_visitors" data-flag-title="Spring实战第四版读书笔记" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h1><p>spring本质上是简化java开发。</p>
-<p>几个简写：</p>
-<table>
-<thead>
-<tr>
-<th>EJB</th>
-<th>Enterprise JavaBean</th>
-<th>企业级javabean</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>JDO</td>
-<td>Java Data Object</td>
-<td>java数据对象</td>
-</tr>
-<tr>
-<td>POJO</td>
-<td>Plian Old Java Object</td>
-<td>简单老式java对象</td>
-</tr>
-<tr>
-<td>DI</td>
-<td>Dependency Injection</td>
-<td>依赖注入</td>
-</tr>
-<tr>
-<td>AOP</td>
-<td>Aspect-Oriented Programing</td>
-<td>面向切面编程</td>
-</tr>
-</tbody></table>
-<h2 id="第一章：简介"><a href="#第一章：简介" class="headerlink" title="第一章：简介"></a>第一章：简介</h2><h3 id="怎么简化java开发的："><a href="#怎么简化java开发的：" class="headerlink" title="怎么简化java开发的："></a>怎么简化java开发的：</h3><p>通过DI和AOP实现松耦合；基于切面和惯例进行声明式编程；通过切面和模板减少样板式代码</p>
-<h3 id="AOP的作用："><a href="#AOP的作用：" class="headerlink" title="AOP的作用："></a>AOP的作用：</h3><p>AOP通过将遍布应用各处的功能分离出来，形成可重用的组件，从而确保pojo的简单性</p>
-<h3 id="Spring容器："><a href="#Spring容器：" class="headerlink" title="Spring容器："></a>Spring容器：</h3><p>将一个类转化为一个切面，首先需要将其声明为一个SpringBean，bean对象生存于Spring容器中；</p>
-<p>Spring的容器分为两大类：bean工厂和应用上下文。</p>
-<hr>
-<h2 id="第二章：装配bean"><a href="#第二章：装配bean" class="headerlink" title="第二章：装配bean"></a>第二章：装配bean</h2><p>装配bean有三种方式：</p>
-<p>1、xml配置</p>
-<p>2、java显示装配</p>
-<p>3、<strong>自动装配</strong>【重要】</p>
-<p>自动装配最为便捷。</p>
-<p>以下为简单的自动装配</p>
-<p>分别创建三个pojo并进行注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="comment">//第一个pojo</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">voice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;喵喵喵&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="comment">//第二个pojo</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">voice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;汪汪叫&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="comment">//第三个pojo</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我有两只宠物&quot;</span>);</span><br><span class="line">        cat.voice();</span><br><span class="line">        dog.voice();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>之后将三个pojo存放至spring容器中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exm3Config</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最后便可对其进行测试</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.exam3test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Exm3Config;</span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Human;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = Exm3Config.class)</span></span><br><span class="line"><span class="comment">//下面这个注解必须要加，不然会报nulllpointerexception</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exm3Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Human human;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        human.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h2><h3 id="配置profile-bean："><a href="#配置profile-bean：" class="headerlink" title="配置profile bean："></a>配置profile bean：</h3><p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
-<hr>
-<h3 id="激活profile："><a href="#激活profile：" class="headerlink" title="激活profile："></a>激活profile：</h3><p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
-<p>没设置active的话，如果定义了spring.profiles.default，那就根据default进行jihuo</p>
-<p>如果都没设置，那就只创建那些没定义在profile中的bean</p>
-<hr>
-<h3 id="条件化的bean"><a href="#条件化的bean" class="headerlink" title="条件化的bean"></a>条件化的bean</h3><p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
-<hr>
-<h3 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h3><p>一个接口会存在多个实现类，此时进行自动装配时，spring无法确定装配哪个类。。</p>
-<p>解决方法：</p>
-<p>1、设置首选bean：@Primary</p>
-<p>2、采用限定符来确定装配指定的bean：@Qualifier（“iceCream”）；@Qualifier也可以用于bean上，相当于为该bean设置ID；@Qualifier也可以将每个bean的ID设置为该类的特性，一个bean会存在多个特性，但是同一个类不允许多次使用同一个注解，因此可自行创建注解</p>
-<p><img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png" alt="自行创建注解"></p>
-<hr>
-<h3 id="运行时值注入"><a href="#运行时值注入" class="headerlink" title="运行时值注入"></a>运行时值注入</h3><p>目的：使得一些值在运行时再确定</p>
-<p>方法：</p>
-<p>1、属性占位符</p>
-<p>2、Spring表达式语言（SpEL）【重点】</p>
-<p>SpEL的使用方法：</p>
-<p>表示字面值：#{3.1459}，#{‘Hello’}，#{false}</p>
-<p>引用bean、属性、方法</p>
-<p>#{people}，#{people.name}，#{people.speak()}</p>
-<hr>
-<h2 id="第四章：面向切面的Spring"><a href="#第四章：面向切面的Spring" class="headerlink" title="第四章：面向切面的Spring"></a>第四章：面向切面的Spring</h2><p>AOP术语：</p>
-<p>通知（Advice）：切面的工作被称为通知；通知包含了需要用于多个对象的横切行为。</p>
-<p>连接点（Join Point）：在应用执行过程中插入到切面的一个点，切面代码利用这些点插入到应用的正常流程之中，并添加新的行为；连                                      接点是程序执行过程中能够应用通知的所有点。</p>
-<p>切点（Pointcut）：通知定义了切面的“什么”和“何时”，切点定义了“何处”；切点定义了哪些连接点会得到通知。</p>
-<p>切面（Aspect）：通知和切点构成了切面的全部内容。</p>
-<p>引入（Introduction）：向现有的类添加新的方法和属性。</p>
-<p>织入（Weaving）：将切面应用到目标对象并创建新的代理对象的过程。</p>
-<h2 id="第五章：构建Spring-Web应用程序"><a href="#第五章：构建Spring-Web应用程序" class="headerlink" title="第五章：构建Spring Web应用程序"></a>第五章：构建Spring Web应用程序</h2><h4 id="跟踪Spring-MVC的请求"><a href="#跟踪Spring-MVC的请求" class="headerlink" title="跟踪Spring MVC的请求"></a>跟踪Spring MVC的请求</h4><p><img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210608101154885.png" alt="Spring MVC的请求流程"></p>
-<p>在请求离开浏览器时(1)，会带有用户所请求内容的信息，至少会包含请求的URL。但是还可能带有其他的信息，例如用户提交的表单信息。<br>请求旅程的第一站是Spring的DispatcherServlet。与大多数基于Java的Web框架一样，Spring MVC所有的请求都会通过一个前端控制器（front controller）Serlet。前端控制器是常用的Web应用程序模式，在这里一个单实例的Serlet将请求委托给应用程序的其他组件来执行实际的处理。在Spring MVC中，DispatcherServlet就是前端控制器。<br>DispatcherServlet的任务是将请求发送给Spring MVC控制器（controller)。控制器是一个用于处理请求的Spring组件。在典型的应用程序中可能会有多个控制器，Dispatcherservlet需要知道应该将请求发送给哪个控制器。所以DispatcherServlet以会查询一个或多个处理器映射（handler mapping)(2)来确定请求的下一站在哪里。处理器映射会根据请求所携带的URL信息来进行决策。<br>一旦选择了合适的控制器，Dispatcherservlet会将请求发送给选中的控制器(3)。到了控制器，请求会卸下其负载（用户提交的信息）并耐心等待控制器处理这些信息。（实际上，设计良好的控制器本身只处理很少甚至不处理工作，而是将业务逻辑委托给一个或多个服务对象进行处理。)控制器在完成逻辑处理后，通常会产生一些信息，这些信息需要返回给用户并在浏览器上显示。这些信息被称为模型（model）。不过仅仅给用户返回原始的信息是不够的——这些信息需要以用户友好的方式进行格式化，一般会是HTML。所以，信息需要发送给一个视图（view），通常会是JSP。<br>控制器所做的最后一件事就是将模型数据打包，并且标示出用于渲染输出的视图名。它接下来会将请求连同模型和视图名发送回DispatcherServlet(4)。<br>这样，控制器就不会与特定的视图相耦合，传递给Dispatcherservlet的视图名并不直接表示某个特定的JSP。实际上，它甚至并不能确定视图就是JSP。相反，它仅仅传递了一个逻辑名称，这个名字将会用来查找产生结果的真正视图。Dispatcherservlet将会使用视图解析器（view resolver）(5)来将逻辑视图名匹配为一个特定的视图实现，它可能是也可能不是JSP。<br>既然DispatcherServlet已经知道由哪个视图渲染结果，那请求的任务基本上也就完成了。它的最后一站是视图的实现（可能是JSP）(6)，在这里它交付模型数据。请求的任务就完成了。视图将使用模型数据渲染输出，这个输出会通过响应对象传递给客户端（不会像听上去那样硬编码）(7)。<br>可以看到，请求要经过很多的步骤，最终才能形成返回给客户端的响应。大多数的步骤都是在Spring框架内部完成的，也就是图5.1所示的组件中。尽管本章的主要内容都关注于如何编写控制器，但在此之前我们首先看一下如何搭建Spring MVC的基础组件。</p>
-<hr>
-<h2 id="第六章：渲染web视图"><a href="#第六章：渲染web视图" class="headerlink" title="第六章：渲染web视图"></a>第六章：渲染web视图</h2><p>这个暂时跳过。</p>
-<hr>
-<h2 id="第七章：SpringMVC的高级技术"><a href="#第七章：SpringMVC的高级技术" class="headerlink" title="第七章：SpringMVC的高级技术"></a>第七章：SpringMVC的高级技术</h2><p>这章看了一遍，不是很明白。</p>
-<hr>
-<h2 id="第八章：使用Spring-Web-Flow"><a href="#第八章：使用Spring-Web-Flow" class="headerlink" title="第八章：使用Spring Web Flow"></a>第八章：使用Spring Web Flow</h2><hr>
-<h2 id="第九章：保护Web应用"><a href="#第九章：保护Web应用" class="headerlink" title="第九章：保护Web应用"></a>第九章：保护Web应用</h2><p>注：第五~第九章将的是Spring在web中的应用，暂且跳过。</p>
-<hr>
-<h2 id="第十章：通过Spring和JDBC连接数据库"><a href="#第十章：通过Spring和JDBC连接数据库" class="headerlink" title="第十章：通过Spring和JDBC连接数据库"></a>第十章：通过Spring和JDBC连接数据库</h2><p>通过jdbc消除样板式代码，使得在编程阶段能专注于代码本身；</p>
-<p>简单讲了下jdbc的用法</p>
-<hr>
-<h2 id="第十一章：使用对象-关系映射持久化数据"><a href="#第十一章：使用对象-关系映射持久化数据" class="headerlink" title="第十一章：使用对象-关系映射持久化数据"></a>第十一章：使用对象-关系映射持久化数据</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1590,7 +1554,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1603,7 +1567,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
