@@ -981,7 +981,7 @@
 <p>ans：怀疑是误删了什么资源文件，于是采用npm install 进行重新下载依赖，即可打开</p>
 <h2 id="11、问题"><a href="#11、问题" class="headerlink" title="11、问题"></a>11、问题</h2><p>为什么没法保存</p>
 <p><img src="/2021/06/10/MyHospital/image-20210623154018908.png" alt="问题11"></p>
-<p>ans：经查看错误提示发现，在添加医院设置时，主键id并未进行设置，故报错</p>
+<p>ans：经debug发现，在添加医院设置时，主键id并未进行设置，故报错</p>
 <p>可是我主键id设置了自增，不必手动进行设置即可；在mysql中添加数据发现确实必须要设置id，于是对id的自增属性进行重新设置，问题解决。</p>
 <hr>
 <h2 id="12、问题（redis）"><a href="#12、问题（redis）" class="headerlink" title="12、问题（redis）"></a>12、问题（redis）</h2><p>在设置redis进行缓存的时候出现问题，报错如下</p>
@@ -991,7 +991,7 @@
 <p>现在有说还是没法连接到redis，可是IP地址和端口号都没问题，我也关了防火墙：systemctl stop firewalld，为什么还是报错</p>
 <p>而且还提示说我主机中的软件终止了一个已建立的连接</p>
 <p><img src="/2021/06/10/MyHospital/image-20210625165620855.png" alt="问题12-2"></p>
-<p>经查阅资料，将redis的config文件中的protected-mode 改为no，看看有没有效果</p>
+<p>经查阅资料，将redis的config文件中的protected-mode改为no，看看有没有效果</p>
 <p><img src="/2021/06/10/MyHospital/image-20210625173835048.png" alt="问题12-3"></p>
 <p>–没效果</p>
 <p>再把这个改为0.0.0.0</p>
@@ -1004,10 +1004,12 @@
 <p>（视频用的是9001）之后将前端的配置端口号改为30001，至此，所有端口号请求发送至30001，再由nginx对不同的关键字进行正则匹配，分发至各自端口号</p>
 <p><img src="/2021/06/10/MyHospital/image-20210626140859725.png" alt="笔记13-2"></p>
 <hr>
-<h2 id="14、MongoDB的安装和使用"><a href="#14、MongoDB的安装和使用" class="headerlink" title="14、MongoDB的安装和使用"></a>14、MongoDB的安装和使用</h2><h3 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h3><p>使用docker拉取mongoDB镜像</p>
+<h2 id="14、MongoDB的安装和使用"><a href="#14、MongoDB的安装和使用" class="headerlink" title="14、MongoDB的安装和使用"></a>14、MongoDB的安装和使用</h2><p>第一步：</p>
+<p>使用docker拉取mongoDB镜像</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull mongo:latest</span><br></pre></td></tr></table></figure>
 
-<h3 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h3><p>创建和启动容器</p>
+<p>第二步：</p>
+<p>创建和启动容器</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --restart=always -p 27017:27017 --name mymongo -v /data/db:/data/db -d mongo</span><br></pre></td></tr></table></figure>
 
 <p>进入创建的容器</p>
@@ -2032,7 +2034,7 @@
       </categories>
   </entry>
   <entry>
-    <title>无重复最长字符串</title>
+    <title>leetcode-无重复最长字符串</title>
     <url>/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
     <content><![CDATA[<h2 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3. 无重复字符的最长子串"></a><a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h2><p>给定一个字符串，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
 <h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>双指针、滑动窗口</p>
