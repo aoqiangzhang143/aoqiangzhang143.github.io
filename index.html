@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">35</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">36</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-22 15:30:59" itemprop="dateModified" datetime="2021-07-22T15:30:59+08:00">2021-07-22</time>
+                <time title="修改时间：2021-07-23 10:22:29" itemprop="dateModified" datetime="2021-07-23T10:22:29+08:00">2021-07-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -291,9 +291,17 @@
 <h1 id="前后端知识点"><a href="#前后端知识点" class="headerlink" title="前后端知识点"></a>前后端知识点</h1><h2 id="后端技术"><a href="#后端技术" class="headerlink" title="后端技术"></a>后端技术</h2><hr>
 <h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p>一个Spring的脚手架，快速构建Spring工程</p>
 <hr>
-<h3 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h3><p>Nacos：注册服务中心，实现不同服务之间的调用，需要在注册服务中心进行注册</p>
-<p>Feign：用于发现服务，从而进行调用</p>
-<p>gateway：通过网关根据不同的路径进行转发至不同的接口，从而调用不同的服务</p>
+<h3 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h3><h4 id="Nacos："><a href="#Nacos：" class="headerlink" title="Nacos："></a>Nacos：</h4><p>注册服务中心，实现不同服务之间的调用，需要在注册服务中心进行注册</p>
+<h4 id="Feign："><a href="#Feign：" class="headerlink" title="Feign："></a>Feign：</h4><p>用于发现服务，从而进行调用</p>
+<h4 id="Spring-Cloud-Gateway："><a href="#Spring-Cloud-Gateway：" class="headerlink" title="Spring Cloud Gateway："></a>Spring Cloud Gateway：</h4><p>通过网关根据不同的路径进行转发至不同的接口，从而调用不同的服务;网关核心功能是路由转发，因此不要有耗时操作在网关上处理，让请求快速转发到后端服务上，网关还能做统一的熔断、限流、认证、日志监控等。</p>
+<h5 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h5><img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210723095501971.png" alt="image-20210723095501971" style="zoom:50%;">
+
+<blockquote>
+<p>客户端向Spring Cloud Gateway 发出请求。然后在 Gateway Handler Mapping 中找到与请求相匹配的路由，将其发送到 Gateway Web Handler。Handler 再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。过滤器之间用虚线分开是因为过滤器可能会在发送代理请求之前（“pre”）或之后（“post”）执行业务逻辑。</p>
+<p>Filter在<strong>“pre”类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换</strong>等，</p>
+<p>在<strong>“post”类型的过滤器中可以做响应内容、响应头的修改，日志的输出，流量监控</strong>等有着非常重要的作用</p>
+</blockquote>
+<p>gateway可参考<a target="_blank" rel="noopener" href="http://www.ityouknow.com/springcloud/2018/12/12/spring-cloud-gateway-start.html">springcloud(十五)：服务网关 Spring Cloud GateWay 入门 - 纯洁的微笑博客 (ityouknow.com)</a></p>
 <hr>
 <h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>一个内存数据库，基于key-value进行存储，优点是查询效率高</p>
 <p>（1）作为缓存使用，将不经常变动的数据存放入redis中，如：医院信息</p>
@@ -543,6 +551,105 @@
 <h3 id="知识点：字符串、manacher、KMP"><a href="#知识点：字符串、manacher、KMP" class="headerlink" title="知识点：字符串、manacher、KMP"></a>知识点：字符串、manacher、KMP</h3><h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>这个题目前没解决，走了个递归的路子，我尝试用manacher进行计算，超时了，但是有人的manacher没超时，说明我的manacher还有待改进；这个题用KMP是最好的，还有个解法是用的字符串哈希，那个是“投机取巧”了(我也不会用)。</p>
 <p>已经掌握KMP模式匹配算法。</p>
 <h3 id="KMP代码如下："><a href="#KMP代码如下：" class="headerlink" title="KMP代码如下："></a>KMP代码如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shortestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="comment">//next[i]为到下标为i的位置时前缀后缀匹配个数</span></span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="comment">//从1开始是因为next[0]肯定是0</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,size = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="comment">//如果不相等，就把size改为上一个相等位置的长度</span></span><br><span class="line">            <span class="keyword">while</span>(size&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(size))&#123;</span><br><span class="line">                size = next[size-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==s.charAt(size))&#123;</span><br><span class="line">                ++size;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i] = size;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="comment">//将s和其倒序字符串进行最大前缀后缀匹配个数</span></span><br><span class="line">            <span class="keyword">while</span>(index&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(index))&#123;</span><br><span class="line">                index = next[index-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(index)==s.charAt(i))&#123;</span><br><span class="line">                ++index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果s本身是回文字符串，那么index就是s的length</span></span><br><span class="line">        String add = (index==len?<span class="string">&quot;&quot;</span>:s.substring(index));</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(add);</span><br><span class="line">        <span class="keyword">return</span> sb.reverse().append(s).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="post-title-link" itemprop="url">leetcode-接雨水</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-23T00:00:00+08:00">2021-06-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-23 16:33:22" itemprop="dateModified" datetime="2021-07-23T16:33:22+08:00">2021-07-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-接雨水" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h1><p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>双指针</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>根据木桶理论，每个位置能存放的雨水数量取决于该点左右两边的最高柱子中低的那个，即找出当前位置Math.min(leftMax,rightMax),然后该值减去当前节点的高度即为可存放雨水的数量。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxLeft = <span class="number">0</span>,maxRight = <span class="number">0</span>,sum = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//left和right为计算存水量的位置</span></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">1</span>,right = height.length-<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;<span class="comment">//此处必须可=，最后一个存水位置也要计算</span></span><br><span class="line">            <span class="keyword">if</span>(height[left-<span class="number">1</span>]&lt;height[right+<span class="number">1</span>])&#123;<span class="comment">//这说明右侧比较高，存水得按照左侧来计算</span></span><br><span class="line">                <span class="comment">//看下左边最高能到哪个位置</span></span><br><span class="line">                maxLeft = Math.max(height[left-<span class="number">1</span>],maxLeft);</span><br><span class="line">                <span class="comment">//只有当前柱子高度小于左侧最大值时才可以存水</span></span><br><span class="line">                <span class="keyword">if</span>(height[left]&lt;maxLeft)&#123;</span><br><span class="line">                    sum+=maxLeft-height[left];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//如果当前这个柱子没法存水，那就考虑下一个</span></span><br><span class="line">                left++;</span><br><span class="line">                <span class="comment">//右侧同理</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                maxRight = Math.max(maxRight,height[right+<span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">if</span>(maxRight&gt;height[right])&#123;</span><br><span class="line">                    sum+=maxRight-height[right];</span><br><span class="line">                    </span><br><span class="line">                &#125;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -1468,133 +1575,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">leetcode-重构二叉树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-10 00:00:00 / 修改时间：20:48:32" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-重构二叉树" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="105-从前序与中序遍历序列构造二叉树知识点：树、递归"><a href="#105-从前序与中序遍历序列构造二叉树知识点：树、递归" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树知识点：树、递归"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"><strong>105.</strong> <strong>从前序与中序遍历序列构造二叉树</strong></a>知识点：树、递归</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><table>
-<thead>
-<tr>
-<th><strong>二叉树遍历</strong></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>前序</td>
-<td>根节点</td>
-<td>左子树</td>
-<td>右子树</td>
-</tr>
-<tr>
-<td>中序</td>
-<td>左子树</td>
-<td>根节点</td>
-<td>右子树</td>
-</tr>
-<tr>
-<td>后序</td>
-<td>左子树</td>
-<td>右子树</td>
-<td>根节点</td>
-</tr>
-</tbody></table>
-<p>根据二叉树遍历的特点 ，前序遍历的第一个节点就是根节点；而在中序遍历中可根据根节点的坐标位置将整个数组分为左子树和右子树。在本题中，重点落在了中序遍历上，首先对中序遍历建立一个HashMap，k为数组的值，v为该值在中序遍历中的位置。根据前序遍历找到根节点root的位置，然后通过HashMap找到root在中序遍历中的位置，之后便可根据中序遍历确定左子树和右子树的长度；由于子树长度确定了，则可在前序遍历中确定左右子树的根节点，便可进行递归查找所有节点的位置。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//preorder和HashMap在两个函数中都会用到</span></span><br><span class="line">    <span class="keyword">int</span>[] preorder;</span><br><span class="line">    HashMap&lt;Integer,Integer&gt; map=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.preorder=preorder;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;inorder.length;i++)&#123;</span><br><span class="line">            map.put(inorder[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> recur(<span class="number">0</span>,<span class="number">0</span>,inorder.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//rootIndex为前序遍历中根节点的位置，leftIndex为中序遍历中子树的左端，rightIndex为中序遍历中子树的右端，</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recur</span><span class="params">(<span class="keyword">int</span> rootIndex,<span class="keyword">int</span> leftIndex,<span class="keyword">int</span> rightIndex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(leftIndex&gt;rightIndex)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode root=<span class="keyword">new</span> TreeNode(preorder[rootIndex]);</span><br><span class="line">        <span class="keyword">int</span> rootIndexInOrder=map.get(preorder[rootIndex]);</span><br><span class="line">        <span class="comment">//递归建立左子树</span></span><br><span class="line">        root.left=recur(rootIndex+<span class="number">1</span>,leftIndex,rootIndexInOrder-<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//解释下rootIndex+rootIndexInOrder-leftIndex+1，这个式子为</span></span><br><span class="line">        <span class="comment">//rootIndex+[（rootIndexInOrder-1）-leftIndex+1]+1，</span></span><br><span class="line">        <span class="comment">//其实就是找到前序遍历中右子树开始的那个位置，当前根节点的位置+左子树长度+1</span></span><br><span class="line">        <span class="comment">//递归建立右子树</span></span><br><span class="line">        root.right=recur(rootIndex+rootIndexInOrder-leftIndex+<span class="number">1</span>,rootIndexInOrder+<span class="number">1</span>,rightIndex);</span><br><span class="line">        <span class="comment">//返回根节点</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="106-从中序与后序遍历序列构造二叉树"><a href="#106-从中序与后序遍历序列构造二叉树" class="headerlink" title="106. 从中序与后序遍历序列构造二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/"><strong>106.</strong> <strong>从中序与后序遍历序列构造二叉树</strong></a></h1><h2 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h2><p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
-<p>注意: 你可以假设树中没有重复的元素。</p>
-<p>例如，给出</p>
-<p>中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3]</p>
-<h2 id="知识点：二叉树"><a href="#知识点：二叉树" class="headerlink" title="知识点：二叉树"></a>知识点：二叉树</h2><h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer,Integer&gt; map= <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span>[] postorder;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.postorder=postorder;</span><br><span class="line">        <span class="keyword">int</span> len = inorder.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;inorder.length;i++)&#123;</span><br><span class="line">            map.put(inorder[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode root = dfs(len-<span class="number">1</span>,<span class="number">0</span>,len-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对当前节点的左右子树进行构建</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> rootIndex 根节点在后序遍历中的位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> leftIndex 当前子树在中序遍历中的左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> rightIndex 当前子树在中序遍历中的右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 根节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> rootIndex, <span class="keyword">int</span> leftIndex, <span class="keyword">int</span> rightIndex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(leftIndex&gt;rightIndex)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode node = <span class="keyword">new</span> TreeNode(postorder[rootIndex]);</span><br><span class="line">        <span class="keyword">int</span> rootInorder = map.get(postorder[rootIndex]);</span><br><span class="line">        <span class="keyword">int</span> leftLen = rootInorder-leftIndex;</span><br><span class="line">        node.left=dfs(rootIndex-(rightIndex-leftIndex+<span class="number">1</span>)+leftLen,leftIndex, rootInorder-<span class="number">1</span>);</span><br><span class="line">        node.right=dfs(rootIndex-<span class="number">1</span>,rootInorder+<span class="number">1</span>,rightIndex);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1666,7 +1646,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1679,7 +1659,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
