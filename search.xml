@@ -2334,4 +2334,28 @@
         <tag>动态规划、二分查找</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-股票问题</title>
+    <url>/2021/06/21/leetcode-%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121. 买卖股票的最佳时机"></a><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121. 买卖股票的最佳时机</a></h1><p>给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子卖出该股票。设计一个算法来计算你所能获取的最大利润。返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p>
+<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>其实这个题的本质就是求出两者之差，先找到一个值i，只要后面有比i大的，就记录下差值；不断将i往小处更新，不断比较差值。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = prices.length;</span><br><span class="line">        <span class="keyword">int</span> min = Integer.MAX_VALUE,res=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//将min不断更新为较小值，只要超过min，便计算是否可取的更大利润并记录</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i]&lt;min)&#123;</span><br><span class="line">                min = prices[i];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res = Math.max(res,prices[i]-min);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<hr>
+<h1 id="122-买卖股票的最佳时机-II"><a href="#122-买卖股票的最佳时机-II" class="headerlink" title="122. 买卖股票的最佳时机 II"></a><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122. 买卖股票的最佳时机 II</a></h1><p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<h2 id="知识点：动态规划-1"><a href="#知识点：动态规划-1" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>想一下，多笔交易且必须卖出去之后再买进，也就是说，当前状态只有两种：持有股票、未持有股票。</p>
+<p>持有股票：要么卖出去，要么什么都不做</p>
+<p>未持有：要么买进，要么什么都不做</p>
+<p>到最后一天的时候，肯定是不持有股票利润更高，做一个dp数组，用0和1分别表示未持有和持有，详情见代码。</p>
+<p>一般来说，对于动态规划都会有空间方面的优化。</p>
+<h2 id="代码如下-："><a href="#代码如下-：" class="headerlink" title="代码如下 ："></a>代码如下 ：</h2>]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
 </search>
