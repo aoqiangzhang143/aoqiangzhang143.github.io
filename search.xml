@@ -2390,12 +2390,86 @@
 <h2 id="知识点：数组、动态规划"><a href="#知识点：数组、动态规划" class="headerlink" title="知识点：数组、动态规划"></a>知识点：数组、动态规划</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>这个其实也就是个变形，有点不太好理解，你就这么记吧；[题解](<a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/solution/mai-mai-gu-piao-de-zui-jia-shi-ji-iv-by-8xtkp/">买卖股票的最佳时机 IV - 买卖股票的最佳时机 IV - 力扣（LeetCode） (leetcode-cn.com)</a>)</p>
 <h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = prices.length;</span><br><span class="line">        k = Math.min(k, len / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span>(k==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//手上持有股票的利润</span></span><br><span class="line">        <span class="keyword">int</span>[] buy = <span class="keyword">new</span> <span class="keyword">int</span>[k];</span><br><span class="line">        <span class="comment">//手上未持有股票的利润</span></span><br><span class="line">        <span class="keyword">int</span>[] sell = <span class="keyword">new</span> <span class="keyword">int</span>[k];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">            buy[i] = -prices[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//已经完成第i笔交易，第j天</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;k;j++)&#123;</span><br><span class="line">                buy[j] = Math.max((j==<span class="number">0</span>?<span class="number">0</span>:sell[j-<span class="number">1</span>])-prices[i],buy[j]);</span><br><span class="line">                sell[j] = Math.max(buy[j]+prices[i],sell[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sell[k-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<hr>
+<hr>
+<h1 id="714-买卖股票的最佳时机含手续费"><a href="#714-买卖股票的最佳时机含手续费" class="headerlink" title="714. 买卖股票的最佳时机含手续费"></a><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">714. 买卖股票的最佳时机含手续费</a></h1><p>给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；非负整数 fee 代表了交易股票的手续费用。你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。返回获得利润的最大值。注意：这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。</p>
+<h2 id="知识点：动态规划、数组"><a href="#知识点：动态规划、数组" class="headerlink" title="知识点：动态规划、数组"></a><strong>知识点：动态规划、数组</strong></h2><h2 id="分析：-4"><a href="#分析：-4" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>和II最为相似，只是加了个手续费而已。</p>
+<h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> hold = -prices[<span class="number">0</span>],unhold = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;prices.length;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmpHold = hold,tmpUnhold = unhold;</span><br><span class="line">            hold = Math.max(tmpHold,tmpUnhold-prices[i]);</span><br><span class="line">            unhold = Math.max(tmpUnhold,tmpHold+prices[i]-fee);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> unhold;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h1 id="309-最佳买卖股票时机含冷冻期"><a href="#309-最佳买卖股票时机含冷冻期" class="headerlink" title="309. 最佳买卖股票时机含冷冻期"></a><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">309. 最佳买卖股票时机含冷冻期</a></h1><p>给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</p>
+<h2 id="知识点：动态规划-3"><a href="#知识点：动态规划-3" class="headerlink" title="**知识点：动态规划"></a>**知识点：动态规划</h2><h2 id="分析：-5"><a href="#分析：-5" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>算下来，当前的状态就三种，一种是持有股票（当然不在冷冻期）；一种是未持有（在冷冻期）；还有一种未持有（不在冷冻期），详情见代码。</p>
+<h2 id="代码如下：-4"><a href="#代码如下：-4" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//当前持有股票</span></span><br><span class="line">        <span class="keyword">int</span> hold = -prices[<span class="number">0</span>];</span><br><span class="line">        <span class="comment">//当前不持有股票</span></span><br><span class="line">        <span class="keyword">int</span> unhold = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//当前在冷冻期</span></span><br><span class="line">        <span class="keyword">int</span> cold = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;prices.length;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmpHold = hold;</span><br><span class="line">            <span class="keyword">int</span> tmpUnhold = unhold;</span><br><span class="line">            <span class="keyword">int</span> tmpCold = cold;</span><br><span class="line">            <span class="comment">//今天持有，那说明要么是昨天就有；要么昨天冷冻期，今天又买的</span></span><br><span class="line">            hold = Math.max(tmpHold,tmpCold-prices[i]);</span><br><span class="line">            <span class="comment">//今天未持有：要么昨天就没；要么昨天持有今天卖了</span></span><br><span class="line">            unhold = Math.max(tmpUnhold,tmpHold+prices[i]);</span><br><span class="line">            <span class="comment">//今天冷冻期：必定昨天卖了</span></span><br><span class="line">            cold = tmpUnhold;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(Math.max(unhold,cold),<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>leetcode刷题笔记</category>
       </categories>
       <tags>
         <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-进制相关</title>
+    <url>/2021/06/20/leetcode-%E8%BF%9B%E5%88%B6%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="171-Excel表列序号"><a href="#171-Excel表列序号" class="headerlink" title="171. Excel表列序号"></a><a href="https://leetcode-cn.com/problems/excel-sheet-column-number/">171. Excel表列序号</a></h1><p>给定一个Excel表格中的列名称，返回其相应的列序号。</p>
+<p>例如，</p>
+<p>  A -&gt; 1</p>
+<p>  B -&gt; 2</p>
+<p>  C -&gt; 3</p>
+<p>  …</p>
+<p>  Z -&gt; 26</p>
+<p>  AA -&gt; 27</p>
+<p>  AB -&gt; 28 </p>
+<p>  …</p>
+<p>示例 1:</p>
+<p>输入: “A”</p>
+<p>输出: 1</p>
+<p>示例 2:</p>
+<p>输入: “AB”</p>
+<p>输出: 28</p>
+<p>示例 3:</p>
+<p>输入: “ZY”</p>
+<p>输出: 701</p>
+<h2 id="知识点：进制相关"><a href="#知识点：进制相关" class="headerlink" title="知识点：进制相关"></a>知识点：进制相关</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这本质上是个26进制题目，将26进制转为10进制。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">titleToNumber</span><span class="params">(String columnTitle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>,multiple = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=columnTitle.length()-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">int</span> curNumber = columnTitle.charAt(i)-<span class="string">&#x27;A&#x27;</span>+<span class="number">1</span>;</span><br><span class="line">            sum += curNumber*multiple;</span><br><span class="line">            multiple *= <span class="number">26</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h1 id="168-Excel表列名称"><a href="#168-Excel表列名称" class="headerlink" title="168. Excel表列名称"></a><a href="https://leetcode-cn.com/problems/excel-sheet-column-title/">168. Excel表列名称</a></h1><p>给你一个整数 columnNumber ，返回它在 Excel 表中相对应的列名称。</p>
+<p>例如：</p>
+<p>A -&gt; 1</p>
+<p>B -&gt; 2</p>
+<p>C -&gt; 3</p>
+<p>…</p>
+<p>Z -&gt; 26</p>
+<p>AA -&gt; 27</p>
+<p>AB -&gt; 28 </p>
+<p>…</p>
+<p>示例 1：</p>
+<p>输入：columnNumber = 1</p>
+<p>输出：”A”</p>
+<p>示例 2：</p>
+<p>输入：columnNumber = 28</p>
+<p>输出：”AB”</p>
+<p>示例 3：</p>
+<p>输入：columnNumber = 701</p>
+<p>输出：”ZY”</p>
+<p>示例 4：</p>
+<p>输入：columnNumber = 2147483647</p>
+<p>输出：”FXSHRXW”</p>
+<p>提示：</p>
+<p>1 &lt;= columnNumber &lt;= 231 - 1</p>
+<h2 id="知识点：进制问题"><a href="#知识点：进制问题" class="headerlink" title="知识点：进制问题"></a>知识点：进制问题</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>A是从1开始的，所以当数字是1时，没法直接让它+‘A’来对应字符，必须先减1。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> columnNumber)</span> </span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span>(columnNumber&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            columnNumber--;</span><br><span class="line">            sb.append((<span class="keyword">char</span>)(<span class="string">&#x27;A&#x27;</span>+columnNumber%<span class="number">26</span>));</span><br><span class="line">            columnNumber /= <span class="number">26</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>进制问题</tag>
       </tags>
   </entry>
 </search>
