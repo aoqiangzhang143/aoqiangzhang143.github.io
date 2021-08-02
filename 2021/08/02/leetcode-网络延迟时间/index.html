@@ -23,19 +23,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="55. 跳跃游戏知识点：贪心算法题目描述：给定一个非负整数数组nums，你最初位于数组的第一个下标 。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个下标 分析：维护每个位置所能到达的最右位置rightPositon，不断更新这个rightPositon，直到rightPositon大于等于最后的位置，或者遍历至数组最后一位也无法到达。 代码如下： 1234567891">
+  <meta name="description" content="743. 网络延迟时间有 n 个网络节点，标记为 1 到 n。给你一个列表 times，表示信号经过 有向 边的传递时间。 times[i] &#x3D; (ui, vi, wi)，其中 ui 是源节点，vi 是目标节点， wi 是一个信号从源节点传递到目标节点的时间。 现在，从某个节点 K 发出一个信号。需要多久才能使所有节点都收到信号？如果不能使所有节点收到信号，返回 -1 。 示例1：   12输入：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-跳跃次数">
-<meta property="og:url" content="http://example.com/2021/06/10/leetcode-%E8%B7%B3%E8%B7%83%E6%AC%A1%E6%95%B0/index.html">
+<meta property="og:title" content="leetcode-网络延迟时间">
+<meta property="og:url" content="http://example.com/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="55. 跳跃游戏知识点：贪心算法题目描述：给定一个非负整数数组nums，你最初位于数组的第一个下标 。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个下标 分析：维护每个位置所能到达的最右位置rightPositon，不断更新这个rightPositon，直到rightPositon大于等于最后的位置，或者遍历至数组最后一位也无法到达。 代码如下： 1234567891">
+<meta property="og:description" content="743. 网络延迟时间有 n 个网络节点，标记为 1 到 n。给你一个列表 times，表示信号经过 有向 边的传递时间。 times[i] &#x3D; (ui, vi, wi)，其中 ui 是源节点，vi 是目标节点， wi 是一个信号从源节点传递到目标节点的时间。 现在，从某个节点 K 发出一个信号。需要多久才能使所有节点都收到信号？如果不能使所有节点收到信号，返回 -1 。 示例1：   12输入：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-10T12:40:17.238Z">
+<meta property="og:image" content="http://example.com/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/Users/Mithrandir/AppData/Roaming/Typora/typora-user-images/image-20210802101619285.png">
+<meta property="article:published_time" content="2021-08-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-02T02:23:43.207Z">
 <meta property="article:author" content="aoqiangzhang143">
+<meta property="article:tag" content="图">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/Users/Mithrandir/AppData/Roaming/Typora/typora-user-images/image-20210802101619285.png">
 
-<link rel="canonical" href="http://example.com/2021/06/10/leetcode-%E8%B7%B3%E8%B7%83%E6%AC%A1%E6%95%B0/">
+<link rel="canonical" href="http://example.com/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/">
 
 
 <script id="page-configurations">
@@ -48,7 +51,7 @@
   };
 </script>
 
-  <title>leetcode-跳跃次数 | Mithrandir</title>
+  <title>leetcode-网络延迟时间 | Mithrandir</title>
   
 
 
@@ -189,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/10/leetcode-%E8%B7%B3%E8%B7%83%E6%AC%A1%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -202,7 +205,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          leetcode-跳跃次数
+          leetcode-网络延迟时间
         </h1>
 
         <div class="post-meta">
@@ -213,7 +216,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-06-10 00:00:00 / 修改时间：20:40:17" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
+              <time title="创建时间：2021-08-02 00:00:00 / 修改时间：10:23:43" itemprop="dateCreated datePublished" datetime="2021-08-02T00:00:00+08:00">2021-08-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,7 +229,7 @@
             </span>
 
           
-            <span id="/2021/06/10/leetcode-%E8%B7%B3%E8%B7%83%E6%AC%A1%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-跳跃次数" title="阅读次数">
+            <span id="/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-网络延迟时间" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -241,8 +244,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/06/10/leetcode-%E8%B7%B3%E8%B7%83%E6%AC%A1%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/10/leetcode-%E8%B7%B3%E8%B7%83%E6%AC%A1%E6%95%B0/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -257,15 +260,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="55-跳跃游戏"><a href="#55-跳跃游戏" class="headerlink" title="55. 跳跃游戏"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jump-game/">55. 跳跃游戏</a></h1><h2 id="知识点：贪心算法"><a href="#知识点：贪心算法" class="headerlink" title="知识点：贪心算法"></a>知识点：贪心算法</h2><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给定一个非负整数数组nums，你最初位于数组的第一个下标 。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个下标</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>维护每个位置所能到达的最右位置rightPositon，不断更新这个rightPositon，直到rightPositon大于等于最后的位置，或者遍历至数组最后一位也无法到达。</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span> rightMost = <span class="number">0</span>;<span class="comment">//维持一个最右边的位置</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;=rightMost)&#123;</span><br><span class="line">                rightMost = Math.max(rightMost,i+nums[i]);<span class="comment">//动态维护最右侧的位置</span></span><br><span class="line">                <span class="keyword">if</span>(rightMost&gt;=len-<span class="number">1</span>)&#123;<span class="comment">//此时说明已经可以到达最后位置</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="743-网络延迟时间有-n-个网络节点，标记为-1-到-n。"><a href="#743-网络延迟时间有-n-个网络节点，标记为-1-到-n。" class="headerlink" title="743. 网络延迟时间有 n 个网络节点，标记为 1 到 n。"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/network-delay-time/">743. 网络延迟时间</a>有 n 个网络节点，标记为 1 到 n。</h1><p>给你一个列表 times，表示信号经过 有向 边的传递时间。 times[i] = (ui, vi, wi)，其中 ui 是源节点，vi 是目标节点， wi 是一个信号从源节点传递到目标节点的时间。</p>
+<p>现在，从某个节点 K 发出一个信号。需要多久才能使所有节点都收到信号？如果不能使所有节点收到信号，返回 -1 。</p>
+<p>示例1：</p>
+<img src="/2021/08/02/leetcode-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4/Users\Mithrandir\AppData\Roaming\Typora\typora-user-images\image-20210802101619285.png" alt="image-20210802101619285" style="zoom:50%;">
 
-<hr>
-<h1 id="45-跳跃游戏-II知识点：贪心算法"><a href="#45-跳跃游戏-II知识点：贪心算法" class="headerlink" title="45. 跳跃游戏 II知识点：贪心算法"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jump-game-ii/">45. 跳跃游戏 II</a>知识点：贪心算法</h1><h2 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。数组中的每个元素代表你在该位置可以跳跃的最大长度。你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
-<h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>关键点在于什么时候记录跳跃次数step，明确一点，如果在某一点i，所能到达的最远处rightPosition也无法到达最后一个位置时，那就需要再跳一次，即step++；故，每当i所能到达的rightPosition未到达最后一个位置，i又已经到达了当前能到达的最远位置（已经不得不跳了），则step++。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size=nums.length;</span><br><span class="line">        <span class="comment">//end为未跳之前所能到达的最远位置</span></span><br><span class="line">        <span class="keyword">int</span> end=<span class="number">0</span>,mostRight=<span class="number">0</span>,steps=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            mostRight=Math.max(mostRight,i+nums[i]);</span><br><span class="line">            <span class="keyword">if</span>(i==end)&#123;</span><br><span class="line">                end=mostRight;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> steps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p>示例2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：times = [[1,2,1]], n = 2, k = 1</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<h2 id="知识点：图"><a href="#知识点：图" class="headerlink" title="知识点：图"></a>知识点：图</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>从k节点开始，找到遍历至其他所有节点的最短路径；可利用贪心思想，定义一个距离数组，将到达每个节点的最短路径放入，然后取出最大值即可。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">networkDelayTime</span><span class="params">(<span class="keyword">int</span>[][] times, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> INF = Integer.MAX_VALUE/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] g = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            Arrays.fill(g[i],INF);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] t:times)&#123;</span><br><span class="line">            <span class="keyword">int</span> x = t[<span class="number">0</span>]-<span class="number">1</span>,y = t[<span class="number">1</span>]-<span class="number">1</span>;</span><br><span class="line">            g[x][y] = t[<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dist = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        Arrays.fill(dist,INF);</span><br><span class="line">        dist[k-<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span>[] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>;y&lt;n;++y)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!used[y]&amp;&amp;(x==-<span class="number">1</span>||dist[y]&lt;dist[x]))&#123;</span><br><span class="line">                    x=y;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            used[x] = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>;y&lt;n;++y)&#123;</span><br><span class="line">                dist[y] = Math.min(dist[y],dist[x]+g[x][y]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = Arrays.stream(dist).max().getAsInt();</span><br><span class="line">        <span class="keyword">return</span> ans==INF?-<span class="number">1</span>:ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -275,6 +281,10 @@
     
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE/" rel="tag"><i class="fa fa-tag"></i> 图</a>
+          </div>
 
         
 
@@ -282,13 +292,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="prev" title="leetcode-重构二叉树">
-      <i class="fa fa-chevron-left"></i> leetcode-重构二叉树
+    <a href="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" rel="prev" title="医院挂号系统知识点总结">
+      <i class="fa fa-chevron-left"></i> 医院挂号系统知识点总结
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/06/10/leetcode-%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="next" title="leetcode-回文字符串">
-      leetcode-回文字符串 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -348,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F"><span class="nav-number">1.</span> <span class="nav-text">55. 跳跃游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：贪心算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">分析：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F-II%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">45. 跳跃游戏 II知识点：贪心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0%EF%BC%9A-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A-1"><span class="nav-number">2.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#743-%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4%E6%9C%89-n-%E4%B8%AA%E7%BD%91%E7%BB%9C%E8%8A%82%E7%82%B9%EF%BC%8C%E6%A0%87%E8%AE%B0%E4%B8%BA-1-%E5%88%B0-n%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">743. 网络延迟时间有 n 个网络节点，标记为 1 到 n。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
