@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">48</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">55</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -182,6 +182,1482 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/07/leetcode-K%E5%AD%97%E4%B9%8B%E8%B0%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/07/leetcode-K%E5%AD%97%E4%B9%8B%E8%B0%9C/" class="post-title-link" itemprop="url">leetcode-K字之谜</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-07T00:00:00+08:00">2021-06-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-02 14:32:16" itemprop="dateModified" datetime="2021-08-02T14:32:16+08:00">2021-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/07/leetcode-K%E5%AD%97%E4%B9%8B%E8%B0%9C/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-K字之谜" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/07/leetcode-K%E5%AD%97%E4%B9%8B%E8%B0%9C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/07/leetcode-K%E5%AD%97%E4%B9%8B%E8%B0%9C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1337-矩阵中战斗力最弱的-K-行"><a href="#1337-矩阵中战斗力最弱的-K-行" class="headerlink" title="1337. 矩阵中战斗力最弱的 K 行"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-k-weakest-rows-in-a-matrix/">1337. 矩阵中战斗力最弱的 K 行</a></h1><p>给你一个大小为 m * n 的矩阵 mat，矩阵由若干军人和平民组成，分别用 1 和 0 表示。</p>
+<p>请你返回矩阵中战斗力最弱的 k 行的索引，按从最弱到最强排序。</p>
+<p>如果第 i 行的军人数量少于第 j 行，或者两行军人数量相同但 i 小于 j，那么我们认为第 i 行的战斗力比第 j 行弱。</p>
+<p>军人 总是 排在一行中的靠前位置，也就是说 1 总是出现在 0 之前。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = </span><br><span class="line">[[1,1,0,0,0],</span><br><span class="line"> [1,1,1,1,0],</span><br><span class="line"> [1,0,0,0,0],</span><br><span class="line"> [1,1,0,0,0],</span><br><span class="line"> [1,1,1,1,1]], </span><br><span class="line">k = 3</span><br><span class="line">输出：[2,0,3]</span><br><span class="line">解释：</span><br><span class="line">每行中的军人数目：</span><br><span class="line">行 0 -&gt; 2 </span><br><span class="line">行 1 -&gt; 4 </span><br><span class="line">行 2 -&gt; 1 </span><br><span class="line">行 3 -&gt; 2 </span><br><span class="line">行 4 -&gt; 5 </span><br><span class="line">从最弱到最强对这些行排序后得到 [2,0,3,1,4]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = </span><br><span class="line">[[1,0,0,0],</span><br><span class="line"> [1,1,1,1],</span><br><span class="line"> [1,0,0,0],</span><br><span class="line"> [1,0,0,0]], </span><br><span class="line">k = 2</span><br><span class="line">输出：[0,2]</span><br><span class="line">解释： </span><br><span class="line">每行中的军人数目：</span><br><span class="line">行 0 -&gt; 1 </span><br><span class="line">行 1 -&gt; 4 </span><br><span class="line">行 2 -&gt; 1 </span><br><span class="line">行 3 -&gt; 1 </span><br><span class="line">从最弱到最强对这些行排序后得到 [0,2,3,1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="知识点：二分查找、堆排序"><a href="#知识点：二分查找、堆排序" class="headerlink" title="知识点：二分查找、堆排序"></a>知识点：二分查找、堆排序</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这个题目的解决分为两步：找出每一行1的个数；按每行1的个数、行的索引进行排序。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] kWeakestRows(<span class="keyword">int</span>[][] mat, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = mat.length,n = mat[<span class="number">0</span>].length;</span><br><span class="line">        ArrayList&lt;<span class="keyword">int</span>[]&gt; lists = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> left = <span class="number">0</span>,right = n-<span class="number">1</span>,pos = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">                <span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(mat[i][mid]==<span class="number">0</span>)&#123;</span><br><span class="line">                    right = mid-<span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    pos = mid;</span><br><span class="line">                    left = mid+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            lists.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;pos+<span class="number">1</span>,i&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        Collections.sort(lists, <span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] o1, <span class="keyword">int</span>[] o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(o1[<span class="number">0</span>]!=o2[<span class="number">0</span>])&#123;</span><br><span class="line">                    <span class="keyword">return</span> o1[<span class="number">0</span>]-o2[<span class="number">0</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> o1[<span class="number">1</span>]-o2[<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[k];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">            res[i] = lists.get(i)[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：我这里采用了普通排序，[题解](<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-k-weakest-rows-in-a-matrix/solution/fang-zhen-zhong-zhan-dou-li-zui-ruo-de-k-xing-by-l/">矩阵中战斗力最弱的 K 行 - 矩阵中战斗力最弱的 K 行 - 力扣（LeetCode） (leetcode-cn.com)</a>)里采用的是小顶堆，忘记的话可以看下。</p>
+<hr>
+<hr>
+<h1 id="215-数组中的第K个最大元素"><a href="#215-数组中的第K个最大元素" class="headerlink" title="215. 数组中的第K个最大元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素</a></h1><p>在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。</p>
+<p>示例 1:</p>
+<p>输入: [3,2,1,5,6,4] 和 k = 2 输出: 5 </p>
+<p>示例 2:</p>
+<p>输入: [3,2,3,1,2,4,5,5,6] 和 k = 4 输出: 4</p>
+<p><strong>知识点：堆、快排</strong></p>
+<p><strong>分析：</strong></p>
+<p>可以维护一个大顶堆，删除k次最大元素，每次删除元素之后就重新调整堆内的数据位置，此时就是第K大的元素；这里简单创建并维护一个大顶堆。</p>
+<p><strong>代码入下：（堆排序法）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> LC0215_kth_largest_element_in_an_array;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KthLargestElementInAnArray</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//建立大顶堆</span></span><br><span class="line">        PriorityQueue&lt;Integer&gt; priorityQueue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(<span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o2 - o1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums)&#123;</span><br><span class="line">            priorityQueue.offer(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(k&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            priorityQueue.poll();</span><br><span class="line">            --k;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = priorityQueue.peek();</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了直接用PriorityQueue之外，也得知道是怎么建立大顶堆的（小顶堆同理）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len=nums.length;</span><br><span class="line">        <span class="comment">//创建一个大顶堆，len为堆的大小</span></span><br><span class="line">        buildHeap(nums,len);</span><br><span class="line">        <span class="comment">//要找到第k大的元素，需要剔除k-1个数据，也就是执行k-1次，所有i&gt;=nums.length-1-（k-2）</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=nums.length-<span class="number">1</span>;i&gt;=nums.length-k+<span class="number">1</span>;--i)&#123;</span><br><span class="line">            <span class="comment">//将最小的元素同最大的元素</span></span><br><span class="line">            swap(nums,<span class="number">0</span>,i);</span><br><span class="line">            --len;</span><br><span class="line">            <span class="comment">//每次消除元素之后，重新调整堆</span></span><br><span class="line">            maxHeapify(nums,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//创建一个大顶堆</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len/<span class="number">2</span>;i&gt;=<span class="number">0</span>;i--)&#123;<span class="comment">//此处i为堆中最靠后的一个有子树的节点，依次向上调整所有带有子树的节点</span></span><br><span class="line">            maxHeapify(nums,i,len);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">maxHeapify</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> i,<span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">        <span class="comment">//left为i的左子树，right为i的右子树</span></span><br><span class="line">        <span class="keyword">int</span> left=<span class="number">2</span>*i+<span class="number">1</span>,right=<span class="number">2</span>*i+<span class="number">2</span>;</span><br><span class="line">        <span class="comment">//默认i为当前小子树中的最大值</span></span><br><span class="line">        <span class="keyword">int</span> largest=i;</span><br><span class="line">        <span class="keyword">if</span>(left&lt;size&amp;&amp;nums[left]&gt;nums[largest])&#123;</span><br><span class="line">            largest=left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(right&lt;size&amp;&amp;nums[right]&gt;nums[largest])&#123;</span><br><span class="line">            largest=right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(largest!=i)&#123;<span class="comment">//确保i位置的值为当前小子树的中的最大值</span></span><br><span class="line">            swap(nums,i,largest);</span><br><span class="line">            maxHeapify(nums,largest,size);<span class="comment">//并调整下更换过位置的子树</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp=nums[i];</span><br><span class="line">        nums[i]=nums[j];</span><br><span class="line">        nums[j]=tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个题目还有个解法，可以用快排的思想来解决：我们找到一个数组内的随机数，然后将其放置在合适的位置，如果这个位置刚好是我们求的位置，那就直接返回这个数字即可。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解法二：快排</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> k</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest2</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> quickSelect(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>,nums.length-k);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">quickSelect</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> q = randomPartition(nums,left,right);</span><br><span class="line">        <span class="keyword">if</span>(q==index)&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[q];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> q&lt;index?quickSelect(nums, q+<span class="number">1</span>, right, index):quickSelect(nums, left, q-<span class="number">1</span>, index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 在left和right之间随机一个位置，并将该位置的数字放置合适的位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">randomPartition</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">int</span> randomIndex = random.nextInt(right-left+<span class="number">1</span>)+left;</span><br><span class="line">        swap(nums,randomIndex,right);</span><br><span class="line">        <span class="keyword">int</span> x = nums[right],curIndex = left-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=left;i&lt;right;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&lt;x)&#123;</span><br><span class="line">                swap(nums,++curIndex,i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(nums,curIndex+<span class="number">1</span>,right);</span><br><span class="line">        <span class="keyword">return</span> curIndex+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责交换指定的两个位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index1</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index2</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = nums[index1];</span><br><span class="line">        nums[index1] = nums[index2];</span><br><span class="line">        nums[index2] = num;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Spring实战第四版读书笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-04T00:00:00+08:00">2021-06-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-10 09:50:49" itemprop="dateModified" datetime="2021-06-10T09:50:49+08:00">2021-06-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">读书总结</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-meta-item leancloud_visitors" data-flag-title="Spring实战第四版读书笔记" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h1><p>spring本质上是简化java开发。</p>
+<p>几个简写：</p>
+<table>
+<thead>
+<tr>
+<th>EJB</th>
+<th>Enterprise JavaBean</th>
+<th>企业级javabean</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JDO</td>
+<td>Java Data Object</td>
+<td>java数据对象</td>
+</tr>
+<tr>
+<td>POJO</td>
+<td>Plian Old Java Object</td>
+<td>简单老式java对象</td>
+</tr>
+<tr>
+<td>DI</td>
+<td>Dependency Injection</td>
+<td>依赖注入</td>
+</tr>
+<tr>
+<td>AOP</td>
+<td>Aspect-Oriented Programing</td>
+<td>面向切面编程</td>
+</tr>
+</tbody></table>
+<h2 id="第一章：简介"><a href="#第一章：简介" class="headerlink" title="第一章：简介"></a>第一章：简介</h2><h3 id="怎么简化java开发的："><a href="#怎么简化java开发的：" class="headerlink" title="怎么简化java开发的："></a>怎么简化java开发的：</h3><p>通过DI和AOP实现松耦合；基于切面和惯例进行声明式编程；通过切面和模板减少样板式代码</p>
+<h3 id="AOP的作用："><a href="#AOP的作用：" class="headerlink" title="AOP的作用："></a>AOP的作用：</h3><p>AOP通过将遍布应用各处的功能分离出来，形成可重用的组件，从而确保pojo的简单性</p>
+<h3 id="Spring容器："><a href="#Spring容器：" class="headerlink" title="Spring容器："></a>Spring容器：</h3><p>将一个类转化为一个切面，首先需要将其声明为一个SpringBean，bean对象生存于Spring容器中；</p>
+<p>Spring的容器分为两大类：bean工厂和应用上下文。</p>
+<hr>
+<h2 id="第二章：装配bean"><a href="#第二章：装配bean" class="headerlink" title="第二章：装配bean"></a>第二章：装配bean</h2><p>装配bean有三种方式：</p>
+<p>1、xml配置</p>
+<p>2、java显示装配</p>
+<p>3、<strong>自动装配</strong>【重要】</p>
+<p>自动装配最为便捷。</p>
+<p>以下为简单的自动装配</p>
+<p>分别创建三个pojo并进行注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="comment">//第一个pojo</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">voice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;喵喵喵&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="comment">//第二个pojo</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">voice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;汪汪叫&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="comment">//第三个pojo</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Cat cat;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我有两只宠物&quot;</span>);</span><br><span class="line">        cat.voice();</span><br><span class="line">        dog.voice();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后将三个pojo存放至spring容器中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.springlearn.exm3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exm3Config</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后便可对其进行测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.learn.exam3test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Exm3Config;</span><br><span class="line"><span class="keyword">import</span> com.learn.springlearn.exm3.Human;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ContextConfiguration(classes = Exm3Config.class)</span></span><br><span class="line"><span class="comment">//下面这个注解必须要加，不然会报nulllpointerexception</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exm3Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Human human;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        human.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三章：高级装配"><a href="#第三章：高级装配" class="headerlink" title="第三章：高级装配"></a>第三章：高级装配</h2><h3 id="配置profile-bean："><a href="#配置profile-bean：" class="headerlink" title="配置profile bean："></a>配置profile bean：</h3><p>profile可以根据环境创建哪个bean和不创建哪个bean</p>
+<hr>
+<h3 id="激活profile："><a href="#激活profile：" class="headerlink" title="激活profile："></a>激活profile：</h3><p>如果定义了spring.profiles.active，那就根据这个配置进行激活profile</p>
+<p>没设置active的话，如果定义了spring.profiles.default，那就根据default进行jihuo</p>
+<p>如果都没设置，那就只创建那些没定义在profile中的bean</p>
+<hr>
+<h3 id="条件化的bean"><a href="#条件化的bean" class="headerlink" title="条件化的bean"></a>条件化的bean</h3><p>通过注解Conditional实现，只有指定属性不存在的话，指定类就不会被实例化。</p>
+<hr>
+<h3 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h3><p>一个接口会存在多个实现类，此时进行自动装配时，spring无法确定装配哪个类。。</p>
+<p>解决方法：</p>
+<p>1、设置首选bean：@Primary</p>
+<p>2、采用限定符来确定装配指定的bean：@Qualifier（“iceCream”）；@Qualifier也可以用于bean上，相当于为该bean设置ID；@Qualifier也可以将每个bean的ID设置为该类的特性，一个bean会存在多个特性，但是同一个类不允许多次使用同一个注解，因此可自行创建注解</p>
+<p><img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210607102850024.png" alt="自行创建注解"></p>
+<hr>
+<h3 id="运行时值注入"><a href="#运行时值注入" class="headerlink" title="运行时值注入"></a>运行时值注入</h3><p>目的：使得一些值在运行时再确定</p>
+<p>方法：</p>
+<p>1、属性占位符</p>
+<p>2、Spring表达式语言（SpEL）【重点】</p>
+<p>SpEL的使用方法：</p>
+<p>表示字面值：#{3.1459}，#{‘Hello’}，#{false}</p>
+<p>引用bean、属性、方法</p>
+<p>#{people}，#{people.name}，#{people.speak()}</p>
+<hr>
+<h2 id="第四章：面向切面的Spring"><a href="#第四章：面向切面的Spring" class="headerlink" title="第四章：面向切面的Spring"></a>第四章：面向切面的Spring</h2><p>AOP术语：</p>
+<p>通知（Advice）：切面的工作被称为通知；通知包含了需要用于多个对象的横切行为。</p>
+<p>连接点（Join Point）：在应用执行过程中插入到切面的一个点，切面代码利用这些点插入到应用的正常流程之中，并添加新的行为；连                                      接点是程序执行过程中能够应用通知的所有点。</p>
+<p>切点（Pointcut）：通知定义了切面的“什么”和“何时”，切点定义了“何处”；切点定义了哪些连接点会得到通知。</p>
+<p>切面（Aspect）：通知和切点构成了切面的全部内容。</p>
+<p>引入（Introduction）：向现有的类添加新的方法和属性。</p>
+<p>织入（Weaving）：将切面应用到目标对象并创建新的代理对象的过程。</p>
+<h2 id="第五章：构建Spring-Web应用程序"><a href="#第五章：构建Spring-Web应用程序" class="headerlink" title="第五章：构建Spring Web应用程序"></a>第五章：构建Spring Web应用程序</h2><h4 id="跟踪Spring-MVC的请求"><a href="#跟踪Spring-MVC的请求" class="headerlink" title="跟踪Spring MVC的请求"></a>跟踪Spring MVC的请求</h4><p><img src="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/image-20210608101154885.png" alt="Spring MVC的请求流程"></p>
+<p>在请求离开浏览器时(1)，会带有用户所请求内容的信息，至少会包含请求的URL。但是还可能带有其他的信息，例如用户提交的表单信息。<br>请求旅程的第一站是Spring的DispatcherServlet。与大多数基于Java的Web框架一样，Spring MVC所有的请求都会通过一个前端控制器（front controller）Serlet。前端控制器是常用的Web应用程序模式，在这里一个单实例的Serlet将请求委托给应用程序的其他组件来执行实际的处理。在Spring MVC中，DispatcherServlet就是前端控制器。<br>DispatcherServlet的任务是将请求发送给Spring MVC控制器（controller)。控制器是一个用于处理请求的Spring组件。在典型的应用程序中可能会有多个控制器，Dispatcherservlet需要知道应该将请求发送给哪个控制器。所以DispatcherServlet以会查询一个或多个处理器映射（handler mapping)(2)来确定请求的下一站在哪里。处理器映射会根据请求所携带的URL信息来进行决策。<br>一旦选择了合适的控制器，Dispatcherservlet会将请求发送给选中的控制器(3)。到了控制器，请求会卸下其负载（用户提交的信息）并耐心等待控制器处理这些信息。（实际上，设计良好的控制器本身只处理很少甚至不处理工作，而是将业务逻辑委托给一个或多个服务对象进行处理。)控制器在完成逻辑处理后，通常会产生一些信息，这些信息需要返回给用户并在浏览器上显示。这些信息被称为模型（model）。不过仅仅给用户返回原始的信息是不够的——这些信息需要以用户友好的方式进行格式化，一般会是HTML。所以，信息需要发送给一个视图（view），通常会是JSP。<br>控制器所做的最后一件事就是将模型数据打包，并且标示出用于渲染输出的视图名。它接下来会将请求连同模型和视图名发送回DispatcherServlet(4)。<br>这样，控制器就不会与特定的视图相耦合，传递给Dispatcherservlet的视图名并不直接表示某个特定的JSP。实际上，它甚至并不能确定视图就是JSP。相反，它仅仅传递了一个逻辑名称，这个名字将会用来查找产生结果的真正视图。Dispatcherservlet将会使用视图解析器（view resolver）(5)来将逻辑视图名匹配为一个特定的视图实现，它可能是也可能不是JSP。<br>既然DispatcherServlet已经知道由哪个视图渲染结果，那请求的任务基本上也就完成了。它的最后一站是视图的实现（可能是JSP）(6)，在这里它交付模型数据。请求的任务就完成了。视图将使用模型数据渲染输出，这个输出会通过响应对象传递给客户端（不会像听上去那样硬编码）(7)。<br>可以看到，请求要经过很多的步骤，最终才能形成返回给客户端的响应。大多数的步骤都是在Spring框架内部完成的，也就是图5.1所示的组件中。尽管本章的主要内容都关注于如何编写控制器，但在此之前我们首先看一下如何搭建Spring MVC的基础组件。</p>
+<hr>
+<h2 id="第六章：渲染web视图"><a href="#第六章：渲染web视图" class="headerlink" title="第六章：渲染web视图"></a>第六章：渲染web视图</h2><p>这个暂时跳过。</p>
+<hr>
+<h2 id="第七章：SpringMVC的高级技术"><a href="#第七章：SpringMVC的高级技术" class="headerlink" title="第七章：SpringMVC的高级技术"></a>第七章：SpringMVC的高级技术</h2><p>这章看了一遍，不是很明白。</p>
+<hr>
+<h2 id="第八章：使用Spring-Web-Flow"><a href="#第八章：使用Spring-Web-Flow" class="headerlink" title="第八章：使用Spring Web Flow"></a>第八章：使用Spring Web Flow</h2><hr>
+<h2 id="第九章：保护Web应用"><a href="#第九章：保护Web应用" class="headerlink" title="第九章：保护Web应用"></a>第九章：保护Web应用</h2><p>注：第五~第九章将的是Spring在web中的应用，暂且跳过。</p>
+<hr>
+<h2 id="第十章：通过Spring和JDBC连接数据库"><a href="#第十章：通过Spring和JDBC连接数据库" class="headerlink" title="第十章：通过Spring和JDBC连接数据库"></a>第十章：通过Spring和JDBC连接数据库</h2><p>通过jdbc消除样板式代码，使得在编程阶段能专注于代码本身；</p>
+<p>简单讲了下jdbc的用法</p>
+<hr>
+<h2 id="第十一章：使用对象-关系映射持久化数据"><a href="#第十一章：使用对象-关系映射持久化数据" class="headerlink" title="第十一章：使用对象-关系映射持久化数据"></a>第十一章：使用对象-关系映射持久化数据</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">mybatisplus使用总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-04T00:00:00+08:00">2021-06-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-02 15:45:48" itemprop="dateModified" datetime="2021-08-02T15:45:48+08:00">2021-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HelloWorld%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">HelloWorld系列</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="mybatisplus使用总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用mybatis对数据库进行操作时，为方便定位错误，可在配置文件中进行配置使得myqsl语句在控制台进行输出</p>
+<p>在application.properties配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#控制面板输出mybatis日志</span><br><span class="line">mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="MybatisPlus的主键策略"><a href="#MybatisPlus的主键策略" class="headerlink" title="MybatisPlus的主键策略"></a>MybatisPlus的主键策略</h2><p>默认采用的是雪花算法：分布式ID生成器</p>
+<p><strong>核心思想：</strong></p>
+<p>长度共64bit（一个long型）。</p>
+<p>首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0。</p>
+<p>41bit时间截(毫秒级)，存储的是时间截的差值（当前时间截 - 开始时间截)，结果约等于69.73年。</p>
+<p>10bit作为机器的ID（5个bit是数据中心，5个bit的机器ID，可以部署在1024个节点）。</p>
+<p>12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID）。</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/clip_image002.jpg" alt="分布式ID生成"></p>
+<p>优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604104216001.png" alt="数据库自动生成ID"></p>
+<hr>
+<h2 id="MyBatisPlus自动填充功能"><a href="#MyBatisPlus自动填充功能" class="headerlink" title="MyBatisPlus自动填充功能"></a>MyBatisPlus自动填充功能</h2><p>好处：自动实现set功能</p>
+<p>使用方法：</p>
+<p>举例：添加记录的创建时间和修改时间</p>
+<p>1、在数据库表中创建对应列：create_time,update_time</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101416523.png" alt="数据库添加列"></p>
+<p>2、在对应的实体类中添加对应属性：createTime,updateTime，并添加注解</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101437416.png" alt="实体类添加属性"></p>
+<p>3、创建一个类，实现MetaObjectHandler接口，并重写其中的两个方法</p>
+<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604103623362.png" alt="创建handler类"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/03/mysql%E7%99%BB%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" class="post-title-link" itemprop="url">mysql登录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-03 00:00:00 / 修改时间：16:19:21" itemprop="dateCreated datePublished" datetime="2021-06-03T00:00:00+08:00">2021-06-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AEHospital/" itemprop="url" rel="index"><span itemprop="name">项目Hospital</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="mysql登录" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/03/mysql%E7%99%BB%E5%BD%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>启动mysql：systemctl start mysqld</p>
+<p>查看mysql启动状态：systemctl status mysqld</p>
+<p>显示active表示已经激活。</p>
+<p>进行登录：mysql -uroot -p</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">IDEA快捷键总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-02 00:00:00 / 修改时间：16:27:36" itemprop="dateCreated datePublished" datetime="2021-06-02T00:00:00+08:00">2021-06-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B0%8F%E6%8A%80%E5%B7%A7/" itemprop="url" rel="index"><span itemprop="name">小技巧</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="IDEA快捷键总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <table>
+<thead>
+<tr>
+<th>1</th>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>Ctrl+Shift+A</td>
+<td>搜索操作方式</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ctrl+Space</td>
+<td>基本代码补全，输入字母按后列出匹配的词组</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ctrl+Shift+Space</td>
+<td>智能代码补全，列出与预期类型一致的方法或变量</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ctrl+Alt+Space</td>
+<td>补全类名</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Ctrl+Shift+Enter</td>
+<td>补全语句</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Ctrl+P</td>
+<td>显示方法参数</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Ctrl+Q</td>
+<td>显示注释文档</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Shift+F1</td>
+<td>显示外部文档</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Ctrl+mouse  over code</td>
+<td>显示描述信息</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Ctrl+F1</td>
+<td>示提示、警告、错误等信息</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Alt+lnsert</td>
+<td>生成代码，生成Getter、Setter构造器等</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Ctrl+O</td>
+<td>重写父类方法</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Ctrl+I</td>
+<td>实现接口方法</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Ctrl+/</td>
+<td>使用“//”注释或取消注释</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Ctrl+Shift+/</td>
+<td>使用“/** **/”注释或取消注释</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Ctrl+W</td>
+<td>选择代码块，连续按会增加选择外层的代码块</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Ctrl+Shift+W</td>
+<td>与“Ctrl+W”相反，减少选择代码块</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Alt+Q</td>
+<td>显示类描述信息</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Alt+Enter-fixes</td>
+<td>显示快速修复列表</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Ctrl+Alt+L</td>
+<td>格式化代码</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Ctrl+Alt+O</td>
+<td>优化 Imports</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Ctrl+Alt+I</td>
+<td>自动优化代码缩进</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Tab/Shift+Tab</td>
+<td>缩进代码/取消缩进代码</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Ctrl+X  or Shift+Delete</td>
+<td>缩进代码/取消缩进代码</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Ctrl+C  or Ctrl+lnsert</td>
+<td>剪切代码，未选择代码时剪切当前行</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Ctrl+V  or Shift+lnsert</td>
+<td>粘贴代码</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Ctrl+Shift+V</td>
+<td>粘贴最近复制的内容</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Ctrl+D</td>
+<td>重复代码，未选择代码时重复当前行</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Ctrl+Y</td>
+<td>删除行，未选择时删除当前行</td>
+</tr>
+<tr>
+<td>31</td>
+<td>Ctrl+Shift+J</td>
+<td>合并多行为一行</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Ctrl+Enter</td>
+<td>分割一行为多行</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Shift+Enter</td>
+<td>使光标所在位置的下一行为新行</td>
+</tr>
+<tr>
+<td>34</td>
+<td>Ctrl+Shift+U</td>
+<td>对选中内容进行大小写切换</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Ctrl+Shift+]/[</td>
+<td>选中到代码块的开始/结束</td>
+</tr>
+<tr>
+<td>36</td>
+<td>Ctrl+Delete</td>
+<td>删除从光标所在位置到单词结束位置的字符</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Ctrl+Backspace</td>
+<td>删除从单词起始位置到光标所在位置的字符</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Ctrl+NumPad+/-</td>
+<td>展开或收起代码块</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Ctrl+Shift+NumPad+</td>
+<td>展幵所有代码块</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Ctrl+Shift+NumPad-</td>
+<td>收起所有代码块</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Ctrl+F4</td>
+<td>关闭当前编辑页</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Ctrl+F</td>
+<td>查找</td>
+</tr>
+<tr>
+<td>43</td>
+<td>F3</td>
+<td>查找下一个</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Shift+F3</td>
+<td>查找上一个</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Ctrl+R</td>
+<td>替换</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Ctrl+Shift+F</td>
+<td>目录内查找</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Ctrl+Shift+R</td>
+<td>目录内替换</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Ctrl+Shift+S</td>
+<td>语法模板搜索</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Ctrl+Shift+M</td>
+<td>语法模板替换</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Alt+F7</td>
+<td>查找被使用处</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Ctrl+F7</td>
+<td>查找当前文件中的使用处</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Ctrl+Shift+F7</td>
+<td>高亮当前文件中的使用处</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Ctrl+Alt+F7</td>
+<td>列出使用者</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Ctrl+F9</td>
+<td>Make模块、项目</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Ctrl+Shift+F9</td>
+<td>编译选中的文件、模块、项目</td>
+</tr>
+<tr>
+<td>56</td>
+<td>Alt+Shift+F10</td>
+<td>选择配置后运行代码</td>
+</tr>
+<tr>
+<td>57</td>
+<td>Alt+Shift+F9</td>
+<td>选择配置后调试代码</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Shift+F10</td>
+<td>运行代码</td>
+</tr>
+<tr>
+<td>59</td>
+<td>Shift+F9</td>
+<td>调试代码</td>
+</tr>
+<tr>
+<td>60</td>
+<td>Ctrl+F2</td>
+<td>停止调试</td>
+</tr>
+<tr>
+<td>61</td>
+<td>F8</td>
+<td>单步调试，不进入函数内部</td>
+</tr>
+<tr>
+<td>62</td>
+<td>F7</td>
+<td>单步调试，进入函数内部</td>
+</tr>
+<tr>
+<td>63</td>
+<td>Shift+F7</td>
+<td>选择要进入的函数</td>
+</tr>
+<tr>
+<td>64</td>
+<td>Shift+F8</td>
+<td>跳出函数</td>
+</tr>
+<tr>
+<td>65</td>
+<td>Alt+F9</td>
+<td>运行到断点</td>
+</tr>
+<tr>
+<td>66</td>
+<td>Alt+F8</td>
+<td>执行表达式查看结果</td>
+</tr>
+<tr>
+<td>67</td>
+<td>F9</td>
+<td>继续执行，进入下一个断点或执行完程序</td>
+</tr>
+<tr>
+<td>68</td>
+<td>Ctrl+F8</td>
+<td>设置/取消当前行断点</td>
+</tr>
+<tr>
+<td>69</td>
+<td>Ctrl+Shift+F8</td>
+<td>查看断点</td>
+</tr>
+<tr>
+<td>70</td>
+<td>双击  Shift</td>
+<td>查找所有</td>
+</tr>
+<tr>
+<td>71</td>
+<td>Ctrl+N</td>
+<td>查找类</td>
+</tr>
+<tr>
+<td>72</td>
+<td>Ctrl+Shift+N</td>
+<td>查找文件</td>
+</tr>
+<tr>
+<td>73</td>
+<td>Ctrl+Alt+Shift+N</td>
+<td>Go to symbol</td>
+</tr>
+<tr>
+<td>74</td>
+<td>Alt+Right/Left</td>
+<td>左右切换Tab</td>
+</tr>
+<tr>
+<td>75</td>
+<td>F12</td>
+<td>回到上一个打开的窗口</td>
+</tr>
+<tr>
+<td>76</td>
+<td>Esc</td>
+<td>焦点回到编辑器</td>
+</tr>
+<tr>
+<td>77</td>
+<td>Shift+Esc</td>
+<td>隐藏打开的视图</td>
+</tr>
+<tr>
+<td>78</td>
+<td>Ctrl+Shift+F4</td>
+<td>关闭当前Tab</td>
+</tr>
+<tr>
+<td>79</td>
+<td>Ctrl+G</td>
+<td>跳到指定行</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Ctrl+E</td>
+<td>显示最近打开的文件</td>
+</tr>
+<tr>
+<td>81</td>
+<td>Ctrl+Alt+Left</td>
+<td>跳到光标的上一个位置</td>
+</tr>
+<tr>
+<td>82</td>
+<td>Ctrl+Alt+Right</td>
+<td>跳到光标的下一个位置</td>
+</tr>
+<tr>
+<td>83</td>
+<td>Ctrl+Shift+Backspace</td>
+<td>跳到上一个编辑处</td>
+</tr>
+<tr>
+<td>84</td>
+<td>Alt+F1</td>
+<td>选择当前文件显示在不同的视图</td>
+</tr>
+<tr>
+<td>85</td>
+<td>Ctrl+Bor/Ctrl+Click</td>
+<td>跳到类声明处</td>
+</tr>
+<tr>
+<td>86</td>
+<td>Ctrl+Alt+B</td>
+<td>跳到实现类/方法</td>
+</tr>
+<tr>
+<td>87</td>
+<td>Ctrl+Shift+I</td>
+<td>显示类/变量/方法定义</td>
+</tr>
+<tr>
+<td>88</td>
+<td>Ctrl+Shift+B</td>
+<td>跳到类型定义处</td>
+</tr>
+<tr>
+<td>89</td>
+<td>Ctrl+U</td>
+<td>跳到父类/方法</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Alt+Up</td>
+<td>光标移动到上一个方法</td>
+</tr>
+<tr>
+<td>91</td>
+<td>Alt+Down</td>
+<td>光标移动到下一个方法</td>
+</tr>
+<tr>
+<td>92</td>
+<td>Ctrl+[</td>
+<td>光标移动到代码块的起始位置</td>
+</tr>
+<tr>
+<td>93</td>
+<td>Ctrl+]</td>
+<td>光标移动到代码块的结束位置</td>
+</tr>
+<tr>
+<td>94</td>
+<td>Ctrl+F12</td>
+<td>显示文件结构</td>
+</tr>
+<tr>
+<td>95</td>
+<td>Ctrl+H</td>
+<td>显示类层级</td>
+</tr>
+<tr>
+<td>96</td>
+<td>Ctrl+Shift+H</td>
+<td>显示方法层级</td>
+</tr>
+<tr>
+<td>97</td>
+<td>Ctrl+Alt+H</td>
+<td>显示类/方法调用层级</td>
+</tr>
+<tr>
+<td>98</td>
+<td>F2</td>
+<td>光标移动到下一个错误</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Shift+F2</td>
+<td>光标移动到上一个错误</td>
+</tr>
+<tr>
+<td>100</td>
+<td>F4</td>
+<td>编辑源码，光标移到编辑器内</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Ctrl+Enter</td>
+<td>查看源码，光标没移到编辑器内</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Alt+Home</td>
+<td>显示导航面包屑</td>
+</tr>
+<tr>
+<td>103</td>
+<td>F11</td>
+<td>当前行设置书签</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Shift+F11</td>
+<td>显示所有书签</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Ctrl+F11</td>
+<td>设置书签号［0-9］</td>
+</tr>
+<tr>
+<td>106</td>
+<td>Ctrl+[0-9]</td>
+<td>跳到书签号［0-9］所在位置</td>
+</tr>
+<tr>
+<td>107</td>
+<td>F5</td>
+<td>复制类</td>
+</tr>
+<tr>
+<td>108</td>
+<td>F6</td>
+<td>移动类</td>
+</tr>
+<tr>
+<td>109</td>
+<td>Alt+Delete</td>
+<td>安全删除，删除前会提示调用处</td>
+</tr>
+<tr>
+<td>110</td>
+<td>Shift+F6</td>
+<td>重命名</td>
+</tr>
+<tr>
+<td>111</td>
+<td>Ctrl+F6</td>
+<td>重构方法参数、Exception等</td>
+</tr>
+<tr>
+<td>112</td>
+<td>Ctrl+Alt+N</td>
+<td>合并多行为一行</td>
+</tr>
+<tr>
+<td>113</td>
+<td>Ctrl+Alt+M</td>
+<td>提取为新方法</td>
+</tr>
+<tr>
+<td>114</td>
+<td>Ctrl+Alt+V</td>
+<td>提取为新变量</td>
+</tr>
+<tr>
+<td>115</td>
+<td>Ctrl+Alt+F</td>
+<td>提取为对象新属性</td>
+</tr>
+<tr>
+<td>116</td>
+<td>Ctrl+Alt+C</td>
+<td>提取为新静态常量</td>
+</tr>
+<tr>
+<td>117</td>
+<td>Alt+0</td>
+<td>聚焦到Messages窗口</td>
+</tr>
+<tr>
+<td>118</td>
+<td>Alt+1</td>
+<td>焦到Project窗口</td>
+</tr>
+<tr>
+<td>119</td>
+<td>Alt+2</td>
+<td>聚焦到Favorite窗口</td>
+</tr>
+<tr>
+<td>120</td>
+<td>Alt+3</td>
+<td>聚焦到Find窗口</td>
+</tr>
+<tr>
+<td>121</td>
+<td>Alt+4</td>
+<td>聚焦到Run窗口</td>
+</tr>
+<tr>
+<td>122</td>
+<td>Alt+5</td>
+<td>聚焦到Debug窗口</td>
+</tr>
+<tr>
+<td>123</td>
+<td>Alt+6</td>
+<td>聚焦到TODO窗口</td>
+</tr>
+<tr>
+<td>124</td>
+<td>Alt+7</td>
+<td>聚焦到Structure窗口</td>
+</tr>
+<tr>
+<td>125</td>
+<td>Alt+8</td>
+<td>聚焦到Hierarchy窗口</td>
+</tr>
+<tr>
+<td>126</td>
+<td>Alt+9</td>
+<td>聚焦到Change窗口</td>
+</tr>
+<tr>
+<td>127</td>
+<td>Ctrl+S</td>
+<td>保存文件</td>
+</tr>
+<tr>
+<td>128</td>
+<td>Ctrl+Alt+Y</td>
+<td>与本地文件同步</td>
+</tr>
+<tr>
+<td>129</td>
+<td>Alt+Shift+F</td>
+<td>添加到收藏夹</td>
+</tr>
+<tr>
+<td>130</td>
+<td>Alt+Shift+I</td>
+<td>检查当前文件，包括Javadoc问题、可能存在的bug等</td>
+</tr>
+<tr>
+<td>131</td>
+<td>Ctrl+Alt+S</td>
+<td>打开settings窗口</td>
+</tr>
+<tr>
+<td>132</td>
+<td>Ctrl+BackQuote  (‘)</td>
+<td>模式切换，包括文本外观、快捷键、编辑器外观、代码样式</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">maven首次运行问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-01 19:12:55 / 修改时间：19:20:35" itemprop="dateCreated datePublished" datetime="2021-06-01T19:12:55+08:00">2021-06-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">踩坑记录</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="maven首次运行问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>第一次运行maven时，由于maven默认用的是jre，用命令行运行时会报错，如下图所示</p>
+<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191617928.png" alt="image-20210601191617928"></p>
+<p>根据提示错误，可知运行的是jre而不是jkd，查看maven版本</p>
+<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191710470.png" alt="image-20210601191710470"></p>
+<p>发现路径为jre，至此找到问题根源。</p>
+<p>解决方法：</p>
+<p>在maven\bin\setting文件中，在首行加上</p>
+<p>set JAVA_HOME=C:\JDK\jdk1.8.0_291</p>
+<p>将其所用的JAVA_HOME修改为本机所安装的jdk，之后问题解决，文件可正常编译。</p>
+<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191917280.png" alt="image-20210601191917280"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">运行Halo项目时遇到的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-31 10:51:55 / 修改时间：15:13:56" itemprop="dateCreated datePublished" datetime="2021-05-31T10:51:55+08:00">2021-05-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">踩坑记录</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="运行Halo项目时遇到的问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/Failedto.jpg" alt="Failedto"></p>
+<p>这个问题在将jdk版本从8改为11之后就没遇到了;</p>
+<p>但是在后续的运行中又出现了其他错误，经查阅资料，将IDEA从2019.3升级为2020.3之后解决；</p>
+<p>后记：改完之后还需要将gradle的jdk版本以及项目运行依赖的jdk版本改为11（我装了8和11两个版本）；</p>
+<p>最后一次运行报错是显示未找到默认主题，在<a target="_blank" rel="noopener" href="https://github.com/halo-dev/halo-theme-anatole">halo-dev/halo-theme-anatole (github.com)</a>进行下载并存放至Halo\halo\src\main\resources\templates\themes\anatole后，成功运行。</p>
+<p>至此成功运行。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -499,837 +1975,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/" class="post-title-link" itemprop="url">wait和sleep的异同</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-29 00:00:00 / 修改时间：21:31:07" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+08:00">2021-05-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/" class="post-meta-item leancloud_visitors" data-flag-title="wait和sleep的异同" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/29/wait%E5%92%8Csleep%E7%9A%84%E5%BC%82%E5%90%8C/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h2><p>一旦执行方法，都可以使得当前的线程进入阻塞状态。</p>
-<h2 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h2><p>1）两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()</p>
-<p>2）调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中</p>
-<p>3）关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。</p>
-<hr>
-<p>Sleep()方法是属于Thread类中的，而wait()方法是属于Object类中的。</p>
-<p>Sleep()方法导致了程序暂停执行指定的时间，让出cpu给其他线程，但是他的监控状态依然保持着，当指定的时间结束后又会自动恢复运行状态。</p>
-<hr>
-<p>在调用sleep方法时，线程不会释放对象锁。</p>
-<p>在调用wait方法时，线程会释放对象锁，进入等待此对象的等待锁定池，只有此对象调用notify方法后本线程才进入对象锁定池准备。</p>
-<p>sleep可以在任何地方使用，而wait只能在同步方法或者同步块中使用。</p>
-<p>另外，sleep是静态方法，wait是非静态方法。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/" class="post-title-link" itemprop="url">快速失败、安全失败</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-29 00:00:00 / 修改时间：21:29:02" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+08:00">2021-05-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/" class="post-meta-item leancloud_visitors" data-flag-title="快速失败、安全失败" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/29/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E3%80%81%E5%AE%89%E5%85%A8%E5%A4%B1%E8%B4%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="快速失败："><a href="#快速失败：" class="headerlink" title="快速失败："></a><strong>快速失败：</strong></h2><p>在使用迭代器对集合进行迭代的过程中，如果 A 线程正在对集合进行遍历，此时 B 线程对集合进行修改（增加、删除、修改），或者 A 线程在遍历过程中对集合进行修改，都会导致 A 线程抛出 ConcurrentModificationException 异常。</p>
-<hr>
-<h2 id="安全失败："><a href="#安全失败：" class="headerlink" title="安全失败："></a>安全失败：</h2><p>采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。</p>
-<p>由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，故不会抛 ConcurrentModificationException 异常</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">简单死锁的测试</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-29 00:00:00 / 修改时间：21:32:30" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+08:00">2021-05-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="简单死锁的测试" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/29/%E7%AE%80%E5%8D%95%E6%AD%BB%E9%94%81%E7%9A%84%E6%B5%8B%E8%AF%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mithrandir</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-04-2021/4/12-10:19</span></span><br><span class="line"><span class="comment"> * 测试死锁</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread1()).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> myThread2()).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread2的第一层，已经持有lock2&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThread2的第二层，已经持有lock2和lock1&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (myLock.lock1)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;这是myThread1的第一层,已经持有lock1&quot;</span>);<span class="comment">//死锁情况下，只有这行能输出</span></span><br><span class="line">            <span class="keyword">synchronized</span> (myLock.lock2)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;这是myThead1的第二层，已经持有lock1和lock2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myLock</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Object lock1=<span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">static</span> Object lock2=<span class="keyword">new</span> Object();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">解决线程安全的方式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-29 00:00:00 / 修改时间：21:27:53" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+08:00">2021-05-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="解决线程安全的方式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/29/%E8%A7%A3%E5%86%B3%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一：同步代码块"><a href="#一：同步代码块" class="headerlink" title="一：同步代码块"></a>一：同步代码块</h2><p>synchronized(同步监视器){</p>
-<p>   //需要被同步的代码</p>
-<p>  }</p>
-<p> 说明：</p>
-<p>1.操作共享数据的代码，即为需要被同步的代码。 –&gt;不能包含代码多了，也不能包含代码少了。</p>
-<p>​      2.共享数据：多个线程共同操作的变量。比如：ticket就是共享数据。</p>
-<p>​      3.同步监视器，俗称：锁。任何一个类的对象，都可以充当锁。</p>
-<p>​     要求：多个线程必须要共用同一把锁。</p>
-<p> 补充：在实现Runnable接口创建多线程的方式中，我们可以考虑使用this充当同步监视器。</p>
-<p>​    在继承Thread类创建多线程的方式中，慎用this充当同步监视器，考虑使用当前类充当同步监视</p>
-<hr>
-<h2 id="二：同步方法"><a href="#二：同步方法" class="headerlink" title="二：同步方法"></a>二：同步方法</h2><p>如果操作共享数据的代码完整的声明在一个方法中，我们不妨将此方法声明同步的。</p>
-<p> 关于同步方法的总结：</p>
-<p> \1. 同步方法仍然涉及到同步监视器，只是不需要我们显式的声明。</p>
-<p> \2. 非静态的同步方法，同步监视器是：this</p>
-<p>   静态的同步方法，同步监视器是：当前类本身</p>
-<p>同步代码块和同步方法的对比：</p>
-<p>其实还是同步代码块好一些，因为同步方法的作用范围相对来说会比较广泛，很容易会包括进一些没必要同步的代码，这样会造成效率降低。</p>
-<hr>
-<h2 id="三：同步锁Lock（jdk5-0新增，也就是建议用）"><a href="#三：同步锁Lock（jdk5-0新增，也就是建议用）" class="headerlink" title="三：同步锁Lock（jdk5.0新增，也就是建议用）"></a>三：同步锁Lock（jdk5.0新增，也就是建议用）</h2><p>在需要同步的代码前调用Lock 的lock函数，在需要同步的代码执行完之后，手动调用unlock函数才能释放锁。（创建lock对象时，用的时reentrantlock这个类创建的）</p>
-<h2 id="synchronize和lock的异同："><a href="#synchronize和lock的异同：" class="headerlink" title="synchronize和lock的异同："></a>synchronize和lock的异同：</h2><p>同：都可以解决线程安全问题</p>
-<p>异：synchronize在执行完对应的代码块之后，会自动释放锁；lock必须手动释放锁</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/Java%E5%B9%B6%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/27/Java%E5%B9%B6%E5%8F%91/" class="post-title-link" itemprop="url">Java并发</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-27 19:47:41 / 修改时间：20:17:59" itemprop="dateCreated datePublished" datetime="2021-05-27T19:47:41+08:00">2021-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/27/Java%E5%B9%B6%E5%8F%91/" class="post-meta-item leancloud_visitors" data-flag-title="Java并发" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/27/Java%E5%B9%B6%E5%8F%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/27/Java%E5%B9%B6%E5%8F%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="JMM概述"><a href="#JMM概述" class="headerlink" title="JMM概述"></a><a href="%5BJMM%E6%A6%82%E8%BF%B0_%E7%89%A7%E7%AB%B9%E5%AD%90-CSDN%E5%8D%9A%E5%AE%A2_jmm%5D(https://blog.csdn.net/zjcjava/article/details/78406330)">JMM概述</a></h2><p><img src="/2021/05/27/Java%E5%B9%B6%E5%8F%91/JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt="JVM内存模型"></p>
-<p>不同线程之间无法直接访问对方工作内存中的变量，线程间的通信方式一般有三种方式进行：</p>
-<p>1、wait/notify</p>
-<p>2、利用共享内存</p>
-<p>3、while轮询</p>
-<p>JMM采用的就是共享内存方式实现线程间通讯。</p>
-<hr>
-<h2 id="可见性、原子性、有序性"><a href="#可见性、原子性、有序性" class="headerlink" title="可见性、原子性、有序性"></a>可见性、原子性、有序性</h2><h3 id="可见性："><a href="#可见性：" class="headerlink" title="可见性："></a>可见性：</h3><p>指线程之间的可见性，一个线程修改的状态对另外一个线程是可见的。（volatile可以保证变量的可见性）</p>
-<h3 id="原子性："><a href="#原子性：" class="headerlink" title="原子性："></a>原子性：</h3><p>指一个操作或者多个操作要么都执行，要么都不执行。（synchronized可保证原子性）</p>
-<h3 id="有序性："><a href="#有序性：" class="headerlink" title="有序性："></a>有序性：</h3><p>对于一个线程的代码而言，我们总是以为代码的执行是从前往后的，依次执行的。这么说不能说完全不对，在单线程程序里，确实会这样执行；但是在多线程并发时，程序的执行就有可能出现乱序。用一句话可以总结为：在本线程内观察，操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行语义（WithIn Thread As-if-Serial Semantics）”,后半句是指“指令重排”现象和“工作内存和主内存同步延迟”现象。</p>
-<p>一个最经典的例子就是银行汇款问题，一个银行账户存款100，这时一个人从该账户取10元，同时另一个人向该账户汇10元，那么余额应该还是100。那么此时可能发生这种情况，A线程负责取款，B线程负责汇款，A从主内存读到100，B从主内存读到100，A执行减10操作，并将数据刷新到主内存，这时主内存数据100-10=90，而B内存执行加10操作，并将数据刷新到主内存，最后主内存数据100+10=110，显然这是一个严重的问题，我们要保证A线程和B线程有序执行，先取款后汇款或者先汇款后取款，此为有序性。</p>
-<p>Java提供了两个关键字volatile和synchronized来保证多线程之间操作的有序性,volatile关键字本身通过加入内存屏障来禁止指令的重排序，而synchronized关键字通过一个变量在同一时间只允许有一个线程对其进行加锁的规则来实现，</p>
-<p>在单线程程序中，不会发生“指令重排”和“工作内存和主内存同步延迟”现象，只在多线程程序中出现。</p>
-<hr>
-<hr>
-<h2 id="Happen-before原则"><a href="#Happen-before原则" class="headerlink" title="Happen before原则"></a>Happen before原则</h2><h3 id="定义了哪些指令不能重排："><a href="#定义了哪些指令不能重排：" class="headerlink" title="定义了哪些指令不能重排："></a>定义了哪些指令不能重排：</h3><p>单线程的happen before原则</p>
-<p>写在前面的操作happen before后面的操作</p>
-<p>锁的happen-before原则：</p>
-<p>同一个锁的unlock操作happen-before此锁的lock操作。</p>
-<p>volatile的happen-before原则：</p>
-<p>对一个volatile变量的写操作happen-before对此变量的任意操作(当然也包括写操作了)。</p>
-<p>happen-before的传递性原则：</p>
-<p>如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。</p>
-<p>线程启动的happen-before原则：</p>
-<p>同一个线程的start方法happen-before此线程的其它方法。</p>
-<p>线程中断的happen-before原则：</p>
-<p>对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。</p>
-<p>线程终结的happen-before原则：</p>
-<p>线程中的所有操作都happen-before线程的终止检测。</p>
-<p>对象创建的happen-before原则：</p>
-<p>一个对象的初始化完成先于他的finalize方法调用。</p>
-<h3 id="哪些会进行重排："><a href="#哪些会进行重排：" class="headerlink" title="哪些会进行重排："></a>哪些会进行重排：</h3><p>执行程序时为了提高性能，编译器和处理器经常会对指令进行重新排序。</p>
-<p>编译器优化的重排序：</p>
-<p>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
-<p>内存系统的重排序：</p>
-<p>由于处理器使用的是缓存和读写缓冲区，看上去像是乱序执行。</p>
-<hr>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">Java各种对比</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-27 00:00:00 / 修改时间：17:09:27" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/" class="post-meta-item leancloud_visitors" data-flag-title="Java各种对比" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/27/Java%E5%90%84%E7%A7%8D%E5%AF%B9%E6%AF%94/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="四种权限的作用范围对比："><a href="#四种权限的作用范围对比：" class="headerlink" title="四种权限的作用范围对比："></a>四种权限的作用范围对比：</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>public</th>
-<th>protected</th>
-<th>default</th>
-<th>private</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>同一个类</td>
-<td>可</td>
-<td>可</td>
-<td>可</td>
-<td>可</td>
-</tr>
-<tr>
-<td>同一个包</td>
-<td>可</td>
-<td>可</td>
-<td>可</td>
-<td>不可</td>
-</tr>
-<tr>
-<td>子类父类</td>
-<td>可</td>
-<td>可</td>
-<td>不可</td>
-<td>不可</td>
-</tr>
-<tr>
-<td>不同包之间</td>
-<td>可</td>
-<td>不可</td>
-<td>不可</td>
-<td>不可</td>
-</tr>
-</tbody></table>
-<h2 id="和equals对比"><a href="#和equals对比" class="headerlink" title="==和equals对比"></a>==和equals对比</h2><ol>
-<li>==是判断两个变量是否指向同一块内存空间；equals是判断两个变量或实例所指向的内存空间的值是否相同</li>
-<li>==是对内存地址进行比较，equals则是对内容进行比较；</li>
-<li>==比较引用是否相同，equals比较值是否相同</li>
-</ol>
-<hr>
-<h2 id="comparable和comparator对比"><a href="#comparable和comparator对比" class="headerlink" title="comparable和comparator对比"></a>comparable和comparator对比</h2><h3 id="Comparable"><a href="#Comparable" class="headerlink" title="Comparable"></a>Comparable</h3><p>​    一个类的实现接口，属于内嵌比较。创建一个类时可实现该接口，重写compareTo()方法，用于自定比较方法，之后可采用collections中的sort方法进行排序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mithrandir</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-04-2021/4/12-14:50</span></span><br><span class="line"><span class="comment"> * 类实现comparable接口，可以理解为将比较方式嵌入自身，便可以直接调用Collections的sort方法</span></span><br><span class="line"><span class="comment"> * （因为实现接口时重写的compareTo方法定义了比较方法）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparableLearn</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Person(<span class="number">5</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Person(<span class="number">1</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Person(<span class="number">9</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Person(<span class="number">7</span>));</span><br><span class="line">        Collections.sort(list);</span><br><span class="line">        <span class="keyword">for</span>(Person person:list)&#123;</span><br><span class="line">            System.out.println(person);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age-o.age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Comparator"><a href="#Comparator" class="headerlink" title="Comparator"></a>Comparator</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Mithrandir</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-04-2021/4/12-14:59</span></span><br><span class="line"><span class="comment"> * comparator作为一个临时比较器，在调用collections的sort方法时写一个比较方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorLearn</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="number">2</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="number">6</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="number">1</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="number">9</span>));</span><br><span class="line">        Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Student&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o1.age-o2.age;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span>(Student student:list)&#123;</span><br><span class="line">            System.out.println(student);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h2 id="String和StringBuilder和StringBuffer"><a href="#String和StringBuilder和StringBuffer" class="headerlink" title="String和StringBuilder和StringBuffer"></a>String和StringBuilder和StringBuffer</h2><p>String: 底层用的是final char[]</p>
-<p>StringBuilder: 线程安全</p>
-<p>StringBuilder: 线程不安全，效率高</p>
-<hr>
-<h2 id="重载和重写"><a href="#重载和重写" class="headerlink" title="重载和重写"></a>重载和重写</h2><h3 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h3><p>在同一个class内对同一个函数进行重载，必须保证形参个数或者形参类型不同</p>
-<h3 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h3><p>用于子类继承父类，对父类中方法的重写</p>
-<hr>
-<h2 id="基本数据类型和引用数据类型"><a href="#基本数据类型和引用数据类型" class="headerlink" title="基本数据类型和引用数据类型"></a>基本数据类型和引用数据类型</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>boolean、byte、int、char、long、short、double、float</p>
-<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>数组、类、接口…</p>
-<p>为了编程的方便还是引入了基本数据类型，但是为了能够将这些基本数据类型当成对象操作，Java为每一个基本数据类型都引入了对应的包装类型（wrapper class），int的包装类就是Integer，从Java 5开始引入了自动装箱/拆箱机制，使得二者可以相互转换。</p>
-<table>
-<thead>
-<tr>
-<th>基本类型</th>
-<th>对应的包装类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td>Byte</td>
-</tr>
-<tr>
-<td>short</td>
-<td>Short</td>
-</tr>
-<tr>
-<td>int</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>long</td>
-<td>Long</td>
-</tr>
-<tr>
-<td>float</td>
-<td>Float</td>
-</tr>
-<tr>
-<td>double</td>
-<td>Double</td>
-</tr>
-<tr>
-<td>char</td>
-<td>Character</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>Boolean</td>
-</tr>
-</tbody></table>
-<h3 id="基本使用对比"><a href="#基本使用对比" class="headerlink" title="基本使用对比"></a>基本使用对比</h3><ul>
-<li>Integer是int的包装类；int是基本数据类型；</li>
-<li>Integer变量必须实例化后才能使用；int变量不需要；</li>
-<li>Integer实际是对象的引用，指向此new的Integer对象；int是直接存储数据值 ；</li>
-<li>Integer的默认值是null；int的默认值是0</li>
-</ul>
-<h3 id="深度使用对比"><a href="#深度使用对比" class="headerlink" title="深度使用对比"></a>深度使用对比</h3><ol>
-<li><p>由于Integer变量实际上是对一个Integer对象的引用，所以两个通过new生成的Integer变量永远是不相等的（因为new生成的是两个对象，其内存地址不同）。</p>
-</li>
-<li><p>Integer变量和int变量比较时，只要两个变量的值是向等的，则结果为true（因为包装类Integer和基本数据类型int比较时，java会自动拆包装为int，然后进行比较，实际上就变为两个int变量的比较）。</p>
-</li>
-<li><p>非new生成的Integer变量和new Integer()生成的变量比较时，结果为false。因为非new生成的Integer变量指向的是静态常量池中cache数组中存储的指向了堆中的Integer对象，而new Integer()生成的变量指向堆中新建的对象，两者在内存中的对象引用（地址）不同。</p>
-</li>
-<li><p>对于两个非new生成的Integer对象，进行比较时，如果两个变量的值在区间-128到127之间，则比较结果为true，如果两个变量的值不在此区间，则比较结果为false</p>
-<p>对于第4条的原因： java在编译Integer i = 100 ;时，会翻译成为Integer i = Integer.valueOf(100)。而java API中对Integer类型的valueOf的定义如下，对于-128到127之间的数，会进行缓存，Integer i = 127时，会将127这个Integer对象进行缓存，下次再写Integer j = 127时，就会直接从缓存中取，就不会new了。</p>
-</li>
-</ol>
-<hr>
-<h2 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h2><h3 id="并发（concurrent）"><a href="#并发（concurrent）" class="headerlink" title="并发（concurrent）"></a>并发（concurrent）</h3><p>交替做不同事情的能力；不同代码块交替执行的能力</p>
-<p>程序需要被设计成能处理多个同时（几乎是同时）发生的事情</p>
-<h3 id="并行（parallelism）"><a href="#并行（parallelism）" class="headerlink" title="并行（parallelism）"></a>并行（parallelism）</h3><p>同时做不同事情的能力；不同代码块同时执行</p>
-<p>通过将问题中的多个部分并行执行，加速解决问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-title-link" itemprop="url">Volatile关键字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-27 00:00:00 / 修改时间：20:16:26" itemprop="dateCreated datePublished" datetime="2021-05-27T00:00:00+08:00">2021-05-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-meta-item leancloud_visitors" data-flag-title="Volatile关键字" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/27/Volatile%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3920373.html">volatile</a>关键字</h2><p>volatile 是一个类型修饰符。volatile 的作用是作为指令关键字，确保本条指令不会因编译器的优化而省略</p>
-<p>特性：</p>
-<p>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（实现可见性）</p>
-<p>禁止进行指令重排序。（保证一定程度上的原子性）</p>
-<p>volatile 只能保证对单次读/写的原子性。i++ 这种操作不能保证原子性</p>
-<p>简单介绍下指令重排</p>
-<p>第一个为读操作时，第二个任何操作不可重排序到第一个前面。</p>
-<p>第二个为写操作时，第一个任何操作不可重排序到第二个后面。</p>
-<p>第一个为写操作时，第二个的读写操作也不运行重排序。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1397,7 +2046,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

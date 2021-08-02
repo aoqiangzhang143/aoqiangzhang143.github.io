@@ -2718,7 +2718,7 @@
     <url>/2021/07/22/JUC%EF%BC%88Java%20Util%20Concurrent%EF%BC%89%E5%90%8C%E6%AD%A5%E5%99%A8%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<h2 id="1、CountDownLatch"><a href="#1、CountDownLatch" class="headerlink" title="1、CountDownLatch"></a>1、CountDownLatch</h2><p>这是一个同步工具类，用于协调多个线程之间的同步。</p>
 <p>它能够使得一个线程在等待其他线程完成各自的工作之后，再继续执行。</p>
-<p>使用一个计数器进行实现，当计数器的值为0时，表示所有线程都已完成任务，在countdownlatch上等待的线程可以恢复执行接下来的任务。</p>
+<p>使用一个计数器进行实现，当计数器的值为0时，表示所有线程都已完成任务，在countdownlatch上等待的ju线程可以恢复执行接下来的任务。</p>
 <p>用法：</p>
 <p>1、在某一个线程开始运行前，等待n个线程运行结束</p>
 <p>将CountDownLatch的计数器初始化为n，每执行完一个线程就把计数器减1，当计数器为0时，CountDownLatch上的await就会被唤醒；一个典型的应用场景就是启动一个服务时，主线程等待其他组件加载完毕再进行执行。</p>
@@ -2731,6 +2731,144 @@
 ]]></content>
       <categories>
         <category>Java并发</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>句柄Handle</title>
+    <url>/2021/07/25/%E5%8F%A5%E6%9F%84Handle/</url>
+    <content><![CDATA[<h2 id="对象句柄："><a href="#对象句柄：" class="headerlink" title="对象句柄："></a>对象句柄：</h2><p>一个唯一的整数,作为对象的身份id,区分不同的对象，和同类中的不同实例。</p>
+<p>每次操作对象就是根据句柄去找到对象操作对象的. 即使没有对象,我们也可以让句柄单独存在。</p>
+<h2 id="jvm中的对象访问句柄："><a href="#jvm中的对象访问句柄：" class="headerlink" title="jvm中的对象访问句柄："></a>jvm中的对象访问句柄：</h2><p>由于reference类型在Java虚拟机规范里只规定了一个指向对象的引用，并没有定义这个引用应该通过哪种方式去定位，以及访问到Java堆中的对象的具体位置，因此不同虚拟机实现的对象访问方式会有所不同，主流的访问方式有两种：使用句柄和直接指针。</p>
+<h3 id="1、使用句柄访问方式"><a href="#1、使用句柄访问方式" class="headerlink" title="1、使用句柄访问方式"></a>1、使用句柄访问方式</h3><p>如果使用句柄访问方式，Java堆中会划分出一块内存来作为句柄池，reference中存储的就是对象的句柄地址，而句柄中包含了对象实例数据和类型数据各自的具体地址信息。使用句柄方式最大的好处就是reference中存储的是稳定的句柄地址，在对象被移动（垃圾收集时移动对象是非常普遍的行为）时只会改变句柄中的实例数据指针，而reference本身不需要被修改。</p>
+<h3 id="2、使用直接指针访问方式"><a href="#2、使用直接指针访问方式" class="headerlink" title="2、使用直接指针访问方式"></a>2、使用直接指针访问方式</h3><p>如果使用该方式，Java堆对象的布局就必须考虑如何放置访问类型数据的相关信息，reference中直接存储的就是对象地址。使用直接指针方式最大的好处就是速度更快，他节省了一次指针定位的时间开销。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在对象分配的时候,句柄使用较多.在对象访问的时候,其实是可以权衡的,如果使用直接指针的方式进行对象访问,那么更多的就是关注堆中已分配对象的快速访问;如果使用句柄访问的方式,更多的是考虑到GC的时候,对象的移动十分频繁(具体参照JVM垃圾回收算法),那么句柄访问方式会更有优势。所以目前来看，就HotSpot来说，对象分配更多使用句柄，对象访问使用直接指针。</p>
+]]></content>
+      <categories>
+        <category>JVM相关</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java内存区域</title>
+    <url>/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/</url>
+    <content><![CDATA[<p>一共分为五大区域，堆和方法区是线程共享的，其他三个是线程隔离的。</p>
+<img src="/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/image-20210802162802207.png" alt="java内存区域划分" style="zoom: 67%;">
+
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>存放实例对象和数组对象；</p>
+<p>GC的主要区域；</p>
+<p>可细分为新生代和老年代；</p>
+<p>堆中对象的访问方式：通过reference数据来操作堆上的具体数据。</p>
+<p>句柄：</p>
+<p>采用句柄的话，会在堆中开辟一块内存用来当作句柄池，reference中存放的就是句柄地址；优点是稳定。</p>
+<p>直接指针：</p>
+<p>存放的就是对象地址；优点是效率高。</p>
+<p>==空间不足会抛出OutOfMemoryError==</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>用于存储已经被虚拟机加载的类的信息、常量、静态变量、运行时常量池。其中运行时常量池用于存放编译期生成的各种字面量和符号引用。（jdk8之前是用永久代的方式实现方法区，jdk8之后采用元空间来实现方法区）</p>
+<p>字面量：</p>
+<p>文本字符串；</p>
+<p>8种基本类型；</p>
+<p>声明为final的常量；</p>
+<p>符号引用：</p>
+<p>类和方法的限定名；</p>
+<p>方法的名称和描述符；</p>
+<p>==空间不足会抛出OutOfMemoryError==</p>
+<h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><p>java方法执行的内存模型，线程私有，每个方法执行都会创建一个栈帧，每个方法从调用至结束都对应着一个栈帧从入栈到出栈的过程。</p>
+<p>StackOverFlowError ：线程请求的栈的深度大于虚拟机所允许的深度。</p>
+<p>OutOfMemoryError ：虚拟机栈可以进行动态扩展，但是扩展的栈无法申请的到足够的内存。</p>
+<h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><p>java调用本地方法（可以为其他语言提供接口），会报OutOfMemoryError和StackOverFlowError</p>
+<h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><p>每个线程都会有一个程序计数器，==唯一一个没有OutOfMemoryError情况的内存区域==。</p>
+]]></content>
+      <categories>
+        <category>JVM相关</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何判断对象已经死亡</title>
+    <url>/2021/07/30/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%A1/</url>
+    <content><![CDATA[<h2 id="1、可达性分析法（常用）"><a href="#1、可达性分析法（常用）" class="headerlink" title="1、可达性分析法（常用）"></a>1、可达性分析法（常用）</h2><p>通过一系列GCRoots的对象作为起点，从起点开始向下搜素，节点所走过的路径称为引用链，当一个对象到GCRoots没有任何引用链时，该对象不可用。</p>
+<p>GCRoots：可以是虚拟机栈中的引用对象、方法区中类静态属性引用的对象、方法区中常量引用的对象。</p>
+<h2 id="2、引用计数法（JVM未采用）"><a href="#2、引用计数法（JVM未采用）" class="headerlink" title="2、引用计数法（JVM未采用）"></a>2、引用计数法（JVM未采用）</h2><p>对一个对象来说，每当有一个地方引用它，计数器就+1；引用失效就-1；当计数器为0时该对象已经不可能再被使用。</p>
+<p>缺点：无法解决两个对象互相引用的情况，这就是==死循环==。</p>
+<h2 id="但是"><a href="#但是" class="headerlink" title="但是"></a>但是</h2><p>回收一个对象起码需要两次标记，可达性分析法中不可达的对象被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行finalize方法，当该对象没有覆盖finalize方法或者finalize方法已经被调用过时，这种情况视为没必要执行；被判定需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被回收。</p>
+]]></content>
+      <categories>
+        <category>JVM相关</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>强软弱虚引用</title>
+    <url>/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h2><p>一个对象有强引用时，GC绝不回收，宁可报错OutOfMemoryError也不回收.</p>
+<h2 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h2><p>只要内存空间足够，就不会回收它；空间不够时才回收这些对象的内存。只要GC没回收它，该对象就一直可被程序使用。软引用可用来实现内存敏感的高速缓存。</p>
+<h2 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h2><p>弱引用关联的对象只能活到下一次垃圾回收之前。</p>
+<h2 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h2><p>如果一个对象仅持有虚引用，其实就跟没有任何引用一样，随时可被回收。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虚引用必须和引用队列（Reference Queue）联合使用。当垃圾回收器准备回收一个对象时，发现该对象还有虚引用，那么就会将这个虚引用加入到与之关联的引用队列中，这样可以通过判断引用队列中是否已经加入虚引用来判断被引用的对象是否要被GC回收，便于在回收之前做一些必要行动。</p>
+<p>虚引用和软引用、弱引用的区别</p>
+<p>软、弱是在GC回收该对象之后，才将引用加入到引用队列中；</p>
+<p>虚引用是在GC回收对象之前，将该引用加入到引用队列中。</p>
+]]></content>
+      <categories>
+        <category>JVM相关</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>永久代和元空间</title>
+    <url>/2021/07/29/%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%92%8C%E5%85%83%E7%A9%BA%E9%97%B4/</url>
+    <content><![CDATA[<p>元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制，但可以通过以下参数来指定元空间的大小：</p>
+<p>-XX:MetaspaceSize，初始空间大小，达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整：如果释放了大量的空间，就适当降低该值；如果释放了很少的空间，那么在不超过MaxMetaspaceSize时，适当提高该值。</p>
+<p>-XX:MaxMetaspaceSize，最大空间，默认是没有限制的。</p>
+<p>除了上面两个指定大小的选项以外，还有两个与 GC 相关的属性：</p>
+<p>-XX:MinMetaspaceFreeRatio，在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</p>
+<p>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</p>
+<h2 id="为什么要将永久代转为元空间"><a href="#为什么要将永久代转为元空间" class="headerlink" title="为什么要将永久代转为元空间"></a>为什么要将永久代转为元空间</h2><p>1、字符串存在永久代中，容易出现性能问题和内存溢出。</p>
+<p>2、类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
+<p>3、永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
+<p>4、Oracle 可能会将HotSpot 与 JRockit 合二为一。</p>
+<p>来自 <a href="https://www.cnblogs.com/paddix/p/5309550.html">https://www.cnblogs.com/paddix/p/5309550.html</a> </p>
+]]></content>
+      <categories>
+        <category>JVM相关</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>符号引用和直接引用</title>
+    <url>/2021/07/26/%E7%AC%A6%E5%8F%B7%E5%BC%95%E7%94%A8%E5%92%8C%E7%9B%B4%E6%8E%A5%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="符号引用："><a href="#符号引用：" class="headerlink" title="符号引用："></a>符号引用：</h2><p>符号引用以一组符号来描述所引用的目标。符号引用可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可，符号引用和虚拟机的布局无关。</p>
+<p>个人理解为：在编译的时候一个每个java类都会被编译成一个class文件，但在编译的时候虚拟机并不知道所引用类的地址，多以就用符号引用来代替，而在这个解析阶段就是为了把这个符号引用转化成为真正的地址的阶段。</p>
+<h2 id="直接引用："><a href="#直接引用：" class="headerlink" title="直接引用："></a>直接引用：</h2><p>直接引用可以是：直接指向目标的指针、相对偏移量、能间接定位到目标的句柄。直接引用和虚拟机的布局是相关的，不同的虚拟机对于相同的符号引用所翻译出来的直接引用一般是不同的。如果有了直接引用，那么直接引用的目标一定被加载到了内存中。</p>
+]]></content>
+      <categories>
+        <category>JVM相关</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逃逸分析</title>
+    <url>/2021/07/27/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>关于这个逃逸问题，我的了解主要来源于这篇[文章](<a href="https://blog.csdn.net/hollis_chuang/article/details/80922794">深入理解Java中的逃逸分析_HollisChuang’s Blog-CSDN博客_逃逸分析</a>)</p>
+<p>人家写的不错，在此便不再多做解释，可从原文章详细阅读。</p>
+]]></content>
+      <categories>
+        <category>JVM相关</category>
       </categories>
       <tags>
         <tag>基础知识点</tag>
