@@ -2897,4 +2897,168 @@
         <tag>基础知识点</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JVM中类的加载机制</title>
+    <url>/2021/05/23/JVM%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<p>加载过程一共分为5个步骤</p>
+<p>加载–验证–准备–解析–初始化–使用–卸载</p>
+<h1 id="加载："><a href="#加载：" class="headerlink" title="加载："></a>加载：</h1><ol>
+<li>通过类的全限定名来获取定义此类的二进制字节流</li>
+<li>将这个类字节流代表的静态存储结构转为方法区的运行时数据结构</li>
+<li>在堆中生成一个代表此类的java.lang.Class对象，作为访问方法区这些数据结构的入口。</li>
+</ol>
+<p>这个过程主要就是类加载器完成。</p>
+<h1 id="验证："><a href="#验证：" class="headerlink" title="验证："></a>验证：</h1><p>此阶段主要确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。</p>
+<ol>
+<li>文件格式验证：基于字节流验证。</li>
+<li>元数据验证：基于方法区的存储结构验证。</li>
+<li>字节码验证：基于方法区的存储结构验证。</li>
+<li>符号引用验证：基于方法区的存储结构验证。</li>
+</ol>
+<h1 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h1><p>为类变量分配内存，并将其初始化为默认值。（此时为默认值，在初始化的时候才会给变量赋值）即在方法区中分配这些变量所使用的内存空间。</p>
+<p>public static int value = 123;</p>
+<p>此时在准备阶段过后的初始值为0而不是123；将value赋值为123的putstatic指令是程序被编译后，存放于类构造器<client>方法之中.</client></p>
+<p>下面这个不一样，此时value的值在准备阶段过后就是123</p>
+<p>public static final int value = 123; </p>
+<h1 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h1><p>把类型中的符号引用转换为直接引用，直接引用可以是指向目标的指针，相对偏移量或是一个能间接定位到目标的句柄。</p>
+<p>主要有以下四种：</p>
+<p>类或接口的解析；</p>
+<p>字段解析；</p>
+<p>类方法解析；</p>
+<p>接口方法解析</p>
+<h1 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a>初始化：</h1><p>初始化阶段是执行类构造器<client>方法的过程。<client>方法是由编译器自动收集类中的类变量的赋值操作和静态语句块中的语句合并而成的。虚拟机会保证<client>方法执行之前，父类的<client>方法已经执行完毕。如果一个类中没有对静态变量赋值也没有静态语句块，那么编译器可以不为这个类生成<client>()方法。</client></client></client></client></client></p>
+<p>java中，对于初始化阶段，有且只有以下六种情况才会对要求类立刻“初始化”（加载，验证，准备，自然需要在此之前开始）：</p>
+<ol>
+<li>使用new关键字实例化对象、访问或者设置一个类的静态字段（被final修饰、编译器优化时已经放入常量池的例外）、调用类方法，都会初始化该静态字段或者静态方法所在的类。</li>
+<li>初始化类的时候，如果其父类没有被初始化过，则要先触发其父类初始化。</li>
+<li>使用java.lang.reflect包的方法进行反射调用的时候，如果类没有被初始化，则要先初始化。</li>
+<li>虚拟机启动时，用户会先初始化要执行的主类（含有main）</li>
+<li>jdk     1.7后，如果java.lang.invoke.MethodHandle的实例最后对应的解析结果是     REF_getStatic、REF_putStatic、REF_invokeStatic方法句柄，并且这个方法所在类没有初始化，则先初始化。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二分法的三种写法</title>
+    <url>/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/</url>
+    <content><![CDATA[<p>总结二分边界的写法是因为很容易出错，比如说：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这种属于向下取整，容易出现left=3，right=4，mid=3的死循环</span></span><br><span class="line"><span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第一种写法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt; high) &#123;<span class="comment">//退出循环时必定low==high</span></span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low) / <span class="number">2</span>;<span class="comment">//向下取整</span></span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid;</span><br><span class="line">    <span class="comment">//当需要在右区间查找时，改变low的值，使得向下取整不会发生死循环</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low - <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第二种写法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low + <span class="number">1</span>) / <span class="number">2</span>;<span class="comment">//直接改为向上取整，避免了向下取整带来的死循环</span></span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第三种写法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt;= high) &#123;<span class="comment">//注意此处退出循环时low！=high</span></span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low - <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>个人心得</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常见的垃圾收集器</title>
+    <url>/2021/05/25/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/</url>
+    <content><![CDATA[<p>收集算法是内存回收的方法论，垃圾收集器是具体实现。</p>
+<p>衡量垃圾收集器的三项重要指标：内存占用、吞吐量、延迟。</p>
+<h1 id="CMS（Concurrent-Mark-Sweep）："><a href="#CMS（Concurrent-Mark-Sweep）：" class="headerlink" title="CMS（Concurrent Mark Sweep）："></a>CMS（Concurrent Mark Sweep）：</h1><p>采用标记-清除算法，以获取最短回收停顿时间为目标的收集器。</p>
+<p>分为四个步骤：</p>
+<h2 id="初始标记："><a href="#初始标记：" class="headerlink" title="初始标记："></a>初始标记：</h2><p>暂停其他线程，记录下与GCRoots直接相连的对象，速度很快；</p>
+<h2 id="并发标记："><a href="#并发标记：" class="headerlink" title="并发标记："></a>并发标记：</h2><p>从GCRoots的直接关联对象开始遍历整个对象图的过程，整个过程时间较长但是不需要停顿用户线程，可以与垃圾收集线程一起工作；</p>
+<h2 id="重新标记："><a href="#重新标记：" class="headerlink" title="重新标记："></a>重新标记：</h2><p>为了修正并发标记期间因为用户线程产生的标记变动那一部分对象。该阶段停顿时间比初始标记时间长，比并发标记时间短。</p>
+<h2 id="并发清除："><a href="#并发清除：" class="headerlink" title="并发清除："></a>并发清除：</h2><p>清理删除掉标记阶段判断的已经死亡对象，由于不需要移动存活对象，这个阶段也可以和用户线程同时并发。</p>
+<p>其中初始标记和并发标记需要stop the world。</p>
+<p><img src="/2021/05/25/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/image-20210803095001438.png" alt="CMS垃圾收集器"></p>
+<h2 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h2><p>1：无法处理浮动垃圾（在并发标记和并发清理阶段产生的垃圾），只能下次清理时再清理掉，所以必须预留一部分空间供并发收集时的程序运作使用。</p>
+<p>2：会产生空间碎片。</p>
+<hr>
+<h1 id="G1（Garbage-First）："><a href="#G1（Garbage-First）：" class="headerlink" title="G1（Garbage First）："></a>G1（Garbage First）：</h1><p>采用标记-整理算法。</p>
+<h2 id="四个步骤："><a href="#四个步骤：" class="headerlink" title="四个步骤："></a>四个步骤：</h2><p>初始标记、并发标记、最终标记、筛选回收。</p>
+<p>前两个步骤和CMS一样，</p>
+<p>最终标记：将并发阶段对象的变化记录在日志里面，该阶段需要停顿线程。</p>
+<p>筛选回收：对每一块待回收的区域的价值和成本进行筛选，根据用户期望的GC停顿时间选择最好的回收方案并回收。</p>
+<h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><p>并发性强、分代收集、空间整合（不会产生空间碎片）、可预测停顿时间。</p>
+<h2 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h2><p>内存占用高</p>
+<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p>将连续的java堆划分为多个大小相同的独立区域（region），每个region都可以根据需要扮演新生代的eden空间、survivor空间或者是老年代空间。收集器能堆扮演不同角色的region采用不同的策略去收集；</p>
+<p>region还有一类特殊的humongous区域，专门用于存储大对象（超过region的一半即为大对象）；</p>
+<p>为什么G1能建立可预测的停顿时间模型？</p>
+<p>因为G1将region作为单次回收的最小单元，即每次回收都是region的整数倍，更具体的思路是让G1收集器跟踪各个region里面的垃圾堆积的价值大小（回收所获得的空间以及所需要的时间的经验值），根据用户设定的允许的停顿收集时间（200ms就很合理），优先处理回收价值收益最大的region，保证G1在有限时间内获取尽可能高的收集效率。</p>
+<p><img src="/2021/05/25/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/image-20210803095542074.png" alt="Garbage First垃圾收集器"></p>
+]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>垃圾收集算法简述</title>
+    <url>/2021/05/26/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95%E7%AE%80%E8%BF%B0/</url>
+    <content><![CDATA[<h1 id="1、标记-清除算法"><a href="#1、标记-清除算法" class="headerlink" title="1、标记-清除算法"></a>1、标记-清除算法</h1><p>首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记的对象。不需要移动被回收的对象，只需要对不存活的对象进行处理；在存活对象较多时效率较高。</p>
+<p>缺点：执行效率不稳定；会产生大量不连续的空间碎片。</p>
+<h1 id="2、标记-复制算法"><a href="#2、标记-复制算法" class="headerlink" title="2、标记-复制算法"></a>2、标记-复制算法</h1><p>为了克服句柄的开销和解决内存碎片问题。将堆分为一个对象面和多个空闲面，程序在对象面分配空间，空间不足时，基于copying算法的垃圾收集从GCRoots中扫描活动对象，将活动对象复制到空闲面 ，这样空闲面就变成了对象面，程序会在新的对象面中分配内存。适用于存活对象较少时使用。</p>
+<p>详细：这个是将年轻代的内存空间分为三块（8：1：1），一块eden，两块survivor，每次使用eden和一个survivor；进行垃圾回收时将存活对象放入剩下的survivor中；如果存活对象超过10%（也就是说剩余的survivor放不下），将多出的对象直接放入老年代。</p>
+<p>缺点：</p>
+<p>在对象的存活率较高时，效率就会降低</p>
+<h1 id="3、标记-整理算法"><a href="#3、标记-整理算法" class="headerlink" title="3、标记-整理算法"></a>3、标记-整理算法</h1><p>与标记-清除算法差不多，先进行标记，后续将存活的对象向一侧进行移动，然后清理掉边界之外的内存。适合存活对象较多。</p>
+<p>缺点：这种对象移动操作必须全程暂停用户应用程序；</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>移动对象时，内存回收较为复杂；不移动对象时，内存分配更加复杂；但是总的来看，移动对象会更加划算，因为内存分配和访问相比垃圾收集频率要高。</p>
+<p>还有一种和稀泥的方法，平时采用标记清除，等到空间碎片忍不了的时候，再用标记移动。</p>
+]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>类的加载器和双亲委派模型</title>
+    <url>/2021/05/22/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<img src="/2021/05/22/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/image-20210803095848598.png" alt="双亲委派模型" style="zoom:67%;">
+
+<p>除了顶层的启动类加载器之外，其他加载器都有自己的父类加载器。（注意，这里的父类加载器通常是指用组合的方式，而不是继承关系来复用父类的加载器。）</p>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>当一个类的加载器收到类加载的请求，先把这个请求委派给父类加载器去完成（所以所有的加载请求最终都应该传送至顶层的启动类加载器中），当父类加载器反馈自己无法完成加载请求时，子加载器才会自己尝试完成加载。</p>
+<p>优点：这种模型使得java类随其加载器一起具备了一种优先级的关系。可保证在各个类的加载器环境中，加载的最顶层的类时同一个父类。</p>
+]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>老年代对象</title>
+    <url>/2021/05/24/%E8%80%81%E5%B9%B4%E4%BB%A3%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<p>Minor GC：发生在新生代垃圾收集，比较频繁，时间短</p>
+<p>Major GC：发生在老年的垃圾收集</p>
+<p>Full GC：新生代、老年代一起清理</p>
+<p>大多数情况下，对象在新生代进行内存分配，Eden没有足够的空间时，会发起Minor GC</p>
+<p>什么时候对象会进入老年代？</p>
+<p>1、大对象直接进入老年代（在Garbage First里面，对象大小超过0.5个region时，直接放入老年代）</p>
+<p>2、空间分配担保</p>
+<p>就是存活的对象在剩余的那个survivor放不下时，就直接进入老年代</p>
+<p>3、年龄判定</p>
+<p>每经过一次GC，就给存活的对象年龄+1，超过设定值（15）就进入老年代；</p>
+<p>还可以动态判定，同一个年龄的对象大小总和超过survivor空间的一半，则年龄大于等于该对象的直接进入老年代。</p>
+]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>基础知识点</tag>
+      </tags>
+  </entry>
 </search>

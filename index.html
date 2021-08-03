@@ -122,17 +122,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">61</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -182,6 +182,106 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/" class="post-title-link" itemprop="url">二分法的三种写法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-03 00:00:00 / 修改时间：10:04:13" itemprop="dateCreated datePublished" datetime="2021-08-03T00:00:00+08:00">2021-08-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="二分法的三种写法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>总结二分边界的写法是因为很容易出错，比如说：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这种属于向下取整，容易出现left=3，right=4，mid=3的死循环</span></span><br><span class="line"><span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第一种写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt; high) &#123;<span class="comment">//退出循环时必定low==high</span></span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low) / <span class="number">2</span>;<span class="comment">//向下取整</span></span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid;</span><br><span class="line">    <span class="comment">//当需要在右区间查找时，改变low的值，使得向下取整不会发生死循环</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low - <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第二种写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low + <span class="number">1</span>) / <span class="number">2</span>;<span class="comment">//直接改为向上取整，避免了向下取整带来的死循环</span></span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第三种写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt;= high) &#123;<span class="comment">//注意此处退出循环时low！=high</span></span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low - <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1106,136 +1206,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/23/java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/23/java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/" class="post-title-link" itemprop="url">java中的各种锁</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-23T00:00:00+08:00">2021-07-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-02 16:09:27" itemprop="dateModified" datetime="2021-08-02T16:09:27+08:00">2021-08-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">Java并发</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/07/23/java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/" class="post-meta-item leancloud_visitors" data-flag-title="java中的各种锁" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/23/java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/23/java%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="悲观锁、乐观锁"><a href="#悲观锁、乐观锁" class="headerlink" title="悲观锁、乐观锁"></a>悲观锁、乐观锁</h2><p>这两种锁并不是指某个具体的锁，而是指一种策略，一种宏观的描述。</p>
-<h3 id="悲观锁（Pessimistic-Lock）："><a href="#悲观锁（Pessimistic-Lock）：" class="headerlink" title="悲观锁（Pessimistic　Lock）："></a>悲观锁（Pessimistic　Lock）：</h3><p>认为冲突一定会发生，每次拿数据时都认为别的线程会对该数据进行修改，所以每次拿数据都会上锁；这样其他线程想取得数据都会被阻塞，直到悲观锁释放。（只要上锁，就都是悲观锁）</p>
-<h3 id="乐观锁（Optimistic-Lock）："><a href="#乐观锁（Optimistic-Lock）：" class="headerlink" title="乐观锁（Optimistic Lock）："></a>乐观锁（Optimistic Lock）：</h3><p>认为冲突一定不会发生，每次拿数据都认为不会被修改，所以都不上锁；但是如果想要更新数据，会在更新前检查自读取到更新这段时间内是否有其他线程对数据进行更改，如果更改过那就重新读取，直到读取成功。（CAS算法）</p>
-<hr>
-<h2 id="synchronized锁的升级"><a href="#synchronized锁的升级" class="headerlink" title="synchronized锁的升级"></a>synchronized锁的升级</h2><p>无锁—偏向锁—轻量级锁（自旋锁）—重量级锁</p>
-<p>上述过程叫做锁膨胀</p>
-<h3 id="偏向锁："><a href="#偏向锁：" class="headerlink" title="偏向锁："></a>偏向锁：</h3><p>初次执行到synchronized代码块的时候，锁对象会变成偏向锁（也就是偏向于第一个获得它的线程），同步代码块执行完毕之后线程不会主动释放偏向锁；第二次执行至同步代码块时，线程会判断此时持有锁的线程是否就是自己，如果是的话就正常执行。由于没有释放锁，所以也不需要重新加锁，故偏向锁性能高。</p>
-<h3 id="轻量级锁："><a href="#轻量级锁：" class="headerlink" title="轻量级锁："></a>轻量级锁：</h3><p>一旦有第二个线程加入竞争，偏向锁就升级为轻量级锁，当某线程尝试获取锁的时候，发现已经被其他线程占用，只能等待其释放，此时发生锁竞争。在锁竞争下，没抢到锁的线程会进行自旋，即不停的循环判断锁是否能被获取。一个线程持有锁，其它线程在原地空耗cpu，这个现象叫做忙等。如果多个线程用一个锁，但是未发生锁竞争或是很轻微的锁竞争，synchronized就用轻量级锁。线程长时间的自旋是非常消耗资源的。</p>
-<h3 id="重量级锁："><a href="#重量级锁：" class="headerlink" title="重量级锁："></a>重量级锁：</h3><p>如果锁的竞争情况严重，某个达到最大自旋次数的线程会将轻量级锁升级为重量级锁；当后续线程尝试获取锁时，不会再进行自旋，而是直接将自己挂起，等待被唤醒。</p>
-<hr>
-<h2 id="公平锁、非公平锁"><a href="#公平锁、非公平锁" class="headerlink" title="公平锁、非公平锁"></a>公平锁、非公平锁</h2><h3 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h3><p>先申请先得到</p>
-<h3 id="非公平锁"><a href="#非公平锁" class="headerlink" title="非公平锁"></a>非公平锁</h3><p>可能是随机或者根据优先级来得到锁</p>
-<p>reentrantlock默认是非公平锁，也可以设置为公平锁；</p>
-<p>synchronized只能是非公平锁</p>
-<h3 id="为什么非公平锁吞吐量更大"><a href="#为什么非公平锁吞吐量更大" class="headerlink" title="为什么非公平锁吞吐量更大"></a><em>为什么非公平锁吞吐量更大</em></h3><p>因为公平锁在获取锁时，永远是等待时间最长的线程获取到锁，这样当线程T1释放锁以后，如果还想继续再获取锁，它也得去同步队列尾部排队，这样就会频繁的发生线程的上下文切换，当线程越多，对CPU的损耗就会越严重。</p>
-<p>非公平锁性能虽然优于公平锁，但是会存在导致线程饥饿的情况。在最坏的情况下，可能存在某个线程一直获取不到锁。不过相比性能而言，饥饿问题可以暂时忽略，这可能就是ReentrantLock默认创建非公平锁的原因之一</p>
-<hr>
-<h2 id="读写锁、共享锁、互斥锁"><a href="#读写锁、共享锁、互斥锁" class="headerlink" title="读写锁、共享锁、互斥锁"></a>读写锁、共享锁、互斥锁</h2><p>读锁（共享锁），写锁（互斥锁、排他锁）。</p>
-<p>如果读取数据是为了更新对象，那么加写锁，持有写锁的时候其他线程需要等待；</p>
-<p>如果读取数据只是为了查询，那么加读锁，其他线程如果也要加读锁，可以直接获取该数据</p>
-<hr>
-<h2 id="可重入锁、不可重入锁"><a href="#可重入锁、不可重入锁" class="headerlink" title="可重入锁、不可重入锁"></a>可重入锁、不可重入锁</h2><h3 id="不可重入锁"><a href="#不可重入锁" class="headerlink" title="不可重入锁"></a>不可重入锁</h3><p>当前线程执行中已经获取到了该锁，再次获取该锁时就会获取不到而被阻塞</p>
-<h3 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h3><p>当前线程执行中已经获取了该锁，并且可以再次获取该锁而不会出现死锁；synchronized和ReentrantLock都是可重入锁</p>
-<hr>
-<h2 id="synchronized-和reentrantlock的异同"><a href="#synchronized-和reentrantlock的异同" class="headerlink" title="synchronized 和reentrantlock的异同"></a><strong>synchronized</strong> 和reentrantlock的异同</h2><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>synchronized是jvm实现的，reentrantlock是jdk实现的</p>
-<h3 id="等待可中断"><a href="#等待可中断" class="headerlink" title="等待可中断"></a>等待可中断</h3><p>当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择放弃等待，选择处理其他事情。reentrant可中断，synchronized不可以</p>
-<h3 id="相同："><a href="#相同：" class="headerlink" title="相同："></a>相同：</h3><p>二者都可以解决线程安全问题</p>
-<h3 id="不同："><a href="#不同：" class="headerlink" title="不同："></a>不同：</h3><p>synchronized机制在执行完相应的同步代码以后，自动的释放同步监视器；Lock需要手动的启动同步（Lock（），同时结束同步也需要手动的实现（unlock（））</p>
-<hr>
-<h2 id="闭锁"><a href="#闭锁" class="headerlink" title="闭锁"></a>闭锁</h2><h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><p>等其他线程运行结束之后，才执行指定线程</p>
-<h3 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h3><p>一：用countDownLatch</p>
-<p>二：用FutureTask</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1303,20 +1277,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
