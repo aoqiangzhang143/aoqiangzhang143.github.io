@@ -127,7 +127,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -959,115 +959,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/18/%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">回文字符串</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-18T00:00:00+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-19 19:13:26" itemprop="dateModified" datetime="2021-07-19T19:13:26+08:00">2021-07-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/07/18/%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-meta-item leancloud_visitors" data-flag-title="回文字符串" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/18/%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/18/%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5. 最长回文子串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5. 最长回文子串</a></h2><h3 id="知识点：manacher算法"><a href="#知识点：manacher算法" class="headerlink" title="知识点：manacher算法"></a>知识点：manacher算法</h3><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
-<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>manacher算法的<strong>快捷</strong>在于将每个节点的最大臂长都记录在内，这样下次再查找的时候就不必再做重复工作；另外，对字符串进行处理（加特殊符号），使得字符串的长度全部都为奇数。</p>
-<h3 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a><strong>复杂度分析</strong>：</h3><p>时间复杂度：O(n)，其中 n 是字符串的长度。由于对于每个位置，扩展要么从当前的最右侧臂长 right 开始，要么只会进行一步，而 right 最多向前走 O(n) 步，因此算法的复杂度为 O(n)。</p>
-<p>空间复杂度：O(n)，我们需要 O(n) 的空间记录每个位置的臂长。</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//先对字符串进行处理：+特殊字符</span></span><br><span class="line">        StringBuffer t = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;$&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            t.append(s.charAt(i));</span><br><span class="line">            t.append(<span class="string">&#x27;$&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        s = t.toString();</span><br><span class="line">        <span class="comment">//定义start为最长字符串的起始位置，end为最长字符串的结束位置</span></span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>,end = -<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//定义right为当前回文串的最右侧，center为最长回文串的对称中心</span></span><br><span class="line">        <span class="keyword">int</span> right = -<span class="number">1</span>,center = -<span class="number">1</span>;</span><br><span class="line">        List&lt;Integer&gt; armLength = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> curArmLength = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;=right)&#123;<span class="comment">//若当前位置在最长回文串范围内部</span></span><br><span class="line">                <span class="keyword">int</span> iSym = center*<span class="number">2</span>-i;</span><br><span class="line">                <span class="comment">//minArm是当前可确定的最短臂长</span></span><br><span class="line">                <span class="keyword">int</span> minArm = Math.min(right-i,armLength.get(iSym));</span><br><span class="line">                <span class="comment">//之后对当前臂长开始向两侧伸展</span></span><br><span class="line">                curArmLength = getArmLength(s,i-minArm,i+minArm);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;<span class="comment">//没有就重头开始找咯</span></span><br><span class="line">                curArmLength = getArmLength(s,i,i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//每一轮都要对数据进行更新</span></span><br><span class="line">            armLength.add(curArmLength);</span><br><span class="line">            <span class="keyword">if</span>(right&lt;i+curArmLength)&#123;<span class="comment">//如果之前的right不行了，就进行更新</span></span><br><span class="line">                center=i;</span><br><span class="line">                right = i+curArmLength;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(end-start&lt;curArmLength*<span class="number">2</span>+<span class="number">1</span>)&#123;</span><br><span class="line">                start = i-curArmLength;</span><br><span class="line">                end = i+curArmLength;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//再次处理字符串，消除特殊字符</span></span><br><span class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=end;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)!=<span class="string">&#x27;$&#x27;</span>)&#123;</span><br><span class="line">                res.append(s.charAt(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//找到字符串的臂长</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getArmLength</span><span class="params">(String s,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&gt;=<span class="number">0</span> &amp;&amp; right&lt;s.length()&amp;&amp;s.charAt(left)==s.charAt(right))&#123;</span><br><span class="line">            --left;</span><br><span class="line">            ++right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (right-left-<span class="number">2</span>)/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="214-最短回文串"><a href="#214-最短回文串" class="headerlink" title="214. 最短回文串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shortest-palindrome/">214. 最短回文串</a></h2><p>给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串。</p>
-<p>示例 1：</p>
-<p>输入：s = “aacecaaa” 输出：”aaacecaaa” 示例 2：</p>
-<p>输入：s = “abcd” 输出：”dcbabcd”</p>
-<h3 id="知识点：字符串、manacher、KMP"><a href="#知识点：字符串、manacher、KMP" class="headerlink" title="知识点：字符串、manacher、KMP"></a>知识点：字符串、manacher、KMP</h3><h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>这个题目前没解决，走了个递归的路子，我尝试用manacher进行计算，超时了，但是有人的manacher没超时，说明我的manacher还有待改进；这个题用KMP是最好的，还有个解法是用的字符串哈希，那个是“投机取巧”了(我也不会用)。</p>
-<p>已经掌握KMP模式匹配算法。</p>
-<h3 id="KMP代码如下："><a href="#KMP代码如下：" class="headerlink" title="KMP代码如下："></a>KMP代码如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shortestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="comment">//next[i]为到下标为i的位置时前缀后缀匹配个数</span></span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="comment">//从1开始是因为next[0]肯定是0</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,size = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="comment">//如果不相等，就把size改为上一个相等位置的长度</span></span><br><span class="line">            <span class="keyword">while</span>(size&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(size))&#123;</span><br><span class="line">                size = next[size-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==s.charAt(size))&#123;</span><br><span class="line">                ++size;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i] = size;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="comment">//将s和其倒序字符串进行最大前缀后缀匹配个数</span></span><br><span class="line">            <span class="keyword">while</span>(index&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(index))&#123;</span><br><span class="line">                index = next[index-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(index)==s.charAt(i))&#123;</span><br><span class="line">                ++index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果s本身是回文字符串，那么index就是s的length</span></span><br><span class="line">        String add = (index==len?<span class="string">&quot;&quot;</span>:s.substring(index));</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(add);</span><br><span class="line">        <span class="keyword">return</span> sb.reverse().append(s).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/27/leetcode%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1371,7 +1262,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -1385,7 +1276,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">leetcode-二叉树的遍历</a>
+            <a href="/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">leetcode-二叉树的遍历</a>
         </h2>
 
         <div class="post-meta">
@@ -1415,7 +1306,7 @@
             </span>
 
           
-            <span id="/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-二叉树的遍历" title="阅读次数">
+            <span id="/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-二叉树的遍历" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1430,8 +1321,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1461,7 +1352,7 @@
 <h1 id="1104-二叉树寻路"><a href="#1104-二叉树寻路" class="headerlink" title="1104. 二叉树寻路"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-in-zigzag-labelled-binary-tree/">1104. 二叉树寻路</a></h1><p>在一棵无限的二叉树上，每个节点都有两个子节点，树中的节点 逐行 依次按 “之” 字形进行标记。</p>
 <p>如下图所示，在奇数行（即，第一行、第三行、第五行……）中，按从左到右的顺序进行标记；</p>
 <p>而偶数行（即，第二行、第四行、第六行……）中，按从右到左的顺序进行标记。</p>
-<p><img src="/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/image-20210729101603254.png" alt="二叉树寻路"></p>
+<p><img src="/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/image-20210729101603254.png" alt="二叉树寻路"></p>
 <p>给你树上某一个节点的标号 label，请你返回从根节点到该标号为 label 节点的路径，该路径是由途经的节点标号所组成的。</p>
 <p>示例 1：</p>
 <p>输入：label = 14</p>
@@ -1480,9 +1371,9 @@
 <p>对位于 (row, col) 的每个结点而言，其左右子结点分别位于 (row + 1, col - 1) 和 (row + 1, col + 1) 。树的根结点位于 (0, 0) 。</p>
 <p>二叉树的 垂序遍历 从最左边的列开始直到最右边的列结束，按列索引每一列上的所有结点，形成一个按出现位置从上到下排序的有序列表。如果同行同列上有多个结点，则按结点的值从小到大进行排序。</p>
 <p>返回二叉树的 垂序遍历 序列。</p>
-<img src="/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/image-20210731103159133.png" alt="二叉树的垂序遍历" style="zoom: 67%;">
+<img src="/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/image-20210731103159133.png" alt="二叉树的垂序遍历" style="zoom: 67%;">
 
-<img src="/2021/06/24/leetcod-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/image-20210731103316323.png" alt="二叉树的垂序遍历示例2" style="zoom:67%;">
+<img src="/2021/06/24/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/image-20210731103316323.png" alt="二叉树的垂序遍历示例2" style="zoom:67%;">
 
 <h2 id="知识点：二叉树遍历"><a href="#知识点：二叉树遍历" class="headerlink" title="知识点：二叉树遍历"></a>知识点：二叉树遍历</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>既然是根据节点的列坐标进行排序，首先对二叉树进行深度优先遍历，记录所有节点的横纵坐标，然后根据纵坐标进行排序，为了方便，再根据横坐标进行第二优先排序，最后根据节点数值大小进行第三优先排序。</p>
 <h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> LC987_vertical_order_traversal_of_a_binary_tree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> mytreenode.TreeNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VerticalOrderTraversalOfABinaryTree</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; verticalTraversal(TreeNode root) &#123;</span><br><span class="line">        List&lt;<span class="keyword">int</span>[]&gt; nodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        dfs(root,<span class="number">0</span>,<span class="number">0</span>,nodes);</span><br><span class="line">        Collections.sort(nodes, <span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] o1, <span class="keyword">int</span>[] o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(o1[<span class="number">0</span>]!=o2[<span class="number">0</span>])&#123;</span><br><span class="line">                    <span class="keyword">return</span> o1[<span class="number">0</span>]-o2[<span class="number">0</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(o1[<span class="number">1</span>]!=o2[<span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="keyword">return</span> o1[<span class="number">1</span>]-o2[<span class="number">1</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> o1[<span class="number">2</span>]-o2[<span class="number">2</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> lastCol = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] node:nodes)&#123;</span><br><span class="line">            <span class="keyword">int</span> col = node[<span class="number">0</span>],row = node[<span class="number">1</span>],value = node[<span class="number">2</span>];</span><br><span class="line">            <span class="comment">//如果不是同一列</span></span><br><span class="line">            <span class="keyword">if</span>(col!=lastCol)&#123;</span><br><span class="line">                lastCol = col;</span><br><span class="line">                ans.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</span><br><span class="line">                size++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.get(size-<span class="number">1</span>).add(value);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 进行深度优先遍历</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> root 当前节点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> row 当前行数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> col 当前列数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> nodes 存放数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode root, <span class="keyword">int</span> row, <span class="keyword">int</span> col, List&lt;<span class="keyword">int</span>[]&gt; nodes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        nodes.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;col,row,root.val&#125;);</span><br><span class="line">        dfs(root.left,row+<span class="number">1</span>, col-<span class="number">1</span>, nodes);</span><br><span class="line">        dfs(root.right,row+<span class="number">1</span>,col+<span class="number">1</span>,nodes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1601,6 +1492,114 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/" class="post-title-link" itemprop="url">leetcode-N个数之和</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-22T00:00:00+08:00">2021-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-22 18:19:55" itemprop="dateModified" datetime="2021-07-22T18:19:55+08:00">2021-07-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-N个数之和" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="2-两数相加"><a href="#2-两数相加" class="headerlink" title="2. 两数相加"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/">2. 两数相加</a></h1><p>给你两个非空的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>链表</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这个题目不难，重点在于想清楚即可，还有处理好细节。</p>
+<h2 id="代码入下："><a href="#代码入下：" class="headerlink" title="代码入下："></a>代码入下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        ListNode resHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        ListNode curNode = resHead;</span><br><span class="line">        <span class="keyword">int</span> plus = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l1!=<span class="keyword">null</span>||l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> num1 = l1==<span class="keyword">null</span>?<span class="number">0</span>:l1.val;</span><br><span class="line">            <span class="keyword">int</span> num2 = l2==<span class="keyword">null</span>?<span class="number">0</span>:l2.val;</span><br><span class="line">            <span class="keyword">int</span> sum = num1+num2+plus;</span><br><span class="line">            plus = sum/<span class="number">10</span>;</span><br><span class="line">            <span class="keyword">int</span> curNum = sum%<span class="number">10</span>;</span><br><span class="line">            curNode.next = <span class="keyword">new</span> ListNode(curNum);</span><br><span class="line">            curNode = curNode.next;</span><br><span class="line">            <span class="keyword">if</span>(l1!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                l1 = l1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                l2 = l2.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(plus!=<span class="number">0</span>)&#123;</span><br><span class="line">            curNode.next = <span class="keyword">new</span> ListNode(plus);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> resHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">15. 三数之和</a></h1><h2 id="知识点：双指针"><a href="#知识点：双指针" class="headerlink" title="知识点：双指针"></a>知识点：双指针</h2><p>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。</p>
+<p>注意：答案中不可以包含重复的三元组。</p>
+<h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>三个数之和为零，肯定得有负数，或者全是0，先对数组进行排序，然后开始遍历；</p>
+<p>如果nums[i]&gt;0，则说明后面的数字已经全部大于0，不可能再有满足条件的数组，直接返回结果；</p>
+<p>如果nums[i]+nums[left]+nums[right]=0，进行记录，并将left和right分别进行右移和左移，直到找到不重复的元素为止；</p>
+<p>如果和小于0，让左指针右移；和大于0，就让右指针左移。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; resList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> resList;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;nums[i]==nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> left = i+<span class="number">1</span>,right = nums.length-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">                <span class="keyword">int</span> curSum = nums[i]+nums[left]+nums[right];</span><br><span class="line">                <span class="keyword">if</span>(curSum==<span class="number">0</span>)&#123;</span><br><span class="line">                    ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                    list.add(nums[i]);</span><br><span class="line">                    list.add(nums[left]);</span><br><span class="line">                    list.add(nums[right]);</span><br><span class="line">                    resList.add(list);</span><br><span class="line">                    <span class="keyword">while</span> (left&lt;right&amp;&amp;nums[left]==nums[left+<span class="number">1</span>])&#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">while</span>(left&lt;right&amp;&amp;nums[right]==nums[right-<span class="number">1</span>])&#123;</span><br><span class="line">                        --right;</span><br><span class="line">                    &#125;</span><br><span class="line">                    ++left;</span><br><span class="line">                    --right;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(curSum&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                    left++;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    right--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> resList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1685,7 +1684,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
