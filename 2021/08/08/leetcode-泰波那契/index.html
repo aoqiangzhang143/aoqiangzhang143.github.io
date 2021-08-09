@@ -23,17 +23,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="且将新火试新茶，诗酒趁年华">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mithrandir">
-<meta property="og:url" content="http://example.com/archives/2021/page/4/index.html">
+  <meta name="description" content="1137. 第 N 个泰波那契数泰波那契序列 Tn 定义如下：  T0 &#x3D; 0, T1 &#x3D; 1, T2 &#x3D; 1, 且在 n &gt;&#x3D; 0 的条件下 Tn+3 &#x3D; Tn + Tn+1 + Tn+2 给你整数 n，请返回第 n 个泰波那契数 Tn 的值。 示例 1： 输入：n &#x3D; 4 输出：4 解释： T_3 &#x3D; 0 + 1 + 1 &#x3D; 2 T_4 &#x3D; 1 + 1 + 2 &#x3D; 4 示例 2： 输入：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-泰波那契">
+<meta property="og:url" content="http://example.com/2021/08/08/leetcode-%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="且将新火试新茶，诗酒趁年华">
+<meta property="og:description" content="1137. 第 N 个泰波那契数泰波那契序列 Tn 定义如下：  T0 &#x3D; 0, T1 &#x3D; 1, T2 &#x3D; 1, 且在 n &gt;&#x3D; 0 的条件下 Tn+3 &#x3D; Tn + Tn+1 + Tn+2 给你整数 n，请返回第 n 个泰波那契数 Tn 的值。 示例 1： 输入：n &#x3D; 4 输出：4 解释： T_3 &#x3D; 0 + 1 + 1 &#x3D; 2 T_4 &#x3D; 1 + 1 + 2 &#x3D; 4 示例 2： 输入：">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-08T02:18:41.136Z">
 <meta property="article:author" content="aoqiangzhang143">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2021/page/4/">
+<link rel="canonical" href="http://example.com/2021/08/08/leetcode-%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91/">
 
 
 <script id="page-configurations">
@@ -41,12 +44,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Mithrandir</title>
+  <title>leetcode-泰波那契 | Mithrandir</title>
   
 
 
@@ -180,240 +183,138 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/08/leetcode-%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          leetcode-泰波那契
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-08 00:00:00 / 修改时间：10:18:41" itemprop="dateCreated datePublished" datetime="2021-08-08T00:00:00+08:00">2021-08-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/08/leetcode-%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-泰波那契" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">不错! 目前共计 64 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/08/leetcode-%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/08/leetcode-%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-10T00:00:00+08:00"
-              content="2021-06-10">
-          06-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/10/leetcode-%E8%B7%B3%E8%B7%83%E6%AC%A1%E6%95%B0/" itemprop="url">
-            <span itemprop="name">leetcode-跳跃次数</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-10T00:00:00+08:00"
-              content="2021-06-10">
-          06-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="url">
-            <span itemprop="name">leetcode-重构二叉树</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-10T00:00:00+08:00"
-              content="2021-06-10">
-          06-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" itemprop="url">
-            <span itemprop="name">leetcode-重排链表</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-08T00:00:00+08:00"
-              content="2021-06-08">
-          06-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/" itemprop="url">
-            <span itemprop="name">leetcode-岛屿问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-07T00:00:00+08:00"
-              content="2021-06-07">
-          06-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/07/leetcode-K%E5%AD%97%E4%B9%8B%E8%B0%9C/" itemprop="url">
-            <span itemprop="name">leetcode-K字之谜</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-04T00:00:00+08:00"
-              content="2021-06-04">
-          06-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url">
-            <span itemprop="name">Spring实战第四版读书笔记</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-04T00:00:00+08:00"
-              content="2021-06-04">
-          06-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">mybatisplus使用总结</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-03T00:00:00+08:00"
-              content="2021-06-03">
-          06-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" itemprop="url">
-            <span itemprop="name">mysql登录</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-02T00:00:00+08:00"
-              content="2021-06-02">
-          06-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/02/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">IDEA快捷键总结</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-06-01T19:12:55+08:00"
-              content="2021-06-01">
-          06-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" itemprop="url">
-            <span itemprop="name">maven首次运行问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+        <h1 id="1137-第-N-个泰波那契数"><a href="#1137-第-N-个泰波那契数" class="headerlink" title="1137. 第 N 个泰波那契数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-th-tribonacci-number/">1137. 第 N 个泰波那契数</a></h1><p>泰波那契序列 Tn 定义如下： </p>
+<p>T0 = 0, T1 = 1, T2 = 1, 且在 n &gt;= 0 的条件下 Tn+3 = Tn + Tn+1 + Tn+2</p>
+<p>给你整数 n，请返回第 n 个泰波那契数 Tn 的值。</p>
+<p>示例 1：</p>
+<p>输入：n = 4</p>
+<p>输出：4</p>
+<p>解释：</p>
+<p>T_3 = 0 + 1 + 1 = 2</p>
+<p>T_4 = 1 + 1 + 2 = 4</p>
+<p>示例 2：</p>
+<p>输入：n = 25</p>
+<p>输出：1389537</p>
+<p>提示：</p>
+<p>0 &lt;= n &lt;= 37</p>
+<p>答案保证是一个 32 位整数，即 answer &lt;= 2^31 - 1。</p>
+<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>注意优化时间。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">tribonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> fir = <span class="number">0</span>,sec = <span class="number">0</span>,thr = <span class="number">1</span>,ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            fir = sec;</span><br><span class="line">            sec = thr;</span><br><span class="line">            thr = ans;</span><br><span class="line">            ans = fir+sec+thr;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/05/leetcode-%E5%9B%BE%E7%9B%B8%E5%85%B3/" rel="prev" title="leetcode-图相关">
+      <i class="fa fa-chevron-left"></i> leetcode-图相关
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/09/leetcode-%E4%B8%91%E6%95%B0/" rel="next" title="leetcode-丑数">
+      leetcode-丑数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2021/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2021/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2021/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/7/">7</a><a class="extend next" rel="next" href="/archives/2021/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -460,6 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1137-%E7%AC%AC-N-%E4%B8%AA%E6%B3%B0%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">1137. 第 N 个泰波那契数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：动态规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
