@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,111 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/10/leetcode-%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/10/leetcode-%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">leetcode-回文字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-10 00:00:00 / 修改时间：20:53:24" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/10/leetcode-%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-回文字符串" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/10/leetcode-%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/10/leetcode-%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5. 最长回文子串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5. 最长回文子串</a></h1><h2 id="知识点：manacher算法"><a href="#知识点：manacher算法" class="headerlink" title="知识点：manacher算法"></a>知识点：manacher算法</h2><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>manacher算法的快捷在于将每个节点的最大臂长都记录在内，这样下次再查找的时候就不必再做重复工作；另外，对字符串进行处理（加特殊符号），使得字符串的长度全部都为奇数。</p>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析:"></a>复杂度分析:</h2><p>时间复杂度：O(n)，其中 n 是字符串的长度。由于对于每个位置，扩展要么从当前的最右侧臂长 right 开始，要么只会进行一步，而 right 最多向前走 O(n) 步，因此算法的复杂度为 O(n)。</p>
+<p>空间复杂度：O(n)，我们需要 O(n) 的空间记录每个位置的臂长。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//处理字符串</span></span><br><span class="line">        StringBuffer t = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;$&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            t.append(s.charAt(i));</span><br><span class="line">            t.append(<span class="string">&#x27;$&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        s=t.toString();</span><br><span class="line">        <span class="comment">//start为最长字符串的起始，end为其末端</span></span><br><span class="line">        <span class="keyword">int</span> start=<span class="number">0</span>,end=-<span class="number">1</span>;</span><br><span class="line">        <span class="comment">//right为当前最长回文串的最右端，j为最长回文串对称中心</span></span><br><span class="line">        <span class="keyword">int</span> right=-<span class="number">1</span>,j=-<span class="number">1</span>;</span><br><span class="line">        List&lt;Integer&gt; armLength = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> curArmLength;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;=right)&#123;<span class="comment">//如果当前位置在最长回文串范围内部</span></span><br><span class="line">                <span class="keyword">int</span> iSym=j*<span class="number">2</span>-i;</span><br><span class="line">                <span class="keyword">int</span> minArm=Math.min(right-i,armLength.get(iSym));<span class="comment">//找到可以确定的臂长</span></span><br><span class="line">                curArmLength=getArmLength(s,i-minArm,i+minArm);<span class="comment">//扩展臂长</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;<span class="comment">//没有就重头开始找</span></span><br><span class="line">                curArmLength=getArmLength(s,i,i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//对数据进行更新</span></span><br><span class="line">            armLength.add(curArmLength);</span><br><span class="line">            <span class="keyword">if</span>(right&lt;i+curArmLength)&#123;</span><br><span class="line">                j=i;</span><br><span class="line">                right=i+curArmLength;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(end-start&lt;curArmLength*<span class="number">2</span>+<span class="number">1</span>)&#123;</span><br><span class="line">                start=i-curArmLength;</span><br><span class="line">                end=i+curArmLength;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//再次处理字符串，消除特殊字符</span></span><br><span class="line">        StringBuffer res = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=end;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)!=<span class="string">&#x27;$&#x27;</span>)&#123;</span><br><span class="line">                res.append(s.charAt(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//找到字符串的臂长</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getArmLength</span><span class="params">(String s,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&gt;=<span class="number">0</span>&amp;&amp;right&lt;s.length()&amp;&amp;s.charAt(left)==s.charAt(right))&#123;</span><br><span class="line">            --left;</span><br><span class="line">            ++right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (right-left-<span class="number">2</span>)/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h1 id="214-最短回文串"><a href="#214-最短回文串" class="headerlink" title="214. 最短回文串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shortest-palindrome/">214. 最短回文串</a></h1><h2 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串。</p>
+<p>示例 1：</p>
+<p>输入：s = “aacecaaa” 输出：”aaacecaaa” 示例 2：</p>
+<p>输入：s = “abcd” 输出：”dcbabcd”</p>
+<h2 id="知识点：字符串、manacher、KMP"><a href="#知识点：字符串、manacher、KMP" class="headerlink" title="知识点：字符串、manacher、KMP"></a>知识点：字符串、manacher、KMP</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这个题目前没解决，走了个递归的路子，我尝试用manacher进行计算，超时了，但是有人的manacher没超时，说明我的manacher还有待改进；这个题用KMP是最好的，还有个解法是用的字符串哈希，那个是“投机取巧”了(我也不会用)。</p>
+<p>已经掌握KMP模式匹配算法。</p>
+<h2 id="KMP代码如下："><a href="#KMP代码如下：" class="headerlink" title="KMP代码如下："></a>KMP代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shortestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="comment">//next为当前字符串的最大前缀后缀匹配个数</span></span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,size=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="comment">//这个是回溯的意思，如果当前字符和下一个字符不相等，那就将size改为上次相等的那个位置</span></span><br><span class="line">            <span class="keyword">while</span>(size&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(size))&#123;</span><br><span class="line">                size=next[size-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==s.charAt(size))&#123;</span><br><span class="line">                ++size;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i]=size;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="comment">//这个是相当于将S和其倒序字符串进行了求最大前缀后缀匹配个数</span></span><br><span class="line">            <span class="keyword">while</span>(index&gt;<span class="number">0</span>&amp;&amp;s.charAt(i)!=s.charAt(index))&#123;</span><br><span class="line">                index=next[index-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(index)==s.charAt(i))&#123;</span><br><span class="line">                ++index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//注意此处的index，如果s为回文字符串，则index就是s的length</span></span><br><span class="line">        String add = (index==len?<span class="string">&quot;&quot;</span>:s.substring(index));</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(add);</span><br><span class="line">        <span class="keyword">return</span> sb.reverse().append(s).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -448,7 +553,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-05 11:00:58" itemprop="dateModified" datetime="2021-08-05T11:00:58+08:00">2021-08-05</time>
+                <time title="修改时间：2021-08-10 10:58:05" itemprop="dateModified" datetime="2021-08-10T10:58:05+08:00">2021-08-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -523,6 +628,17 @@
 <p><strong>你不能只是单纯的改变节点内部的值</strong>，而是需要实际进行节点交换。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h2><p>除了反转之外，还涉及到一个检查剩余节点够不够反转的问题，在反转之前检查下即可。</p>
 <h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>,head);</span><br><span class="line">        ListNode pre = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode tail = pre;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">                tail = tail.next;</span><br><span class="line">                <span class="keyword">if</span>(tail==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode nextNode = tail.next;</span><br><span class="line">            ListNode[] ans = myReverse(head,tail);</span><br><span class="line">            head = ans[<span class="number">0</span>];</span><br><span class="line">            tail = ans[<span class="number">1</span>];</span><br><span class="line">            pre.next = head;</span><br><span class="line">            tail.next = nextNode;</span><br><span class="line">            pre = tail;</span><br><span class="line">            head = tail.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> ListNode[] myReverse(ListNode head,ListNode tail)&#123;</span><br><span class="line">        ListNode pre = tail.next;</span><br><span class="line">        ListNode curNode = head;</span><br><span class="line">        <span class="keyword">while</span>(pre!=tail)&#123;</span><br><span class="line">            ListNode suc = curNode.next;</span><br><span class="line">            curNode.next = pre;</span><br><span class="line">            pre = curNode;</span><br><span class="line">            curNode = suc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ListNode[]&#123;tail,head&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="143-重排链表"><a href="#143-重排链表" class="headerlink" title="143. 重排链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reorder-list/">143. 重排链表</a></h1><p>给定一个单链表 L：L0→L1→…→Ln-1→Ln ，</p>
+<p>将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
+<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
+<p>示例 1:</p>
+<p>给定链表 1-&gt;2-&gt;3-&gt;4, 重新排列为 1-&gt;4-&gt;2-&gt;3.</p>
+<p>示例 2:</p>
+<p>给定链表 1-&gt;2-&gt;3-&gt;4-&gt;5, 重新排列为 1-&gt;5-&gt;2-&gt;4-&gt;3.</p>
+<h2 id="知识点：链表-1"><a href="#知识点：链表-1" class="headerlink" title="知识点：链表"></a>知识点：链表</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>仔细观察可发现，重新排列是将链表分为两段后进行挨个穿插得到；于是本题思路为，找到链表后半部分（注意如果是奇数则不包括中间那个）头部；对后半段进行反转；然后将两段链表进行穿插。</p>
+<h2 id="代码如下：-4"><a href="#代码如下：-4" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//先找到后半段链表</span></span><br><span class="line">        ListNode fast = head,slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast.next!=<span class="keyword">null</span>&amp;&amp;fast.next.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode secHead = slow.next;</span><br><span class="line">        slow.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// ListNode curNode = secHead;</span></span><br><span class="line">        <span class="comment">//反转第二段链表</span></span><br><span class="line">        <span class="keyword">while</span>(secHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode tmpNext = secHead.next;</span><br><span class="line">            secHead.next = pre;</span><br><span class="line">            pre = secHead;</span><br><span class="line">            secHead = tmpNext;</span><br><span class="line">        &#125;</span><br><span class="line">        secHead = pre;</span><br><span class="line">        ListNode firHead = head;</span><br><span class="line">        <span class="comment">//拼接两段链表</span></span><br><span class="line">        <span class="keyword">while</span>(firHead!=<span class="keyword">null</span>&amp;&amp;secHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode firNext = firHead.next;</span><br><span class="line">            ListNode secNext = secHead.next;</span><br><span class="line"></span><br><span class="line">            firHead.next = secHead;</span><br><span class="line">            firHead = firNext;</span><br><span class="line"></span><br><span class="line">            secHead.next = firHead;</span><br><span class="line">            secHead = secNext;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -1922,104 +2038,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">maven首次运行问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-01 19:12:55 / 修改时间：19:20:35" itemprop="dateCreated datePublished" datetime="2021-06-01T19:12:55+08:00">2021-06-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">踩坑记录</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="maven首次运行问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>第一次运行maven时，由于maven默认用的是jre，用命令行运行时会报错，如下图所示</p>
-<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191617928.png" alt="image-20210601191617928"></p>
-<p>根据提示错误，可知运行的是jre而不是jkd，查看maven版本</p>
-<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191710470.png" alt="image-20210601191710470"></p>
-<p>发现路径为jre，至此找到问题根源。</p>
-<p>解决方法：</p>
-<p>在maven\bin\setting文件中，在首行加上</p>
-<p>set JAVA_HOME=C:\JDK\jdk1.8.0_291</p>
-<p>将其所用的JAVA_HOME修改为本机所安装的jdk，之后问题解决，文件可正常编译。</p>
-<p><img src="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/image-20210601191917280.png" alt="image-20210601191917280"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2091,7 +2109,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2104,7 +2122,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
