@@ -3388,4 +3388,23 @@
         <tag>dfs、bfs</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode数字1的个数</title>
+    <url>/2021/08/13/leetcode-%E6%95%B0%E5%AD%971%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
+    <content><![CDATA[<p>给定一个整数 n，计算所有小于等于 n 的非负整数中数字 1 出现的个数。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入：</strong>n = 13<br> <strong>输出：</strong>6</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong>n = 0<br> <strong>输出：</strong>0</p>
+<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p><a href="https://leetcode-cn.com/problems/number-of-digit-one/solution/shu-zi-1-de-ge-shu-by-leetcode-solution-zopq/">题解</a>从每个数位可能出现1的情况做了分析，进而推广到每个数位；最后将每个数位出现1的个数相加起来。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> mulk = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k =<span class="number">0</span>;n&gt;=mulk;k++)&#123;</span><br><span class="line">            ans += (n/(mulk*<span class="number">10</span>))*mulk+Math.min(Math.max(n%(mulk*<span class="number">10</span>)-mulk+<span class="number">1</span>,<span class="number">0</span>),mulk);</span><br><span class="line">            mulk*=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
 </search>
