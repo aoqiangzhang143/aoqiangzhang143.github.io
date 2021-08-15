@@ -914,183 +914,6 @@
       </categories>
   </entry>
   <entry>
-    <title>MyHospital项目笔记</title>
-    <url>/2021/06/10/MyHospital/</url>
-    <content><![CDATA[<h2 id="ip和端口号总结："><a href="#ip和端口号总结：" class="headerlink" title="ip和端口号总结："></a>ip和端口号总结：</h2><p>sql的IP地址：192.168.75.200，端口号：3306</p>
-<p>nginx的端口号：30001  ——用于分发端口号</p>
-<p>mongo的ip：192.168.75.200，端口号27017   ——-用于存储数据</p>
-<p>nacos—–服务注册中心，端口号8848</p>
-<p>redis的ip地址：192.168.75.200，端口号6379</p>
-<p>rabbitmq：ip192.168.75.200,端口号15672  管理端口号5672</p>
-<hr>
-<h2 id="1、版本问题"><a href="#1、版本问题" class="headerlink" title="1、版本问题"></a>1、版本问题</h2><p><img src="/2021/06/10/MyHospital/image-20210719145620042.png" alt="spring的版本问题"></p>
-<p>ans：之前在测试MyBatis Plus的时候，这个2.2.1.RELEASE版本一直报红，我采用了2.5.0，但是在此处不知道为什么没用也未发现报红。</p>
-<hr>
-<h2 id="2、工具swagger2"><a href="#2、工具swagger2" class="headerlink" title="2、工具swagger2"></a>2、工具swagger2</h2><p>在前期进行测试的时候，类似测试获取数据这种操作，可以直接通过访问固定网页（如：<a href="http://localhost:8201/admin/hosp/hospitalSet/findall%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9B%E4%BD%86%E6%98%AF%E5%9C%A8%E6%B5%8B%E8%AF%95%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E6%A0%B9%E6%8D%AEid%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%89%E6%97%B6%EF%BC%8C%E4%BE%BF%E6%B2%A1%E6%B3%95%E9%80%9A%E8%BF%87%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E9%A1%B5%E8%BF%9B%E8%A1%8C%E5%88%A0%E9%99%A4%EF%BC%9B%E6%95%85%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E9%87%87%E7%94%A8swagger2%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%8C%E9%80%9A%E8%BF%87%E5%AF%B9swagger2%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%B9%B6%E9%87%87%E7%94%A8%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AF%B9%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%BF%E5%BE%97%E5%8F%AF%E9%98%B6%E6%AE%B5%E6%80%A7%E5%AF%B9%E5%8A%9F%E8%83%BD%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%E3%80%82">http://localhost:8201/admin/hosp/hospitalSet/findall）进行测试；但是在测试删除功能（根据id进行删除）时，便没法通过直接访问网页进行删除；故，在这里采用swagger2进行测试，通过对swagger2进行配置，并采用注解的方式对网页显示进行优化，使得可阶段性对功能进行测试。</a></p>
-<p><img src="/2021/06/10/MyHospital/image-20210612151047092.png" alt="swagger2成果图"></p>
-<hr>
-<h2 id="3、工具Result"><a href="#3、工具Result" class="headerlink" title="3、工具Result"></a>3、工具Result</h2><p>为了统一返回结果（有人用1表示成功，有人用true表示成功…），故创建一个结果类Result，用于统一对返回结果的管理。</p>
-<p>之后函数返回类型便可设置为Result，将原本的返回结果进行包装即可返回。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1、查询医院设置表所有信息</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;获取所有医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;findAll&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">findAllHospitalSet</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//调用service方法</span></span><br><span class="line">        List&lt;HospitalSet&gt; list = hospitalSetService.list();</span><br><span class="line">        <span class="comment">//此处便对原本返回的list进行包装，源码在此处不再贴出，后续会上传至我的gitee</span></span><br><span class="line">        <span class="keyword">return</span> Result.ok(list);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、逻辑删除医院设置</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;逻辑删除医院设置&quot;)</span></span><br><span class="line">    <span class="meta">@DeleteMapping(&quot;&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">removeHospSet</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = hospitalSetService.removeById(id);</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.ok();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.fail();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="4、babel问题"><a href="#4、babel问题" class="headerlink" title="4、babel问题"></a>4、babel问题</h2><p>在安装使用babel时，安装之后无法显示版本号，问题如下</p>
-<p><img src="/2021/06/10/MyHospital/image-20210621121447448.png" alt="babel安装问题"></p>
-<p>ans：在安装时为全局配置，此处找不到babel应该是未进行环境路径配置，故在系统变量中添加路径</p>
-<p>babel的路径可通过如下命令获得<img src="/2021/06/10/MyHospital/image-20210621121618787.png" alt="获得babel安装路径"></p>
-<p>然后添加进系统环境变量中，重启vscode</p>
-<p><img src="/2021/06/10/MyHospital/image-20210621121735212.png" alt="可获得babel版本号"></p>
-<hr>
-<h2 id="5、笔记：前端设置步骤"><a href="#5、笔记：前端设置步骤" class="headerlink" title="5、笔记：前端设置步骤"></a>5、笔记：前端设置步骤</h2><h3 id="1、添加路由"><a href="#1、添加路由" class="headerlink" title="1、添加路由"></a>1、添加路由</h3><p>在src/router/index.js中添加代码</p>
-<p><img src="/2021/06/10/MyHospital/image-20210622105230312.png" alt="路由前端显示"><img src="/2021/06/10/MyHospital/image-20210622105257490.png" alt="路由代码" style="zoom:80%;"></p>
-<h3 id="2、设置跳转页面路径"><a href="#2、设置跳转页面路径" class="headerlink" title="2、设置跳转页面路径"></a>2、设置跳转页面路径</h3><p>在路由代码中进行设置</p>
-<p><img src="/2021/06/10/MyHospital/image-20210622105446334.png" alt="跳转路径设置"></p>
-<h3 id="3、在api文件夹创建js文件，定义接口路径"><a href="#3、在api文件夹创建js文件，定义接口路径" class="headerlink" title="3、在api文件夹创建js文件，定义接口路径"></a>3、在api文件夹创建js文件，定义接口路径</h3><p>红线处为后端代码中设置的路径</p>
-<p><img src="/2021/06/10/MyHospital/image-20210622105807763.png" alt="定义接口路径"></p>
-<h3 id="4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示"><a href="#4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示" class="headerlink" title="4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示"></a>4、在页面引入js文件，使用axios进行接口调用，把接口返回数据在页面显示</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!--template是页面中显示的数据 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;app-container&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">        医院设置列表</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="comment">//引入接口定义的js文件</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">import</span> hospset <span class="keyword">from</span> <span class="string">&#x27;@/api/hospset&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">current</span>:<span class="number">1</span>,<span class="comment">//当前页</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">limit</span>:<span class="number">3</span>,<span class="comment">//每页显示记录数</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">searchObj</span>:&#123;&#125;,<span class="comment">//条件封装对象</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="attr">list</span>:[] <span class="comment">//每页数据集合</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="function"><span class="title">created</span>(<span class="params"></span>)</span>&#123;<span class="comment">//在页面渲染之前执行</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="comment">//一般调用methods定义的方法，得到数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="built_in">this</span>.getList()</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="attr">methods</span>: &#123;<span class="comment">//定义方法，进行请求接口调用</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="comment">//医院设置列表</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="function"><span class="title">getList</span>(<span class="params"></span>)</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            hospset.getHospSetList(<span class="built_in">this</span>.current,<span class="built_in">this</span>.limit,<span class="built_in">this</span>.searchObj)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;<span class="comment">//请求成功，response是接口返回数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="built_in">console</span>.log(response)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            &#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;<span class="comment">//请求失败，error是错误提示</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="built_in">console</span>.log(error)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            &#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="6、跨域问题"><a href="#6、跨域问题" class="headerlink" title="6、跨域问题"></a>6、跨域问题</h2><h3 id="三个地方，任何一个不相同便会产生跨域"><a href="#三个地方，任何一个不相同便会产生跨域" class="headerlink" title="三个地方，任何一个不相同便会产生跨域"></a>三个地方，任何一个不相同便会产生跨域</h3><p>1、访问协议：http  https</p>
-<p>2、访问地址：192.128.1.1    172.11.1.1</p>
-<p>3、端口号：9528    8201</p>
-<h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><p>第一种：添加CrossOrigin注解</p>
-<p>这个得配合nginx使用</p>
-<p><img src="/2021/06/10/MyHospital/image-20210622145643778.png" alt="添加CrossOrigin注解"></p>
-<p>第二种：采用gateway进行配置</p>
-<hr>
-<h2 id="7、粗心问题"><a href="#7、粗心问题" class="headerlink" title="7、粗心问题"></a>7、粗心问题</h2><p><img src="/2021/06/10/MyHospital/image-20210622153826279.png" alt="9528报404"></p>
-<p>我没添加@CrossOrigin注解，不同端口号是没法访问的，应该是No Access-Control-Allow-Origin，就是下面这个</p>
-<p><img src="/2021/06/10/MyHospital/image-20210622165657782.png" alt="9259报跨域问题"></p>
-<p>ans：应该是在返回数据中未添加条件封装对象导致的</p>
-<p><img src="/2021/06/10/MyHospital/image-20210622175439572.png" alt="条件封装对象"></p>
-<hr>
-<h2 id="8、问题"><a href="#8、问题" class="headerlink" title="8、问题"></a>8、问题</h2><p><img src="/2021/06/10/MyHospital/image-20210623091741109.png" alt="问题8内容不显示"></p>
-<p>当前前端已经可以获得数据，前端代码也已经编写完毕，应该是可以按照表格形式进行显示，但是没数据显示，为什么</p>
-<p><img src="/2021/06/10/MyHospital/image-20210623091842271.png" alt="问题8已经可以获得数据"></p>
-<p>ans：在调用函数中未返回结果，并未将获取到的response的data返回给当前list</p>
-<p><img src="/2021/06/10/MyHospital/image-20210623092522385.png" alt="问题8ans"></p>
-<p>改完结果如下：</p>
-<p><img src="/2021/06/10/MyHospital/image-20210623092645873.png" alt="问题8成功"></p>
-<hr>
-<h2 id="9、问题"><a href="#9、问题" class="headerlink" title="9、问题"></a>9、问题</h2><p>在添加锁定和取消锁定功能时，写好代码之后，锁定和取消锁定按钮提示失败，为什么</p>
-<p><img src="/2021/06/10/MyHospital/image-20210623145904414.png" alt="问题9"></p>
-<p>ans：在api文件中取值路径写错了，id和status没res写$，修正后如下</p>
-<p><img src="/2021/06/10/MyHospital/image-20210623150234601.png" alt="问题9res"></p>
-<hr>
-<h2 id="10、问题"><a href="#10、问题" class="headerlink" title="10、问题"></a>10、问题</h2><p>再记录个问题，这个没来得及截图，（我可能误操作点着了什么，导致vscode关闭了，然后又打开）发现通过npm run dev无法进行运行，错误提示在D:\Coding\myproject\hospital\yygh路径下（我的vue-admin-template-master文件夹也是在这个路径下）没有package.json文件，可是package.json不是在vue-admin-template-master目录下吗</p>
-<p>ans：怀疑是误删了什么资源文件，于是采用npm install 进行重新下载依赖，即可打开</p>
-<h2 id="11、问题"><a href="#11、问题" class="headerlink" title="11、问题"></a>11、问题</h2><p>为什么没法保存</p>
-<p><img src="/2021/06/10/MyHospital/image-20210623154018908.png" alt="问题11"></p>
-<p>ans：经debug发现，在添加医院设置时，主键id并未进行设置，故报错</p>
-<p>可是我主键id设置了自增，不必手动进行设置即可；在mysql中添加数据发现确实必须要设置id，于是对id的自增属性进行重新设置，问题解决。</p>
-<hr>
-<h2 id="12、问题（redis）"><a href="#12、问题（redis）" class="headerlink" title="12、问题（redis）"></a>12、问题（redis）</h2><p>在设置redis进行缓存的时候出现问题，报错如下</p>
-<p>org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.75.200:6379</p>
-<p><img src="/2021/06/10/MyHospital/image-20210625165357501.png" alt="问题12"></p>
-<p>之前报错说没法连接，没password，我在配置文件添加了password，ok</p>
-<p>现在有说还是没法连接到redis，可是IP地址和端口号都没问题，我也关了防火墙：systemctl stop firewalld，为什么还是报错</p>
-<p>而且还提示说我主机中的软件终止了一个已建立的连接</p>
-<p><img src="/2021/06/10/MyHospital/image-20210625165620855.png" alt="问题12-2"></p>
-<p>经查阅资料，将redis的config文件中的protected-mode改为no，看看有没有效果</p>
-<p><img src="/2021/06/10/MyHospital/image-20210625173835048.png" alt="问题12-3"></p>
-<p>–没效果</p>
-<p>再把这个改为0.0.0.0</p>
-<p><img src="/2021/06/10/MyHospital/image-20210625174712006.png" alt="image-20210625174712006"></p>
-<p>ans：我搞定了将protected-mode 改为no，再再把bind改为0.0.0.0</p>
-<p>修改完redis配置记得重启redis服务</p>
-<hr>
-<h2 id="13、笔记：nginx解决多端口访问问题"><a href="#13、笔记：nginx解决多端口访问问题" class="headerlink" title="13、笔记：nginx解决多端口访问问题"></a>13、笔记：nginx解决多端口访问问题</h2><p>下载nginx，在nginx配置文件添加如下内容：</p>
-<p><img src="/2021/06/10/MyHospital/image-20210626140829928.png" alt="笔记13"></p>
-<p>（视频用的是9001）之后将前端的配置端口号改为30001，至此，所有端口号请求发送至30001，再由nginx对不同的关键字进行正则匹配，分发至各自端口号</p>
-<p><img src="/2021/06/10/MyHospital/image-20210626140859725.png" alt="笔记13-2"></p>
-<hr>
-<h2 id="14、MongoDB的安装和使用"><a href="#14、MongoDB的安装和使用" class="headerlink" title="14、MongoDB的安装和使用"></a>14、MongoDB的安装和使用</h2><p>第一步：</p>
-<p>使用docker拉取mongoDB镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull mongo:latest</span><br></pre></td></tr></table></figure>
-
-<p>第二步：</p>
-<p>创建和启动容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --restart=always -p 27017:27017 --name mymongo -v /data/db:/data/db -d mongo</span><br></pre></td></tr></table></figure>
-
-<p>进入创建的容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it mymongo /bin/bash</span><br></pre></td></tr></table></figure>
-
-<p>注意：使用容器mongodb之前记得先启动docker，之后进入创建的容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service docker start</span><br><span class="line">//也可也如下启动docker</span><br><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="15、问题（说lombok不支持我的编译器）"><a href="#15、问题（说lombok不支持我的编译器）" class="headerlink" title="15、问题（说lombok不支持我的编译器）"></a>15、问题（说lombok不支持我的编译器）</h2><p>诡异，我前几个模块都用了lombok，现在跟我说不支持…</p>
-<p><img src="/2021/06/10/MyHospital/image-20210627155954703.png" alt="问题15"></p>
-<p>ans：改了lombok版本号，就没出现这个错了</p>
-<img src="/2021/06/10/MyHospital/image-20210627160354636.png" alt="问题15-ans" style="zoom:50%;">
-
-<hr>
-<h2 id="16、登录mysql"><a href="#16、登录mysql" class="headerlink" title="16、登录mysql"></a>16、登录mysql</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h2 id="17、笔记（MongoDB数据访问）"><a href="#17、笔记（MongoDB数据访问）" class="headerlink" title="17、笔记（MongoDB数据访问）"></a>17、笔记（MongoDB数据访问）</h2><p>这个<strong>厉害</strong>，Spring Data提供了对mongodb数据访问的支持，只需要继承MongoRepository类，按照Spring Data规范进行命名函数即可自动生成</p>
-<p>1、不是随便声明的，而需要符合一定的规范<br> 2、 查询方法以find | read | get开头<br> 3、 涉及条件查询时，条件的属性用条件关键字连接<br> 4、 要注意的是：条件属性首字母需要大写</p>
-<p><img src="/2021/06/10/MyHospital/image-20210628153532261.png" alt="笔记17-1"></p>
-<p><img src="/2021/06/10/MyHospital/image-20210628153543607.png" alt="笔记17-2"></p>
-<hr>
-<h2 id="18、HttpServletRequest疑问-已解决-："><a href="#18、HttpServletRequest疑问-已解决-：" class="headerlink" title="18、HttpServletRequest疑问(已解决)："></a>18、HttpServletRequest疑问(已解决)：</h2><p>D:\Coding\myproject\hospital\yygh_parent\service\service_hosp\src\main\java\com\myproject\yygh\hosp\controller\api\ApiController.java这个里面的这些功能是怎么通过HttpServletRequest request来得到数据的</p>
-<hr>
-<h2 id="19、问题"><a href="#19、问题" class="headerlink" title="19、问题"></a>19、问题</h2><p>在将cmn模块添加进nacos服务中时，启动该模块报错（可是我另外一个服务已经启动了，为什么cmn会报错，说是mongo打不开socket）</p>
-<p><img src="/2021/06/10/MyHospital/image-20210630103712904.png" alt="问题19"></p>
-<p>上网查资料说原因是springboot自动配置了支持mongodb。在启动springboot时会自动实例化一个mongo实例，需要禁用自动配置 ，增加 <em>@SpringBootApplication(exclude = MongoAutoConfiguration.class)</em></p>
-<p><img src="/2021/06/10/MyHospital/image-20210630104206830.png" alt="image-20210630104206830"></p>
-<p>ans：搞定，成功启动</p>
-<hr>
-<h2 id="20、问题"><a href="#20、问题" class="headerlink" title="20、问题"></a>20、问题</h2><p>DictFeignClient这个接口定义了，也注解Repository了，在调用的时候也进行自动装配了，为什么会说找不到这个bean</p>
-<p><img src="/2021/06/10/MyHospital/image-20210630154754091.png" alt="问题20"></p>
-<p>网上有人说是没有指定包，我试下</p>
-<p>ans：确实如此，也不尽然；在该服务下未引入需要用到的feign依赖，服务启动时也未注明引用包的路径，添加依赖和写好包的路径即可</p>
-<hr>
-<h2 id="21、问题"><a href="#21、问题" class="headerlink" title="21、问题"></a>21、问题</h2><p>之前采用的nginx，后来采用配置网关进行接口转发，但是服务启动后提示跨域问题</p>
-<p><img src="/2021/06/10/MyHospital/image-20210705100014265.png" alt="问题21"></p>
-<p>ans:要么接着使用@CrossOrigin注解，要么写个配置类</p>
-<img src="/2021/06/10/MyHospital/image-20210705110829584.png" alt="问题21的ans" style="zoom:50%;">
-
-<hr>
-<h2 id="22、笔记：nuxt路由跳转"><a href="#22、笔记：nuxt路由跳转" class="headerlink" title="22、笔记：nuxt路由跳转"></a>22、笔记：nuxt路由跳转</h2><p>nuxt中路由跳转分为两种：固定路由、动态路由</p>
-<p>固定路由：跳转路径固定，只能是某个指定页面；默认vue文件名称：index.vue</p>
-<p>动态路由：每次可根据参数跳转至不同页面</p>
-<p>​                    创建页面规则：在文件夹下创建vue文件；vue文件命名规范：_参数名称.vue；以下划线开头</p>
-<hr>
-<h2 id="23、疑问（已解决）"><a href="#23、疑问（已解决）" class="headerlink" title="23、疑问（已解决）"></a>23、疑问（已解决）</h2><p>HttpServletRequest是干嘛用的</p>
-<p>–ans：见笔记</p>
-<hr>
-<h2 id="24、待定（搞定）"><a href="#24、待定（搞定）" class="headerlink" title="24、待定（搞定）"></a>24、待定（搞定）</h2><p>在p143这里，我的就诊人信息刷新不出，不清楚是不是因为patient的信息写的不够完整；之后还要做添加就诊人员的信息，暂且放置。</p>
-<p><img src="/2021/06/10/MyHospital/image-20210714203109334.png" alt="问题24"></p>
-<hr>
-<h2 id="25、QuerryWrapper温故-搞定"><a href="#25、QuerryWrapper温故-搞定" class="headerlink" title="25、QuerryWrapper温故(搞定)"></a>25、QuerryWrapper温故(搞定)</h2><p>QuerryWrapper的条件查询和模糊查询，记得看一下源码人家是怎么实现的。</p>
-<p>–ans：源码封装了sql语句，可以实现简单的查找</p>
-<hr>
-<h2 id="26、Feign温故（未搞定）"><a href="#26、Feign温故（未搞定）" class="headerlink" title="26、Feign温故（未搞定）"></a>26、Feign温故（未搞定）</h2><p>Feign这个注解是干啥的</p>
-<p>Feign的使用（未完成）</p>
-<hr>
-<h2 id="27、rabbitMQ温故（未搞定）"><a href="#27、rabbitMQ温故（未搞定）" class="headerlink" title="27、rabbitMQ温故（未搞定）"></a>27、rabbitMQ温故（未搞定）</h2><p>rabbitMQ</p>
-<hr>
-<h2 id="28、rabbitmq启动"><a href="#28、rabbitmq启动" class="headerlink" title="28、rabbitmq启动"></a>28、rabbitmq启动</h2><p>这个是创建并启动：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:management</span><br></pre></td></tr></table></figure>
-
-<p>启动rabbitmq容器的话，先用</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it rabbitmq /bin/bash</span><br></pre></td></tr></table></figure>
-
-<p>查找所有容器id，是一串数字，然后再启动该容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start 925153afeb449859b139ba8b9977312ec0dd1bfedf86772ddc735b72f466803b</span><br></pre></td></tr></table></figure>
-
-<p>,接下来即可启动rabbitmq。</p>
-<hr>
-<p>29、问题（空指针异常p160）</p>
-]]></content>
-      <categories>
-        <category>项目Hospital</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Spring实战第四版读书笔记</title>
     <url>/2021/06/04/Spring%E5%AE%9E%E6%88%98%E7%AC%AC%E5%9B%9B%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="Spring实战第四版"><a href="#Spring实战第四版" class="headerlink" title="Spring实战第四版"></a>Spring实战第四版</h1><p>spring本质上是简化java开发。</p>
@@ -3133,9 +2956,27 @@
 <h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<hr>
 <h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
 <h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="576-出界的路径数"><a href="#576-出界的路径数" class="headerlink" title="576. 出界的路径数"></a><a href="https://leetcode-cn.com/problems/out-of-boundary-paths/">576. 出界的路径数</a></h1><p>给你一个大小为 m x n 的网格和一个球。球的起始坐标为 [startRow, startColumn] 。你可以将球移到在四个方向上相邻的单元格内（可以穿过网格边界到达网格之外）。你 最多 可以移动 maxMove 次球。</p>
+<p>给你五个整数 m、n、maxMove、startRow 以及 startColumn ，找出并返回可以将球移出边界的路径数量。因为答案可能非常大，返回对 109 + 7 取余 后的结果。</p>
+<p><img src="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/image-20210815163546431.png" alt="出界的路径数-1"></p>
+<p><img src="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/image-20210815163602220.png" alt="出界的路径数-2"></p>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1     &lt;= m, n &lt;= 50</li>
+<li>0     &lt;= maxMove &lt;= 50</li>
+<li>0     &lt;= startRow &lt; m</li>
+<li>0     &lt;= startColumn &lt; n</li>
+</ul>
+<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>感觉和岛屿类型的问题比较像。每个位置只有四个方向可以移动，且每次移动之后有两种情况：1、未出界；2、出界</p>
+<p>未出界时，当前所在位置的可达路径数为上个位置的路径数+当前位置本身的路径数；</p>
+<p>出界时，将上个位置的可达路径数记录进返回答案中。</p>
+<h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> maxMove, <span class="keyword">int</span> startRow, <span class="keyword">int</span> startColumn)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> MOD = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] directions = &#123;&#123;-<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">int</span> sumCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[][][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[maxMove+<span class="number">1</span>][m][n];</span><br><span class="line">        dp[<span class="number">0</span>][startRow][startColumn] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxMove;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line">                    <span class="keyword">int</span> count = dp[i][j][k];</span><br><span class="line">                    <span class="keyword">if</span>(count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="keyword">int</span>[] direction:directions)&#123;</span><br><span class="line">                            <span class="keyword">int</span> j1 = j+direction[<span class="number">0</span>],k1 = k+direction[<span class="number">1</span>];</span><br><span class="line">                            <span class="keyword">if</span>(j1&gt;=<span class="number">0</span>&amp;&amp;j1&lt;m&amp;&amp;k1&gt;=<span class="number">0</span>&amp;&amp;k1&lt;n)&#123;</span><br><span class="line">                                dp[i+<span class="number">1</span>][j1][k1] = (dp[i+<span class="number">1</span>][j1][k1]+count)%MOD;</span><br><span class="line">                            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                                sumCount = (sumCount+count)%MOD;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sumCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
