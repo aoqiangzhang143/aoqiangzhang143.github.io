@@ -2982,6 +2982,9 @@
       <categories>
         <category>leetcode刷题笔记</category>
       </categories>
+      <tags>
+        <tag>dfs</tag>
+      </tags>
   </entry>
   <entry>
     <title>leetcode-图相关</title>
@@ -3288,6 +3291,39 @@
       </categories>
       <tags>
         <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-排列问题</title>
+    <url>/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="526-优美的排列"><a href="#526-优美的排列" class="headerlink" title="526. 优美的排列"></a><a href="https://leetcode-cn.com/problems/beautiful-arrangement/">526. 优美的排列</a></h1><p>假设有从 1 到 N 的 N 个整数，如果从这 N 个数字中成功构造出一个数组，使得数组的第 i 位 (1 &lt;= i &lt;= N) 满足如下两个条件中的一个，我们就称这个数组为一个优美的排列。条件：</p>
+<p>第 i 位的数字能被 i 整除</p>
+<p>i 能被第 i 位上的数字整除</p>
+<p>现在给定一个整数 N，请问可以构造多少个优美的排列？</p>
+<p>示例1:</p>
+<p>输入: 2</p>
+<p>输出: 2</p>
+<p>解释: </p>
+<p>第 1 个优美的排列是 [1, 2]:</p>
+<p> 第 1 个位置（i=1）上的数字是1，1能被 i（i=1）整除</p>
+<p> 第 2 个位置（i=2）上的数字是2，2能被 i（i=2）整除</p>
+<p>第 2 个优美的排列是 [2, 1]:</p>
+<p> 第 1 个位置（i=1）上的数字是2，2能被 i（i=1）整除</p>
+<p> 第 2 个位置（i=2）上的数字是1，i（i=2）能被 1 整除</p>
+<p><strong>说明:</strong></p>
+<ol>
+<li><strong>N</strong> 是一个正整数，并且不会超过15。</li>
+</ol>
+<h2 id="知识点：回溯"><a href="#知识点：回溯" class="headerlink" title="知识点：回溯"></a>知识点：回溯</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>题目的意思是，任意位置的第i位，都要满足两个条件之一；</p>
+<p>采用回溯对本题进行解答（还有状态压缩，这个我还没掌握），我们从第一个位置开始找，在第一个位置时遍历每个数字，如果当前数字满足要求，就将当前数字的状态记为已使用，然后在此基础之上对下一个位置进行递归查找；在当前遍历的数字时，在对下一个位置进行递归查找之后，再将当前数字状态改为未使用。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countArrangement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dfs(<span class="number">1</span>,n,<span class="keyword">new</span> <span class="keyword">boolean</span>[n+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> n,<span class="keyword">boolean</span>[] vis)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;n)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[i]&amp;&amp;(i%index==<span class="number">0</span>||index%i==<span class="number">0</span>))&#123;</span><br><span class="line">                vis[i] = <span class="keyword">true</span>;</span><br><span class="line">                res+=dfs(index+<span class="number">1</span>,n,vis);</span><br><span class="line">                vis[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>回溯</tag>
       </tags>
   </entry>
 </search>
