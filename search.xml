@@ -3402,4 +3402,43 @@
         <tag>基础知识点</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-学生出勤记录</title>
+    <url>/2021/08/18/leetcode-%E5%AD%A6%E7%94%9F%E5%87%BA%E5%8B%A4%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="552-学生出勤记录-II"><a href="#552-学生出勤记录-II" class="headerlink" title="552. 学生出勤记录 II"></a><a href="https://leetcode-cn.com/problems/student-attendance-record-ii/">552. 学生出勤记录 II</a></h1><p>可以用字符串表示一个学生的出勤记录，其中的每个字符用来标记当天的出勤情况（缺勤、迟到、到场）。记录中只含下面三种字符：</p>
+<p>‘A’：Absent，缺勤</p>
+<p>‘L’：Late，迟到</p>
+<p>‘P’：Present，到场</p>
+<p>如果学生能够 同时 满足下面两个条件，则可以获得出勤奖励：</p>
+<p>按 总出勤 计，学生缺勤（’A’）严格 少于两天。</p>
+<p>学生 不会 存在 连续 3 天或 连续 3 天以上的迟到（’L’）记录。</p>
+<p>给你一个整数 n ，表示出勤记录的长度（次数）。请你返回记录长度为 n 时，可能获得出勤奖励的记录情况 数量 。答案可能很大，所以返回对 109 + 7 取余 的结果。</p>
+<p>示例 1：</p>
+<p>输入：n = 2</p>
+<p>输出：8</p>
+<p>解释：</p>
+<p>有 8 种长度为 2 的记录将被视为可奖励：</p>
+<p>“PP” , “AP”, “PA”, “LP”, “PL”, “AL”, “LA”, “LL” </p>
+<p>只有”AA”不会被视为可奖励，因为缺勤次数为 2 次（需要少于 2 次）。</p>
+<p>示例 2：</p>
+<p>输入：n = 1</p>
+<p>输出：3</p>
+<p>示例 3：</p>
+<p>输入：n = 10101</p>
+<p>输出：183236316</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1     &lt;= n &lt;= 105</li>
+</ul>
+<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>动态规划解决，详情见代码。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">checkRecord</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> MOD = <span class="number">1000000007</span>,sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[][][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>][<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line">        <span class="comment">//dp[i][j][k]：第i天时，A的数量为j、L的数量为k时的能获奖的出勤记录数量</span></span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="comment">//当前为P的情况</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">1</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;=<span class="number">2</span>;k++)&#123;</span><br><span class="line">                    dp[i][j][<span class="number">0</span>] = (dp[i][j][<span class="number">0</span>]+dp[i-<span class="number">1</span>][j][k])%MOD;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//当前为A的情况</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k&lt;=<span class="number">2</span>;k++)&#123;</span><br><span class="line">                dp[i][<span class="number">1</span>][<span class="number">0</span>] = (dp[i][<span class="number">1</span>][<span class="number">0</span>]+dp[i-<span class="number">1</span>][<span class="number">0</span>][k])%MOD;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//当前为L的情况</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">1</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=<span class="number">2</span>;k++)&#123;</span><br><span class="line">                    dp[i][j][k] = (dp[i][j][k]+dp[i-<span class="number">1</span>][j][k-<span class="number">1</span>])%MOD;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">3</span>;k++)&#123;</span><br><span class="line">                sum = (sum+dp[n][j][k])%MOD;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
 </search>
