@@ -3496,4 +3496,24 @@
         <tag>链表</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-滑动窗口的最大值</title>
+    <url>/2021/08/19/leetcode-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
+    <content><![CDATA[<h1 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239. 滑动窗口最大值"></a><a href="https://leetcode-cn.com/problems/sliding-window-maximum/">239. 滑动窗口最大值</a></h1><p>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
+<img src="/2021/08/19/leetcode-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC/image-20210819163643208.png" alt="leetcode滑动窗口最大值" style="zoom:67%;">
+
+ 
+
+<h2 id="知识点：堆、滑动窗口"><a href="#知识点：堆、滑动窗口" class="headerlink" title="知识点：堆、滑动窗口"></a>知识点：堆、滑动窗口</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>像维持一个范围内的最大值这种题目，我们可以创建一个大顶堆来维持，通过自定义comparator来实现自定义比较方法。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        PriorityQueue&lt;<span class="keyword">int</span>[]&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;(<span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//第一排序按照数值大小进行降序排列</span></span><br><span class="line">                <span class="comment">//第二排序按照索引大小进行升序排列</span></span><br><span class="line">                <span class="keyword">return</span> nums1[<span class="number">0</span>]!=nums2[<span class="number">0</span>]?nums2[<span class="number">0</span>]-nums1[<span class="number">0</span>]:nums1[<span class="number">1</span>]-nums2[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[len-k+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">            pq.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;nums[i],i&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        ans[<span class="number">0</span>] = pq.peek()[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=k;i&lt;len;i++)&#123;</span><br><span class="line">            pq.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;nums[i],i&#125;);</span><br><span class="line">            <span class="comment">//判断最大值是否位于滑动窗口的左侧</span></span><br><span class="line">            <span class="keyword">while</span>(pq.peek()[<span class="number">1</span>]&lt;=i-k)&#123;</span><br><span class="line">                pq.poll();</span><br><span class="line">            &#125;</span><br><span class="line">            ans[i-k+<span class="number">1</span>] = pq.peek()[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
 </search>
