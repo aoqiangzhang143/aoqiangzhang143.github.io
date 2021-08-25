@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">80</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">82</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -182,6 +182,266 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">leetcode-重排链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-10 10:58:05" itemprop="dateModified" datetime="2021-08-10T10:58:05+08:00">2021-08-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-重排链表" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表</a></h1><p>反转一个单链表。</p>
+<p> 输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</p>
+<p> 输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>没啥好分析的,递归就行了.</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode pre=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">//记录下一个节点</span></span><br><span class="line">            ListNode tmpNext=head.next;</span><br><span class="line">            <span class="comment">//使当前节点指向前一个节点</span></span><br><span class="line">            head.next=pre;</span><br><span class="line">            <span class="comment">//更新前节点</span></span><br><span class="line">            pre=head;</span><br><span class="line">            <span class="comment">//更新head</span></span><br><span class="line">            head=tmpNext;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// head.next=pre;</span></span><br><span class="line">        <span class="keyword">return</span> pre;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h1 id="92-反转链表-II"><a href="#92-反转链表-II" class="headerlink" title="92. 反转链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">92. 反转链表 II</a></h1><p>给你单链表的头指针head和两个整数 left 和 right ，其中 left &lt;= right 。请你反转从位置 left 到位置 right 的链表节点，返回反转后的链表。</p>
+<p> 输入：head = [1,2,3,4,5], left = 2, right = 4</p>
+<p> 输出：[1,4,3,2,5]</p>
+<h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>说白了就是反转指定区间的链表，其他不变；这个可以用头插法（就是新增节点插在头部），其实不难，就是注意细节问题。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="keyword">null</span>||left==right)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>,head);</span><br><span class="line">        ListNode preNode = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(index&lt;left)&#123;</span><br><span class="line">            preNode = preNode.next;</span><br><span class="line">            ++index;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count = right-left;</span><br><span class="line">        ListNode curNode = preNode.next;</span><br><span class="line">        ListNode suc = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            suc = curNode.next;</span><br><span class="line">            curNode.next = suc.next;</span><br><span class="line">            suc.next = preNode.next;</span><br><span class="line">            preNode.next = suc;</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24. 两两交换链表中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/">24. 两两交换链表中的节点</a></h1><p>给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。</p>
+<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
+<img src="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/image-20210804104939017.png" alt="两两交换链表中的节点" style="zoom:67%;">
+
+<p>示例 1：</p>
+<p>输入：head = [1,2,3,4] 输出：[2,1,4,3]</p>
+<h2 id="知识点：链表"><a href="#知识点：链表" class="headerlink" title="知识点：链表"></a><strong>知识点：链表</strong></h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>除了互相交换的两个节点之外，还需要前一个节点进行辅助。</p>
+<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>,head);</span><br><span class="line">        ListNode preHead = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(preHead.next!=<span class="keyword">null</span>&amp;&amp;preHead.next.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode start = preHead.next;</span><br><span class="line">            ListNode end = preHead.next.next;</span><br><span class="line">            preHead.next = end;</span><br><span class="line">            start.next = end.next;</span><br><span class="line">            end.next = start;</span><br><span class="line">            preHead = start;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="25-K-个一组翻转链表"><a href="#25-K-个一组翻转链表" class="headerlink" title="25. K 个一组翻转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表</a></h1><p>给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p>
+<p>进阶：</p>
+<p>你可以设计一个只使用常数额外空间的算法来解决此问题吗？</p>
+<p><strong>你不能只是单纯的改变节点内部的值</strong>，而是需要实际进行节点交换。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h2><p>除了反转之外，还涉及到一个检查剩余节点够不够反转的问题，在反转之前检查下即可。</p>
+<h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>,head);</span><br><span class="line">        ListNode pre = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode tail = pre;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">                tail = tail.next;</span><br><span class="line">                <span class="keyword">if</span>(tail==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode nextNode = tail.next;</span><br><span class="line">            ListNode[] ans = myReverse(head,tail);</span><br><span class="line">            head = ans[<span class="number">0</span>];</span><br><span class="line">            tail = ans[<span class="number">1</span>];</span><br><span class="line">            pre.next = head;</span><br><span class="line">            tail.next = nextNode;</span><br><span class="line">            pre = tail;</span><br><span class="line">            head = tail.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> ListNode[] myReverse(ListNode head,ListNode tail)&#123;</span><br><span class="line">        ListNode pre = tail.next;</span><br><span class="line">        ListNode curNode = head;</span><br><span class="line">        <span class="keyword">while</span>(pre!=tail)&#123;</span><br><span class="line">            ListNode suc = curNode.next;</span><br><span class="line">            curNode.next = pre;</span><br><span class="line">            pre = curNode;</span><br><span class="line">            curNode = suc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ListNode[]&#123;tail,head&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="143-重排链表"><a href="#143-重排链表" class="headerlink" title="143. 重排链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reorder-list/">143. 重排链表</a></h1><p>给定一个单链表 L：L0→L1→…→Ln-1→Ln ，</p>
+<p>将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
+<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
+<p>示例 1:</p>
+<p>给定链表 1-&gt;2-&gt;3-&gt;4, 重新排列为 1-&gt;4-&gt;2-&gt;3.</p>
+<p>示例 2:</p>
+<p>给定链表 1-&gt;2-&gt;3-&gt;4-&gt;5, 重新排列为 1-&gt;5-&gt;2-&gt;4-&gt;3.</p>
+<h2 id="知识点：链表-1"><a href="#知识点：链表-1" class="headerlink" title="知识点：链表"></a>知识点：链表</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>仔细观察可发现，重新排列是将链表分为两段后进行挨个穿插得到；于是本题思路为，找到链表后半部分（注意如果是奇数则不包括中间那个）头部；对后半段进行反转；然后将两段链表进行穿插。</p>
+<h2 id="代码如下：-4"><a href="#代码如下：-4" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//先找到后半段链表</span></span><br><span class="line">        ListNode fast = head,slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast.next!=<span class="keyword">null</span>&amp;&amp;fast.next.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode secHead = slow.next;</span><br><span class="line">        slow.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// ListNode curNode = secHead;</span></span><br><span class="line">        <span class="comment">//反转第二段链表</span></span><br><span class="line">        <span class="keyword">while</span>(secHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode tmpNext = secHead.next;</span><br><span class="line">            secHead.next = pre;</span><br><span class="line">            pre = secHead;</span><br><span class="line">            secHead = tmpNext;</span><br><span class="line">        &#125;</span><br><span class="line">        secHead = pre;</span><br><span class="line">        ListNode firHead = head;</span><br><span class="line">        <span class="comment">//拼接两段链表</span></span><br><span class="line">        <span class="keyword">while</span>(firHead!=<span class="keyword">null</span>&amp;&amp;secHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode firNext = firHead.next;</span><br><span class="line">            ListNode secNext = secHead.next;</span><br><span class="line"></span><br><span class="line">            firHead.next = secHead;</span><br><span class="line">            firHead = firNext;</span><br><span class="line"></span><br><span class="line">            secHead.next = firHead;</span><br><span class="line">            secHead = secNext;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">leetcode-岛屿问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-08T00:00:00+08:00">2021-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-16 16:06:00" itemprop="dateModified" datetime="2021-08-16T16:06:00+08:00">2021-08-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-岛屿问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h1><h2 id="知识点：DFS"><a href="#知识点：DFS" class="headerlink" title="知识点：DFS"></a>知识点：DFS</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这题让求的是岛屿的数量有多少个，就其解法思路上并不困难。循环遍历每一块陆地，每遇到一个陆地就对其上下左右四个方向进行查找，每找到一个就让该陆地置0，这样在最外层遍历时就不会重复遇到，dfs的主要作用就是对遇到的陆地进行四个方向的查找。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>)&#123;<span class="comment">//简单判断是否为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count= <span class="number">0</span>,m =grid.length,n=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//外层遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;<span class="comment">//只要找到一个陆地，起码就是一个岛屿，对其进行dfs</span></span><br><span class="line">                    count++;</span><br><span class="line">                    dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> gc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(r&lt;<span class="number">0</span>||r&gt;=gr||c&lt;<span class="number">0</span>||c&gt;=gc||grid[r][c]==<span class="string">&#x27;0&#x27;</span>)&#123;<span class="comment">//此处要注意边界条件</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;<span class="comment">//遍历之前记得让当前岛屿下沉，不然之后会出现重复查找</span></span><br><span class="line">        dfs(grid,r+<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r-<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r,c+<span class="number">1</span>);</span><br><span class="line">        dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a></h1><h2 id="知识点：dfs"><a href="#知识点：dfs" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这两道题型基本一致，只是在本题中需要记录的数据不是数量，而是记录下每次dfs的最大值，关键点在dfs的编写中，每次dfs返回一个数字：0或者1。对于每个陆地而言，最小面积是1，最终面积取决于有多少和它间接、直接相连的陆地。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
+<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="576-出界的路径数"><a href="#576-出界的路径数" class="headerlink" title="576. 出界的路径数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/out-of-boundary-paths/">576. 出界的路径数</a></h1><p>给你一个大小为 m x n 的网格和一个球。球的起始坐标为 [startRow, startColumn] 。你可以将球移到在四个方向上相邻的单元格内（可以穿过网格边界到达网格之外）。你 最多 可以移动 maxMove 次球。</p>
+<p>给你五个整数 m、n、maxMove、startRow 以及 startColumn ，找出并返回可以将球移出边界的路径数量。因为答案可能非常大，返回对 109 + 7 取余 后的结果。</p>
+<p><img src="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/image-20210815163546431.png" alt="出界的路径数-1"></p>
+<p><img src="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/image-20210815163602220.png" alt="出界的路径数-2"></p>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1     &lt;= m, n &lt;= 50</li>
+<li>0     &lt;= maxMove &lt;= 50</li>
+<li>0     &lt;= startRow &lt; m</li>
+<li>0     &lt;= startColumn &lt; n</li>
+</ul>
+<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>感觉和岛屿类型的问题比较像。每个位置只有四个方向可以移动，且每次移动之后有两种情况：1、未出界；2、出界</p>
+<p>未出界时，当前所在位置的可达路径数为上个位置的路径数+当前位置本身的路径数；</p>
+<p>出界时，将上个位置的可达路径数记录进返回答案中。</p>
+<h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> maxMove, <span class="keyword">int</span> startRow, <span class="keyword">int</span> startColumn)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> MOD = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] directions = &#123;&#123;-<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">int</span> sumCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[][][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[maxMove+<span class="number">1</span>][m][n];</span><br><span class="line">        dp[<span class="number">0</span>][startRow][startColumn] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxMove;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line">                    <span class="keyword">int</span> count = dp[i][j][k];</span><br><span class="line">                    <span class="keyword">if</span>(count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="keyword">int</span>[] direction:directions)&#123;</span><br><span class="line">                            <span class="keyword">int</span> j1 = j+direction[<span class="number">0</span>],k1 = k+direction[<span class="number">1</span>];</span><br><span class="line">                            <span class="keyword">if</span>(j1&gt;=<span class="number">0</span>&amp;&amp;j1&lt;m&amp;&amp;k1&gt;=<span class="number">0</span>&amp;&amp;k1&lt;n)&#123;</span><br><span class="line">                                dp[i+<span class="number">1</span>][j1][k1] = (dp[i+<span class="number">1</span>][j1][k1]+count)%MOD;</span><br><span class="line">                            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                                sumCount = (sumCount+count)%MOD;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sumCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1763,231 +2023,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/CAS%E7%AE%80%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/CAS%E7%AE%80%E8%BF%B0/" class="post-title-link" itemprop="url">CAS简述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-29 00:00:00 / 修改时间：21:35:37" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+08:00">2021-05-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/29/CAS%E7%AE%80%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="CAS简述" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/29/CAS%E7%AE%80%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/29/CAS%E7%AE%80%E8%BF%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在JDK 5之前Java语言是靠synchronized关键字保证同步的，这会导致有锁</p>
-<p>锁机制存在以下问题：</p>
-<p>（1）在多线程竞争下，加锁、释放锁会导致比较多的上下文切换和调度延时，引起性能问题。</p>
-<p>（2）一个线程持有锁会导致其它所有需要此锁的线程挂起。</p>
-<p>（3）如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能风险。</p>
-<p>volatile是不错的机制，但是volatile不能保证原子性。因此对于同步最终还是要回到锁机制上来。</p>
-<p><strong>独占锁是一种悲观锁，synchronized就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。而另一个更加有效的锁就是乐观锁。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。乐观锁用到的机制就是CAS，Compare and Swap。</strong></p>
-<h2 id="一、什么是CAS"><a href="#一、什么是CAS" class="headerlink" title="一、什么是CAS"></a>一、什么是CAS</h2><p>CAS,compare and swap的缩写，中文翻译成比较并交换。</p>
-<p>我们都知道，在java语言之前，并发就已经广泛存在并在服务器领域得到了大量的应用。所以硬件厂商老早就在芯片中加入了大量直至并发操作的原语，从而在硬件层面提升效率。在intel的CPU中，使用cmpxchg指令。</p>
-<p>在Java发展初期，java语言是不能够利用硬件提供的这些便利来提升系统的性能的。而随着java不断的发展,Java本地方法(JNI)的出现，使得java程序越过JVM直接调用本地方法提供了一种便捷的方式，因而java在并发的手段上也多了起来。而在Doug Lea提供的cucurenct包中，CAS理论是它实现整个java包的基石。</p>
-<p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。 如果内存位置的值与预期原值相匹配，那么处理器会自动将该位置值更新为新值 。否则，处理器不做任何操作。无论哪种情况，它都会在 CAS 指令之前返回该 位置的值。（在 CAS 的一些特殊情况下将仅返回 CAS 是否成功，而不提取当前 值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，只告诉我这个位置现在的值即可。”</p>
-<p>通常将 CAS 用于同步的方式是从地址 V 读取值 A，执行多步计算来获得新 值 B，然后使用 CAS 将 V 的值从 A 改为 B。如果 V 处的值尚未同时更改，则 CAS 操作成功。</p>
-<p>类似于 CAS 的指令允许算法执行读-修改-写操作，而无需害怕其他线程同时 修改变量，因为如果其他线程修改变量，那么 CAS 会检测它（并失败），算法 可以对该操作重新计算。</p>
-<h2 id="二、CAS的目的"><a href="#二、CAS的目的" class="headerlink" title="二、CAS的目的"></a>二、CAS的目的</h2><p>利用CPU的CAS指令，同时借助JNI来完成Java的非阻塞算法。其它原子操作都是利用类似的特性完成的。而整个J.U.C都是建立在CAS之上的，因此对于synchronized阻塞算法，J.U.C在性能上有了很大的提升。</p>
-<h2 id="三、CAS存在的问题"><a href="#三、CAS存在的问题" class="headerlink" title="三、CAS存在的问题"></a>三、CAS存在的问题</h2><p>CAS虽然很高效的解决原子操作，但是CAS仍然存在三大问题。ABA问题，循环时间长开销大和只能保证一个共享变量的原子操作</p>
-<p>\1.  <strong>ABA****问题</strong>。因为CAS需要在操作值的时候检查下值有没有发生变化，如果没有发生变化则更新，但是如果一个值原来是A，变成了B，又变成了A，那么使用CAS进行检查时会发现它的值没有发生变化，但是实际上却变化了。ABA问题的解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加一，那么A－B－A 就会变成1A-2B－3A。</p>
-<p><strong>从****Java1</strong>.5开始JDK的atomic包里提供了一个类AtomicStampedReference来解决ABA问题。这个类的compareAndSet方法作用是首先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
-<p>关于ABA问题参考文档: <a target="_blank" rel="noopener" href="http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html">http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html</a></p>
-<p><strong>2.</strong> <strong>循环时间长开销大</strong>。自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销。如果JVM能支持处理器提供的pause指令那么效率会有一定的提升，pause指令有两个作用，第一它可以延迟流水线执行指令（de-pipeline）,使CPU不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。第二它可以避免在退出循环的时候因内存顺序冲突（memory order violation）而引起CPU流水线被清空（CPU pipeline flush），从而提高CPU的执行效率。</p>
-<p><strong>3.</strong> <strong>只能保证一个共享变量的原子操作</strong>。当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如有两个共享变量i＝2,j=a，合并一下ij=2a，然后用CAS来操作ij。从Java1.5开始JDK提供了<strong>AtomicReference<strong><strong>类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行</strong></strong>CAS****操作。</strong></p>
-<p>四、 concurrent包的实现</p>
-<p>由于java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下面四种方式：</p>
-<ol>
-<li>A线程写volatile变量，随后B线程读这个volatile变量。</li>
-<li>A线程写volatile变量，随后B线程用CAS更新这个volatile变量。</li>
-<li>A线程用CAS更新一个volatile变量，随后B线程用CAS更新这个volatile变量。</li>
-<li>A线程用CAS更新一个volatile变量，随后B线程读这个volatile变量。</li>
-</ol>
-<p>Java的CAS会使用现代处理器上提供的高效机器级别原子指令，这些原子指令以原子方式对内存执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写指令的计算机器，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能对内存执行原子性读-改-写操作的原子指令）。同时，volatile变量的读/写和CAS可以实现线程之间的通信。把这些特性整合在一起，就形成了整个concurrent包得以实现的基石。如果我们仔细分析concurrent包的源代码实现，会发现一个通用化的实现模式：</p>
-<ol>
-<li>首先，声明共享变量为volatile；</li>
-<li>然后，使用CAS的原子条件更新来实现线程之间的同步；</li>
-<li>同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。</li>
-</ol>
-<p>转自<a target="_blank" rel="noopener" href="https://blog.csdn.net/ls5718/article/details/52563959">https://blog.csdn.net/ls5718/article/details/52563959</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ae25eb3cfb5d">这个</a>讲的也挺好</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-title-link" itemprop="url">native关键字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-29 00:00:00 / 修改时间：21:16:54" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+08:00">2021-05-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-meta-item leancloud_visitors" data-flag-title="native关键字" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
-<p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。</p>
-<p>这些函数的实现体在DLL中，JDK的源代码中并不包含，你应该是看不到的。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
-<p>1。native 是用做java 和其他语言（如c++）进行协作时用的也就是native 后的函数的实现不是用java写的</p>
-<p>2。既然都不是java，那就别管它的源代码了，呵呵</p>
-<p>native的意思就是通知操作系统，</p>
-<p>这个函数你必须给我实现，因为我要使用。</p>
-<p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
-<p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2055,7 +2094,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
