@@ -3815,4 +3815,33 @@
         <tag>图</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-贪心</title>
+    <url>/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/</url>
+    <content><![CDATA[<h1 id="881-救生艇"><a href="#881-救生艇" class="headerlink" title="881. 救生艇"></a><a href="https://leetcode-cn.com/problems/boats-to-save-people/">881. 救生艇</a></h1><p>第 i 个人的体重为 people[i]，每艘船可以承载的最大重量为 limit。</p>
+<p>每艘船最多可同时载两人，但条件是这些人的重量之和最多为 limit。</p>
+<p>返回载到每一个人所需的最小船数。(保证每个人都能被船载)。</p>
+<img src="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/image-20210826102209001.png" alt="881-1" style="zoom: 67%;">
+
+<h2 id="知识点：贪心"><a href="#知识点：贪心" class="headerlink" title="知识点：贪心"></a>知识点：贪心</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>“每艘船最多可同时载两人”</p>
+<p>如果粗心大意的毛病不改，这辈子什么都做不好。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numRescueBoats</span><span class="params">(<span class="keyword">int</span>[] people, <span class="keyword">int</span> limit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = people.length;</span><br><span class="line">        Arrays.sort(people);</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>,right = len-<span class="number">1</span>,count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(people[left]+people[right]&lt;=limit)&#123;</span><br><span class="line">                ++left;</span><br><span class="line">            &#125;</span><br><span class="line">            --right;</span><br><span class="line">            ++count;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left==right?count+<span class="number">1</span>:count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="1011-在-D-天内送达包裹的能力"><a href="#1011-在-D-天内送达包裹的能力" class="headerlink" title="1011. 在 D 天内送达包裹的能力"></a><a href="https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/"><strong>1011.</strong> <strong>在</strong> <strong>D</strong> <strong>天内送达包裹的能力</strong></a></h1><p>传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。</p>
+<p>传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。</p>
+<p>返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。</p>
+<img src="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/image-20210826110102032.png" alt="image-20210826110102032" style="zoom:67%;">
+
+<h2 id="知识点：贪心、二分"><a href="#知识点：贪心、二分" class="headerlink" title="知识点：贪心、二分"></a><strong>知识点：贪心</strong>、二分</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p><a href="https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/solution/zai-d-tian-nei-song-da-bao-guo-de-neng-l-ntml/"><strong>在</strong> <strong>D</strong> <strong>天内送达包裹的能力</strong></a>上面是官解，写的还是挺不错的，将这个问题转化为二分法求最优解，这个思路挺好的，多学着点。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">shipWithinDays</span><span class="params">(<span class="keyword">int</span>[] weights, <span class="keyword">int</span> days)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>,max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> weight:weights)&#123;</span><br><span class="line">            sum+=weight;</span><br><span class="line">            <span class="keyword">if</span>(weight&gt;max)&#123;</span><br><span class="line">                max = weight;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = max,right = sum;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="comment">//count初始值要为1：表示需要运送的天数</span></span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">//tmpSum：当前已经运送的重量</span></span><br><span class="line">            <span class="keyword">int</span> tmpSum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> weight:weights)&#123;</span><br><span class="line">                <span class="keyword">if</span>(tmpSum+weight&gt;mid)&#123;</span><br><span class="line">                    tmpSum = <span class="number">0</span>;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">                tmpSum+=weight;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(count&lt;=days)&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
 </search>
