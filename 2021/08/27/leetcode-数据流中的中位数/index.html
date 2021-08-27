@@ -23,20 +23,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="526. 优美的排列假设有从 1 到 N 的 N 个整数，如果从这 N 个数字中成功构造出一个数组，使得数组的第 i 位 (1 &lt;&#x3D; i &lt;&#x3D; N) 满足如下两个条件中的一个，我们就称这个数组为一个优美的排列。条件： 第 i 位的数字能被 i 整除 i 能被第 i 位上的数字整除 现在给定一个整数 N，请问可以构造多少个优美的排列？ 示例1: 输入: 2 输出: 2 解释:  第 1">
+  <meta name="description" content="295. 数据流的中位数中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。 例如， [2,3,4] 的中位数是 3 [2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5 设计一个支持以下两种操作的数据结构： void addNum(int num) - 从数据流中添加一个整数到数据结构中。 double findMedian() - 返回目前所有元素的中位数。 示例">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-排列问题">
-<meta property="og:url" content="http://example.com/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="leetcode-数据流中的中位数">
+<meta property="og:url" content="http://example.com/2021/08/27/leetcode-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="526. 优美的排列假设有从 1 到 N 的 N 个整数，如果从这 N 个数字中成功构造出一个数组，使得数组的第 i 位 (1 &lt;&#x3D; i &lt;&#x3D; N) 满足如下两个条件中的一个，我们就称这个数组为一个优美的排列。条件： 第 i 位的数字能被 i 整除 i 能被第 i 位上的数字整除 现在给定一个整数 N，请问可以构造多少个优美的排列？ 示例1: 输入: 2 输出: 2 解释:  第 1">
+<meta property="og:description" content="295. 数据流的中位数中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。 例如， [2,3,4] 的中位数是 3 [2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5 设计一个支持以下两种操作的数据结构： void addNum(int num) - 从数据流中添加一个整数到数据结构中。 double findMedian() - 返回目前所有元素的中位数。 示例">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-17T07:08:00.100Z">
+<meta property="article:published_time" content="2021-08-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-27T02:40:36.824Z">
 <meta property="article:author" content="aoqiangzhang143">
-<meta property="article:tag" content="回溯">
+<meta property="article:tag" content="堆">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://example.com/2021/08/27/leetcode-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>leetcode-排列问题 | Mithrandir</title>
+  <title>leetcode-数据流中的中位数 | Mithrandir</title>
   
 
 
@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/27/leetcode-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -203,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          leetcode-排列问题
+          leetcode-数据流中的中位数
         </h1>
 
         <div class="post-meta">
@@ -212,16 +212,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-16T00:00:00+08:00">2021-08-16</time>
+              <time title="创建时间：2021-08-27 00:00:00 / 修改时间：10:40:36" itemprop="dateCreated datePublished" datetime="2021-08-27T00:00:00+08:00">2021-08-27</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-17 15:08:00" itemprop="dateModified" datetime="2021-08-17T15:08:00+08:00">2021-08-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -233,7 +227,7 @@
             </span>
 
           
-            <span id="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-排列问题" title="阅读次数">
+            <span id="/2021/08/27/leetcode-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-数据流中的中位数" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -248,8 +242,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/08/27/leetcode-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/27/leetcode-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -264,29 +258,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="526-优美的排列"><a href="#526-优美的排列" class="headerlink" title="526. 优美的排列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/beautiful-arrangement/">526. 优美的排列</a></h1><p>假设有从 1 到 N 的 N 个整数，如果从这 N 个数字中成功构造出一个数组，使得数组的第 i 位 (1 &lt;= i &lt;= N) 满足如下两个条件中的一个，我们就称这个数组为一个优美的排列。条件：</p>
-<p>第 i 位的数字能被 i 整除</p>
-<p>i 能被第 i 位上的数字整除</p>
-<p>现在给定一个整数 N，请问可以构造多少个优美的排列？</p>
-<p>示例1:</p>
-<p>输入: 2</p>
-<p>输出: 2</p>
-<p>解释: </p>
-<p>第 1 个优美的排列是 [1, 2]:</p>
-<p> 第 1 个位置（i=1）上的数字是1，1能被 i（i=1）整除</p>
-<p> 第 2 个位置（i=2）上的数字是2，2能被 i（i=2）整除</p>
-<p>第 2 个优美的排列是 [2, 1]:</p>
-<p> 第 1 个位置（i=1）上的数字是2，2能被 i（i=1）整除</p>
-<p> 第 2 个位置（i=2）上的数字是1，i（i=2）能被 1 整除</p>
-<p><strong>说明:</strong></p>
-<ol>
-<li><strong>N</strong> 是一个正整数，并且不会超过15。</li>
-</ol>
-<h2 id="知识点：回溯"><a href="#知识点：回溯" class="headerlink" title="知识点：回溯"></a>知识点：回溯</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>题目的意思是，任意位置的第i位，都要满足两个条件之一；</p>
-<p>采用回溯对本题进行解答（还有状态压缩，这个我还没掌握），我们从第一个位置开始找，在第一个位置时遍历每个数字，如果当前数字满足要求，就将当前数字的状态记为已使用，然后在此基础之上对下一个位置进行递归查找；在当前遍历的数字时，在对下一个位置进行递归查找之后，再将当前数字状态改为未使用。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countArrangement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dfs(<span class="number">1</span>,n,<span class="keyword">new</span> <span class="keyword">boolean</span>[n+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> n,<span class="keyword">boolean</span>[] vis)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;n)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[i]&amp;&amp;(i%index==<span class="number">0</span>||index%i==<span class="number">0</span>))&#123;</span><br><span class="line">                vis[i] = <span class="keyword">true</span>;</span><br><span class="line">                res+=dfs(index+<span class="number">1</span>,n,vis);</span><br><span class="line">                vis[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="295-数据流的中位数"><a href="#295-数据流的中位数" class="headerlink" title="295. 数据流的中位数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-median-from-data-stream/">295. 数据流的中位数</a></h1><p>中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。</p>
+<p>例如，</p>
+<p>[2,3,4] 的中位数是 3</p>
+<p>[2,3] 的中位数是 (2 + 3) / 2 = 2.5</p>
+<p>设计一个支持以下两种操作的数据结构：</p>
+<p>void addNum(int num) - 从数据流中添加一个整数到数据结构中。</p>
+<p>double findMedian() - 返回目前所有元素的中位数。</p>
+<p>示例：</p>
+<p>addNum(1)</p>
+<p>addNum(2)</p>
+<p>findMedian() -&gt; 1.5</p>
+<p>addNum(3) </p>
+<p>findMedian() -&gt; 2</p>
+<p>进阶:</p>
+<p>如果数据流中所有整数都在 0 到 100 范围内，你将如何优化你的算法？</p>
+<p>如果数据流中 99% 的整数都在 0 到 100 范围内，你将如何优化你的算法？</p>
+<h2 id="知识点：堆"><a href="#知识点：堆" class="headerlink" title="知识点：堆"></a>知识点：堆</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>采用两个堆结构来计算中位数。</p>
+<p>一个大顶堆queMin用于存放所有小于中位数的元素，小顶堆queMax用于存放所有大于中位数的元素；</p>
+<p>元素总数为偶数时，两个堆各占一半；为奇数时，维持queMin的元素个数较多</p>
+<p>插入元素时保证queMin中的元素不大于queMax中的元素；</p>
+<p>插入的元素如果小于等于queMin的最大值，则将该元素插入queMin中，并根据两个堆的元素个数，考虑是否将queMin中的最大值取出并放入queMax中</p>
+<p>插入的元素大于queMin的最大值，则将该元素插入queMax中，并根据两个堆的元素个数考虑是否将queMax中的最小值取出并放入queMin中</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MedianFinder</span> </span>&#123;</span><br><span class="line">    <span class="comment">//queMin存放小于中位数的元素，降序排列</span></span><br><span class="line">    PriorityQueue&lt;Integer&gt; queMin;</span><br><span class="line">    <span class="comment">//queMax存放大于中位数的元素，升序排列</span></span><br><span class="line">    PriorityQueue&lt;Integer&gt; queMax;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MedianFinder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        queMin = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a,b)-&gt;b-a);</span><br><span class="line">        queMax = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a,b)-&gt;a-b);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(queMin.isEmpty()||num&lt;=queMin.peek())&#123;</span><br><span class="line">            queMin.offer(num);</span><br><span class="line">            <span class="keyword">if</span>(queMax.size()+<span class="number">1</span>&lt;queMin.size())&#123;</span><br><span class="line">                queMax.offer(queMin.poll());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            queMax.offer(num);</span><br><span class="line">            <span class="keyword">if</span>(queMax.size()&gt;queMin.size())&#123;</span><br><span class="line">                queMin.offer(queMax.poll());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedian</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(queMin.size()&gt;queMax.size())&#123;</span><br><span class="line">            <span class="keyword">return</span> queMin.peek();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (queMin.peek()+queMax.peek())/<span class="number">2.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MedianFinder object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MedianFinder obj = new MedianFinder();</span></span><br><span class="line"><span class="comment"> * obj.addNum(num);</span></span><br><span class="line"><span class="comment"> * double param_2 = obj.findMedian();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
-<hr>
 
     </div>
 
@@ -297,7 +292,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"><i class="fa fa-tag"></i> 回溯</a>
+              <a href="/tags/%E5%A0%86/" rel="tag"><i class="fa fa-tag"></i> 堆</a>
           </div>
 
         
@@ -306,13 +301,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/14/leetcode-%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E4%BA%BA/" rel="prev" title="leetcode不开心的人">
-      <i class="fa fa-chevron-left"></i> leetcode不开心的人
+    <a href="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/" rel="prev" title="leetcode-贪心">
+      <i class="fa fa-chevron-left"></i> leetcode-贪心
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/17/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="next" title="序列化和反序列化">
-      序列化和反序列化 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -372,7 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#526-%E4%BC%98%E7%BE%8E%E7%9A%84%E6%8E%92%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">526. 优美的排列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：回溯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#295-%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">295. 数据流的中位数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%A0%86"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
