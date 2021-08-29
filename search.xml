@@ -3901,4 +3901,46 @@
         <tag>堆</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-奇数长度的子数组的和</title>
+    <url>/2021/08/29/leetcode-%E5%A5%87%E6%95%B0%E9%95%BF%E5%BA%A6%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E5%92%8C/</url>
+    <content><![CDATA[<h1 id="1588-所有奇数长度子数组的和"><a href="#1588-所有奇数长度子数组的和" class="headerlink" title="1588. 所有奇数长度子数组的和"></a><a href="https://leetcode-cn.com/problems/sum-of-all-odd-length-subarrays/">1588. 所有奇数长度子数组的和</a></h1><p>给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。</p>
+<p>子数组 定义为原数组中的一个连续子序列。</p>
+<p>请你返回 arr 中 所有奇数长度子数组的和 。</p>
+<p>示例 1：</p>
+<p>输入：arr = [1,4,2,5,3]</p>
+<p>输出：58</p>
+<p>解释：所有奇数长度子数组和它们的和为：</p>
+<p>[1] = 1</p>
+<p>[4] = 4</p>
+<p>[2] = 2</p>
+<p>[5] = 5</p>
+<p>[3] = 3</p>
+<p>[1,4,2] = 7</p>
+<p>[4,2,5] = 11</p>
+<p>[2,5,3] = 10</p>
+<p>[1,4,2,5,3] = 15</p>
+<p>我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</p>
+<p>示例 2：</p>
+<p>输入：arr = [1,2]</p>
+<p>输出：3</p>
+<p>解释：总共只有 2 个长度为奇数的子数组，[1] 和 [2]。它们的和为 3 。</p>
+<p>示例 3：</p>
+<p>输入：arr = [10,11,12]</p>
+<p>输出：66</p>
+<p>提示：</p>
+<p>1 &lt;= arr.length &lt;= 100</p>
+<p>1 &lt;= arr[i] &lt;= 1000</p>
+<h2 id="知识点：前缀和、数学"><a href="#知识点：前缀和、数学" class="headerlink" title="知识点：前缀和、数学"></a>知识点：前缀和、数学</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>前缀和很容易想到，这个不再多说，详情见代码；</p>
+<p>数学分析就不是很好想，求长度为奇数的子数组的和，其实也就是求每个元素会在多少个奇数长度的子数组中出现，这个<a href="https://leetcode-cn.com/problems/sum-of-all-odd-length-subarrays/solution/cong-on3-dao-on-de-jie-fa-by-liuyubobobo/">题解</a>讲的很好，通过对每个元素左右存在元素个数的分析来查找该元素出现的奇数长度的数组的个数，很简洁。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//前缀和</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> len = arr.length;</span><br><span class="line">        <span class="comment">//preSum[i]:前i个数字的和</span></span><br><span class="line">        <span class="keyword">int</span>[] preSum = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            sum+=arr[i];</span><br><span class="line">            preSum[i+<span class="number">1</span>] += sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(len&lt;<span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">while</span>(k&lt;=len)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=len-k;i++)&#123;</span><br><span class="line">                sum += preSum[i+k]-preSum[i];</span><br><span class="line">            &#125;</span><br><span class="line">            k += <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//数学分析</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>,len = arr.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="comment">//leftEven：元素i左边元素个数为偶数的情况，leftOdd：元素i左边元素个数为奇数的情况</span></span><br><span class="line">            <span class="keyword">int</span> leftEven = (i+<span class="number">2</span>)/<span class="number">2</span>,leftOdd = (i+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> rightEven = (len-i+<span class="number">1</span>)/<span class="number">2</span>,rightOdd = (len-i)/<span class="number">2</span>;</span><br><span class="line">            sum += arr[i]*(leftEven*rightEven+leftOdd*rightOdd);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>前缀和、数学</tag>
+      </tags>
+  </entry>
 </search>
