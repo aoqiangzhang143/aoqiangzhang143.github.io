@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">86</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">88</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,230 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">leetcode-无重复最长字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-18T00:00:00+08:00">2021-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-21 09:34:20" itemprop="dateModified" datetime="2021-07-21T09:34:20+08:00">2021-07-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-无重复最长字符串" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/18/leetcode-%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3. 无重复字符的最长子串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h2><p>给定一个字符串，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>双指针、滑动窗口</p>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>这个问题的解决模型是滑动窗口。同时定义两个指针，一个临时固定p1，一个不断扫描p2；当p2扫描至已包含的字符时，让p1后移，直至不包含重复字符。在此需要用到一个collection：HashSet，用于记录已扫描的字符和判断是否包含下一个字符；每次p1后移之前，记录下无重复的最大长度。</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        HashSet&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> right = -<span class="number">1</span>,res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i!=<span class="number">0</span>)&#123;</span><br><span class="line">                set.remove(s.charAt(i-<span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(right&lt;len-<span class="number">1</span>&amp;&amp;!set.contains(s.charAt(right+<span class="number">1</span>)))&#123;</span><br><span class="line">                set.add(s.charAt(right+<span class="number">1</span>));</span><br><span class="line">                ++right;</span><br><span class="line">            &#125;</span><br><span class="line">            res = Math.max(res,right-i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/17/vue%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/17/vue%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">Vue基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-17 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-17T00:00:00+08:00">2021-06-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-02 15:46:50" itemprop="dateModified" datetime="2021-08-02T15:46:50+08:00">2021-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HelloWorld%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">HelloWorld系列</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/17/vue%E5%9F%BA%E7%A1%80/" class="post-meta-item leancloud_visitors" data-flag-title="Vue基础" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/17/vue%E5%9F%BA%E7%A1%80/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/17/vue%E5%9F%BA%E7%A1%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;!--插值表达式--&gt;</span><br><span class="line">        &#123;&#123;message&#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            //取路径</span><br><span class="line">            el:&#x27;#app&#x27;,</span><br><span class="line">            //定义变量名字和变量值</span><br><span class="line">            data:&#123;</span><br><span class="line">                message:&#x27;Hello Vue&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="单向绑定和双向绑定"><a href="#单向绑定和双向绑定" class="headerlink" title="单向绑定和双向绑定"></a>单向绑定和双向绑定</h2><!--双向绑定和单向绑定的区别-->
+<p>采用双向绑定时，相当于将修改权一并给出，若在网页端进行修改，其他位置的引用值一并变化</p>
+<p>采用单向绑定时，修改该值仅仅是修改该位置的值，其他位置的引用值不会变化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;!--单向绑定--&gt;</span><br><span class="line">        &lt;div v-bind:style=&quot;msg&quot;&gt;单向绑定&lt;/div&gt;</span><br><span class="line">        &lt;!--简写方式：直接写：--&gt;</span><br><span class="line">        &lt;div :style=&quot;msg&quot;&gt;单向绑定简写&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                msg:&quot;color:red;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;!--内容中可通过插值表达式取到值，在属性中使用单向绑定或者双向绑定--&gt;</span><br><span class="line">        &#123;&#123;msg&#125;&#125;</span><br><span class="line">        &lt;br/&gt;</span><br><span class="line">        &lt;!--单向绑定--&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; :value=&quot;msg&quot;/&gt;</span><br><span class="line">        &lt;br/&gt;</span><br><span class="line">        &lt;!--双向绑定--&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; v-model=&quot;msg&quot;/&gt;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                msg:&quot;vue项目&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;button v-on:click=&quot;show1&quot;&gt;事件绑定&lt;/button&gt;</span><br><span class="line">        &lt;!-- 简写方式如下 --&gt;</span><br><span class="line">        &lt;button @click=&quot;show2&quot;&gt;事件绑定2&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                msg:&quot;vue项目&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            methods:&#123;</span><br><span class="line">                show1()&#123;</span><br><span class="line">                    console.log(&quot;这是vue中定义的一个方法&quot;)</span><br><span class="line">                &#125;,</span><br><span class="line">                show2()&#123;</span><br><span class="line">                    console.log(&quot;这是vue中定义的第二个方法&quot;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="条件渲染指令"><a href="#条件渲染指令" class="headerlink" title="条件渲染指令"></a>条件渲染指令</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;checkbox&quot; v-model=&quot;ok&quot;/&gt;</span><br><span class="line">        &lt;br/&gt;</span><br><span class="line">        &lt;div v-if=&quot;ok&quot;&gt;已选&lt;/div&gt;</span><br><span class="line">        &lt;div v-else&gt;未选&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                ok:false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="循环指令"><a href="#循环指令" class="headerlink" title="循环指令"></a>循环指令</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;!-- 循环遍历userList，每个遍历到的对象取名user;添加index是列表的索引（从0开始） --&gt;</span><br><span class="line">        &lt;div v-for=&quot;(user,index) in userList&quot;&gt;</span><br><span class="line">            &#123;&#123;index&#125;&#125;--&#123;&#123;user.name&#125;&#125;--&#123;&#123;user.age&#125;&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                userList:[</span><br><span class="line">                    &#123;&quot;name&quot;:&quot;Neo&quot;,age:31&#125;,</span><br><span class="line">                    &#123;&quot;name&quot;:&quot;Alex&quot;,age:29&#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>created方法在页面渲染之前执行，mounted方法在页面渲染之后执行</p>
+<p>代码测试：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &#123;&#123;msg&#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                msg:&quot;hello&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            created()&#123;</span><br><span class="line">                debugger</span><br><span class="line">                console.log(&quot;created...&quot;)//页面渲染之前执行</span><br><span class="line">            &#125;,</span><br><span class="line">            mounted()&#123;</span><br><span class="line">                debugger</span><br><span class="line">                console.log(&quot;mounted...&quot;)//页面渲染之后执行</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2021/06/17/vue%E5%9F%BA%E7%A1%80/image-20210617163308376.png" alt="vue生命周期"></p>
+<hr>
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>通过axios发送ajax请求，来获取json中的数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;!-- 通过列表进行输出 --&gt;</span><br><span class="line">        &lt;table&gt;</span><br><span class="line">            &lt;!-- 采用循环指令 --&gt;</span><br><span class="line">            &lt;tr v-for=&quot;user in userList&quot;&gt;</span><br><span class="line">                &lt;td&gt;&#123;&#123;user.name&#125;&#125;&lt;/td&gt;</span><br><span class="line">                &lt;td&gt;&#123;&#123;user.age&#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;/tr&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;axios.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                userList:[]</span><br><span class="line">            &#125;,</span><br><span class="line">            created()&#123;//在页面渲染之前执行</span><br><span class="line">                //调用方法，得到返回的json数据</span><br><span class="line">                this.getList()</span><br><span class="line">            &#125;,</span><br><span class="line">            methods:&#123;</span><br><span class="line">                getList()&#123;</span><br><span class="line">                    //使用axios方式ajax请求</span><br><span class="line">                    axios.get(&quot;user.json&quot;)</span><br><span class="line">                        .then(response =&gt; &#123;//请求成功</span><br><span class="line">                            console.log(response)</span><br><span class="line">                            this.userList=response.data.data.items</span><br><span class="line">                            console.log(this.userList)</span><br><span class="line">                        &#125;)</span><br><span class="line">                        .catch(error =&gt; &#123;//请求失败</span><br><span class="line">                            console.log(error)</span><br><span class="line">                        &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1245,219 +1469,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">mybatisplus使用总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-04T00:00:00+08:00">2021-06-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-02 15:45:48" itemprop="dateModified" datetime="2021-08-02T15:45:48+08:00">2021-08-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HelloWorld%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">HelloWorld系列</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="mybatisplus使用总结" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用mybatis对数据库进行操作时，为方便定位错误，可在配置文件中进行配置使得myqsl语句在控制台进行输出</p>
-<p>在application.properties配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#控制面板输出mybatis日志</span><br><span class="line">mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h2 id="MybatisPlus的主键策略"><a href="#MybatisPlus的主键策略" class="headerlink" title="MybatisPlus的主键策略"></a>MybatisPlus的主键策略</h2><p>默认采用的是雪花算法：分布式ID生成器</p>
-<p><strong>核心思想：</strong></p>
-<p>长度共64bit（一个long型）。</p>
-<p>首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0。</p>
-<p>41bit时间截(毫秒级)，存储的是时间截的差值（当前时间截 - 开始时间截)，结果约等于69.73年。</p>
-<p>10bit作为机器的ID（5个bit是数据中心，5个bit的机器ID，可以部署在1024个节点）。</p>
-<p>12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID）。</p>
-<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/clip_image002.jpg" alt="分布式ID生成"></p>
-<p>优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。</p>
-<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604104216001.png" alt="数据库自动生成ID"></p>
-<hr>
-<h2 id="MyBatisPlus自动填充功能"><a href="#MyBatisPlus自动填充功能" class="headerlink" title="MyBatisPlus自动填充功能"></a>MyBatisPlus自动填充功能</h2><p>好处：自动实现set功能</p>
-<p>使用方法：</p>
-<p>举例：添加记录的创建时间和修改时间</p>
-<p>1、在数据库表中创建对应列：create_time,update_time</p>
-<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101416523.png" alt="数据库添加列"></p>
-<p>2、在对应的实体类中添加对应属性：createTime,updateTime，并添加注解</p>
-<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604101437416.png" alt="实体类添加属性"></p>
-<p>3、创建一个类，实现MetaObjectHandler接口，并重写其中的两个方法</p>
-<p><img src="/2021/06/04/mybatisplus%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/image-20210604103623362.png" alt="创建handler类"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/03/mysql%E7%99%BB%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" class="post-title-link" itemprop="url">mysql登录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-03 00:00:00 / 修改时间：16:19:21" itemprop="dateCreated datePublished" datetime="2021-06-03T00:00:00+08:00">2021-06-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A1%B9%E7%9B%AEHospital/" itemprop="url" rel="index"><span itemprop="name">项目Hospital</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="mysql登录" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/03/mysql%E7%99%BB%E5%BD%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/03/mysql%E7%99%BB%E5%BD%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>启动mysql：systemctl start mysqld</p>
-<p>查看mysql启动状态：systemctl status mysqld</p>
-<p>显示active表示已经激活。</p>
-<p>进行登录：mysql -uroot -p</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1529,7 +1540,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1542,7 +1553,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

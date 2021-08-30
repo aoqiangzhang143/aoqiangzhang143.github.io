@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">86</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">88</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,225 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">leetcode-压缩字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-21 00:00:00 / 修改时间：10:48:29" itemprop="dateCreated datePublished" datetime="2021-08-21T00:00:00+08:00">2021-08-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-压缩字符串" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="443-压缩字符串"><a href="#443-压缩字符串" class="headerlink" title="443. 压缩字符串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/string-compression/">443. 压缩字符串</a></h1><p>给定一组字符，使用原地算法将其压缩。</p>
+<p>压缩后的长度必须始终小于或等于原数组长度。</p>
+<p>数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。</p>
+<p>在完成原地修改输入数组后，返回数组的新长度。</p>
+<p>进阶：</p>
+<p>你能否仅使用O(1) 空间解决问题？</p>
+<p>示例 1：</p>
+<p>输入：</p>
+<p>[“a”,”a”,”b”,”b”,”c”,”c”,”c”]</p>
+<p>输出：</p>
+<p>返回 6 ，输入数组的前 6 个字符应该是：[“a”,”2”,”b”,”2”,”c”,”3”]</p>
+<p>说明：</p>
+<p>“aa” 被 “a2” 替代。”bb” 被 “b2” 替代。”ccc” 被 “c3” 替代。</p>
+<h2 id="知识点：字符串"><a href="#知识点：字符串" class="headerlink" title="知识点：字符串"></a>知识点：字符串</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>又一个原地修改，做了好几道原地修改的题目了，感觉原地修改的关键在于对下标的掌控，你看这个。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compress</span><span class="params">(<span class="keyword">char</span>[] chars)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> write = <span class="number">0</span>,anchor = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> len = chars.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> read = <span class="number">0</span>;read&lt;len;read++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(read+<span class="number">1</span>==len||chars[read]!=chars[read+<span class="number">1</span>])&#123;<span class="comment">//不相等时进行重写</span></span><br><span class="line">                chars[write++] = chars[anchor];</span><br><span class="line">                <span class="keyword">if</span>(read&gt;anchor)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">char</span> c:(<span class="string">&quot;&quot;</span>+(read-anchor+<span class="number">1</span>)).toCharArray())&#123;</span><br><span class="line">                        chars[write++]=c;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                anchor = read+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> write;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/20/leetcode-N%E7%9A%87%E5%90%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/20/leetcode-N%E7%9A%87%E5%90%8E/" class="post-title-link" itemprop="url">leetcode-N皇后</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-20T00:00:00+08:00">2021-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-30 14:47:40" itemprop="dateModified" datetime="2021-08-30T14:47:40+08:00">2021-08-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/20/leetcode-N%E7%9A%87%E5%90%8E/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-N皇后" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/20/leetcode-N%E7%9A%87%E5%90%8E/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/20/leetcode-N%E7%9A%87%E5%90%8E/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="51-N-皇后"><a href="#51-N-皇后" class="headerlink" title="51. N 皇后"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-queens/">51. N 皇后</a></h1><p>n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p>给你一个整数 n ，返回所有不同的 n 皇后问题 的解决方案。</p>
+<p>每一种解法包含一个不同的 n 皇后问题 的棋子放置方案，该方案中 ‘Q’ 和 ‘.’ 分别代表了皇后和空位。</p>
+<img src="/2021/08/20/leetcode-N%E7%9A%87%E5%90%8E/image-20210820154301497.png" alt="N皇后" style="zoom:67%;">
+
+<h2 id="知识点：回溯"><a href="#知识点：回溯" class="headerlink" title="知识点：回溯"></a>知识点：回溯</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>皇后之间不可位于同一行或者同一列或者斜率为1/-1的斜线之上，我们按照每行进行遍历，故需要对当前列、当前-1斜线、当前1斜线进行查询。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; solveNQueens(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals1 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals2 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; columns = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] queens = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="comment">//为什么要填充为-1------因为可能当前位置在这一轮的时候用到了但下一轮没用到，由于没重置为-1，所以下一轮扔保持之前的大小</span></span><br><span class="line">        Arrays.fill(queens, -<span class="number">1</span>);</span><br><span class="line">        backtrack(res,columns,diagonals1,diagonals2,n,<span class="number">0</span>,queens);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(List&lt;List&lt;String&gt;&gt; res, Set&lt;Integer&gt; columns, Set&lt;Integer&gt; diagonals1, Set&lt;Integer&gt; diagonals2, <span class="keyword">int</span> n, <span class="keyword">int</span> row, <span class="keyword">int</span>[] queens)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">            res.add(generate(queens,n));</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">                <span class="comment">//判断是否在同一列</span></span><br><span class="line">                <span class="keyword">if</span>(columns.contains(col))&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//判断是否在斜率为1的斜线上</span></span><br><span class="line">                <span class="keyword">int</span> diagonal1 = row-col;</span><br><span class="line">                <span class="keyword">if</span>(diagonals1.contains(diagonal1))&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//判断是否在斜率为-1的斜线上</span></span><br><span class="line">                <span class="keyword">int</span> diagonal2 = row+col;</span><br><span class="line">                <span class="keyword">if</span>(diagonals2.contains(diagonal2))&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//这个位置满足条件</span></span><br><span class="line">                queens[row] = col;</span><br><span class="line">                columns.add(col);</span><br><span class="line">                diagonals1.add(diagonal1);</span><br><span class="line">                diagonals2.add(diagonal2);</span><br><span class="line">                <span class="comment">//在这个点已经被放置了皇后的基础上进行回溯</span></span><br><span class="line">                backtrack(res, columns, diagonals1, diagonals2, n, row+<span class="number">1</span>, queens);</span><br><span class="line">                <span class="comment">//再次重置为-1</span></span><br><span class="line">                queens[row] = -<span class="number">1</span>;</span><br><span class="line">                columns.remove(col);</span><br><span class="line">                diagonals1.remove(diagonal1);</span><br><span class="line">                diagonals2.remove(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;String&gt; <span class="title">generate</span><span class="params">(<span class="keyword">int</span>[] queens, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; board = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">char</span>[] chars = <span class="keyword">new</span> <span class="keyword">char</span>[n];</span><br><span class="line">            Arrays.fill(chars, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">            chars[queens[i]] = <span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">            board.add(<span class="keyword">new</span> String(chars));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="52-N皇后-II"><a href="#52-N皇后-II" class="headerlink" title="52. N皇后 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-queens-ii/">52. N皇后 II</a></h1><p>n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p>给你一个整数 n ，返回 n 皇后问题 不同的解决方案的数量。</p>
+<img src="/2021/08/20/leetcode-N%E7%9A%87%E5%90%8E/image-20210820163439244.png" alt="N皇后II" style="zoom:67%;">
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>1     &lt;= n &lt;= 9</li>
+<li>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</li>
+</ul>
+<h2 id="知识点：回溯-1"><a href="#知识点：回溯-1" class="headerlink" title="知识点：回溯"></a>知识点：回溯</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>和N皇后差不多，这个不用记录每个方式，只需要记录数量即可。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalNQueens</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        Set&lt;Integer&gt; diagonals1 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals2 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; columns = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        backtrack(columns,diagonals1,diagonals2,n,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(Set&lt;Integer&gt; columns, Set&lt;Integer&gt; diagonals1, Set&lt;Integer&gt; diagonals2,<span class="keyword">int</span> n, <span class="keyword">int</span> row)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">                <span class="comment">//判断是否在同一列</span></span><br><span class="line">                <span class="keyword">if</span>(columns.contains(col))&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//判断是否在斜率为1的斜线上</span></span><br><span class="line">                <span class="keyword">int</span> diagonal1 = row-col;</span><br><span class="line">                <span class="keyword">if</span>(diagonals1.contains(diagonal1))&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//判断是否在斜率为-1的斜线上</span></span><br><span class="line">                <span class="keyword">int</span> diagonal2 = row+col;</span><br><span class="line">                <span class="keyword">if</span>(diagonals2.contains(diagonal2))&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//这个位置满足条件</span></span><br><span class="line">                columns.add(col);</span><br><span class="line">                diagonals1.add(diagonal1);</span><br><span class="line">                diagonals2.add(diagonal2);</span><br><span class="line">                <span class="comment">//在这个点已经被放置了皇后的基础上进行回溯</span></span><br><span class="line">                backtrack(columns, diagonals1, diagonals2, n, row+<span class="number">1</span>);</span><br><span class="line">                columns.remove(col);</span><br><span class="line">                diagonals1.remove(diagonal1);</span><br><span class="line">                diagonals2.remove(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1071,242 +1290,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">leetcode-排列问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-16T00:00:00+08:00">2021-08-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-17 15:08:00" itemprop="dateModified" datetime="2021-08-17T15:08:00+08:00">2021-08-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-排列问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="526-优美的排列"><a href="#526-优美的排列" class="headerlink" title="526. 优美的排列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/beautiful-arrangement/">526. 优美的排列</a></h1><p>假设有从 1 到 N 的 N 个整数，如果从这 N 个数字中成功构造出一个数组，使得数组的第 i 位 (1 &lt;= i &lt;= N) 满足如下两个条件中的一个，我们就称这个数组为一个优美的排列。条件：</p>
-<p>第 i 位的数字能被 i 整除</p>
-<p>i 能被第 i 位上的数字整除</p>
-<p>现在给定一个整数 N，请问可以构造多少个优美的排列？</p>
-<p>示例1:</p>
-<p>输入: 2</p>
-<p>输出: 2</p>
-<p>解释: </p>
-<p>第 1 个优美的排列是 [1, 2]:</p>
-<p> 第 1 个位置（i=1）上的数字是1，1能被 i（i=1）整除</p>
-<p> 第 2 个位置（i=2）上的数字是2，2能被 i（i=2）整除</p>
-<p>第 2 个优美的排列是 [2, 1]:</p>
-<p> 第 1 个位置（i=1）上的数字是2，2能被 i（i=1）整除</p>
-<p> 第 2 个位置（i=2）上的数字是1，i（i=2）能被 1 整除</p>
-<p><strong>说明:</strong></p>
-<ol>
-<li><strong>N</strong> 是一个正整数，并且不会超过15。</li>
-</ol>
-<h2 id="知识点：回溯"><a href="#知识点：回溯" class="headerlink" title="知识点：回溯"></a>知识点：回溯</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>题目的意思是，任意位置的第i位，都要满足两个条件之一；</p>
-<p>采用回溯对本题进行解答（还有状态压缩，这个我还没掌握），我们从第一个位置开始找，在第一个位置时遍历每个数字，如果当前数字满足要求，就将当前数字的状态记为已使用，然后在此基础之上对下一个位置进行递归查找；在当前遍历的数字时，在对下一个位置进行递归查找之后，再将当前数字状态改为未使用。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countArrangement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dfs(<span class="number">1</span>,n,<span class="keyword">new</span> <span class="keyword">boolean</span>[n+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> n,<span class="keyword">boolean</span>[] vis)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;n)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[i]&amp;&amp;(i%index==<span class="number">0</span>||index%i==<span class="number">0</span>))&#123;</span><br><span class="line">                vis[i] = <span class="keyword">true</span>;</span><br><span class="line">                res+=dfs(index+<span class="number">1</span>,n,vis);</span><br><span class="line">                vis[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/14/leetcode-%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E4%BA%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/14/leetcode-%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E4%BA%BA/" class="post-title-link" itemprop="url">leetcode不开心的人</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-08-14 00:00:00 / 修改时间：10:23:49" itemprop="dateCreated datePublished" datetime="2021-08-14T00:00:00+08:00">2021-08-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/08/14/leetcode-%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E4%BA%BA/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode不开心的人" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/08/14/leetcode-%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E4%BA%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/14/leetcode-%E4%B8%8D%E5%BC%80%E5%BF%83%E7%9A%84%E4%BA%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>给你一份 n 位朋友的亲近程度列表，其中 n 总是 <strong>偶数</strong> 。</p>
-<p>对每位朋友 i，preferences[i] 包含一份 <strong>按亲近程度从高到低排列</strong> 的朋友列表。换句话说，排在列表前面的朋友与 i 的亲近程度比排在列表后面的朋友更高。每个列表中的朋友均以 0 到 n-1 之间的整数表示。</p>
-<p>所有的朋友被分成几对，配对情况以列表 pairs 给出，其中 pairs[i] = [xi, yi] 表示 xi 与 yi 配对，且 yi 与 xi 配对。</p>
-<p>但是，这样的配对情况可能会是其中部分朋友感到不开心。在 x 与 y 配对且 u 与 v 配对的情况下，如果同时满足下述两个条件，x 就会不开心：</p>
-<ul>
-<li>x 与 u 的亲近程度胜过 x 与 y，且</li>
-<li>u 与 x 的亲近程度胜过 u 与 v</li>
-</ul>
-<p>返回 <strong>不开心的朋友的数目</strong> 。</p>
-<p>示例 1：</p>
-<p>输入：n = 4, preferences = [[1, 2, 3], [3, 2, 0], [3, 1, 0], [1, 2, 0]], pairs = [[0, 1], [2, 3]]</p>
-<p>输出：2</p>
-<p>解释：</p>
-<p>朋友 1 不开心，因为：</p>
-<p>- 1 与 0 配对，但 1 与 3 的亲近程度比 1 与 0 高，且</p>
-<p>- 3 与 1 的亲近程度比 3 与 2 高。</p>
-<p>朋友 3 不开心，因为：</p>
-<p>- 3 与 2 配对，但 3 与 1 的亲近程度比 3 与 2 高，且</p>
-<p>- 1 与 3 的亲近程度比 1 与 0 高。</p>
-<p>朋友 0 和 2 都是开心的。</p>
-<p>示例 2：</p>
-<p>输入：n = 2, preferences = [[1], [0]], pairs = [[1, 0]]</p>
-<p>输出：0</p>
-<p>解释：朋友 0 和 1 都开心。</p>
-<p>示例 3：</p>
-<p>输入：n = 4, preferences = [[1, 3, 2], [2, 3, 0], [1, 3, 0], [0, 2, 1]], pairs = [[1, 3], [0, 2]]</p>
-<p>输出：4</p>
-<h2 id="知识点：模拟"><a href="#知识点：模拟" class="headerlink" title="知识点：模拟"></a>知识点：模拟</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>什么是不开心的人：小a和小b配对，小c和小d配对，但是，ac亲密度高于ab，且ac亲密度高于cd，那么，a就不开心。需要预先准备的数据：需要以O（1）的复杂度知道和x配对的人是谁；需要知道ab的亲密程度。</p>
-<p>具体做法：对于每个人，存储其他人对他而言的亲密度下标，下标越小越亲密；记录每个人的配对情况。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">unhappyFriends</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[][] preferences, <span class="keyword">int</span>[][] pairs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] order = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n-<span class="number">1</span>;j++)&#123;</span><br><span class="line">                order[i][preferences[i][j]] = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] match = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] pair:pairs)&#123;</span><br><span class="line">            <span class="keyword">int</span> p1 = pair[<span class="number">0</span>],p2 = pair[<span class="number">1</span>];</span><br><span class="line">            match[p1] = p2;</span><br><span class="line">            match[p2] = p1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;n;x++)&#123;</span><br><span class="line">            <span class="keyword">int</span> y = match[x];</span><br><span class="line">            <span class="keyword">int</span> index = order[x][y];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;index;i++)&#123;</span><br><span class="line">                <span class="keyword">int</span> u = preferences[x][i];</span><br><span class="line">                <span class="keyword">int</span> v = match[u];</span><br><span class="line">                <span class="keyword">if</span>(order[u][x]&lt;order[u][v])&#123;</span><br><span class="line">                    count++;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1378,7 +1361,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1391,7 +1374,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

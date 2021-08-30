@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">86</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">88</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,207 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/" class="post-title-link" itemprop="url">强软弱虚引用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-31T00:00:00+08:00">2021-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-02 16:34:34" itemprop="dateModified" datetime="2021-08-02T16:34:34+08:00">2021-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">JVM相关</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="强软弱虚引用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h2><p>一个对象有强引用时，GC绝不回收，宁可报错OutOfMemoryError也不回收.</p>
+<h2 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h2><p>只要内存空间足够，就不会回收它；空间不够时才回收这些对象的内存。只要GC没回收它，该对象就一直可被程序使用。软引用可用来实现内存敏感的高速缓存。</p>
+<h2 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h2><p>弱引用关联的对象只能活到下一次垃圾回收之前。</p>
+<h2 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h2><p>如果一个对象仅持有虚引用，其实就跟没有任何引用一样，随时可被回收。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虚引用必须和引用队列（Reference Queue）联合使用。当垃圾回收器准备回收一个对象时，发现该对象还有虚引用，那么就会将这个虚引用加入到与之关联的引用队列中，这样可以通过判断引用队列中是否已经加入虚引用来判断被引用的对象是否要被GC回收，便于在回收之前做一些必要行动。</p>
+<p>虚引用和软引用、弱引用的区别</p>
+<p>软、弱是在GC回收该对象之后，才将引用加入到引用队列中；</p>
+<p>虚引用是在GC回收对象之前，将该引用加入到引用队列中。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/30/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/30/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%A1/" class="post-title-link" itemprop="url">如何判断对象已经死亡</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-30T00:00:00+08:00">2021-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-02 16:33:38" itemprop="dateModified" datetime="2021-08-02T16:33:38+08:00">2021-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">JVM相关</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/07/30/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%A1/" class="post-meta-item leancloud_visitors" data-flag-title="如何判断对象已经死亡" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/07/30/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/30/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1、可达性分析法（常用）"><a href="#1、可达性分析法（常用）" class="headerlink" title="1、可达性分析法（常用）"></a>1、可达性分析法（常用）</h2><p>通过一系列GCRoots的对象作为起点，从起点开始向下搜素，节点所走过的路径称为引用链，当一个对象到GCRoots没有任何引用链时，该对象不可用。</p>
+<p>GCRoots：可以是虚拟机栈中的引用对象、方法区中类静态属性引用的对象、方法区中常量引用的对象。</p>
+<h2 id="2、引用计数法（JVM未采用）"><a href="#2、引用计数法（JVM未采用）" class="headerlink" title="2、引用计数法（JVM未采用）"></a>2、引用计数法（JVM未采用）</h2><p>对一个对象来说，每当有一个地方引用它，计数器就+1；引用失效就-1；当计数器为0时该对象已经不可能再被使用。</p>
+<p>缺点：无法解决两个对象互相引用的情况，这就是==死循环==。</p>
+<h2 id="但是"><a href="#但是" class="headerlink" title="但是"></a>但是</h2><p>回收一个对象起码需要两次标记，可达性分析法中不可达的对象被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行finalize方法，当该对象没有覆盖finalize方法或者finalize方法已经被调用过时，这种情况视为没必要执行；被判定需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被回收。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1036,271 +1237,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/21/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/21/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">创建线程的四种方式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-02 16:02:42" itemprop="dateModified" datetime="2021-08-02T16:02:42+08:00">2021-08-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">Java并发</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/07/21/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="创建线程的四种方式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/21/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/21/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><em>start和run的区别</em></p>
-<blockquote>
-<p>调用start是开启一个线程，并自动执行run方法；</p>
-<p>调用run是在当前线程去调用run方法，本质上是调用一个类中的方法，并未开启新的线程。</p>
-</blockquote>
-<h3 id="1、使用线程池"><a href="#1、使用线程池" class="headerlink" title="1、使用线程池"></a>1、使用线程池</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//演示一下</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,  </span></span></span><br><span class="line"><span class="params"><span class="function">                              <span class="keyword">int</span> maximumPoolSize,  </span></span></span><br><span class="line"><span class="params"><span class="function">                              <span class="keyword">long</span> keepAliveTime,  </span></span></span><br><span class="line"><span class="params"><span class="function">                              TimeUnit unit,  </span></span></span><br><span class="line"><span class="params"><span class="function">                              BlockingQueue&lt;Runnable&gt; workQueue,  </span></span></span><br><span class="line"><span class="params"><span class="function">                              ThreadFactory threadFactory,  </span></span></span><br><span class="line"><span class="params"><span class="function">                              RejectedExecutionHandler handler)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">if</span> (corePoolSize &lt; <span class="number">0</span> ||  </span><br><span class="line">            maximumPoolSize &lt;= <span class="number">0</span> ||  </span><br><span class="line">            maximumPoolSize &lt; corePoolSize ||  </span><br><span class="line">            keepAliveTime &lt; <span class="number">0</span>)  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();  </span><br><span class="line">        <span class="keyword">if</span> (workQueue == <span class="keyword">null</span> || threadFactory == <span class="keyword">null</span> || handler == <span class="keyword">null</span>)  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();  </span><br><span class="line">        <span class="keyword">this</span>.corePoolSize = corePoolSize;  </span><br><span class="line">        <span class="keyword">this</span>.maximumPoolSize = maximumPoolSize;  </span><br><span class="line">        <span class="keyword">this</span>.workQueue = workQueue;  </span><br><span class="line">        <span class="keyword">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);  </span><br><span class="line">        <span class="keyword">this</span>.threadFactory = threadFactory;  </span><br><span class="line">        <span class="keyword">this</span>.handler = handler;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数名</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>corePoolSize</td>
-<td>核心线程池大小</td>
-</tr>
-<tr>
-<td>maximumPoolSize</td>
-<td>最大线程池大小</td>
-</tr>
-<tr>
-<td>keepAliveTime</td>
-<td>线程池中超过corePoolSize数目的空闲线程最大存活时间；可以allowCoreThreadTimeOut(true)使得核心线程有效时间</td>
-</tr>
-<tr>
-<td>TimeUnit</td>
-<td>keepAliveTime时间单位</td>
-</tr>
-<tr>
-<td>workQueue</td>
-<td>任务缓存队列，用来存放等待执行的任务</td>
-</tr>
-<tr>
-<td>threadFactory</td>
-<td>新建线程工厂</td>
-</tr>
-<tr>
-<td>RejectedExecutionHandler</td>
-<td>当提交任务数超过maxmumPoolSize+workQueue之和时，任务会交给RejectedExecutionHandler来处理</td>
-</tr>
-</tbody></table>
-<h4 id="线程池增长策略："><a href="#线程池增长策略：" class="headerlink" title="线程池增长策略："></a>线程池增长策略：</h4><p>1.当线程池小于corePoolSize时，新提交任务将创建一个新线程执行任务，即使此时线程池中存在空闲线程。 </p>
-<p>2.当线程池达到corePoolSize时，新提交任务将被放入workQueue中，等待线程池中任务调度执行 </p>
-<p>3.当workQueue已满，且当前线程池中的线程数量&lt;maximumPoolSize时，新提交任务会创建新线程执行任务 </p>
-<p>4.当提交任务数超过maximumPoolSize时，新提交任务由RejectedExecutionHandler处理 </p>
-<p>5.当线程池中超过corePoolSize线程，空闲时间达到keepAliveTime时，关闭空闲线程 </p>
-<hr>
-<h4 id="线程池的拒绝策略："><a href="#线程池的拒绝策略：" class="headerlink" title="线程池的拒绝策略："></a>线程池的拒绝策略：</h4><p>1、AbortPolicy（默认）：抛出异常</p>
-<p>2、DiscardPolicy：删除不能被执行的任务</p>
-<p>补充</p>
-<p>6.当设置allowCoreThreadTimeOut(true)时，线程池中corePoolSize线程空闲时间达到keepAliveTime也将关闭</p>
-<p>7.有界任务队列</p>
-<p>有界任务队列可以用ArrayBlockingQueue来实现，若有新的任务需要执行，线程池会创建新的线程，直到创建的线程数量达到corePoolSize时，会将新的任务添加入等待队列；若等待队列已满，超过ArrayBlockingQueue的初始化容量时，则会继续创建线程，直到线程数量达到maximumPoolSize，超过maximumPoolSize之后则执行拒绝策略。</p>
-<p>8.无界任务队列</p>
-<p>无界任务队列可以使用LinkedBlockingQueue来实现，使用无界任务队列可以无限制添加新的任务，任务的最大数量为corePoolSize，此时maximumPoolSize是无效的，若再有新的任务加入，则直接进入等待队列。</p>
-<p>9.优先任务队列</p>
-<p>通过PriorityBlockingQueue实现，这也是一个无界队列，此队列可自定义规则根据任务优先级顺序先后执行</p>
-<hr>
-<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><p> (1) 降低系统资源消耗，通过重用已存在的线程，降低线程创建和销毁造成的消耗；</p>
-<p>（2）提高系统响应速度，当有任务到达时，通过复用已存在的线程，无需等待新线程的创建便能立即执行；</p>
-<p>（3）方便线程并发数的管控。因为线程若是无限制的创建，可能会导致内存占用过多而产生OOM，并且会造成cpu过度切换</p>
-<hr>
-<hr>
-<h3 id="2、实现runnable接口"><a href="#2、实现runnable接口" class="headerlink" title="2、实现runnable接口"></a>2、实现runnable接口</h3><h3 id="3、实现callable接口"><a href="#3、实现callable接口" class="headerlink" title="3、实现callable接口"></a>3、实现callable接口</h3><p>相较于实现runnable方法，线程可以有返回值，可以抛出异常</p>
-<h3 id="4、继承Thread类"><a href="#4、继承Thread类" class="headerlink" title="4、继承Thread类"></a>4、继承Thread类</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/20/HappenBefore%E5%8E%9F%E5%88%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/20/HappenBefore%E5%8E%9F%E5%88%99/" class="post-title-link" itemprop="url">HappenBefore原则</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-20T00:00:00+08:00">2021-07-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-02 15:56:26" itemprop="dateModified" datetime="2021-08-02T15:56:26+08:00">2021-08-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">Java并发</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/07/20/HappenBefore%E5%8E%9F%E5%88%99/" class="post-meta-item leancloud_visitors" data-flag-title="HappenBefore原则" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/20/HappenBefore%E5%8E%9F%E5%88%99/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/20/HappenBefore%E5%8E%9F%E5%88%99/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="定义了哪些指令不能重排："><a href="#定义了哪些指令不能重排：" class="headerlink" title="定义了哪些指令不能重排："></a>定义了哪些指令不能重排：</h2><h3 id="单线程的happen-before原则"><a href="#单线程的happen-before原则" class="headerlink" title="单线程的happen before原则"></a>单线程的happen before原则</h3><p>写在前面的操作happen before后面的操作</p>
-<h3 id="锁的happen-before原则："><a href="#锁的happen-before原则：" class="headerlink" title="锁的happen-before原则："></a>锁的happen-before原则：</h3><p>同一个锁的unlock操作happen-before此锁的lock操作。</p>
-<h3 id="volatile的happen-before原则："><a href="#volatile的happen-before原则：" class="headerlink" title="volatile的happen-before原则："></a>volatile的happen-before原则：</h3><p>对一个volatile变量的写操作happen-before对此变量的任意操作(当然也包括写操作了)。</p>
-<h3 id="happen-before的传递性原则："><a href="#happen-before的传递性原则：" class="headerlink" title="happen-before的传递性原则："></a>happen-before的传递性原则：</h3><p>如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。</p>
-<h3 id="线程启动的happen-before原则："><a href="#线程启动的happen-before原则：" class="headerlink" title="线程启动的happen-before原则："></a>线程启动的happen-before原则：</h3><p>同一个线程的start方法happen-before此线程的其它方法。</p>
-<h3 id="线程中断的happen-before原则："><a href="#线程中断的happen-before原则：" class="headerlink" title="线程中断的happen-before原则："></a>线程中断的happen-before原则：</h3><p>对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。</p>
-<h3 id="线程终结的happen-before原则："><a href="#线程终结的happen-before原则：" class="headerlink" title="线程终结的happen-before原则："></a>线程终结的happen-before原则：</h3><p>线程中的所有操作都happen-before线程的终止检测。</p>
-<h3 id="对象创建的happen-before原则："><a href="#对象创建的happen-before原则：" class="headerlink" title="对象创建的happen-before原则："></a>对象创建的happen-before原则：</h3><p>一个对象的初始化完成先于他的finalize方法调用。</p>
-<h2 id="哪些会进行重排："><a href="#哪些会进行重排：" class="headerlink" title="哪些会进行重排："></a>哪些会进行重排：</h2><p>执行程序时为了提高性能，编译器和处理器经常会对指令进行重新排序。</p>
-<h3 id="编译器优化的重排序："><a href="#编译器优化的重排序：" class="headerlink" title="编译器优化的重排序："></a>编译器优化的重排序：</h3><p>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</p>
-<h3 id="内存系统的重排序："><a href="#内存系统的重排序：" class="headerlink" title="内存系统的重排序："></a>内存系统的重排序：</h3><p>由于处理器使用的是缓存和读写缓冲区，看上去像是乱序执行。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1372,7 +1308,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1385,7 +1321,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
