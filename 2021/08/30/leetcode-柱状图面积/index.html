@@ -25,7 +25,7 @@
 
   <meta name="description" content="84. 柱状图中最大的矩形给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。 求在该柱状图中，能够勾勒出来的矩形的最大面积。       知识点：单调栈分析：这个问题有个题解讲的很清楚，我也没什么更好的建议。 暴力解法、栈（单调栈、哨兵技巧） 代码如下：1234567891011121314151617181920212223242526class Solut">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-柱状图面积">
+<meta property="og:title" content="leetcode-矩形面积">
 <meta property="og:url" content="http://example.com/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/index.html">
 <meta property="og:site_name" content="Mithrandir">
 <meta property="og:description" content="84. 柱状图中最大的矩形给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。 求在该柱状图中，能够勾勒出来的矩形的最大面积。       知识点：单调栈分析：这个问题有个题解讲的很清楚，我也没什么更好的建议。 暴力解法、栈（单调栈、哨兵技巧） 代码如下：1234567891011121314151617181920212223242526class Solut">
@@ -33,8 +33,9 @@
 <meta property="og:image" content="http://example.com/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/image-20210830201430491.png">
 <meta property="og:image" content="http://example.com/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/image-20210830201444464.png">
 <meta property="og:image" content="http://example.com/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/image-20210830201500208.png">
+<meta property="og:image" content="http://example.com/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/image-20210831170102772.png">
 <meta property="article:published_time" content="2021-08-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-30T12:15:49.287Z">
+<meta property="article:modified_time" content="2021-08-31T09:01:42.377Z">
 <meta property="article:author" content="aoqiangzhang143">
 <meta property="article:tag" content="单调栈">
 <meta name="twitter:card" content="summary">
@@ -53,7 +54,7 @@
   };
 </script>
 
-  <title>leetcode-柱状图面积 | Mithrandir</title>
+  <title>leetcode-矩形面积 | Mithrandir</title>
   
 
 
@@ -207,7 +208,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          leetcode-柱状图面积
+          leetcode-矩形面积
         </h1>
 
         <div class="post-meta">
@@ -216,10 +217,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-30 00:00:00 / 修改时间：20:15:49" itemprop="dateCreated datePublished" datetime="2021-08-30T00:00:00+08:00">2021-08-30</time>
+              <time title="创建时间：2021-08-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-30T00:00:00+08:00">2021-08-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-31 17:01:42" itemprop="dateModified" datetime="2021-08-31T17:01:42+08:00">2021-08-31</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -231,7 +238,7 @@
             </span>
 
           
-            <span id="/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-柱状图面积" title="阅读次数">
+            <span id="/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-矩形面积" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -273,6 +280,31 @@
 <h2 id="知识点：单调栈"><a href="#知识点：单调栈" class="headerlink" title="知识点：单调栈"></a>知识点：单调栈</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这个问题有个题解讲的很清楚，我也没什么更好的建议。</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/bao-li-jie-fa-zhan-by-liweiwei1419/">暴力解法、栈（单调栈、哨兵技巧）</a></p>
 <h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="keyword">int</span>[] heights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = heights.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> heights[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] newHeights = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">2</span>];</span><br><span class="line">        newHeights[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        System.arraycopy(heights,<span class="number">0</span>,newHeights,<span class="number">1</span>,len);</span><br><span class="line">        newHeights[len+<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        len += <span class="number">2</span>;</span><br><span class="line">        heights = newHeights;</span><br><span class="line">        Deque&lt;Integer&gt; stack = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        stack.offerLast(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(heights[i]&lt;heights[stack.peekLast()])&#123;</span><br><span class="line">                <span class="keyword">int</span> curHeight = heights[stack.removeLast()];</span><br><span class="line">                <span class="keyword">int</span> curWidth = i-stack.peekLast()-<span class="number">1</span>;</span><br><span class="line">                res = Math.max(res,curHeight*curWidth);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.offerLast(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="85-最大矩形"><a href="#85-最大矩形" class="headerlink" title="85. 最大矩形"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximal-rectangle/">85. 最大矩形</a></h1><p>给定一个仅包含 0 和 1 、大小为 rows x cols 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。</p>
+<img src="/2021/08/30/leetcode-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E9%9D%A2%E7%A7%AF/image-20210831170102772.png" alt="85-1" style="zoom:67%;">
+
+<p>示例 2：</p>
+<p>输入：matrix = []</p>
+<p>输出：0</p>
+<p>示例 3：</p>
+<p>输入：matrix = [[“0”]]</p>
+<p>输出：0</p>
+<p>示例 4：</p>
+<p>输入：matrix = [[“1”]]</p>
+<p>输出：1</p>
+<p>示例 5：</p>
+<p>输入：matrix = [[“0”,”0”]]</p>
+<p>输出：0</p>
+<p>提示：</p>
+<p>rows == matrix.length</p>
+<p>cols == matrix[0].length</p>
+<p>0 &lt;= row, cols &lt;= 200</p>
+<p>matrix[i][j] 为 ‘0’ 或 ‘1’</p>
+<h2 id="知识点：单调栈-1"><a href="#知识点：单调栈-1" class="headerlink" title="知识点：单调栈"></a>知识点：单调栈</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这个和84题一样，唯一的区别是有两个维度；</p>
+<p>对原矩阵进行遍历，并创建当前节点的最高高度（就是说这个节点同一列上面有几个连续的1）；然后对创建好的高度矩阵的每一列进行遍历即可，基本上就是84题的多维度版。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalRectangle</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rows = matrix.length;</span><br><span class="line">        <span class="keyword">if</span>(rows==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cols = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span>[][] heights = <span class="keyword">new</span> <span class="keyword">int</span>[rows][cols];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> row = <span class="number">0</span>;row&lt;rows;row++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> col = <span class="number">0</span>;col&lt;cols;col++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(matrix[row][col]==<span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">                    heights[row][col] = (row==<span class="number">0</span>?<span class="number">0</span>:heights[row-<span class="number">1</span>][col])+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] height:heights)&#123;</span><br><span class="line">            res = Math.max(res,monotonicsStack(height));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">monotonicsStack</span><span class="params">(<span class="keyword">int</span>[] heights)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = heights.length;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> heights[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> area = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] newHeights = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">2</span>];</span><br><span class="line">        newHeights[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        System.arraycopy(heights,<span class="number">0</span>,newHeights,<span class="number">1</span>,len);</span><br><span class="line">        newHeights[len+<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        heights = newHeights;</span><br><span class="line">        len+=<span class="number">2</span>;</span><br><span class="line">        Deque&lt;Integer&gt; stack = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        stack.offerLast(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(heights[i]&lt;heights[stack.peekLast()])&#123;</span><br><span class="line">                <span class="keyword">int</span> curHeight = heights[stack.removeLast()];</span><br><span class="line">                <span class="keyword">int</span> curWidth = i-stack.peekLast()-<span class="number">1</span>;</span><br><span class="line">                area = Math.max(area,curHeight*curWidth);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.offerLast(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> area;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -359,7 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2"><span class="nav-number">1.</span> <span class="nav-text">84. 柱状图中最大的矩形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%8D%95%E8%B0%83%E6%A0%88"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：单调栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2"><span class="nav-number">1.</span> <span class="nav-text">84. 柱状图中最大的矩形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%8D%95%E8%B0%83%E6%A0%88"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：单调栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#85-%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2"><span class="nav-number">2.</span> <span class="nav-text">85. 最大矩形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E5%8D%95%E8%B0%83%E6%A0%88-1"><span class="nav-number">2.1.</span> <span class="nav-text">知识点：单调栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A-1"><span class="nav-number">2.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
