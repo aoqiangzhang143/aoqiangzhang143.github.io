@@ -4074,4 +4074,25 @@
         <tag>单调栈</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-比较版本号</title>
+    <url>/2021/09/01/leetcode-%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7/</url>
+    <content><![CDATA[<h1 id="165-比较版本号"><a href="#165-比较版本号" class="headerlink" title="165. 比较版本号"></a><a href="https://leetcode-cn.com/problems/compare-version-numbers/"><strong>165.</strong> <strong>比较版本号</strong></a></h1><p>给你两个版本号 version1 和 version2 ，请你比较它们。</p>
+<p>版本号由一个或多个修订号组成，各修订号由一个 ‘.’ 连接。每个修订号由 多位数字 组成，可能包含 前导零 。每个版本号至少包含一个字符。修订号从左到右编号，下标从 0 开始，最左边的修订号下标为 0 ，下一个修订号下标为 1 ，以此类推。例如，2.5.33 和 0.1 都是有效的版本号。</p>
+<p>比较版本号时，请按从左到右的顺序依次比较它们的修订号。比较修订号时，只需比较 忽略任何前导零后的整数值 。也就是说，修订号 1 和修订号 001 相等 。如果版本号没有指定某个下标处的修订号，则该修订号视为 0 。例如，版本 1.0 小于版本 1.1 ，因为它们下标为 0 的修订号相同，而下标为 1 的修订号分别为 0 和 1 ，0 &lt; 1 。</p>
+<p>返回规则如下：</p>
+<p>如果 version1 &gt; version2 返回 1， 如果 version1 &lt; version2 返回 -1， 除此之外返回 0。</p>
+<p>示例 1：</p>
+<p>输入：version1 = “1.01”, version2 = “1.001” 输出：0 解释：忽略前导零，”01” 和 “001” 都表示相同的整数 “1”</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>其实记录这个题目只是想说下记得转义字符的用法，比如“.”和“|”都属于转义字符，用的时候必须”\ \ .”才可以，不然可能会识别出错。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareVersion</span><span class="params">(String version1, String version2)</span> </span>&#123;</span><br><span class="line">        String[] str1s = version1.split(<span class="string">&quot;\\.&quot;</span>);</span><br><span class="line">        String[] str2s = version2.split(<span class="string">&quot;\\.&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len1 = str1s.length,len2 = str2s.length;</span><br><span class="line">        <span class="keyword">int</span> lenMin = len1&lt;len2?len1:len2;</span><br><span class="line">        <span class="keyword">int</span> lenMax = len2&gt;len1?len2:len1;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;lenMax;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> num1 = i&lt;len1?Integer.parseInt(str1s[i]):<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> num2 = i&lt;len2?Integer.parseInt(str2s[i]):<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(num1&gt;num2)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(num1&lt;num2)&#123;</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>转义字符</tag>
+      </tags>
+  </entry>
 </search>
