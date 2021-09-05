@@ -4095,4 +4095,34 @@
         <tag>转义字符</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-随机数</title>
+    <url>/2021/09/05/leetcode-%E9%9A%8F%E6%9C%BA%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="470-用-Rand7-实现-Rand10"><a href="#470-用-Rand7-实现-Rand10" class="headerlink" title="470. 用 Rand7() 实现 Rand10()"></a><a href="https://leetcode-cn.com/problems/implement-rand10-using-rand7/"><strong>470.</strong> <strong>用</strong> <strong>Rand7()</strong> <strong>实现</strong> <strong>Rand10()</strong></a></h1><p>已有方法 rand7() 可生成 1 到 7 范围内的均匀随机整数，试写一个方法 rand10() 生成 1 到 10 范围内的均匀随机整数。</p>
+<p>不要使用系统的 Math.random() 方法。</p>
+<p>示例 1:</p>
+<p>输入: 1 输出: [7] 示例 2:</p>
+<p>输入: 2 输出: [8,4] 示例 3:</p>
+<p>输入: 3 输出: [8,1,10]</p>
+<h2 id="知识点：数学"><a href="#知识点：数学" class="headerlink" title="知识点：数学"></a>知识点：数学</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>rand7()—————————–&gt;[1~7]</p>
+<p>rand7()-1————————–&gt;[0~6]</p>
+<p>(rand7()-1)*7———————&gt;{0,7,14,21,28,35,42}</p>
+<p>((rand7()-1)*7)+rand7()——-&gt;[1~49]</p>
+<p>此时，[1~40]，直接取余10然后+1，即可得到rand10（）</p>
+<p>[41<del>49]，这些数字减41，范围就是[0</del>8]</p>
+<p>[0~8]*7—————————-&gt;{0,7,14,21,28,35,42,49,56}</p>
+<p>([0<del>8]*7)+rand7()—————&gt;[1</del>63]</p>
+<p>[1~60]直接取余10然后+1，即可得到rand10（）</p>
+<p>剩下三个数不要了</p>
+<p>看到了没，这就是随机数范围转化，其实还可以再写一层。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The rand7() API is already defined in the parent class SolBase.</span></span><br><span class="line"><span class="comment"> * public int rand7();</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a random integer in the range 1 to 7</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> <span class="keyword">extends</span> <span class="title">SolBase</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rand10</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = (rand7()-<span class="number">1</span>)*<span class="number">7</span>+rand7();<span class="comment">//1~49</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(num&lt;<span class="number">41</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>+num%<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            num = (num-<span class="number">41</span>)*<span class="number">7</span>+rand7();</span><br><span class="line">            <span class="keyword">if</span>(num&lt;<span class="number">61</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>+num%<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            num = (num-<span class="number">61</span>)*<span class="number">7</span>+rand7();</span><br><span class="line">            <span class="keyword">if</span>(num&lt;<span class="number">21</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>+num%<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
 </search>

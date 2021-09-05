@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">89</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">90</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">28</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,113 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/05/leetcode-%E9%9A%8F%E6%9C%BA%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/05/leetcode-%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="post-title-link" itemprop="url">leetcode-随机数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-05 00:00:00 / 修改时间：10:09:19" itemprop="dateCreated datePublished" datetime="2021-09-05T00:00:00+08:00">2021-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/09/05/leetcode-%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-随机数" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/05/leetcode-%E9%9A%8F%E6%9C%BA%E6%95%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/05/leetcode-%E9%9A%8F%E6%9C%BA%E6%95%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="470-用-Rand7-实现-Rand10"><a href="#470-用-Rand7-实现-Rand10" class="headerlink" title="470. 用 Rand7() 实现 Rand10()"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-rand10-using-rand7/"><strong>470.</strong> <strong>用</strong> <strong>Rand7()</strong> <strong>实现</strong> <strong>Rand10()</strong></a></h1><p>已有方法 rand7() 可生成 1 到 7 范围内的均匀随机整数，试写一个方法 rand10() 生成 1 到 10 范围内的均匀随机整数。</p>
+<p>不要使用系统的 Math.random() 方法。</p>
+<p>示例 1:</p>
+<p>输入: 1 输出: [7] 示例 2:</p>
+<p>输入: 2 输出: [8,4] 示例 3:</p>
+<p>输入: 3 输出: [8,1,10]</p>
+<h2 id="知识点：数学"><a href="#知识点：数学" class="headerlink" title="知识点：数学"></a>知识点：数学</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>rand7()—————————–&gt;[1~7]</p>
+<p>rand7()-1————————–&gt;[0~6]</p>
+<p>(rand7()-1)*7———————&gt;{0,7,14,21,28,35,42}</p>
+<p>((rand7()-1)*7)+rand7()——-&gt;[1~49]</p>
+<p>此时，[1~40]，直接取余10然后+1，即可得到rand10（）</p>
+<p>[41<del>49]，这些数字减41，范围就是[0</del>8]</p>
+<p>[0~8]*7—————————-&gt;{0,7,14,21,28,35,42,49,56}</p>
+<p>([0<del>8]*7)+rand7()—————&gt;[1</del>63]</p>
+<p>[1~60]直接取余10然后+1，即可得到rand10（）</p>
+<p>剩下三个数不要了</p>
+<p>看到了没，这就是随机数范围转化，其实还可以再写一层。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The rand7() API is already defined in the parent class SolBase.</span></span><br><span class="line"><span class="comment"> * public int rand7();</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a random integer in the range 1 to 7</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> <span class="keyword">extends</span> <span class="title">SolBase</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rand10</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = (rand7()-<span class="number">1</span>)*<span class="number">7</span>+rand7();<span class="comment">//1~49</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(num&lt;<span class="number">41</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>+num%<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            num = (num-<span class="number">41</span>)*<span class="number">7</span>+rand7();</span><br><span class="line">            <span class="keyword">if</span>(num&lt;<span class="number">61</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>+num%<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            num = (num-<span class="number">61</span>)*<span class="number">7</span>+rand7();</span><br><span class="line">            <span class="keyword">if</span>(num&lt;<span class="number">21</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>+num%<span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1234,126 +1341,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/22/leetcode-%E9%80%83%E8%84%B1%E8%80%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/22/leetcode-%E9%80%83%E8%84%B1%E8%80%85/" class="post-title-link" itemprop="url">leetcode-逃脱者</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-08-22 00:00:00 / 修改时间：11:06:10" itemprop="dateCreated datePublished" datetime="2021-08-22T00:00:00+08:00">2021-08-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/08/22/leetcode-%E9%80%83%E8%84%B1%E8%80%85/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-逃脱者" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/08/22/leetcode-%E9%80%83%E8%84%B1%E8%80%85/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/22/leetcode-%E9%80%83%E8%84%B1%E8%80%85/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="789-逃脱阻碍者"><a href="#789-逃脱阻碍者" class="headerlink" title="789. 逃脱阻碍者"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/escape-the-ghosts/">789. 逃脱阻碍者</a></h1><p>你在进行一个简化版的吃豆人游戏。你从 [0, 0] 点开始出发，你的目的地是 target = [xtarget, ytarget] 。地图上有一些阻碍者，以数组 ghosts 给出，第 i 个阻碍者从 ghosts[i] = [xi, yi] 出发。所有输入均为 整数坐标 。</p>
-<p>每一回合，你和阻碍者们可以同时向东，西，南，北四个方向移动，每次可以移动到距离原位置 1 个单位 的新位置。当然，也可以选择 不动 。所有动作 同时 发生。</p>
-<p>如果你可以在任何阻碍者抓住你 之前 到达目的地（阻碍者可以采取任意行动方式），则被视为逃脱成功。如果你和阻碍者同时到达了一个位置（包括目的地）都不算是逃脱成功。</p>
-<p>只有在你有可能成功逃脱时，输出 true ；否则，输出 false 。</p>
-<p>示例 1：</p>
-<p>输入：ghosts = [[1,0],[0,3]], target = [0,1]</p>
-<p>输出：true</p>
-<p>解释：你可以直接一步到达目的地 (0,1) ，在 (1, 0) 或者 (0, 3) 位置的阻碍者都不可能抓住你。</p>
-<p>示例 2：</p>
-<p>输入：ghosts = [[1,0]], target = [2,0]</p>
-<p>输出：false</p>
-<p>解释：你需要走到位于 (2, 0) 的目的地，但是在 (1, 0) 的阻碍者位于你和目的地之间。</p>
-<p>示例 3：</p>
-<p>输入：ghosts = [[2,0]], target = [1,0]</p>
-<p>输出：false</p>
-<p>解释：阻碍者可以和你同时达到目的地。</p>
-<p>示例 4：</p>
-<p>输入：ghosts = [[5,0],[-10,-2],[0,-5],[-2,-2],[-7,1]], target = [7,7]</p>
-<p>输出：false</p>
-<p>示例 5：</p>
-<p>输入：ghosts = [[-1,0],[0,1],[-1,0],[0,1],[-1,0]], target = [0,0]</p>
-<p>输出：true</p>
-<p>提示：</p>
-<p>1 &lt;= ghosts.length &lt;= 100</p>
-<p>ghosts[i].length == 2</p>
-<p>-104 &lt;= xi, yi &lt;= 104</p>
-<p>同一位置可能有 多个阻碍者 。</p>
-<p>target.length == 2</p>
-<p>-104 &lt;= xtarget, ytarget &lt;= 104</p>
-<h2 id="知识点：数组"><a href="#知识点：数组" class="headerlink" title="知识点：数组"></a>知识点：数组</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>想要成功逃脱，要保证自身和目的地的曼哈顿距离小于任何一个阻碍者和目的地的曼哈顿距离；故做一个遍历即可。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">escapeGhosts</span><span class="params">(<span class="keyword">int</span>[][] ghosts, <span class="keyword">int</span>[] target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] source = &#123;<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> distance = manhattanceDistance(source,target);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] ghost:ghosts)&#123;</span><br><span class="line">            <span class="keyword">int</span> ghostDistance = manhattanceDistance(ghost,target);</span><br><span class="line">            <span class="keyword">if</span>(ghostDistance&lt;=distance)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">manhattanceDistance</span><span class="params">(<span class="keyword">int</span>[] source,<span class="keyword">int</span>[] target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Math.abs(source[<span class="number">0</span>]-target[<span class="number">0</span>])+Math.abs(source[<span class="number">1</span>]-target[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1425,7 +1412,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1438,7 +1425,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
