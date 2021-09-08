@@ -4160,4 +4160,37 @@
         <tag>动态规划</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-IPO</title>
+    <url>/2021/09/08/leetcode-IPO/</url>
+    <content><![CDATA[<h1 id="502-IPO"><a href="#502-IPO" class="headerlink" title="502. IPO"></a><a href="https://leetcode-cn.com/problems/ipo/">502. IPO</a></h1><p>假设 力扣（LeetCode）即将开始 IPO 。为了以更高的价格将股票卖给风险投资公司，力扣 希望在 IPO 之前开展一些项目以增加其资本。 由于资源有限，它只能在 IPO 之前完成最多 k 个不同的项目。帮助 力扣 设计完成最多 k 个不同项目后得到最大总资本的方式。</p>
+<p>给你 n 个项目。对于每个项目 i ，它都有一个纯利润 profits[i] ，和启动该项目需要的最小资本 capital[i] 。</p>
+<p>最初，你的资本为 w 。当你完成一个项目时，你将获得纯利润，且利润将被添加到你的总资本中。</p>
+<p>总而言之，从给定项目中选择 最多 k 个不同项目的列表，以 最大化最终资本 ，并输出最终可获得的最多资本。</p>
+<p>答案保证在 32 位有符号整数范围内。</p>
+<p>示例 1：</p>
+<p>输入：k = 2, w = 0, profits = [1,2,3], capital = [0,1,1]</p>
+<p>输出：4</p>
+<p>解释：</p>
+<p>由于你的初始资本为 0，你仅可以从 0 号项目开始。</p>
+<p>在完成后，你将获得 1 的利润，你的总资本将变为 1。</p>
+<p>此时你可以选择开始 1 号或 2 号项目。</p>
+<p>由于你最多可以选择两个项目，所以你需要完成 2 号项目以获得最大的资本。</p>
+<p>因此，输出最后最大化的资本，为 0 + 1 + 3 = 4。</p>
+<p>示例 2：</p>
+<p>输入：k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]</p>
+<p>输出：6</p>
+<h2 id="知识点：贪心、堆"><a href="#知识点：贪心、堆" class="headerlink" title="知识点：贪心、堆"></a>知识点：贪心、堆</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>最大收益受两个因素影响：项目个数、当前资本。为保证在有限个项目数量中获得最大收益，需要保证在当前资本能运行的项目中，选择收益最大的项目；</p>
+<p>我们用k轮循环解决项目个数限制；将资本和收益绑定为二维数组，方便排序和选择；</p>
+<p>将项目按照收益大小存放入大顶堆中，便于在一定资本内选择最大收益。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMaximizedCapital</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> w, <span class="keyword">int</span>[] profits, <span class="keyword">int</span>[] capital)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = profits.length;</span><br><span class="line">        <span class="keyword">int</span>[][] arr = <span class="keyword">new</span> <span class="keyword">int</span>[len][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            arr[i][<span class="number">0</span>] = capital[i];</span><br><span class="line">            arr[i][<span class="number">1</span>] = profits[i];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(arr, (a,b) -&gt; a[<span class="number">0</span>]-b[<span class="number">0</span>]);</span><br><span class="line">        PriorityQueue&lt;Integer&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; b - a);</span><br><span class="line">        <span class="keyword">while</span>(k--&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(index&lt;len &amp;&amp; arr[index][<span class="number">0</span>]&lt;=w)&#123;</span><br><span class="line">                pq.add(arr[index][<span class="number">1</span>]);</span><br><span class="line">                index++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!pq.isEmpty())&#123;</span><br><span class="line">                w += pq.poll();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>贪心、堆</tag>
+      </tags>
+  </entry>
 </search>
