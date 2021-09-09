@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">92</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">93</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -182,6 +182,145 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/09/leetcode-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/09/leetcode-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90/" class="post-title-link" itemprop="url">leetcode-文本对其</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-09 00:00:00 / 修改时间：14:24:09" itemprop="dateCreated datePublished" datetime="2021-09-09T00:00:00+08:00">2021-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/09/09/leetcode-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-文本对其" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/09/leetcode-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/09/leetcode-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="68-文本左右对齐"><a href="#68-文本左右对齐" class="headerlink" title="68. 文本左右对齐"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/text-justification/">68. 文本左右对齐</a></h1><p>给定一个单词数组和一个长度 maxWidth，重新排版单词，使其成为每行恰好有 maxWidth 个字符，且左右两端对齐的文本。</p>
+<p>你应该使用“贪心算法”来放置给定的单词；也就是说，尽可能多地往每行中放置单词。必要时可用空格 ‘ ‘ 填充，使得每行恰好有 maxWidth 个字符。</p>
+<p>要求尽可能均匀分配单词间的空格数量。如果某一行单词间的空格不能均匀分配，则左侧放置的空格数要多于右侧的空格数。</p>
+<p>文本的最后一行应为左对齐，且单词之间不插入额外的空格。</p>
+<p>说明:</p>
+<p>单词是指由非空格字符组成的字符序列。</p>
+<p>每个单词的长度大于 0，小于等于 maxWidth。</p>
+<p>输入单词数组 words 至少包含一个单词。</p>
+<p>示例:</p>
+<p>输入:</p>
+<p>words = [“This”, “is”, “an”, “example”, “of”, “text”, “justification.”]</p>
+<p>maxWidth = 16</p>
+<p>输出:</p>
+<p>[</p>
+<p>  “This   is   an”,</p>
+<p>  “example  of text”,</p>
+<p>  “justification.  “</p>
+<p>]</p>
+<p>示例 2:</p>
+<p>输入:</p>
+<p>words = [“What”,”must”,”be”,”acknowledgment”,”shall”,”be”]</p>
+<p>maxWidth = 16</p>
+<p>输出:</p>
+<p>[</p>
+<p> “What  must  be”,</p>
+<p> “acknowledgment  “,</p>
+<p> “shall be     “</p>
+<p>]</p>
+<p>解释: 注意最后一行的格式应为 “shall be  “ 而不是 “shall   be”,</p>
+<p>   因为最后一行应为左对齐，而不是左右两端对齐。    </p>
+<p>   第二行同样为左对齐，这是因为这行只包含一个单词。</p>
+<p>示例 3:</p>
+<p>输入:</p>
+<p>words = [“Science”,”is”,”what”,”we”,”understand”,”well”,”enough”,”to”,”explain”,</p>
+<p>​     “to”,”a”,”computer.”,”Art”,”is”,”everything”,”else”,”we”,”do”]</p>
+<p>maxWidth = 20</p>
+<p>输出:</p>
+<p>[</p>
+<p> “Science  is  what we”,</p>
+<p> “understand    well”,</p>
+<p> “enough to explain to”,</p>
+<p> “a computer.  Art is”,</p>
+<p> “everything  else  we”,</p>
+<p> “do          “</p>
+<p>]</p>
+<h2 id="知识点：模拟"><a href="#知识点：模拟" class="headerlink" title="知识点：模拟"></a>知识点：模拟</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>模拟题较为复杂，并不困难，关键点如下：</p>
+<p>1、如果是最后一行，单词间一律一个空格，并且从左边对齐（也就是右侧填充空格）</p>
+<p>2、如果某一行仅一个单词，依旧是右侧填充空格</p>
+<p>3、普通情况下：每行的单词和空格是均匀分布的，如果空格无法均匀排布，那么从左侧依次添加</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">fullJustify</span><span class="params">(String[] words, <span class="keyword">int</span> maxWidth)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>,len = words.length;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="comment">//right:当前行第一个单词的索引</span></span><br><span class="line">            <span class="keyword">int</span> left = right;</span><br><span class="line">            <span class="comment">//sumLen:单词所占的长度</span></span><br><span class="line">            <span class="keyword">int</span> sumLen = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//确定当前行能放多少个单词</span></span><br><span class="line">            <span class="keyword">while</span>(right&lt;len&amp;&amp;sumLen+words[right].length()+right-left&lt;=maxWidth)&#123;</span><br><span class="line">                sumLen += words[right++].length();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果是最后一行,单词需要左对齐，单词间一个空格，最后用空格补齐</span></span><br><span class="line">            <span class="keyword">if</span>(right==len)&#123;</span><br><span class="line">                StringBuilder sb = join(words,left,len,<span class="string">&quot; &quot;</span>);</span><br><span class="line">                sb.append(blank(maxWidth-sb.length()));</span><br><span class="line">                res.add(sb.toString());</span><br><span class="line">                <span class="keyword">return</span> res;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果不是最后一行</span></span><br><span class="line">            <span class="comment">//统计下当前行单词和空格的数量</span></span><br><span class="line">            <span class="keyword">int</span> wordsNum = right-left;</span><br><span class="line">            <span class="keyword">int</span> spaceNum = maxWidth-sumLen;</span><br><span class="line">            <span class="comment">//如果只有一个单词，那么左对齐</span></span><br><span class="line">            <span class="keyword">if</span>(wordsNum==<span class="number">1</span>)&#123;</span><br><span class="line">                StringBuilder sb = <span class="keyword">new</span> StringBuilder(words[left]);</span><br><span class="line">                sb.append(blank(spaceNum));</span><br><span class="line">                res.add(sb.toString());</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果不止一个单词</span></span><br><span class="line">            <span class="keyword">int</span> avgSpaces = spaceNum/(wordsNum-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">int</span> extraSpaces = spaceNum%(wordsNum-<span class="number">1</span>);</span><br><span class="line">            StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">            sb.append(join(words,left,left+extraSpaces+<span class="number">1</span>,blank(avgSpaces+<span class="number">1</span>)));</span><br><span class="line">            sb.append(blank(avgSpaces));</span><br><span class="line">            sb.append(join(words,left+extraSpaces+<span class="number">1</span>,right,blank(avgSpaces)));</span><br><span class="line">            res.add(sb.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回用str拼接的、[left,right)范围的words组成的字符串，并以字符串结尾</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> StringBuilder <span class="title">join</span><span class="params">(String[] words,<span class="keyword">int</span> left,<span class="keyword">int</span> right,String str)</span></span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(words[left]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=left+<span class="number">1</span>;i&lt;right;i++)&#123;</span><br><span class="line">            sb.append(str);</span><br><span class="line">            sb.append(words[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回长度为n的由空格组成的字符串</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">blank</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            sb.append(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1208,112 +1347,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/" class="post-title-link" itemprop="url">leetcode-贪心</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-08-26 00:00:00 / 修改时间：11:03:03" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-贪心" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="881-救生艇"><a href="#881-救生艇" class="headerlink" title="881. 救生艇"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/boats-to-save-people/">881. 救生艇</a></h1><p>第 i 个人的体重为 people[i]，每艘船可以承载的最大重量为 limit。</p>
-<p>每艘船最多可同时载两人，但条件是这些人的重量之和最多为 limit。</p>
-<p>返回载到每一个人所需的最小船数。(保证每个人都能被船载)。</p>
-<img src="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/image-20210826102209001.png" alt="881-1" style="zoom: 67%;">
-
-<h2 id="知识点：贪心"><a href="#知识点：贪心" class="headerlink" title="知识点：贪心"></a>知识点：贪心</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>“每艘船最多可同时载两人”</p>
-<p>如果粗心大意的毛病不改，这辈子什么都做不好。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numRescueBoats</span><span class="params">(<span class="keyword">int</span>[] people, <span class="keyword">int</span> limit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = people.length;</span><br><span class="line">        Arrays.sort(people);</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>,right = len-<span class="number">1</span>,count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(people[left]+people[right]&lt;=limit)&#123;</span><br><span class="line">                ++left;</span><br><span class="line">            &#125;</span><br><span class="line">            --right;</span><br><span class="line">            ++count;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left==right?count+<span class="number">1</span>:count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="1011-在-D-天内送达包裹的能力"><a href="#1011-在-D-天内送达包裹的能力" class="headerlink" title="1011. 在 D 天内送达包裹的能力"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/"><strong>1011.</strong> <strong>在</strong> <strong>D</strong> <strong>天内送达包裹的能力</strong></a></h1><p>传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。</p>
-<p>传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。</p>
-<p>返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。</p>
-<img src="/2021/08/26/leetcode-%E8%B4%AA%E5%BF%83/image-20210826110102032.png" alt="image-20210826110102032" style="zoom:67%;">
-
-<h2 id="知识点：贪心、二分"><a href="#知识点：贪心、二分" class="headerlink" title="知识点：贪心、二分"></a><strong>知识点：贪心</strong>、二分</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/solution/zai-d-tian-nei-song-da-bao-guo-de-neng-l-ntml/"><strong>在</strong> <strong>D</strong> <strong>天内送达包裹的能力</strong></a>上面是官解，写的还是挺不错的，将这个问题转化为二分法求最优解，这个思路挺好的，多学着点。</p>
-<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">shipWithinDays</span><span class="params">(<span class="keyword">int</span>[] weights, <span class="keyword">int</span> days)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>,max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> weight:weights)&#123;</span><br><span class="line">            sum+=weight;</span><br><span class="line">            <span class="keyword">if</span>(weight&gt;max)&#123;</span><br><span class="line">                max = weight;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = max,right = sum;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="comment">//count初始值要为1：表示需要运送的天数</span></span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">//tmpSum：当前已经运送的重量</span></span><br><span class="line">            <span class="keyword">int</span> tmpSum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> weight:weights)&#123;</span><br><span class="line">                <span class="keyword">if</span>(tmpSum+weight&gt;mid)&#123;</span><br><span class="line">                    tmpSum = <span class="number">0</span>;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">                tmpSum+=weight;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(count&lt;=days)&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1385,7 +1418,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
