@@ -4194,7 +4194,7 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-文本对其</title>
+    <title>leetcode-文本对齐</title>
     <url>/2021/09/09/leetcode-%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90/</url>
     <content><![CDATA[<h1 id="68-文本左右对齐"><a href="#68-文本左右对齐" class="headerlink" title="68. 文本左右对齐"></a><a href="https://leetcode-cn.com/problems/text-justification/">68. 文本左右对齐</a></h1><p>给定一个单词数组和一个长度 maxWidth，重新排版单词，使其成为每行恰好有 maxWidth 个字符，且左右两端对齐的文本。</p>
 <p>你应该使用“贪心算法”来放置给定的单词；也就是说，尽可能多地往每行中放置单词。必要时可用空格 ‘ ‘ 填充，使得每行恰好有 maxWidth 个字符。</p>
@@ -4253,6 +4253,54 @@
       </categories>
       <tags>
         <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-括号问题</title>
+    <url>/2021/09/12/leetcode-%E6%8B%AC%E5%8F%B7%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="678-有效的括号字符串"><a href="#678-有效的括号字符串" class="headerlink" title="678. 有效的括号字符串"></a><a href="https://leetcode-cn.com/problems/valid-parenthesis-string/">678. 有效的括号字符串</a></h1><p>给定一个只包含三种字符的字符串：（ ，） 和 *，写一个函数来检验这个字符串是否为有效字符串。有效字符串具有如下规则：</p>
+<p>任何左括号 ( 必须有相应的右括号 )。</p>
+<p>任何右括号 ) 必须有相应的左括号 ( 。</p>
+<p>左括号 ( 必须在对应的右括号之前 )。</p>
+<p>* 可以被视为单个右括号 ) ，或单个左括号 ( ，或一个空字符串。</p>
+<p>一个空字符串也被视为有效字符串。</p>
+<p>示例 1:</p>
+<p>输入: “()”</p>
+<p>输出: True</p>
+<p>示例 2:</p>
+<p>输入: “(*)”</p>
+<p>输出: True</p>
+<p>示例 3:</p>
+<p>输入: “(*))”</p>
+<p>输出: True</p>
+<p>注意:</p>
+<p>字符串大小将在 [1，100] 范围内。</p>
+<h2 id="知识点：栈、贪心"><a href="#知识点：栈、贪心" class="headerlink" title="知识点：栈、贪心"></a>知识点：栈、贪心</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>括号问题大都可以用栈来解决，该题目的特殊之处在于多了一个特殊符号“ * ”，星号可以代替空格、左括号、右括号。那么在对括号进行匹配的时候，我们便需要对星号的作用进行判断；<a href="https://leetcode-cn.com/problems/valid-parenthesis-string/solution/you-xiao-de-gua-hao-zi-fu-chuan-by-leetc-osi3/">官方题解</a>给了栈和贪心两种方法，都挺好的。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkValidString</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Deque&lt;Integer&gt; stars = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        Deque&lt;Integer&gt; leftBrackets = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(c==<span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">                leftBrackets.offerLast(i);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;*&#x27;</span>)&#123;</span><br><span class="line">                stars.offerLast(i);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(!leftBrackets.isEmpty())&#123;</span><br><span class="line">                    leftBrackets.removeLast();</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!stars.isEmpty())&#123;</span><br><span class="line">                    stars.removeLast();</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!leftBrackets.isEmpty()&amp;&amp;!stars.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">int</span> leftIndex = leftBrackets.removeLast();</span><br><span class="line">            <span class="keyword">int</span> starIndex = stars.removeLast();</span><br><span class="line">            <span class="keyword">if</span>(starIndex&lt;leftIndex)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> leftBrackets.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="22-括号生成"><a href="#22-括号生成" class="headerlink" title="22. 括号生成"></a><a href="https://leetcode-cn.com/problems/generate-parentheses/">22. 括号生成</a></h1><p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。</p>
+<p>有效括号组合需满足：左括号必须以正确的顺序闭合。</p>
+<p>示例 1：</p>
+<p>输入：n = 3</p>
+<p>输出：[“((()))”,”(()())”,”(())()”,”()(())”,”()()()”]</p>
+<p>示例 2：</p>
+<p>输入：n = 1</p>
+<p>输出：[“()”]</p>
+<p>提示：</p>
+<p>1 &lt;= n &lt;= 8</p>
+<h2 id="知识点：回溯"><a href="#知识点：回溯" class="headerlink" title="知识点：回溯"></a>知识点：回溯</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这个题目是回溯的常见用法，需要对左右括号的摆放进行判断，并在正确的时候进行下一步回溯。</p>
+<p>一个正确的括号组合需要满足：如果左右括号的剩余数量均为0，那说明放完了，之间返回这个答案；</p>
+<p>在括号组合期间，左括号剩余数量可以小于右括号剩余数量，但右括号剩余数量不可以小于左括号剩余数量。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; res;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        generateBrackets(<span class="string">&quot;&quot;</span>,n,n);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">generateBrackets</span><span class="params">(String str,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="number">0</span>&amp;&amp;right==<span class="number">0</span>)&#123;</span><br><span class="line">            res.add(str);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//左括号余量和右括号余量相等的话，只能先放左括号</span></span><br><span class="line">        <span class="keyword">if</span>(left==right)&#123;</span><br><span class="line">            generateBrackets(str+<span class="string">&quot;(&quot;</span>,left-<span class="number">1</span>,right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果左括号比较少（右括号也不能比较少，那肯定错了），可以接着放左括号，也可以接着放右括号</span></span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(left&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                generateBrackets(str+<span class="string">&quot;(&quot;</span>,left-<span class="number">1</span>,right);</span><br><span class="line">            &#125;</span><br><span class="line">            generateBrackets(str+<span class="string">&quot;)&quot;</span>,left,right-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>栈、贪心</tag>
       </tags>
   </entry>
 </search>
