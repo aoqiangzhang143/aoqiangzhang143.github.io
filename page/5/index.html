@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">94</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">95</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -182,6 +182,126 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" class="post-title-link" itemprop="url">java内存区域</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-28T00:00:00+08:00">2021-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-02 16:31:30" itemprop="dateModified" datetime="2021-08-02T16:31:30+08:00">2021-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">JVM相关</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" class="post-meta-item leancloud_visitors" data-flag-title="java内存区域" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一共分为五大区域，堆和方法区是线程共享的，其他三个是线程隔离的。</p>
+<img src="/2021/07/28/java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/image-20210802162802207.png" alt="java内存区域划分" style="zoom: 67%;">
+
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>存放实例对象和数组对象；</p>
+<p>GC的主要区域；</p>
+<p>可细分为新生代和老年代；</p>
+<p>堆中对象的访问方式：通过reference数据来操作堆上的具体数据。</p>
+<p>句柄：</p>
+<p>采用句柄的话，会在堆中开辟一块内存用来当作句柄池，reference中存放的就是句柄地址；优点是稳定。</p>
+<p>直接指针：</p>
+<p>存放的就是对象地址；优点是效率高。</p>
+<p>==空间不足会抛出OutOfMemoryError==</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>用于存储已经被虚拟机加载的类的信息、常量、静态变量、运行时常量池。其中运行时常量池用于存放编译期生成的各种字面量和符号引用。（jdk8之前是用永久代的方式实现方法区，jdk8之后采用元空间来实现方法区）</p>
+<p>字面量：</p>
+<p>文本字符串；</p>
+<p>8种基本类型；</p>
+<p>声明为final的常量；</p>
+<p>符号引用：</p>
+<p>类和方法的限定名；</p>
+<p>方法的名称和描述符；</p>
+<p>==空间不足会抛出OutOfMemoryError==</p>
+<h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><p>java方法执行的内存模型，线程私有，每个方法执行都会创建一个栈帧，每个方法从调用至结束都对应着一个栈帧从入栈到出栈的过程。</p>
+<p>StackOverFlowError ：线程请求的栈的深度大于虚拟机所允许的深度。</p>
+<p>OutOfMemoryError ：虚拟机栈可以进行动态扩展，但是扩展的栈无法申请的到足够的内存。</p>
+<h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><p>java调用本地方法（可以为其他语言提供接口），会报OutOfMemoryError和StackOverFlowError</p>
+<h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><p>每个线程都会有一个程序计数器，==唯一一个没有OutOfMemoryError情况的内存区域==。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1352,217 +1472,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/27/leetcode%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/27/leetcode%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">leetcode子序列问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-27T00:00:00+08:00">2021-06-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-12 09:54:23" itemprop="dateModified" datetime="2021-08-12T09:54:23+08:00">2021-08-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/27/leetcode%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode子序列问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/27/leetcode%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/27/leetcode%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="300-最长递增子序列"><a href="#300-最长递增子序列" class="headerlink" title="300. 最长递增子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300. 最长递增子序列</a></h1><p>给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。</p>
-<p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。</p>
-<p>示例 1：</p>
-<p>输入：nums = [10,9,2,5,3,7,101,18]</p>
-<p>输出：4</p>
-<p>解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。</p>
-<p>示例 2：</p>
-<p>输入：nums = [0,1,0,3,2,3]</p>
-<p>输出：4</p>
-<p>示例 3：</p>
-<p>输入：nums = [7,7,7,7,7,7,7]</p>
-<p>输出：1</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 2500</p>
-<p>-104 &lt;= nums[i] &lt;= 104</p>
-<p>进阶：</p>
-<p>你可以设计时间复杂度为 O(n2) 的解决方案吗？</p>
-<p>你能将算法的时间复杂度降低到 O(n log(n)) 吗?</p>
-<h2 id="知识点：动态规划、二分查找"><a href="#知识点：动态规划、二分查找" class="headerlink" title="知识点：动态规划、二分查找"></a>知识点：动态规划、二分查找</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这个题目核心思想是：让子序列增长的慢，使得每个长度的子序列的最大值（也就是最后一个）保持当前长度的最小值（尽量小），故得到最长的递增子序列。这个<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-by-leetcode-soluti/">题解</a>不错，仔细看看。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length,res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] d = <span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">1</span>];</span><br><span class="line">        d[res] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&gt;d[res])&#123;</span><br><span class="line">                <span class="comment">//如果下一个数本身就比当前子序列最大值大，那直接加进去就行</span></span><br><span class="line">                d[++res] = nums[i];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//如果下一个数比较小，那么我们给这个数找一个合适的位置</span></span><br><span class="line">                <span class="keyword">int</span> left = <span class="number">1</span>,right = res,pos = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">                    <span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">if</span>(d[mid]&lt;nums[i])&#123;</span><br><span class="line">                        pos = mid;</span><br><span class="line">                        left = mid+<span class="number">1</span>;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        right = mid-<span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                d[pos+<span class="number">1</span>] = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<hr>
-<h1 id="581-最短无序连续子数组"><a href="#581-最短无序连续子数组" class="headerlink" title="581. 最短无序连续子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/">581. 最短无序连续子数组</a></h1><p>给你一个整数数组 nums ，你需要找出一个 连续子数组 ，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。</p>
-<p>请你找出符合题意的 最短 子数组，并输出它的长度。</p>
-<p>示例1：</p>
-<p>输入：nums = [2,6,4,8,10,9,15]</p>
-<p>输出：5</p>
-<p>解释：你只需要对 [6, 4, 8, 10, 9] 进行升序排序，那么整个表都会变为升序排序。</p>
-<p>示例2：</p>
-<p><strong>输入：</strong>nums = [1,2,3,4]<br><strong>输出：</strong>0</p>
-<p>示例3：</p>
-<p><strong>输入：</strong>nums = [1]<br><strong>输出：</strong>0</p>
-<h2 id="知识点：双指针"><a href="#知识点：双指针" class="headerlink" title="知识点：双指针"></a>知识点：双指针</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>仔细想一下，这个题目的解法可从两个角度来看。</p>
-<p>第一，因为对数组中的某段子序列进行排序之后，整段数组都会变为升序（也就是整段有序），那也就是说，数组的前端和尾端（如果两端都有的话）已经是有序的了，换句话说，只需要将数组进行排序，然后找到前后两端和排序后的数组相同的位置即可。</p>
-<p>第二，将数组分为A、B、C三段，其中A、C段为首尾两端，B中最右侧的元素小于所有C中的元素，B中最左侧的元素大于所有A中的元素，根据这一特点，对数组进行一次遍历即可。</p>
-<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>题解1：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findUnsortedSubarray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] copy = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            copy[i] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(copy);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(index&lt;len)&#123;</span><br><span class="line">            <span class="keyword">if</span>(copy[index]==nums[index])&#123;</span><br><span class="line">                index++;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index==len)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        index = len-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(index&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(copy[index]==nums[index])&#123;</span><br><span class="line">                --index;</span><br><span class="line">                ++count;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len-count;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>题解2：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findUnsortedSubarray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> maxn = Integer.MIN_VALUE, right = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> minn = Integer.MAX_VALUE, left = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (maxn &gt; nums[i]) &#123;</span><br><span class="line">                right = i;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                maxn = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (minn &lt; nums[n - i - <span class="number">1</span>]) &#123;</span><br><span class="line">                left = n - i - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                minn = nums[n - i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> right == -<span class="number">1</span> ? <span class="number">0</span> : right - left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<hr>
-<h1 id="1035-不相交的线"><a href="#1035-不相交的线" class="headerlink" title="1035. 不相交的线"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/uncrossed-lines/">1035. 不相交的线</a></h1><p>在两条独立的水平线上按给定的顺序写下 nums1 和 nums2 中的整数。</p>
-<p>现在，可以绘制一些连接两个数字 nums1[i] 和 nums2[j] 的直线，这些直线需要同时满足满足：</p>
-<p> nums1[i] == nums2[j]</p>
-<p>且绘制的直线不与任何其他连线（非水平线）相交。</p>
-<p>请注意，连线即使在端点也不能相交：每个数字只能属于一条连线。</p>
-<p>以这种方法绘制线条，并返回可以绘制的最大连线数。</p>
-<img src="/2021/06/27/leetcode%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/Users\Mithrandir\AppData\Roaming\Typora\typora-user-images\image-20210727101312923.png" alt="1035—不相交的线" style="zoom: 67%;">
-
-<h2 id="知识点：dp"><a href="#知识点：dp" class="headerlink" title="知识点：dp"></a>知识点：dp</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>求最长公共子序列，代码都不用改。</p>
-<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxUncrossedLines</span><span class="params">(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = nums1.length,len2 = nums2.length;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len1+<span class="number">1</span>][len2+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len1;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j= <span class="number">1</span>;j&lt;=len2;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums1[i-<span class="number">1</span>]==nums2[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = Math.max(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[len1][len2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<hr>
-<h1 id="1143-最长公共子序列"><a href="#1143-最长公共子序列" class="headerlink" title="1143.最长公共子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143.最长公共子序列</a></h1><p>给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。</p>
-<p>一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
-<p>例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。 两个字符串的 公共子序列 是这两个字符串所共同拥有的子序列。</p>
-<p>示例 1：</p>
-<p>输入：text1 = “abcde”, text2 = “ace” 输出：3 解释：最长公共子序列是 “ace” ，它的长度为 3 。</p>
-<h2 id="知识点：dp、数组"><a href="#知识点：dp、数组" class="headerlink" title="知识点：dp、数组"></a>知识点：dp、数组</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>这个解法我没看太明白。</p>
-<p>二维动态规划，双层for循环，外层遍历text1，内层遍历text2。贴个题解<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/solution/fu-xue-ming-zhu-er-wei-dong-tai-gui-hua-r5ez6/">二维动态规划的常规套路</a>，讲的不赖。</p>
-<p>1.状态定义：</p>
-<p>比如对于本题而言，可以定义 dp<a href="http://">i</a> 表示 text1[0:i-1] 和 text2[0:j-1] 的最长公共子序列。 （注：text1[0:i-1] 表示的是 text1 的 第 0 个元素到第 i - 1 个元素，两端都包含） 之所以 dp<a href="http://">i</a> 的定义不是 text1[0:i] 和 text2[0:j] ，是为了方便当 i = 0 或者 j = 0 的时候，dp<a href="http://">i</a>表示的为空字符串和另外一个字符串的匹配，这样 dp<a href="http://">i</a> 可以初始化为 0.</p>
-<p>2.状态转移方程</p>
-<p>知道状态定义之后，开始写状态转移方程。</p>
-<p>当 text1[i - 1] == text2[j - 1] 时，说明两个子字符串的最后一位相等，所以最长公共子序列又增加了 1，所以 dp<a href="http://">i</a> = dp<a href="http://">i - 1</a> + 1；举个例子，比如对于 ac 和 bc 而言，他们的最长公共子序列的长度等于 a 和 b 的最长公共子序列长度 0 + 1 = 1。 当 text1[i - 1] != text2[j - 1] 时，说明两个子字符串的最后一位不相等，那么此时的状态 dp<a href="http://">i</a> 应该是 dp<a href="http://">i - 1</a> 和 dp<a href="http://">i</a> 的最大值。举个例子，比如对于 ace 和 bc 而言，他们的最长公共子序列的长度等于 ① ace 和 b 的最长公共子序列长度0 与 ② ac 和 bc 的最长公共子序列长度1 的最大值，即 1。 综上状态转移方程为：</p>
-<p>dp<a href="http://">i</a> = dp<a href="http://">i - 1</a> + 1dp<a href="http://">i</a>=dp<a href="http://">i−1</a>+1, 当 text1[i - 1] == text2[j - 1];text1[i−1]==text2[j−1]; dp<a href="http://">i</a> = max(dp<a href="http://">i - 1</a>, dp<a href="http://">i</a>)dp<a href="http://">i</a>=max(dp<a href="http://">i−1</a>,dp<a href="http://">i</a>), 当 text1[i - 1] != text2[j - 1]text1[i−1]!=text2[j−1]</p>
-<p>3.状态初始化</p>
-<p>初始化就是要看当 i = 0 与 j = 0 时， dp<a href="http://">i</a> 应该取值为多少。</p>
-<p>当 i = 0 时，dp<a href="http://">0</a> 表示的是 text1中取空字符串跟 text2 的最长公共子序列，结果肯定为 0. 当 j = 0 时，dp<a href="http://">i</a> 表示的是 text2text2 中取空字符串 跟 text1text1 的最长公共子序列，结果肯定为 0. 综上，当 i = 0 或者 j = 0 时，dp<a href="http://">i</a> 初始化为 0.</p>
-<h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(String text1, String text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] array1 = text1.toCharArray();</span><br><span class="line">        <span class="keyword">char</span>[] array2 = text2.toCharArray();</span><br><span class="line">        <span class="keyword">int</span> len1 = array1.length,len2 = array2.length;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len1+<span class="number">1</span>][len2+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len1;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=len2;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(array1[i-<span class="number">1</span>]==array2[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = Math.max(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[len1][len2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<hr>
-<h1 id="1713-得到子序列的最少操作次数"><a href="#1713-得到子序列的最少操作次数" class="headerlink" title="1713. 得到子序列的最少操作次数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-operations-to-make-a-subsequence/">1713. 得到子序列的最少操作次数</a></h1><p>给你一个数组 target ，包含若干 互不相同 的整数，以及另一个整数数组 arr ，arr 可能 包含重复元素。</p>
-<p>每一次操作中，你可以在 arr 的任意位置插入任一整数。比方说，如果 arr = [1,4,1,2] ，那么你可以在中间添加 3 得到 [1,4,3,1,2] 。你可以在数组最开始或最后面添加整数。</p>
-<p>请你返回 最少 操作次数，使得 target 成为 arr 的一个子序列。</p>
-<p>一个数组的子序列指的是删除原数组的某些元素（可能一个元素都不删除），同时不改变其余元素的相对顺序得到的数组。比方说，[2,7,4] 是 [4,2,3,7,2,1,4] 的子序列（加粗元素），但 [2,4,2] 不是子序列。</p>
-<p>示例 1：</p>
-<p> 输入：target = [5,1,3], arr = [9,4,2,3,4]</p>
-<p>输出：2</p>
-<p>解释：你可以添加 5 和 1 ，使得 arr 变为 [5,9,4,1,2,3,4] ，target 为 arr 的子序列。</p>
-<p>示例 2：</p>
-<p>输入：target = [6,4,8,1,3,2], arr = [4,7,6,2,3,8,6,1]</p>
-<p>输出：3 </p>
-<p>提示：</p>
-<p>1 &lt;= target.length, arr.length &lt;= 105</p>
-<p>1 &lt;= target[i], arr[i] &lt;= 109</p>
-<p>target 不包含任何重复元素。</p>
-<h2 id="知识点：贪心、二分查找"><a href="#知识点：贪心、二分查找" class="headerlink" title="知识点：贪心、二分查找"></a>知识点：贪心、二分查找</h2><h2 id="分析：-4"><a href="#分析：-4" class="headerlink" title="分析："></a>分析：</h2><p>这个<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-operations-to-make-a-subsequence/solution/de-dao-zi-xu-lie-de-zui-shao-cao-zuo-ci-hefgl/">题解</a>讲的比较好，我没什么好补充的。</p>
-<h2 id="代码如下：-4"><a href="#代码如下：-4" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//最少操作数=target.length-arr中已存在的target子序列最大长度</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minOperations</span><span class="params">(<span class="keyword">int</span>[] target, <span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = target.length;</span><br><span class="line">        Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            map.put(target[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:arr)&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(num))&#123;</span><br><span class="line">                <span class="keyword">int</span> index = map.get(num);</span><br><span class="line">                <span class="keyword">int</span> pos = binarySearch(list,index);</span><br><span class="line">                <span class="keyword">if</span>(pos!=list.size())&#123;</span><br><span class="line">                    list.set(pos,index);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    list.add(index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len-list.size();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//通过二分查找，将当前遍历到的较小的数字放置合适的位置</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(List&lt;Integer&gt; list,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = list.size();</span><br><span class="line">        <span class="keyword">if</span>(size==<span class="number">0</span>||list.get(size-<span class="number">1</span>)&lt;target)&#123;</span><br><span class="line">            <span class="keyword">return</span> size;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>,right = size-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (right-left)/<span class="number">2</span>+left;</span><br><span class="line">            <span class="keyword">if</span>(list.get(mid)&lt;target)&#123;</span><br><span class="line">                left=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="516-最长回文子序列"><a href="#516-最长回文子序列" class="headerlink" title="516. 最长回文子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">516. 最长回文子序列</a></h1><p>给你一个字符串 s ，找出其中最长的回文子序列，并返回该序列的长度。</p>
-<p>子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。</p>
-<p>示例 1：</p>
-<p>输入：s = “bbbab”</p>
-<p>输出：4</p>
-<p>解释：一个可能的最长回文子序列为 “bbbb” 。</p>
-<p>示例 2：</p>
-<p>输入：s = “cbbd”</p>
-<p>输出：2</p>
-<p>解释：一个可能的最长回文子序列为 “bb” 。</p>
-<p><strong>提示：</strong></p>
-<ul>
-<li>1     &lt;= s.length &lt;= 1000</li>
-<li>s 仅由小写英文字母组成</li>
-</ul>
-<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析：-5"><a href="#分析：-5" class="headerlink" title="分析："></a>分析：</h2><p>这种问题都可以分解为一个个子问题；既然是回文，那去掉首尾两个字符之后必定还是回文，以dp[i][j]表示以i、j为首尾下标的数组中的最长回文子序列长度，那么动态转移方程dp[i][j]就有两种情况，一种是i位置的字符和j位置的字符不相等，此时dp[i][j]=max（dp[i+1][j],dp[i][j-1]）；另一种是相等dp[i][j] = dp[i+1][j-1]+2;</p>
-<p>还要注意的一点就是遍历顺序，由于dp[i][j]的取值取决于dp[i+1][j-1]，所以i必定要从末尾开始，进行降序遍历；j必定要从i+1开始，进行升序遍历。</p>
-<h2 id="代码如下：-5"><a href="#代码如下：-5" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestPalindromeSubseq</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len][len];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            dp[i][i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">char</span> c1 = s.charAt(i);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;len;j++)&#123;</span><br><span class="line">                <span class="keyword">char</span> c2 = s.charAt(j);</span><br><span class="line">                <span class="keyword">if</span>(c1==c2)&#123;</span><br><span class="line">                    dp[i][j] = dp[i+<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">2</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = Math.max(dp[i+<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][len-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1634,7 +1543,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
