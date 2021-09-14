@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">95</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">96</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -182,6 +182,111 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/29/%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%92%8C%E5%85%83%E7%A9%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/29/%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%92%8C%E5%85%83%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">永久代和元空间</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-29T00:00:00+08:00">2021-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-02 16:32:21" itemprop="dateModified" datetime="2021-08-02T16:32:21+08:00">2021-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">JVM相关</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/07/29/%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%92%8C%E5%85%83%E7%A9%BA%E9%97%B4/" class="post-meta-item leancloud_visitors" data-flag-title="永久代和元空间" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/07/29/%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%92%8C%E5%85%83%E7%A9%BA%E9%97%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/29/%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%92%8C%E5%85%83%E7%A9%BA%E9%97%B4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制，但可以通过以下参数来指定元空间的大小：</p>
+<p>-XX:MetaspaceSize，初始空间大小，达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整：如果释放了大量的空间，就适当降低该值；如果释放了很少的空间，那么在不超过MaxMetaspaceSize时，适当提高该值。</p>
+<p>-XX:MaxMetaspaceSize，最大空间，默认是没有限制的。</p>
+<p>除了上面两个指定大小的选项以外，还有两个与 GC 相关的属性：</p>
+<p>-XX:MinMetaspaceFreeRatio，在GC之后，最小的Metaspace剩余空间容量的百分比，减少为分配空间所导致的垃圾收集</p>
+<p>-XX:MaxMetaspaceFreeRatio，在GC之后，最大的Metaspace剩余空间容量的百分比，减少为释放空间所导致的垃圾收集</p>
+<h2 id="为什么要将永久代转为元空间"><a href="#为什么要将永久代转为元空间" class="headerlink" title="为什么要将永久代转为元空间"></a>为什么要将永久代转为元空间</h2><p>1、字符串存在永久代中，容易出现性能问题和内存溢出。</p>
+<p>2、类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
+<p>3、永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
+<p>4、Oracle 可能会将HotSpot 与 JRockit 合二为一。</p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/paddix/p/5309550.html">https://www.cnblogs.com/paddix/p/5309550.html</a> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1196,282 +1301,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">医院挂号系统知识点总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-19T00:00:00+08:00">2021-07-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-23 10:22:29" itemprop="dateModified" datetime="2021-07-23T10:22:29+08:00">2021-07-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A1%B9%E7%9B%AEHospital/" itemprop="url" rel="index"><span itemprop="name">项目Hospital</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="医院挂号系统知识点总结" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在此对尚医通在线预约挂号系统进行一个总结，以致自省。</p>
-<h1 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h1><h2 id="一、后台管理系统"><a href="#一、后台管理系统" class="headerlink" title="一、后台管理系统"></a>一、后台管理系统</h2><h3 id="1、医院设置管理"><a href="#1、医院设置管理" class="headerlink" title="1、医院设置管理"></a>1、医院设置管理</h3><p>包括</p>
-<p>​    医院设置列表显示（包括该医院的网址、医院编号、联系人、联系方式）</p>
-<p>​    医院设置添加（添加新的医院设置）</p>
-<p>​    进行医院锁定（锁定之后不可再进行预约）</p>
-<p>​    医院设置的删除</p>
-<p>​    医院列表（显示医院的名称、等级、地址）</p>
-<p>​    医院详情（该医院的具体详细信息）</p>
-<p>​    医院的排班情况（分科室）</p>
-<p>​    医院上线、下线</p>
-<h3 id="2、数据管理"><a href="#2、数据管理" class="headerlink" title="2、数据管理"></a>2、数据管理</h3><p>​    数据字典的树形显示、</p>
-<p>​    数据的导入、导出功能（通过excel表格形式）</p>
-<h3 id="3、用户管理"><a href="#3、用户管理" class="headerlink" title="3、用户管理"></a>3、用户管理</h3><p>​    用户列表（查看所有用户）</p>
-<p>​    用户详情（查看用户名称、证件信息等）</p>
-<p>​    用户锁定（违规操作锁定账号）</p>
-<p>​    认证审批列表（用户注册时，需后台进行审批的列表，可查看用户信息、进行判定通过或者不通过）</p>
-<h2 id="二、前台用户系统"><a href="#二、前台用户系统" class="headerlink" title="二、前台用户系统"></a>二、前台用户系统</h2><h3 id="1、首页数据显示"><a href="#1、首页数据显示" class="headerlink" title="1、首页数据显示"></a>1、首页数据显示</h3><p>​    显示下属医院、</p>
-<p>​    显示所有等级和地区信息（并可根据不同等级和地区进行医院查询）</p>
-<p>​    并可根据医院名称进行搜索</p>
-<h3 id="2、通过显示医院进入医院的详情页面"><a href="#2、通过显示医院进入医院的详情页面" class="headerlink" title="2、通过显示医院进入医院的详情页面"></a>2、通过显示医院进入医院的详情页面</h3><p>​    查看医院详情</p>
-<p>​    查看各个科室及下属部门</p>
-<p>​    点击不同的科室进行挂号</p>
-<h3 id="3、用户注册-登录"><a href="#3、用户注册-登录" class="headerlink" title="3、用户注册/登录"></a>3、用户注册/登录</h3><p>​    通过手机号进行注册/登录（本来是要通过整合阿里云的短信功能，但是一直申请不下来）</p>
-<h3 id="4、用户的实名认证功能"><a href="#4、用户的实名认证功能" class="headerlink" title="4、用户的实名认证功能"></a>4、用户的实名认证功能</h3><p>​    挂号之前需要用户进行填写姓名和身份证，提交之后会显示认证状态，后台通过之后才可以进行挂号</p>
-<h3 id="5、就诊人信息"><a href="#5、就诊人信息" class="headerlink" title="5、就诊人信息"></a>5、就诊人信息</h3><p>​    用户完成注册之后，挂号之前需要填写就诊人信息（姓名、证件类型、证件号码、性别、出生日期、手机号码），包括就诊人列表、添    加、详情、删除</p>
-<h3 id="6、预约挂号功能"><a href="#6、预约挂号功能" class="headerlink" title="6、预约挂号功能"></a>6、预约挂号功能</h3><p>​    用户完成注册之后，通过进入医院界面，选择科室之后，会显示可预约的日期以及当前选择日期的可预约情况（上午、下午、主治医师信息、剩余可预约数量），选择日期和科室之后，跳转至挂号详情页面，确认挂号信息，生成挂号订单，之后可进行订单支付或者订单取消</p>
-<hr>
-<h1 id="前后端知识点"><a href="#前后端知识点" class="headerlink" title="前后端知识点"></a>前后端知识点</h1><h2 id="后端技术"><a href="#后端技术" class="headerlink" title="后端技术"></a>后端技术</h2><hr>
-<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p>一个Spring的脚手架，快速构建Spring工程</p>
-<hr>
-<h3 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h3><h4 id="Nacos："><a href="#Nacos：" class="headerlink" title="Nacos："></a>Nacos：</h4><p>注册服务中心，实现不同服务之间的调用，需要在注册服务中心进行注册</p>
-<h4 id="Feign："><a href="#Feign：" class="headerlink" title="Feign："></a>Feign：</h4><p>用于发现服务，从而进行调用</p>
-<h4 id="Spring-Cloud-Gateway："><a href="#Spring-Cloud-Gateway：" class="headerlink" title="Spring Cloud Gateway："></a>Spring Cloud Gateway：</h4><p>通过网关根据不同的路径进行转发至不同的接口，从而调用不同的服务;网关核心功能是路由转发，因此不要有耗时操作在网关上处理，让请求快速转发到后端服务上，网关还能做统一的熔断、限流、认证、日志监控等。</p>
-<h5 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h5><img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210723095501971.png" alt="image-20210723095501971" style="zoom:50%;">
-
-<blockquote>
-<p>客户端向Spring Cloud Gateway 发出请求。然后在 Gateway Handler Mapping 中找到与请求相匹配的路由，将其发送到 Gateway Web Handler。Handler 再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。过滤器之间用虚线分开是因为过滤器可能会在发送代理请求之前（“pre”）或之后（“post”）执行业务逻辑。</p>
-<p>Filter在<strong>“pre”类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换</strong>等，</p>
-<p>在<strong>“post”类型的过滤器中可以做响应内容、响应头的修改，日志的输出，流量监控</strong>等有着非常重要的作用</p>
-</blockquote>
-<p>gateway可参考<a target="_blank" rel="noopener" href="http://www.ityouknow.com/springcloud/2018/12/12/spring-cloud-gateway-start.html">springcloud(十五)：服务网关 Spring Cloud GateWay 入门 - 纯洁的微笑博客 (ityouknow.com)</a></p>
-<hr>
-<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>一个内存数据库，基于key-value进行存储，优点是查询效率高</p>
-<p>（1）作为缓存使用，将不经常变动的数据存放入redis中，如：医院信息</p>
-<img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210720094940760.png" alt="redis使用1" style="zoom:50%;">
-
-<p>（2）验证码有效时间</p>
-<hr>
-<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>NoSql型数据库</p>
-<p>（1）将医院的基本信息、科室信息、排班信息等存储在MongoDB中，通过SpringBoot整合MongoTemplate和MongoRepository对数据库进行操作</p>
-<hr>
-<h3 id="EasyExcel"><a href="#EasyExcel" class="headerlink" title="EasyExcel"></a>EasyExcel</h3><p>阿里开发的一个操作Excel的工具，可对excel表格进行快速读取</p>
-<hr>
-<h3 id="MyBatisPlus"><a href="#MyBatisPlus" class="headerlink" title="MyBatisPlus"></a>MyBatisPlus</h3><p>本身就是对MyBatis的增强，通过该工具实现对数据库的快速操作</p>
-<p>（1）接口继承IService</p>
-<img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210720100130577.png" alt="MyBatisPlus使用1" style="zoom: 67%;">
-
-<p>（2）在mapper中继承BaseMapper；BaseMapper封装了增删改查的基本操作</p>
-<p><img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210720100322528.png" alt="MyBatisPlus使用2"></p>
-<hr>
-<h3 id="RabbitMQ（补）"><a href="#RabbitMQ（补）" class="headerlink" title="RabbitMQ（补）"></a>RabbitMQ（补）</h3><p>订单的相关操作，订单修改发送mq消息，mq消息的好处：使得项目的并发功能更加强大</p>
-<hr>
-<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><p>下载镜像、创建容器</p>
-<p>（1）MongoDB容器的创建</p>
-<p>（2）RabbitMQ容器的创建</p>
-<hr>
-<h3 id="swagger-ui"><a href="#swagger-ui" class="headerlink" title="swagger-ui"></a>swagger-ui</h3><p>这也是个工具，用于后端接口进行阶段性调试时使用；写好一个接口可进行功能测试。</p>
-<hr>
-<h3 id="HttpServletRequest"><a href="#HttpServletRequest" class="headerlink" title="HttpServletRequest"></a>HttpServletRequest</h3><p>HttpServletRequest对象代表客户端的请求,当客户端通过http协议请求访问；服务器的时候,http请求头的所有信息都封装在这个对象中，通过这个对象，可以获取客户端请求的所有信息。</p>
-<p>http请求包含请求行/状态行、请求头、请求体。</p>
-<p>request如果是post才有请求体，get则没有请求体，直接跟在？后面，用&amp;隔开。</p>
-<p>请求头header一般用来存放一些cookie，token信息；</p>
-<p>请求体body一般用来存储post的参数和参数数据；</p>
-<p>————————————————<br>版权声明：本文为CSDN博主「金麟十三少」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012373281/article/details/91350377">https://blog.csdn.net/u012373281/article/details/91350377</a></p>
-<hr>
-<h3 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h3><p>Json web token，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>​        由于http协议本身是一种<strong>无状态的协议</strong>，这意味着当用户使用账户和密码进行用户认证完成后并不能存在登录状态。导致下次请求依旧需要再次认证。因为服务器仅仅通过http协议，并不能知道是哪个用户发出的请求，所以需要借助一些处理机制来记录认证状态，从而完成请求和响应。</p>
-<h4 id="认证方式："><a href="#认证方式：" class="headerlink" title="认证方式："></a>认证方式：</h4><h5 id="传统session认证"><a href="#传统session认证" class="headerlink" title="传统session认证"></a>传统session认证</h5><p>session认证是将用户的认证信息存储在服务器端，并且会在认证通过后将这一份认证信息传递给浏览器端，浏览器将其保存为cookie。浏览器在下次发送请求时会将该cookie携带并且发送给我们的服务器，这样我们的应用就能识别请求来自哪个用户了，这就是基于传统的session认证。</p>
-<p>但是基于session认证的的应用本身很难扩展，随着不同客户端用户的增加，独立的服务器无法承载越来越多的用户，这时候session认证的问题也就暴露出来了。</p>
-<p>基于session认证的常见问题<br>1）session：由于每个用户经过我们的认证服务器认证之后，都要在该认证服务器端做一次记录，通常而言该记录保存在内存中，这就导致内存占用量随着认证用户数量的增加而越来越大，==服务器的开销也会越来越大==。<br>2）扩展性：用户认证之后，服务器端将认证记录存储在内存中，这意味着该用户的下次请求还必须要请求在这台服务器上，只有这样授权才能通过。这种方式下也就限制了==负载均衡器的能力==。也就限制了应用的扩展能力。<br>3）CSRF:因为基于cookie来进行用户识别，所以当cookie被劫持，用户就很容易受到跨站请求==伪造的攻击==。</p>
-<h5 id="基于token的认证"><a href="#基于token的认证" class="headerlink" title="基于token的认证"></a>基于token的认证</h5><p>认证流程：</p>
-<ol>
-<li><p>用户使用用户名（账户）、密码请求服务器进行登录。</p>
-</li>
-<li><p>服务器验证用户信息，对比用户名和密码是否存在且一致。</p>
-</li>
-<li><p>验证用户信息没有问题后，服务器端根据token生成的机制生成token。</p>
-</li>
-<li><p>服务器端返回给用户一个token。客户端（浏览器）存储token，并且每次请求时附送上这个token。</p>
-</li>
-<li><p>服务器端通过验证机制验证token，并且返回数据。<br>这个token在验证后每次请求时都要传递给服务器端，通过请求头传递。另外服务器要支持CORS（跨来源资源共享）策略，一般在服务端这样做：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin：*</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：本文为CSDN博主「敬苍生」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32609199/article/details/109569396">https://blog.csdn.net/qq_32609199/article/details/109569396</a></p>
-</li>
-</ol>
-<h4 id="JWT结构"><a href="#JWT结构" class="headerlink" title="JWT结构"></a>JWT结构</h4><p>JWT由三段信息构成，通过 <code>.</code>链接在一起构成jwt字符串。</p>
-<h5 id="header"><a href="#header" class="headerlink" title="header"></a>header</h5><p>jwt的头部承载两部分信息：</p>
-<p>声明token类型，这里是jwt<br>声明token的加密方式 通常使用 HMAC SHA256等<br>完整的头部如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&#x27;typ&#x27;</span>: <span class="string">&#x27;JWT&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;alg&#x27;</span>: <span class="string">&#x27;HS256&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p> 通过对该json字符串进行BASE64压缩就得到了header部分。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</span><br></pre></td></tr></table></figure>
-
-<h5 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h5><p>有关实体的声明，存放有效信息的地方。这个名字像是特指飞机上承载的货品，这些有效信息包含三个部分</p>
-<p>声明有三种类型: registered, public 和 private。</p>
-<ul>
-<li><p>Registered claims : 这里有一组预定义的声明，它们不是强制的，但是推荐。比如：iss (issuer), exp (expiration time), sub (subject), aud (audience)等。</p>
-<p>​        标准中注册的声明 (建议但不强制使用) ：</p>
-<ul>
-<li>iss: jwt签发者</li>
-<li>sub: jwt所面向的用户</li>
-<li>aud: 接收jwt的一方</li>
-<li>exp: jwt的过期时间，这个过期时间必须要大于签发时间</li>
-<li>nbf: 定义在什么时间之前，该jwt都是不可用的.</li>
-<li>iat: jwt的签发时间</li>
-<li>jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。</li>
-</ul>
-</li>
-<li><p>Public claims : 公共的声明可以添加任何的信息，一般添加用户的相关信息或其他业务需要的必要信息.但不建议添加敏感信息，因为该部分在客户端可解密.</p>
-</li>
-<li><p>Private claims : 私有声明是提供者和消费者所共同定义的声明，一般不建议存放敏感信息，因为base64是对称解密的，意味着该部分信息可以归类为明文信息。</p>
-</li>
-</ul>
-<p>对该json字符串进行<code>BASE64</code>压缩就得到了第二部分。从这里可以看出<code>payload</code>完全是明文暴露的，==请不要放置一些重要信息==。<br>————————————————<br>版权声明：本文为CSDN博主「敬苍生」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32609199/article/details/109569396">https://blog.csdn.net/qq_32609199/article/details/109569396</a></p>
-<h5 id="signature"><a href="#signature" class="headerlink" title="signature"></a>signature</h5><p>jwt的第三部分是一个签证信息，以token的前两部分作为明文，用共同协商好的秘钥进行签名（对称签名和非对称签名）。这个签证信息由三部分组成：</p>
-<ul>
-<li>header (base64后的)</li>
-<li>payload (base64后的)</li>
-<li>secret</li>
-</ul>
-<p>签名是用于验证消息在传递过程中有没有被更改，并且，对于使用私钥签名的token，它还可以验证JWT的发送方是否为它所称的发送方。 </p>
-<p>通过header中声明的加密方式进行加盐secret组合加密，然后就构成了jwt的第三部分。</p>
-<p>注意：secret是保存在服务器端的，jwt的签发生成也是在服务器端的，secret就是用来进行jwt的签发和jwt的验证，所以，它就是你服务端的私钥，在任何场景都不应该流露出去。一旦客户端得知这个secret, 那就意味着客户端是可以自我签发jwt了。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li><p>因为json的通用性，所以JWT是可以进行跨语言支持的，像JAVA,JavaScript,NodeJS,PHP等很多语言都可以使用。</p>
-</li>
-<li><p>因为有了payload部分，所以JWT可以在自身存储一些其他业务逻辑所必要的非敏感信息。</p>
-</li>
-<li><p>便于传输，jwt的构成非常简单，字节占用很小，所以它是非常便于传输的。</p>
-</li>
-<li><p>它不需要在服务端保存会话信息, 所以它易于应用的扩展</p>
-</li>
-<li><p>无状态和可扩展性：Tokens存储在客户端。完全无状态，可扩展。我们的负载均衡器可以将用户传递到任意服务器，因为在任何地方都没有状态或会话信息。</p>
-</li>
-<li><p>安全：Token不是Cookie。（The token, not a cookie.）每次请求的时候Token都会被发送。而且，由于没有Cookie被发送，还有助于防止CSRF攻击。即使在你的实现中将token存储到客户端的Cookie中，这个Cookie也只是一种存储机制，而非身份认证机制。没有基于会话的信息可以操作，因为我们没有会话!</p>
-</li>
-<li><p>过期性：token在一段时间以后会过期，这个时候用户需要重新登录。这有助于我们保持安全。还有一个概念叫token撤销，它允许我们根据相同的授权许可使特定的token甚至一组token无效。<br>————————————————</p>
-<p>版权声明：本文为CSDN博主「敬苍生」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32609199/article/details/109569396">https://blog.csdn.net/qq_32609199/article/details/109569396</a></p>
-</li>
-</ul>
-<hr>
-<h3 id="QueryWrapper的用法"><a href="#QueryWrapper的用法" class="headerlink" title="QueryWrapper的用法"></a>QueryWrapper的用法</h3><h4 id="构造器条件关系"><a href="#构造器条件关系" class="headerlink" title="构造器条件关系"></a>构造器条件关系</h4><img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210722152843270.png" alt="QueryWrapper构造器条件关系" style="zoom: 67%;">
-
-<ol>
-<li>上图绿色框为抽象类abstract</li>
-<li>蓝色框为正常class类，可new对象</li>
-<li>黄色箭头指向为父子类关系，箭头指向为父类</li>
-</ol>
-<h4 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h4><img src="/2021/07/19/%E5%B0%9A%E5%8C%BB%E9%80%9A%E5%8C%BB%E9%99%A2%E9%A2%84%E7%BA%A6%E6%8C%82%E5%8F%B7%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/image-20210722153040525.png" alt="QueryWrapper常用函数" style="zoom:67%;">
-
-<hr>
-<hr>
-<hr>
-<h2 id="前端技术"><a href="#前端技术" class="headerlink" title="前端技术"></a>前端技术</h2><hr>
-<h3 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h3><p>一个快速构建页面的框架；指令：v-if、v-for、插值表达式</p>
-<hr>
-<h3 id="Element-ui"><a href="#Element-ui" class="headerlink" title="Element-ui"></a>Element-ui</h3><p>一个前端组件库，可以快速实现组件效果</p>
-<hr>
-<h3 id="Nuxt"><a href="#Nuxt" class="headerlink" title="Nuxt"></a>Nuxt</h3><p>一个服务端渲染技术</p>
-<hr>
-<h3 id="Npm"><a href="#Npm" class="headerlink" title="Npm"></a>Npm</h3><p>项目里用的最多的就是下载依赖</p>
-<hr>
-<hr>
-<hr>
-<p>我学到了什么：</p>
-<p>swagger-ui这个小工具，用于调试接口很好用，可提高排错效率</p>
-<hr>
-<p>result：一个结果集，这个很实用，相当于对函数的返回类型进行统一，使得代码通用性更高</p>
-<hr>
-<p>HttpServletRequest</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1543,7 +1372,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

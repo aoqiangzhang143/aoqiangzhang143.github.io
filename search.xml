@@ -4339,4 +4339,32 @@
         <tag>动态规划</tag>
       </tags>
   </entry>
+  <entry>
+    <title>leetcode-匹配单词</title>
+    <url>/2021/09/14/leetcode-%E5%8C%B9%E9%85%8D%E5%8D%95%E8%AF%8D/</url>
+    <content><![CDATA[<h1 id="524-通过删除字母匹配到字典里最长单词"><a href="#524-通过删除字母匹配到字典里最长单词" class="headerlink" title="524. 通过删除字母匹配到字典里最长单词"></a><a href="https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/">524. 通过删除字母匹配到字典里最长单词</a></h1><p>给你一个字符串 s 和一个字符串数组 dictionary 作为字典，找出并返回字典中最长的字符串，该字符串可以通过删除 s 中的某些字符得到。</p>
+<p>如果答案不止一个，返回长度最长且字典序最小的字符串。如果答案不存在，则返回空字符串。</p>
+<p>示例 1：</p>
+<p>输入：s = “abpcplea”, dictionary = [“ale”,”apple”,”monkey”,”plea”]</p>
+<p>输出：”apple”</p>
+<p>示例 2：</p>
+<p>输入：s = “abpcplea”, dictionary = [“a”,”b”,”c”]</p>
+<p>输出：”a”</p>
+<p>提示：</p>
+<p>1 &lt;= s.length &lt;= 1000</p>
+<p>1 &lt;= dictionary.length &lt;= 1000</p>
+<p>1 &lt;= dictionary[i].length &lt;= 1000</p>
+<p>s 和 dictionary[i] 仅由小写英文字母组成</p>
+<h2 id="知识点：双指针"><a href="#知识点：双指针" class="headerlink" title="知识点：双指针"></a>知识点：双指针</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>可通过双指针对每个字符串遍历得到最大长度；并在每个字符串遍历结束后进行结果对比，从而得到结果。</p>
+<p>注：<a href="https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/solution/tong-guo-shan-chu-zi-mu-pi-pei-dao-zi-di-at66/">官解</a>里面有其他方法，也可以多学习下。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">findLongestWord</span><span class="params">(String s, List&lt;String&gt; dictionary)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        String ans = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(String curString:dictionary)&#123;</span><br><span class="line">            <span class="keyword">int</span> indexCur = <span class="number">0</span>,indexS = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> lenCur = curString.length();</span><br><span class="line">            <span class="keyword">while</span>(indexS&lt;len)&#123;</span><br><span class="line">                <span class="keyword">if</span>(indexCur&lt;lenCur &amp;&amp; s.charAt(indexS)==curString.charAt(indexCur))&#123;</span><br><span class="line">                    indexCur++;</span><br><span class="line">                &#125;</span><br><span class="line">                indexS++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(indexCur==lenCur)&#123;</span><br><span class="line">                <span class="keyword">if</span>(ans==<span class="string">&quot;&quot;</span> || lenCur&gt;maxLen || (curString.compareTo(ans)&lt;<span class="number">0</span> &amp;&amp; lenCur==maxLen) )&#123;</span><br><span class="line">                    maxLen = lenCur;</span><br><span class="line">                    ans = curString;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
 </search>
