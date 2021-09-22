@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">98</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">99</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -182,6 +182,123 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">leetcode-排列问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-16T00:00:00+08:00">2021-08-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-17 15:08:00" itemprop="dateModified" datetime="2021-08-17T15:08:00+08:00">2021-08-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-排列问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/16/leetcode-%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="526-优美的排列"><a href="#526-优美的排列" class="headerlink" title="526. 优美的排列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/beautiful-arrangement/">526. 优美的排列</a></h1><p>假设有从 1 到 N 的 N 个整数，如果从这 N 个数字中成功构造出一个数组，使得数组的第 i 位 (1 &lt;= i &lt;= N) 满足如下两个条件中的一个，我们就称这个数组为一个优美的排列。条件：</p>
+<p>第 i 位的数字能被 i 整除</p>
+<p>i 能被第 i 位上的数字整除</p>
+<p>现在给定一个整数 N，请问可以构造多少个优美的排列？</p>
+<p>示例1:</p>
+<p>输入: 2</p>
+<p>输出: 2</p>
+<p>解释: </p>
+<p>第 1 个优美的排列是 [1, 2]:</p>
+<p> 第 1 个位置（i=1）上的数字是1，1能被 i（i=1）整除</p>
+<p> 第 2 个位置（i=2）上的数字是2，2能被 i（i=2）整除</p>
+<p>第 2 个优美的排列是 [2, 1]:</p>
+<p> 第 1 个位置（i=1）上的数字是2，2能被 i（i=1）整除</p>
+<p> 第 2 个位置（i=2）上的数字是1，i（i=2）能被 1 整除</p>
+<p><strong>说明:</strong></p>
+<ol>
+<li><strong>N</strong> 是一个正整数，并且不会超过15。</li>
+</ol>
+<h2 id="知识点：回溯"><a href="#知识点：回溯" class="headerlink" title="知识点：回溯"></a>知识点：回溯</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>题目的意思是，任意位置的第i位，都要满足两个条件之一；</p>
+<p>采用回溯对本题进行解答（还有状态压缩，这个我还没掌握），我们从第一个位置开始找，在第一个位置时遍历每个数字，如果当前数字满足要求，就将当前数字的状态记为已使用，然后在此基础之上对下一个位置进行递归查找；在当前遍历的数字时，在对下一个位置进行递归查找之后，再将当前数字状态改为未使用。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countArrangement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dfs(<span class="number">1</span>,n,<span class="keyword">new</span> <span class="keyword">boolean</span>[n+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> n,<span class="keyword">boolean</span>[] vis)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;n)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[i]&amp;&amp;(i%index==<span class="number">0</span>||index%i==<span class="number">0</span>))&#123;</span><br><span class="line">                vis[i] = <span class="keyword">true</span>;</span><br><span class="line">                res+=dfs(index+<span class="number">1</span>,n,vis);</span><br><span class="line">                vis[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1241,108 +1358,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/" class="post-title-link" itemprop="url">强软弱虚引用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-31T00:00:00+08:00">2021-07-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-02 16:34:34" itemprop="dateModified" datetime="2021-08-02T16:34:34+08:00">2021-08-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">JVM相关</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="强软弱虚引用" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/31/%E5%BC%BA%E8%BD%AF%E5%BC%B1%E8%99%9A%E5%BC%95%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h2><p>一个对象有强引用时，GC绝不回收，宁可报错OutOfMemoryError也不回收.</p>
-<h2 id="软引用"><a href="#软引用" class="headerlink" title="软引用"></a>软引用</h2><p>只要内存空间足够，就不会回收它；空间不够时才回收这些对象的内存。只要GC没回收它，该对象就一直可被程序使用。软引用可用来实现内存敏感的高速缓存。</p>
-<h2 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h2><p>弱引用关联的对象只能活到下一次垃圾回收之前。</p>
-<h2 id="虚引用"><a href="#虚引用" class="headerlink" title="虚引用"></a>虚引用</h2><p>如果一个对象仅持有虚引用，其实就跟没有任何引用一样，随时可被回收。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虚引用必须和引用队列（Reference Queue）联合使用。当垃圾回收器准备回收一个对象时，发现该对象还有虚引用，那么就会将这个虚引用加入到与之关联的引用队列中，这样可以通过判断引用队列中是否已经加入虚引用来判断被引用的对象是否要被GC回收，便于在回收之前做一些必要行动。</p>
-<p>虚引用和软引用、弱引用的区别</p>
-<p>软、弱是在GC回收该对象之后，才将引用加入到引用队列中；</p>
-<p>虚引用是在GC回收对象之前，将该引用加入到引用队列中。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1414,7 +1429,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

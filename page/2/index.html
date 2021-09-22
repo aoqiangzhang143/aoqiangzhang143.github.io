@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">98</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">99</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -182,6 +182,134 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/30/leetcode-%E6%8C%89%E6%9D%83%E9%87%8D%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/30/leetcode-%E6%8C%89%E6%9D%83%E9%87%8D%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9/" class="post-title-link" itemprop="url">leetcode-按权重随机选择</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-30 00:00:00 / 修改时间：10:41:52" itemprop="dateCreated datePublished" datetime="2021-08-30T00:00:00+08:00">2021-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/30/leetcode-%E6%8C%89%E6%9D%83%E9%87%8D%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-按权重随机选择" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/30/leetcode-%E6%8C%89%E6%9D%83%E9%87%8D%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/30/leetcode-%E6%8C%89%E6%9D%83%E9%87%8D%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="528-按权重随机选择"><a href="#528-按权重随机选择" class="headerlink" title="528. 按权重随机选择"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/random-pick-with-weight/">528. 按权重随机选择</a></h1><p>给定一个正整数数组 w ，其中 w[i] 代表下标 i 的权重（下标从 0 开始），请写一个函数 pickIndex ，它可以随机地获取下标 i，选取下标 i 的概率与 w[i] 成正比。</p>
+<p>例如，对于 w = [1, 3]，挑选下标 0 的概率为 1 / (1 + 3) = 0.25 （即，25%），而选取下标 1 的概率为 3 / (1 + 3) = 0.75（即，75%）。</p>
+<p>也就是说，选取下标 i 的概率为 w[i] / sum(w) 。</p>
+<p>示例 1：</p>
+<p>输入：</p>
+<p>[“Solution”,”pickIndex”]</p>
+<p>[[[1]],[]]</p>
+<p>输出：</p>
+<p>[null,0]</p>
+<p>解释：</p>
+<p>Solution solution = new Solution([1]);</p>
+<p>solution.pickIndex(); // 返回 0，因为数组中只有一个元素，所以唯一的选择是返回下标 0。</p>
+<p>示例 2：</p>
+<p>输入：</p>
+<p>[“Solution”,”pickIndex”,”pickIndex”,”pickIndex”,”pickIndex”,”pickIndex”]</p>
+<p>[[[1,3]],[],[],[],[],[]]</p>
+<p>输出：</p>
+<p>[null,1,1,1,1,0]</p>
+<p>解释：</p>
+<p>Solution solution = new Solution([1, 3]);</p>
+<p>solution.pickIndex(); // 返回 1，返回下标 1，返回该下标概率为 3/4 。</p>
+<p>solution.pickIndex(); // 返回 1</p>
+<p>solution.pickIndex(); // 返回 1</p>
+<p>solution.pickIndex(); // 返回 1</p>
+<p>solution.pickIndex(); // 返回 0，返回下标 0，返回该下标概率为 1/4 。</p>
+<p>由于这是一个随机问题，允许多个答案，因此下列输出都可以被认为是正确的:</p>
+<p>[null,1,1,1,1,0]</p>
+<p>[null,1,1,1,1,1]</p>
+<p>[null,1,1,1,0,0]</p>
+<p>[null,1,1,1,0,1]</p>
+<p>[null,1,0,1,0,0]</p>
+<p>……</p>
+<p>诸若此类。</p>
+<p>提示：</p>
+<p>1 &lt;= w.length &lt;= 10000</p>
+<p>1 &lt;= w[i] &lt;= 10^5</p>
+<p>pickIndex 将被调用不超过 10000 次</p>
+<h2 id="知识点：前缀和、二分法"><a href="#知识点：前缀和、二分法" class="headerlink" title="知识点：前缀和、二分法"></a>知识点：前缀和、二分法</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这个题目没什么好细说的，核心思想是利用前缀和将每个元素占的比例进行划分，然后采用二分法对随机数进行定位即可。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] preSum;</span><br><span class="line">    <span class="keyword">int</span> total;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">(<span class="keyword">int</span>[] w)</span> </span>&#123;</span><br><span class="line">        preSum = <span class="keyword">new</span> <span class="keyword">int</span>[w.length];</span><br><span class="line">        preSum[<span class="number">0</span>] = w[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;w.length;i++)&#123;</span><br><span class="line">            preSum[i] = preSum[i-<span class="number">1</span>]+w[i];</span><br><span class="line">        &#125;</span><br><span class="line">        total = Arrays.stream(w).sum();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pickIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = (<span class="keyword">int</span>)(Math.random()*total)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> binarySearch(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>,right = preSum.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(preSum[mid]&lt;x)&#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your Solution object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * Solution obj = new Solution(w);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj.pickIndex();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1235,110 +1363,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">leetcode-压缩字符串</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-08-21 00:00:00 / 修改时间：10:48:29" itemprop="dateCreated datePublished" datetime="2021-08-21T00:00:00+08:00">2021-08-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-压缩字符串" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/21/leetcode-%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="443-压缩字符串"><a href="#443-压缩字符串" class="headerlink" title="443. 压缩字符串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/string-compression/">443. 压缩字符串</a></h1><p>给定一组字符，使用原地算法将其压缩。</p>
-<p>压缩后的长度必须始终小于或等于原数组长度。</p>
-<p>数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。</p>
-<p>在完成原地修改输入数组后，返回数组的新长度。</p>
-<p>进阶：</p>
-<p>你能否仅使用O(1) 空间解决问题？</p>
-<p>示例 1：</p>
-<p>输入：</p>
-<p>[“a”,”a”,”b”,”b”,”c”,”c”,”c”]</p>
-<p>输出：</p>
-<p>返回 6 ，输入数组的前 6 个字符应该是：[“a”,”2”,”b”,”2”,”c”,”3”]</p>
-<p>说明：</p>
-<p>“aa” 被 “a2” 替代。”bb” 被 “b2” 替代。”ccc” 被 “c3” 替代。</p>
-<h2 id="知识点：字符串"><a href="#知识点：字符串" class="headerlink" title="知识点：字符串"></a>知识点：字符串</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>又一个原地修改，做了好几道原地修改的题目了，感觉原地修改的关键在于对下标的掌控，你看这个。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compress</span><span class="params">(<span class="keyword">char</span>[] chars)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> write = <span class="number">0</span>,anchor = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> len = chars.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> read = <span class="number">0</span>;read&lt;len;read++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(read+<span class="number">1</span>==len||chars[read]!=chars[read+<span class="number">1</span>])&#123;<span class="comment">//不相等时进行重写</span></span><br><span class="line">                chars[write++] = chars[anchor];</span><br><span class="line">                <span class="keyword">if</span>(read&gt;anchor)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">char</span> c:(<span class="string">&quot;&quot;</span>+(read-anchor+<span class="number">1</span>)).toCharArray())&#123;</span><br><span class="line">                        chars[write++]=c;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                anchor = read+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> write;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1410,7 +1434,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

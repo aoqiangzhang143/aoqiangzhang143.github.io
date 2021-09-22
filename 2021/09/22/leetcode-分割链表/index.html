@@ -23,21 +23,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这个问题在将jdk版本从8改为11之后就没遇到了; 但是在后续的运行中又出现了其他错误，经查阅资料，将IDEA从2019.3升级为2020.3之后解决； 后记：改完之后还需要将gradle的jdk版本以及项目运行依赖的jdk版本改为11（我装了8和11两个版本）； 最后一次运行报错是显示未找到默认主题，在halo-dev&#x2F;halo-theme-anatole (github.com)进行下载并存">
+  <meta name="description" content="725. 分隔链表给你一个头结点为 head 的单链表和一个整数 k ，请你设计一个算法将链表分隔为 k 个连续的部分。 每部分的长度应该尽可能的相等：任意两部分的长度差距不能超过 1 。这可能会导致有些部分为 null 。 这 k 个部分应该按照在链表中出现的顺序排列，并且排在前面的部分的长度应该大于或等于排在后面的长度。 返回一个由上述 k 部分组成的数组。   知识点：链表分析：该题目并不难">
 <meta property="og:type" content="article">
-<meta property="og:title" content="运行Halo项目时遇到的问题">
-<meta property="og:url" content="http://example.com/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="leetcode分割链表">
+<meta property="og:url" content="http://example.com/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Mithrandir">
-<meta property="og:description" content="这个问题在将jdk版本从8改为11之后就没遇到了; 但是在后续的运行中又出现了其他错误，经查阅资料，将IDEA从2019.3升级为2020.3之后解决； 后记：改完之后还需要将gradle的jdk版本以及项目运行依赖的jdk版本改为11（我装了8和11两个版本）； 最后一次运行报错是显示未找到默认主题，在halo-dev&#x2F;halo-theme-anatole (github.com)进行下载并存">
+<meta property="og:description" content="725. 分隔链表给你一个头结点为 head 的单链表和一个整数 k ，请你设计一个算法将链表分隔为 k 个连续的部分。 每部分的长度应该尽可能的相等：任意两部分的长度差距不能超过 1 。这可能会导致有些部分为 null 。 这 k 个部分应该按照在链表中出现的顺序排列，并且排在前面的部分的长度应该大于或等于排在后面的长度。 返回一个由上述 k 部分组成的数组。   知识点：链表分析：该题目并不难">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/Failedto.jpg">
-<meta property="article:published_time" content="2021-05-31T02:51:55.000Z">
-<meta property="article:modified_time" content="2021-05-31T07:13:56.009Z">
+<meta property="og:image" content="http://example.com/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/image-20210922103437171.png">
+<meta property="article:published_time" content="2021-09-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-22T02:35:13.264Z">
 <meta property="article:author" content="aoqiangzhang143">
+<meta property="article:tag" content="链表">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/Failedto.jpg">
+<meta name="twitter:image" content="http://example.com/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/image-20210922103437171.png">
 
-<link rel="canonical" href="http://example.com/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://example.com/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/">
 
 
 <script id="page-configurations">
@@ -50,7 +51,7 @@
   };
 </script>
 
-  <title>运行Halo项目时遇到的问题 | Mithrandir</title>
+  <title>leetcode分割链表 | Mithrandir</title>
   
 
 
@@ -191,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -204,7 +205,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          运行Halo项目时遇到的问题
+          leetcode分割链表
         </h1>
 
         <div class="post-meta">
@@ -215,7 +216,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-31 10:51:55 / 修改时间：15:13:56" itemprop="dateCreated datePublished" datetime="2021-05-31T10:51:55+08:00">2021-05-31</time>
+              <time title="创建时间：2021-09-22 00:00:00 / 修改时间：10:35:13" itemprop="dateCreated datePublished" datetime="2021-09-22T00:00:00+08:00">2021-09-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,12 +224,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">踩坑记录</span></a>
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
                 </span>
             </span>
 
           
-            <span id="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="运行Halo项目时遇到的问题" title="阅读次数">
+            <span id="/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode分割链表" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -243,8 +244,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,12 +260,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="/2021/05/31/%E8%BF%90%E8%A1%8CHalo%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/Failedto.jpg" alt="Failedto"></p>
-<p>这个问题在将jdk版本从8改为11之后就没遇到了;</p>
-<p>但是在后续的运行中又出现了其他错误，经查阅资料，将IDEA从2019.3升级为2020.3之后解决；</p>
-<p>后记：改完之后还需要将gradle的jdk版本以及项目运行依赖的jdk版本改为11（我装了8和11两个版本）；</p>
-<p>最后一次运行报错是显示未找到默认主题，在<a target="_blank" rel="noopener" href="https://github.com/halo-dev/halo-theme-anatole">halo-dev/halo-theme-anatole (github.com)</a>进行下载并存放至Halo\halo\src\main\resources\templates\themes\anatole后，成功运行。</p>
-<p>至此成功运行。</p>
+        <h1 id="725-分隔链表"><a href="#725-分隔链表" class="headerlink" title="725. 分隔链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/split-linked-list-in-parts/">725. 分隔链表</a></h1><p>给你一个头结点为 head 的单链表和一个整数 k ，请你设计一个算法将链表分隔为 k 个连续的部分。</p>
+<p>每部分的长度应该尽可能的相等：任意两部分的长度差距不能超过 1 。这可能会导致有些部分为 null 。</p>
+<p>这 k 个部分应该按照在链表中出现的顺序排列，并且排在前面的部分的长度应该大于或等于排在后面的长度。</p>
+<p>返回一个由上述 k 部分组成的数组。</p>
+<img src="/2021/09/22/leetcode-%E5%88%86%E5%89%B2%E9%93%BE%E8%A1%A8/image-20210922103437171.png" alt="725-1" style="zoom:67%;">
+
+<h2 id="知识点：链表"><a href="#知识点：链表" class="headerlink" title="知识点：链表"></a>知识点：链表</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>该题目并不难，结果数组必定包含k个元素；通过除法和取余求出每个元素链表的长度，然后记录下一个元素的头节点并进行截断即可。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode[] splitListToParts(ListNode head, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        ListNode[] res = <span class="keyword">new</span> ListNode[k];</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">        ListNode tmp = head;</span><br><span class="line">        <span class="keyword">while</span>(tmp!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            n++;</span><br><span class="line">            tmp = tmp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//计算数组每个元素的链表长度</span></span><br><span class="line">        <span class="comment">//每个链表的最小长度</span></span><br><span class="line">        <span class="keyword">int</span> avgLength = n/k;</span><br><span class="line">        <span class="comment">//有几个链表需要增加长度</span></span><br><span class="line">        <span class="keyword">int</span> remainder = n%k;</span><br><span class="line">        <span class="comment">//记录数组索引位置</span></span><br><span class="line">        <span class="keyword">int</span> tmpIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//记录数组每个元素的头节点</span></span><br><span class="line">        ListNode tmpHead = head;</span><br><span class="line">        <span class="keyword">while</span>(tmpHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            res[tmpIndex++] = tmpHead;</span><br><span class="line">            <span class="comment">//当前数组元素的长度</span></span><br><span class="line">            <span class="keyword">int</span> curLen = avgLength;</span><br><span class="line">            <span class="keyword">if</span>(remainder&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                curLen++;</span><br><span class="line">                remainder--;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(tmpHead!=<span class="keyword">null</span>&amp;&amp;curLen&gt;<span class="number">1</span>)&#123;</span><br><span class="line">                tmpHead = tmpHead.next;</span><br><span class="line">                curLen--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tmpHead==<span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode tmpNext = tmpHead.next;</span><br><span class="line">            tmpHead.next = <span class="keyword">null</span>;</span><br><span class="line">            tmpHead = tmpNext;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -273,6 +277,10 @@
     
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"><i class="fa fa-tag"></i> 链表</a>
+          </div>
 
         
 
@@ -280,13 +288,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/29/AQS%E7%AE%80%E8%BF%B0/" rel="prev" title="AQS简述">
-      <i class="fa fa-chevron-left"></i> AQS简述
+    <a href="/2021/09/17/leetcode-%E6%95%B0%E7%8B%AC/" rel="prev" title="leetcode-数独">
+      <i class="fa fa-chevron-left"></i> leetcode-数独
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/06/01/maven%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%97%AE%E9%A2%98/" rel="next" title="maven首次运行问题">
-      maven首次运行问题 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -346,6 +351,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#725-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">725. 分隔链表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%93%BE%E8%A1%A8"><span class="nav-number">1.1.</span> <span class="nav-text">知识点：链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
