@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">100</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">101</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,151 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">leetcode-岛屿问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-08T00:00:00+08:00">2021-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-26 18:03:00" itemprop="dateModified" datetime="2021-08-26T18:03:00+08:00">2021-08-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-岛屿问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h1><h2 id="知识点：DFS"><a href="#知识点：DFS" class="headerlink" title="知识点：DFS"></a>知识点：DFS</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这题让求的是岛屿的数量有多少个，就其解法思路上并不困难。循环遍历每一块陆地，每遇到一个陆地就对其上下左右四个方向进行查找，每找到一个就让该陆地置0，这样在最外层遍历时就不会重复遇到，dfs的主要作用就是对遇到的陆地进行四个方向的查找。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>)&#123;<span class="comment">//简单判断是否为空</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count= <span class="number">0</span>,m =grid.length,n=grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//外层遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;<span class="comment">//只要找到一个陆地，起码就是一个岛屿，对其进行dfs</span></span><br><span class="line">                    count++;</span><br><span class="line">                    dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gr = grid.length;</span><br><span class="line">        <span class="keyword">int</span> gc = grid[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(r&lt;<span class="number">0</span>||r&gt;=gr||c&lt;<span class="number">0</span>||c&gt;=gc||grid[r][c]==<span class="string">&#x27;0&#x27;</span>)&#123;<span class="comment">//此处要注意边界条件</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;<span class="comment">//遍历之前记得让当前岛屿下沉，不然之后会出现重复查找</span></span><br><span class="line">        dfs(grid,r+<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r-<span class="number">1</span>,c);</span><br><span class="line">        dfs(grid,r,c+<span class="number">1</span>);</span><br><span class="line">        dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a></h1><h2 id="知识点：dfs"><a href="#知识点：dfs" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>这两道题型基本一致，只是在本题中需要记录的数据不是数量，而是记录下每次dfs的最大值，关键点在dfs的编写中，每次dfs返回一个数字：0或者1。对于每个陆地而言，最小面积是1，最终面积取决于有多少和它间接、直接相连的陆地。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><p>还有个岛屿的周长，我觉得有个想法挺独树一帜的，值得学习</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;<span class="comment">//</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;<span class="comment">//外层还是遍历</span></span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=Math.max(res,dfs(grid,i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//要确定当前节点在范围内,且是个岛</span></span><br><span class="line">        <span class="keyword">if</span>(m&lt;<span class="number">0</span>||m&gt;=grid.length||n&lt;<span class="number">0</span>||n&gt;=grid[<span class="number">0</span>].length||grid[m][n]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将当前节点置零</span></span><br><span class="line">        grid[m][n]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+dfs(grid,m-<span class="number">1</span>,n)+dfs(grid,m+<span class="number">1</span>,n)+dfs(grid,m,n+<span class="number">1</span>)+dfs(grid,m,n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><h2 id="知识点：dfs-1"><a href="#知识点：dfs-1" class="headerlink" title="知识点：dfs"></a>知识点：dfs</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>思路挺好，值得学习。题目中已经确定只有一个岛屿了，只是让求出岛屿的周长。难点在于怎么确定岛屿的哪一条边是有效周长，有个思路很好：在每个陆地向上下左右四个方向查找的时候，如果遇到边界或者是水域，则周长+1，这个想法挺好的，可以说很完美的贴切了岛屿边的这个定义。</p>
+<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a>代码如下：</h2><p> 注：其实这个查找周长也可以扩展一下，改为查找最大周长。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;grid.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    res=dfs(grid,i,j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果从陆地遇到边界，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(!(r&gt;=<span class="number">0</span>&amp;&amp;r&lt;grid.length&amp;&amp;c&gt;=<span class="number">0</span>&amp;&amp;c&lt;grid[<span class="number">0</span>].length))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果从陆地遇到水域，则周长+1</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//肯定是个2，那就说明已经找过了</span></span><br><span class="line">        <span class="keyword">if</span>(grid[r][c]!=<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//对遍历过的点，置为2</span></span><br><span class="line">        grid[r][c]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(grid,r+<span class="number">1</span>,c)+dfs(grid,r-<span class="number">1</span>,c)+dfs(grid,r,c+<span class="number">1</span>)+dfs(grid,r,c-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="576-出界的路径数"><a href="#576-出界的路径数" class="headerlink" title="576. 出界的路径数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/out-of-boundary-paths/">576. 出界的路径数</a></h1><p>给你一个大小为 m x n 的网格和一个球。球的起始坐标为 [startRow, startColumn] 。你可以将球移到在四个方向上相邻的单元格内（可以穿过网格边界到达网格之外）。你 最多 可以移动 maxMove 次球。</p>
+<p>给你五个整数 m、n、maxMove、startRow 以及 startColumn ，找出并返回可以将球移出边界的路径数量。因为答案可能非常大，返回对 109 + 7 取余 后的结果。</p>
+<p><img src="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/image-20210815163546431.png" alt="出界的路径数-1"></p>
+<p><img src="/2021/06/08/leetcode-%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98/image-20210815163602220.png" alt="出界的路径数-2"></p>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1     &lt;= m, n &lt;= 50</li>
+<li>0     &lt;= maxMove &lt;= 50</li>
+<li>0     &lt;= startRow &lt; m</li>
+<li>0     &lt;= startColumn &lt; n</li>
+</ul>
+<h2 id="知识点：动态规划"><a href="#知识点：动态规划" class="headerlink" title="知识点：动态规划"></a>知识点：动态规划</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>感觉和岛屿类型的问题比较像。每个位置只有四个方向可以移动，且每次移动之后有两种情况：1、未出界；2、出界</p>
+<p>未出界时，当前所在位置的可达路径数为上个位置的路径数+当前位置本身的路径数；</p>
+<p>出界时，将上个位置的可达路径数记录进返回答案中。</p>
+<h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> maxMove, <span class="keyword">int</span> startRow, <span class="keyword">int</span> startColumn)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> MOD = <span class="number">1000000007</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] directions = &#123;&#123;-<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">int</span> sumCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[][][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[maxMove+<span class="number">1</span>][m][n];</span><br><span class="line">        dp[<span class="number">0</span>][startRow][startColumn] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxMove;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line">                    <span class="keyword">int</span> count = dp[i][j][k];</span><br><span class="line">                    <span class="keyword">if</span>(count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="keyword">int</span>[] direction:directions)&#123;</span><br><span class="line">                            <span class="keyword">int</span> j1 = j+direction[<span class="number">0</span>],k1 = k+direction[<span class="number">1</span>];</span><br><span class="line">                            <span class="keyword">if</span>(j1&gt;=<span class="number">0</span>&amp;&amp;j1&lt;m&amp;&amp;k1&gt;=<span class="number">0</span>&amp;&amp;k1&lt;n)&#123;</span><br><span class="line">                                dp[i+<span class="number">1</span>][j1][k1] = (dp[i+<span class="number">1</span>][j1][k1]+count)%MOD;</span><br><span class="line">                            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                                sumCount = (sumCount+count)%MOD;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sumCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="934-最短的桥"><a href="#934-最短的桥" class="headerlink" title="934. 最短的桥"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shortest-bridge/">934. 最短的桥</a></h1><p>在给定的二维二进制数组 A 中，存在两座岛。（岛是由四面相连的 1 形成的一个最大组。）</p>
+<p>现在，我们可以将 0 变为 1，以使两座岛连接起来，变成一座岛。</p>
+<p>返回必须翻转的 0 的最小数目。（可以保证答案至少是 1 。）</p>
+<p>示例 1：</p>
+<p>输入：A = [[0,1],[1,0]]</p>
+<p>输出：1</p>
+<p>示例 2：</p>
+<p>输入：A = [[0,1,0],[0,0,0],[0,0,1]]</p>
+<p>输出：2</p>
+<p>示例 3：</p>
+<p>输入：A = [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]</p>
+<p>输出：1</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li>2     &lt;= A.length == A[0].length &lt;= 100</li>
+<li>A[i][j]     == 0 或 A[i][j] == 1</li>
+</ul>
+<h2 id="知识点：dfs、bfs"><a href="#知识点：dfs、bfs" class="headerlink" title="知识点：dfs、bfs"></a>知识点：dfs、bfs</h2><h2 id="分析：-4"><a href="#分析：-4" class="headerlink" title="分析："></a>分析：</h2><p>和其他岛屿题目差不多，最简单的方法是dfs和bfs结合使用，具体思路如下：</p>
+<p>因为题目表明有两座岛屿，采用dfs查找其中一座，再遍历过程中将这个岛屿的值改为2，以次和另外一个岛屿区分；并且，在dfs的时候，我们将所有和第一座岛屿相邻的坐标（是相邻）记录在一个队列里面，便于之后进行bfs；</p>
+<p>之后我们对队列里面的节点进行bfs。</p>
+<p>注：在dfs和bfs时，记得对已经查找过的作标进行标记，防止死循环</p>
+<h2 id="代码如下：-4"><a href="#代码如下：-4" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//总体思路：</span></span><br><span class="line">    <span class="comment">//先找到一个岛，进行dfs，将其所有节点改为2</span></span><br><span class="line">    <span class="comment">//从这个岛开始，进行bfs，返回第一个找到另外一个岛的长度</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">shortestBridge</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> gRows = grid.length,gCols = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> dis = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//准备一个队列，将第一个岛屿相邻的空地（也就是为0的坐标）放入队列中，为bfs做准备</span></span><br><span class="line">        Deque&lt;<span class="keyword">int</span>[]&gt; stack = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        <span class="keyword">boolean</span> mark = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> row=<span class="number">0</span>;row&lt;gRows;row++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(mark)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> col = <span class="number">0</span>;col&lt;gCols;col++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[row][col]==<span class="number">1</span>)&#123;</span><br><span class="line">                    dfs(stack,grid,row,col,gRows,gCols);</span><br><span class="line">                    mark = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[][] directions = &#123;&#123;-<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">            dis++;</span><br><span class="line">            <span class="keyword">int</span> size = stack.size();</span><br><span class="line">            <span class="keyword">while</span>(size&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                size--;</span><br><span class="line">                <span class="keyword">int</span>[] coordinate = stack.removeFirst();</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span>[] direction:directions)&#123;</span><br><span class="line">                    <span class="keyword">int</span> x = coordinate[<span class="number">0</span>]+direction[<span class="number">0</span>];</span><br><span class="line">                    <span class="keyword">int</span> y = coordinate[<span class="number">1</span>]+direction[<span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span>(x&gt;=<span class="number">0</span>&amp;&amp;x&lt;gRows&amp;&amp;y&gt;=<span class="number">0</span>&amp;&amp;y&lt;gCols)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(grid[x][y]==<span class="number">1</span>)&#123;</span><br><span class="line">                            <span class="keyword">return</span> dis;</span><br><span class="line">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(grid[x][y]==<span class="number">2</span>)&#123;</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        grid[x][y] = <span class="number">2</span>;</span><br><span class="line">                        stack.offerLast(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;x,y&#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dis;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将第一座岛所有相邻的海域（作标值为0）放入stack中，为之后的bfs做准备</span></span><br><span class="line">    <span class="comment">//向四个方向遍历时，如果是，2就直接返回；如果是1，那就改为2，然后对四个方向接着遍历；如果是0，放进队列，然后返回</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Deque&lt;<span class="keyword">int</span>[]&gt; stack,<span class="keyword">int</span>[][] grid,<span class="keyword">int</span> row,<span class="keyword">int</span> col,<span class="keyword">int</span> gRows,<span class="keyword">int</span> gCols)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row&lt;<span class="number">0</span>||row&gt;=gRows||col&lt;<span class="number">0</span>||col&gt;=gCols||grid[row][col]==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(grid[row][col]==<span class="number">0</span>)&#123;</span><br><span class="line">            stack.offerLast(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;row,col&#125;);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[row][col] = <span class="number">2</span>;</span><br><span class="line">        dfs(stack,grid,row-<span class="number">1</span>,col,gRows,gCols);</span><br><span class="line">        dfs(stack,grid,row+<span class="number">1</span>,col,gRows,gCols);</span><br><span class="line">        dfs(stack,grid,row,col-<span class="number">1</span>,gRows,gCols);</span><br><span class="line">        dfs(stack,grid,row,col+<span class="number">1</span>,gRows,gCols);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1887,107 +2032,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-title-link" itemprop="url">native关键字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-29 00:00:00 / 修改时间：21:16:54" itemprop="dateCreated datePublished" datetime="2021-05-29T00:00:00+08:00">2021-05-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-meta-item leancloud_visitors" data-flag-title="native关键字" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/29/native%E5%85%B3%E9%94%AE%E5%AD%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="native关键字"><a href="#native关键字" class="headerlink" title="native关键字"></a>native关键字</h2><p>native是与C++联合开发的时候用的！java自己开发不用的！</p>
-<p>使用native关键字说明这个方法是原生函数，也就是这个方法是用C/C++语言实现的，并且被编译成了DLL，由java去调用。</p>
-<p>这些函数的实现体在DLL中，JDK的源代码中并不包含，你应该是看不到的。对于不同的平台它们也是不同的。这也是java的底层机制，实际上java就是在不同的平台上调用不同的native方法实现对操作系统的访问的。</p>
-<p>1。native 是用做java 和其他语言（如c++）进行协作时用的也就是native 后的函数的实现不是用java写的</p>
-<p>2。既然都不是java，那就别管它的源代码了，呵呵</p>
-<p>native的意思就是通知操作系统，</p>
-<p>这个函数你必须给我实现，因为我要使用。</p>
-<p>所以native关键字的函数都是操作系统实现的，java只能调用。</p>
-<p>java是跨平台的语言，既然是跨了平台，所付出的代价就是牺牲一些对底层的控制，而java要实现对底层的控制，就要一些其他语言的帮助，这个就是native的作用了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2055,7 +2103,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2068,7 +2116,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -2106,8 +2154,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

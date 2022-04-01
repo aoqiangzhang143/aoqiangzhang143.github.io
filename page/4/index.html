@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">100</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">101</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,106 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/17/Java%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/17/Java%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Java关键字总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-17 00:00:00 / 修改时间：18:03:16" itemprop="dateCreated datePublished" datetime="2021-08-17T00:00:00+08:00">2021-08-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/17/Java%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="Java关键字总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/17/Java%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/17/Java%E5%85%B3%E9%94%AE%E5%AD%97%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Transient"><a href="#Transient" class="headerlink" title="Transient"></a>Transient</h1><h2 id="一、概要介绍"><a href="#一、概要介绍" class="headerlink" title="一、概要介绍"></a>一、概要介绍</h2><p>   本文要介绍的是Java中的transient关键字，transient是短暂的意思。对于transient 修饰的成员变量，在类的实例对象的序列化处理过程中会被忽略。 因此，transient变量不会贯穿对象的序列化和反序列化，生命周期仅存于调用者的内存中而不会写到磁盘里进行持久化。</p>
+<h3 id="（1）序列化"><a href="#（1）序列化" class="headerlink" title="（1）序列化"></a>（1）序列化</h3><p>   Java中对象的序列化指的是将对象转换成以字节序列的形式来表示，这些字节序列包含了对象的数据和信息，一个序列化后的对象可以被写到数据库或文件中，也可用于网络传输。一般地，当我们使用缓存cache（内存空间不够有可能会本地存储到硬盘）或远程调用rpc（网络传输）的时候，经常需要让实体类实现Serializable接口，目的就是为了让其可序列化。当然，序列化后的最终目的是为了反序列化，恢复成原先的Java对象实例。所以序列化后的字节序列都是可以恢复成Java对象的，这个过程就是反序列化。</p>
+<h3 id="（2）为什么要用transient关键字？"><a href="#（2）为什么要用transient关键字？" class="headerlink" title="（2）为什么要用transient关键字？"></a>（2）为什么要用transient关键字？</h3><p>   在持久化对象时，对于一些特殊的数据成员（如用户的密码，银行卡号等），我们不想用序列化机制来保存它。为了在一个特定对象的一个成员变量上关闭序列化，可以在这个成员变量前加上关键字transient。</p>
+<h3 id="（3）transient的作用"><a href="#（3）transient的作用" class="headerlink" title="（3）transient的作用"></a>（3）transient的作用</h3><p>   transient是Java语言的关键字，用来表示一个成员变量不是该对象序列化的一部分。当一个对象被序列化的时候，transient型变量的值不包括在序列化的结果中。而非transient型的变量是被包括进去的。</p>
+<p>注意static修饰的静态变量天然就是不可序列化的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> serializationLearn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID =<span class="number">6849794492644667710L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String pwd;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPwd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pwd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPwd</span><span class="params">(String pwd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.pwd = pwd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> serializationLearn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializationLearn</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        User user  = <span class="keyword">new</span> User();</span><br><span class="line">        user.setUserName(<span class="string">&quot;Jack&quot;</span>);</span><br><span class="line">        user.setPwd(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;before Serializable:&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;userName:&quot;</span>+user.getUserName());</span><br><span class="line">        System.out.println(<span class="string">&quot;userPwd:&quot;</span>+user.getPwd());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;C:/Users/Mithrandir/Desktop/user.txt&quot;</span>));</span><br><span class="line">            <span class="comment">//将user对象写进文件</span></span><br><span class="line">            oos.writeObject(user);</span><br><span class="line">            oos.flush();</span><br><span class="line">            oos.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;C:/Users/Mithrandir/Desktop/user.txt&quot;</span>));</span><br><span class="line">            <span class="comment">//从流中读取数据</span></span><br><span class="line">            user = (User)ois.readObject();</span><br><span class="line">            ois.close();</span><br><span class="line">            System.out.println(<span class="string">&quot;after Serializable&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;userName:&quot;</span>+user.getUserName());<span class="comment">//Jack</span></span><br><span class="line">            System.out.println(<span class="string">&quot;userPwd:&quot;</span>+user.getPwd());<span class="comment">//null</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、transient使用总结"><a href="#二、transient使用总结" class="headerlink" title="二、transient使用总结"></a>二、transient使用总结</h2><p>（1）一旦变量被transient修饰，变量将不再是对象持久化的一部分，该变量内容在序列化后无法被访问。</p>
+<p>（2） transient关键字只能修饰变量，而不能修饰方法和类。注意，本地变量是不能被transient关键字修饰的。变量如果是用户自定义类变量，则该类需要实现Serializable接口。</p>
+<p>（3）一个静态变量不管是否被transient修饰，均不能被序列化(如果反序列化后类中static变量还有值，则值为当前JVM中对应static变量的值)。序列化保存的是对象状态，静态变量保存的是类状态，因此序列化并不保存静态变量。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -457,7 +557,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-08-14 00:00:00 / 修改时间：10:23:49" itemprop="dateCreated datePublished" datetime="2021-08-14T00:00:00+08:00">2021-08-14</time>
+              <time title="创建时间：2021-08-14 00:00:00 / 修改时间：14:39:03" itemprop="dateCreated datePublished" datetime="2021-08-14T00:00:00+08:00">2021-08-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -906,10 +1006,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-09 00:00:00 / 修改时间：10:57:43" itemprop="dateCreated datePublished" datetime="2021-08-09T00:00:00+08:00">2021-08-09</time>
+              <time title="创建时间：2021-08-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-09T00:00:00+08:00">2021-08-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-10 10:20:34" itemprop="dateModified" datetime="2021-08-10T10:20:34+08:00">2021-08-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1286,110 +1392,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/" class="post-title-link" itemprop="url">二分法的三种写法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-08-03 00:00:00 / 修改时间：10:04:13" itemprop="dateCreated datePublished" datetime="2021-08-03T00:00:00+08:00">2021-08-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="二分法的三种写法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/03/%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>总结二分边界的写法是因为很容易出错，比如说：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这种属于向下取整，容易出现left=3，right=4，mid=3的死循环</span></span><br><span class="line"><span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-
-<p>第一种写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt; high) &#123;<span class="comment">//退出循环时必定low==high</span></span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low) / <span class="number">2</span>;<span class="comment">//向下取整</span></span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid;</span><br><span class="line">    <span class="comment">//当需要在右区间查找时，改变low的值，使得向下取整不会发生死循环</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low - <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>第二种写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low + <span class="number">1</span>) / <span class="number">2</span>;<span class="comment">//直接改为向上取整，避免了向下取整带来的死循环</span></span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>第三种写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (low &lt;= high) &#123;<span class="comment">//注意此处退出循环时low！=high</span></span><br><span class="line">    <span class="keyword">long</span> mid = low + (high - low) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">long</span> r = mid * mid;</span><br><span class="line">    <span class="keyword">if</span> (r &gt; x) high = mid - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (r &lt; x) low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) low - <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1457,7 +1463,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1470,7 +1476,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1508,8 +1514,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
