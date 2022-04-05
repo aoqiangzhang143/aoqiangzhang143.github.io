@@ -122,12 +122,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">101</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>目录<span class="badge">103</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -182,6 +182,228 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="post-title-link" itemprop="url">leetcode-接雨水</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-23T00:00:00+08:00">2021-06-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-23 16:33:22" itemprop="dateModified" datetime="2021-07-23T16:33:22+08:00">2021-07-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-接雨水" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/23/leetcode-%E6%8E%A5%E9%9B%A8%E6%B0%B4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h1><p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>双指针</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>根据木桶理论，每个位置能存放的雨水数量取决于该点左右两边的最高柱子中低的那个，即找出当前位置Math.min(leftMax,rightMax),然后该值减去当前节点的高度即为可存放雨水的数量。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxLeft = <span class="number">0</span>,maxRight = <span class="number">0</span>,sum = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//left和right为计算存水量的位置</span></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">1</span>,right = height.length-<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;<span class="comment">//此处必须可=，最后一个存水位置也要计算</span></span><br><span class="line">            <span class="keyword">if</span>(height[left-<span class="number">1</span>]&lt;height[right+<span class="number">1</span>])&#123;<span class="comment">//这说明右侧比较高，存水得按照左侧来计算</span></span><br><span class="line">                <span class="comment">//看下左边最高能到哪个位置</span></span><br><span class="line">                maxLeft = Math.max(height[left-<span class="number">1</span>],maxLeft);</span><br><span class="line">                <span class="comment">//只有当前柱子高度小于左侧最大值时才可以存水</span></span><br><span class="line">                <span class="keyword">if</span>(height[left]&lt;maxLeft)&#123;</span><br><span class="line">                    sum+=maxLeft-height[left];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//如果当前这个柱子没法存水，那就考虑下一个</span></span><br><span class="line">                left++;</span><br><span class="line">                <span class="comment">//右侧同理</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                maxRight = Math.max(maxRight,height[right+<span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">if</span>(maxRight&gt;height[right])&#123;</span><br><span class="line">                    sum+=maxRight-height[right];</span><br><span class="line">                    </span><br><span class="line">                &#125;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="aoqiangzhang143">
+      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mithrandir">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/" class="post-title-link" itemprop="url">leetcode-N个数之和</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-22T00:00:00+08:00">2021-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-04 10:20:29" itemprop="dateModified" datetime="2021-08-04T10:20:29+08:00">2021-08-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-N个数之和" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/22/leetcode-N%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="2-两数相加"><a href="#2-两数相加" class="headerlink" title="2. 两数相加"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/">2. 两数相加</a></h1><p>给你两个非空的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>链表</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>这个题目不难，重点在于想清楚即可，还有处理好细节。</p>
+<h2 id="代码入下："><a href="#代码入下：" class="headerlink" title="代码入下："></a>代码入下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        ListNode resHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        ListNode curNode = resHead;</span><br><span class="line">        <span class="keyword">int</span> plus = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l1!=<span class="keyword">null</span>||l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> num1 = l1==<span class="keyword">null</span>?<span class="number">0</span>:l1.val;</span><br><span class="line">            <span class="keyword">int</span> num2 = l2==<span class="keyword">null</span>?<span class="number">0</span>:l2.val;</span><br><span class="line">            <span class="keyword">int</span> sum = num1+num2+plus;</span><br><span class="line">            plus = sum/<span class="number">10</span>;</span><br><span class="line">            <span class="keyword">int</span> curNum = sum%<span class="number">10</span>;</span><br><span class="line">            curNode.next = <span class="keyword">new</span> ListNode(curNum);</span><br><span class="line">            curNode = curNode.next;</span><br><span class="line">            <span class="keyword">if</span>(l1!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                l1 = l1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                l2 = l2.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(plus!=<span class="number">0</span>)&#123;</span><br><span class="line">            curNode.next = <span class="keyword">new</span> ListNode(plus);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> resHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">15. 三数之和</a></h1><h2 id="知识点：双指针"><a href="#知识点：双指针" class="headerlink" title="知识点：双指针"></a>知识点：双指针</h2><p>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。</p>
+<p>注意：答案中不可以包含重复的三元组。</p>
+<h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h2><p>三个数之和为零，肯定得有负数，或者全是0，先对数组进行排序，然后开始遍历；</p>
+<p>如果nums[i]&gt;0，则说明后面的数字已经全部大于0，不可能再有满足条件的数组，直接返回结果；</p>
+<p>如果nums[i]+nums[left]+nums[right]=0，进行记录，并将left和right分别进行右移和左移，直到找到不重复的元素为止；</p>
+<p>如果和小于0，让左指针右移；和大于0，就让右指针左移。</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; resList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> resList;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;nums[i]==nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> left = i+<span class="number">1</span>,right = nums.length-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">                <span class="keyword">int</span> curSum = nums[i]+nums[left]+nums[right];</span><br><span class="line">                <span class="keyword">if</span>(curSum==<span class="number">0</span>)&#123;</span><br><span class="line">                    ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                    list.add(nums[i]);</span><br><span class="line">                    list.add(nums[left]);</span><br><span class="line">                    list.add(nums[right]);</span><br><span class="line">                    resList.add(list);</span><br><span class="line">                    <span class="keyword">while</span> (left&lt;right&amp;&amp;nums[left]==nums[left+<span class="number">1</span>])&#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">while</span>(left&lt;right&amp;&amp;nums[right]==nums[right-<span class="number">1</span>])&#123;</span><br><span class="line">                        --right;</span><br><span class="line">                    &#125;</span><br><span class="line">                    ++left;</span><br><span class="line">                    --right;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(curSum&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                    left++;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    right--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> resList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="611-有效三角形的个数"><a href="#611-有效三角形的个数" class="headerlink" title="611. 有效三角形的个数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-triangle-number/">611. 有效三角形的个数</a></h1><p>给定一个包含非负整数的数组，你的任务是统计其中可以组成三角形三条边的三元组个数。</p>
+<p><strong>示例 1:</strong></p>
+<p><strong>输入:</strong> [2,2,3,4]<br> <strong>输出:</strong> 3<br> <strong>解释:</strong><br> 有效的组合是:<br> 2,3,4 (使用第一个 2)<br> 2,3,4 (使用第二个 2)<br> 2,2,3</p>
+<p><strong>注意:</strong></p>
+<ol>
+<li>数组长度不超过1000。</li>
+<li>数组里整数的范围为     [0, 1000]。</li>
+</ol>
+<h2 id="知识点：二分法、双指针"><a href="#知识点：二分法、双指针" class="headerlink" title="知识点：二分法、双指针"></a>知识点：二分法、双指针</h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h2><p>在一个数组中找出三个符合条件的数字，三重遍历肯定是少不了；可是在查找的时候可用二分法来降低复杂度。</p>
+<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是二分法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">triangleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                <span class="keyword">int</span> left = j + <span class="number">1</span>, right = n - <span class="number">1</span>, k = j;</span><br><span class="line">                <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">                <span class="comment">//此处注意，写为&lt;=，因为当left这个索引指向的元素也可能满足条件</span></span><br><span class="line">                    <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">if</span> (nums[mid] &lt; nums[i] + nums[j]) &#123;</span><br><span class="line">                        k = mid;</span><br><span class="line">                        left = mid + <span class="number">1</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        right = mid - <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ans += k - j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下是双指针:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">triangleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> k = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                <span class="keyword">while</span> (k + <span class="number">1</span> &lt; n &amp;&amp; nums[k + <span class="number">1</span>] &lt; nums[i] + nums[j]) &#123;</span><br><span class="line">                    ++k;</span><br><span class="line">                &#125;</span><br><span class="line">                ans += Math.max(k - j, <span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1266,276 +1488,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">leetcode-重排链表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-10 10:58:05" itemprop="dateModified" datetime="2021-08-10T10:58:05+08:00">2021-08-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-重排链表" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表</a></h1><p>反转一个单链表。</p>
-<p> 输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</p>
-<p> 输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>没啥好分析的,递归就行了.</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode pre=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">//记录下一个节点</span></span><br><span class="line">            ListNode tmpNext=head.next;</span><br><span class="line">            <span class="comment">//使当前节点指向前一个节点</span></span><br><span class="line">            head.next=pre;</span><br><span class="line">            <span class="comment">//更新前节点</span></span><br><span class="line">            pre=head;</span><br><span class="line">            <span class="comment">//更新head</span></span><br><span class="line">            head=tmpNext;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// head.next=pre;</span></span><br><span class="line">        <span class="keyword">return</span> pre;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<hr>
-<h1 id="92-反转链表-II"><a href="#92-反转链表-II" class="headerlink" title="92. 反转链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">92. 反转链表 II</a></h1><p>给你单链表的头指针head和两个整数 left 和 right ，其中 left &lt;= right 。请你反转从位置 left 到位置 right 的链表节点，返回反转后的链表。</p>
-<p> 输入：head = [1,2,3,4,5], left = 2, right = 4</p>
-<p> 输出：[1,4,3,2,5]</p>
-<h2 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>说白了就是反转指定区间的链表，其他不变；这个可以用头插法（就是新增节点插在头部），其实不难，就是注意细节问题。</p>
-<h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="keyword">null</span>||left==right)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>,head);</span><br><span class="line">        ListNode preNode = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(index&lt;left)&#123;</span><br><span class="line">            preNode = preNode.next;</span><br><span class="line">            ++index;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count = right-left;</span><br><span class="line">        ListNode curNode = preNode.next;</span><br><span class="line">        ListNode suc = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            suc = curNode.next;</span><br><span class="line">            curNode.next = suc.next;</span><br><span class="line">            suc.next = preNode.next;</span><br><span class="line">            preNode.next = suc;</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24. 两两交换链表中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/">24. 两两交换链表中的节点</a></h1><p>给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。</p>
-<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
-<img src="/2021/06/10/leetcode-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/image-20210804104939017.png" alt="两两交换链表中的节点" style="zoom:67%;">
-
-<p>示例 1：</p>
-<p>输入：head = [1,2,3,4] 输出：[2,1,4,3]</p>
-<h2 id="知识点：链表"><a href="#知识点：链表" class="headerlink" title="知识点：链表"></a><strong>知识点：链表</strong></h2><h2 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a><strong>分析：</strong></h2><p>除了互相交换的两个节点之外，还需要前一个节点进行辅助。</p>
-<h2 id="代码如下：-2"><a href="#代码如下：-2" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>,head);</span><br><span class="line">        ListNode preHead = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(preHead.next!=<span class="keyword">null</span>&amp;&amp;preHead.next.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode start = preHead.next;</span><br><span class="line">            ListNode end = preHead.next.next;</span><br><span class="line">            preHead.next = end;</span><br><span class="line">            start.next = end.next;</span><br><span class="line">            end.next = start;</span><br><span class="line">            preHead = start;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="25-K-个一组翻转链表"><a href="#25-K-个一组翻转链表" class="headerlink" title="25. K 个一组翻转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表</a></h1><p>给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p>
-<p>进阶：</p>
-<p>你可以设计一个只使用常数额外空间的算法来解决此问题吗？</p>
-<p><strong>你不能只是单纯的改变节点内部的值</strong>，而是需要实际进行节点交换。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h2><p>除了反转之外，还涉及到一个检查剩余节点够不够反转的问题，在反转之前检查下即可。</p>
-<h2 id="代码如下：-3"><a href="#代码如下：-3" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> ListNode(-<span class="number">1</span>,head);</span><br><span class="line">        ListNode pre = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode tail = pre;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">                tail = tail.next;</span><br><span class="line">                <span class="keyword">if</span>(tail==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode nextNode = tail.next;</span><br><span class="line">            ListNode[] ans = myReverse(head,tail);</span><br><span class="line">            head = ans[<span class="number">0</span>];</span><br><span class="line">            tail = ans[<span class="number">1</span>];</span><br><span class="line">            pre.next = head;</span><br><span class="line">            tail.next = nextNode;</span><br><span class="line">            pre = tail;</span><br><span class="line">            head = tail.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> ListNode[] myReverse(ListNode head,ListNode tail)&#123;</span><br><span class="line">        ListNode pre = tail.next;</span><br><span class="line">        ListNode curNode = head;</span><br><span class="line">        <span class="keyword">while</span>(pre!=tail)&#123;</span><br><span class="line">            ListNode suc = curNode.next;</span><br><span class="line">            curNode.next = pre;</span><br><span class="line">            pre = curNode;</span><br><span class="line">            curNode = suc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ListNode[]&#123;tail,head&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="143-重排链表"><a href="#143-重排链表" class="headerlink" title="143. 重排链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reorder-list/">143. 重排链表</a></h1><p>给定一个单链表 L：L0→L1→…→Ln-1→Ln ，</p>
-<p>将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
-<p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
-<p>示例 1:</p>
-<p>给定链表 1-&gt;2-&gt;3-&gt;4, 重新排列为 1-&gt;4-&gt;2-&gt;3.</p>
-<p>示例 2:</p>
-<p>给定链表 1-&gt;2-&gt;3-&gt;4-&gt;5, 重新排列为 1-&gt;5-&gt;2-&gt;4-&gt;3.</p>
-<h2 id="知识点：链表-1"><a href="#知识点：链表-1" class="headerlink" title="知识点：链表"></a>知识点：链表</h2><h2 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h2><p>仔细观察可发现，重新排列是将链表分为两段后进行挨个穿插得到；于是本题思路为，找到链表后半部分（注意如果是奇数则不包括中间那个）头部；对后半段进行反转；然后将两段链表进行穿插。</p>
-<h2 id="代码如下：-4"><a href="#代码如下：-4" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//先找到后半段链表</span></span><br><span class="line">        ListNode fast = head,slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast.next!=<span class="keyword">null</span>&amp;&amp;fast.next.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode secHead = slow.next;</span><br><span class="line">        slow.next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// ListNode curNode = secHead;</span></span><br><span class="line">        <span class="comment">//反转第二段链表</span></span><br><span class="line">        <span class="keyword">while</span>(secHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode tmpNext = secHead.next;</span><br><span class="line">            secHead.next = pre;</span><br><span class="line">            pre = secHead;</span><br><span class="line">            secHead = tmpNext;</span><br><span class="line">        &#125;</span><br><span class="line">        secHead = pre;</span><br><span class="line">        ListNode firHead = head;</span><br><span class="line">        <span class="comment">//拼接两段链表</span></span><br><span class="line">        <span class="keyword">while</span>(firHead!=<span class="keyword">null</span>&amp;&amp;secHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode firNext = firHead.next;</span><br><span class="line">            ListNode secNext = secHead.next;</span><br><span class="line"></span><br><span class="line">            firHead.next = secHead;</span><br><span class="line">            firHead = firNext;</span><br><span class="line"></span><br><span class="line">            secHead.next = firHead;</span><br><span class="line">            secHead = secNext;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="aoqiangzhang143">
-      <meta itemprop="description" content="且将新火试新茶，诗酒趁年华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mithrandir">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">leetcode-重构二叉树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-10T00:00:00+08:00">2021-06-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-03 10:36:20" itemprop="dateModified" datetime="2021-08-03T10:36:20+08:00">2021-08-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">leetcode刷题笔记</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-meta-item leancloud_visitors" data-flag-title="leetcode-重构二叉树" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/10/leetcode-%E9%87%8D%E6%9E%84%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"><strong>105.</strong> <strong>从前序与中序遍历序列构造二叉树</strong></a></h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
-<h2 id="知识点-二叉树-递归"><a href="#知识点-二叉树-递归" class="headerlink" title="知识点:二叉树,递归"></a>知识点:二叉树,递归</h2><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><table>
-<thead>
-<tr>
-<th><strong>二叉树遍历</strong></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>前序</td>
-<td>根节点</td>
-<td>左子树</td>
-<td>右子树</td>
-</tr>
-<tr>
-<td>中序</td>
-<td>左子树</td>
-<td>根节点</td>
-<td>右子树</td>
-</tr>
-<tr>
-<td>后序</td>
-<td>左子树</td>
-<td>右子树</td>
-<td>根节点</td>
-</tr>
-</tbody></table>
-<p>根据二叉树遍历的特点 ，前序遍历的第一个节点就是根节点；而在中序遍历中可根据根节点的坐标位置将整个数组分为左子树和右子树。在本题中，重点落在了中序遍历上，首先对中序遍历建立一个HashMap，k为数组的值，v为该值在中序遍历中的位置。根据前序遍历找到根节点root的位置，然后通过HashMap找到root在中序遍历中的位置，之后便可根据中序遍历确定左子树和右子树的长度；由于子树长度确定了，则可在前序遍历中确定左右子树的根节点，便可进行递归查找所有节点的位置。</p>
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//preorder和HashMap在两个函数中都会用到</span></span><br><span class="line">    <span class="keyword">int</span>[] preorder;</span><br><span class="line">    HashMap&lt;Integer,Integer&gt; map=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.preorder=preorder;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;inorder.length;i++)&#123;</span><br><span class="line">            map.put(inorder[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> recur(<span class="number">0</span>,<span class="number">0</span>,inorder.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//rootIndex为前序遍历中根节点的位置，leftIndex为中序遍历中子树的左端，rightIndex为中序遍历中子树的右端，</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">recur</span><span class="params">(<span class="keyword">int</span> rootIndex,<span class="keyword">int</span> leftIndex,<span class="keyword">int</span> rightIndex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(leftIndex&gt;rightIndex)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode root=<span class="keyword">new</span> TreeNode(preorder[rootIndex]);</span><br><span class="line">        <span class="keyword">int</span> rootIndexInOrder=map.get(preorder[rootIndex]);</span><br><span class="line">        <span class="comment">//递归建立左子树</span></span><br><span class="line">        root.left=recur(rootIndex+<span class="number">1</span>,leftIndex,rootIndexInOrder-<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//解释下rootIndex+rootIndexInOrder-leftIndex+1，这个式子为</span></span><br><span class="line">        <span class="comment">//rootIndex+[（rootIndexInOrder-1）-leftIndex+1]+1，</span></span><br><span class="line">        <span class="comment">//其实就是找到前序遍历中右子树开始的那个位置，当前根节点的位置+左子树长度+1</span></span><br><span class="line">        <span class="comment">//递归建立右子树</span></span><br><span class="line">        root.right=recur(rootIndex+rootIndexInOrder-leftIndex+<span class="number">1</span>,rootIndexInOrder+<span class="number">1</span>,rightIndex);</span><br><span class="line">        <span class="comment">//返回根节点</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="106-从中序与后序遍历序列构造二叉树"><a href="#106-从中序与后序遍历序列构造二叉树" class="headerlink" title="106. 从中序与后序遍历序列构造二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/"><strong>106.</strong> <strong>从中序与后序遍历序列构造二叉树</strong></a></h1><h2 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h2><p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
-<p>注意: 你可以假设树中没有重复的元素。</p>
-<p>例如，给出</p>
-<p>中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3]</p>
-<h2 id="知识点：二叉树"><a href="#知识点：二叉树" class="headerlink" title="知识点：二叉树"></a>知识点：二叉树</h2><h2 id="代码如下：-1"><a href="#代码如下：-1" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer,Integer&gt; map= <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span>[] postorder;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.postorder=postorder;</span><br><span class="line">        <span class="keyword">int</span> len = inorder.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;inorder.length;i++)&#123;</span><br><span class="line">            map.put(inorder[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode root = dfs(len-<span class="number">1</span>,<span class="number">0</span>,len-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对当前节点的左右子树进行构建</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> rootIndex 根节点在后序遍历中的位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> leftIndex 当前子树在中序遍历中的左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> rightIndex 当前子树在中序遍历中的右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 根节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> rootIndex, <span class="keyword">int</span> leftIndex, <span class="keyword">int</span> rightIndex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(leftIndex&gt;rightIndex)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode node = <span class="keyword">new</span> TreeNode(postorder[rootIndex]);</span><br><span class="line">        <span class="keyword">int</span> rootInorder = map.get(postorder[rootIndex]);</span><br><span class="line">        <span class="keyword">int</span> leftLen = rootInorder-leftIndex;</span><br><span class="line">        node.left=dfs(rootIndex-(rightIndex-leftIndex+<span class="number">1</span>)+leftLen,leftIndex, rootInorder-<span class="number">1</span>);</span><br><span class="line">        node.right=dfs(rootIndex-<span class="number">1</span>,rootInorder+<span class="number">1</span>,rightIndex);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1607,7 +1559,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1620,7 +1572,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
